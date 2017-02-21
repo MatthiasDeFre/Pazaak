@@ -1,9 +1,13 @@
-package domain;
+import java.util.ArrayList;
 
 public class PlayerRepository {
-	public PlayerMapper _unnamed_PlayerMapper_;
+	private ArrayList<Player> players = new ArrayList<Player>();
 
-	public void register(Player aPlayer) {
+	public void register(Player player) {
+		throw new UnsupportedOperationException();
+	}
+
+	public PlayerRepository() {
 		throw new UnsupportedOperationException();
 	}
 }

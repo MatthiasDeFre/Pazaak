@@ -1,14 +1,13 @@
-package domain;
-
-import java.util.Vector;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Player {
-	private DateTime _dateOfBirth;
-	private String _name;
-	private int _credits;
-	private Vector<Card> _deck = new Vector<Card>();
+	private LocalDateTime dateOfBirth;
+	private String name;
+	private int credits;
+	private ArrayList<Card> deck = new ArrayList<Card>();
 
-	public Player(DateTime aDateOfBirth, String aName) {
+	public Player(LocalDateTime dateOfBirth, String name) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -20,27 +19,27 @@ public class Player {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setDateOfBirth(DateTime aDateOfBirth) {
-		this._dateOfBirth = aDateOfBirth;
+	public void setDateOfBirth(LocalDateTime dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
-	public DateTime getDateOfBirth() {
-		return this._dateOfBirth;
+	public LocalDateTime getDateOfBirth() {
+		return this.dateOfBirth;
 	}
 
-	public void setName(String aName) {
-		this._name = aName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
-		return this._name;
+		return this.name;
 	}
 
-	public void setCredits(int aCredits) {
-		this._credits = aCredits;
+	public void setCredits(int credits) {
+		this.credits = credits;
 	}
 
 	public int getCredits() {
-		return this._credits;
+		return this.credits;
 	}
 }

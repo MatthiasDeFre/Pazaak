@@ -1,26 +1,24 @@
-package domain;
-
 public class Card {
-	private String _type;
-	private int _value;
+	private String type;
+	private int value;
 
-	public Card(String aType, int aValue) {
+	public Card(String type, int value) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setType(String aType) {
-		this._type = aType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getType() {
-		return this._type;
+		return this.type;
 	}
 
-	public void setValue(int aValue) {
-		this._value = aValue;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	public int getValue() {
-		return this._value;
+		return this.value;
 	}
 }

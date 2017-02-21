@@ -12,11 +12,10 @@
 	<target depends="init" name="build">
 		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
 			<classpath refid="build.classpath"/>
-			<include name="Card.java"/>
+			<include name="PlayerRepository.java"/>
 			<include name="DomainController.java"/>
 			<include name="Player.java"/>
-			<include name="PlayerRepository.java"/>
-			<include name="PlayerMapper.java"/>
+			<include name="Card.java"/>
 		</javac>
 	</target>
 </project>
