@@ -1,5 +1,7 @@
-
+package domain;
+import domain.Player;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
@@ -28,8 +30,9 @@ public class DomainController {
         return dataAndDeck;
 	}
 
-	public DomainController() {
+	public DomainController(Locale currentLocale) {
 		CardMapper cardMapper = new CardMapper();
                 PlayerMapper playerMapper = new PlayerMapper();
+                Locale.setDefault(currentLocale);
 	}
 }

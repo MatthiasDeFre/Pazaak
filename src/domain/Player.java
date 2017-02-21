@@ -1,6 +1,10 @@
+package domain;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import exceptions.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 public class Player {
 	private LocalDateTime dateOfBirth;
 	private String name;
@@ -42,4 +46,22 @@ public class Player {
 	public int getCredits() {
 		return this.credits;
 	}
+        public void checkName(String name) {
+            if(name == null || name.isEmpty()) {
+              ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
+                throw new noCorrectNameException(rs.getString("noCorrectName"));
+            }
+        }
+        public void checkDateOfBirth(LocalDateTime dateOfBirth) {
+            
+        }
+          
+ /*   {
+        ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.GERMANY);
+        System.out.println(rs.getString("s1"));
+             ResourceBundle rs1 = ResourceBundle.getBundle("resources/Lang", Locale.US);
+        System.out.println(rs1.getString("s1"));
+    }*/
+                   
+        
 }

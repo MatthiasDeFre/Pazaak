@@ -1,3 +1,4 @@
+package domain;
 public class Card {
 	private String type;
 	private int value;
