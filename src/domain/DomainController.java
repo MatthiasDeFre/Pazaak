@@ -1,14 +1,14 @@
 package domain;
 import domain.Player;
 import java.time.LocalDateTime;
-import java.util.Locale;
 import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
 	private Player currentUser;
 
 	public void register(String name, LocalDateTime dateOfBirth) {
-		throw new UnsupportedOperationException();
+           currentUser = new Player(dateOfBirth, name);
+            players.register(currentUser);
 	}
 
 	public String[][] getPlayerData()
@@ -30,9 +30,9 @@ public class DomainController {
         return dataAndDeck;
 	}
 
-	public DomainController(Locale currentLocale) {
+	public DomainController() {
 		CardMapper cardMapper = new CardMapper();
                 PlayerMapper playerMapper = new PlayerMapper();
-                Locale.setDefault(currentLocale);
+              
 	}
 }
