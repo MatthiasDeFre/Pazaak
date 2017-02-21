@@ -9,7 +9,7 @@ public class DomainController {
 		throw new UnsupportedOperationException();
 	}
 
-	public String[][] getPlayerDate()
+	public String[][] getPlayerData()
     {
         String[][] dataAndDeck = new String[currentUser.getDeck().length + 1][];
         String[] playerData = new String[3];
