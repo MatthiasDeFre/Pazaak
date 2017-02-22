@@ -3,6 +3,7 @@ package domain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import exceptions.*;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -11,7 +12,7 @@ public class Player {
 	private LocalDateTime dateOfBirth;
 	private String name;
 	private int credits;
-	private ArrayList<Card> deck = new ArrayList<>();
+	private List<Card> deck = new ArrayList<>();
 
 	public Player(LocalDateTime dateOfBirth, String name) {
 		throw new UnsupportedOperationException();
@@ -27,7 +28,7 @@ public class Player {
                 }
 	}
 
-	public ArrayList<Card> getDeck() {
+	public List<Card> getDeck() {
 		return deck;
 	}
 
@@ -54,13 +55,13 @@ public class Player {
 	public int getCredits() {
 		return this.credits;
 	}
-        public void checkName(String name) {
+        private void checkName(String name) {
             if(name == null || name.isEmpty()) {
               ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
                 throw new noCorrectNameException(rs.getString("noCorrectName"));
             }
         }
-        public void checkDateOfBirth(LocalDateTime dateOfBirth) {
+        private void checkDateOfBirth(LocalDateTime dateOfBirth) {
             
         }
           
