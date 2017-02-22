@@ -5,22 +5,30 @@ import java.util.ArrayList;
 import exceptions.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Player {
 	private LocalDateTime dateOfBirth;
 	private String name;
 	private int credits;
-	private ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Card> deck = new ArrayList<>();
 
 	public Player(LocalDateTime dateOfBirth, String name) {
 		throw new UnsupportedOperationException();
 	}
 
 	public void makeStartdeck() {
-		throw new UnsupportedOperationException();
+		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
+                final int [] value = {2,4,5,6,1,3,1,2,3,5};
+                Card newCard;
+                for (int i = 0; i < 10; i++) {
+                newCard = new Card(type[i], value[i]);
+                deck.add(newCard);
+                }
 	}
 
-	public Card[] getDeck() {
-		throw new UnsupportedOperationException();
+	public ArrayList<Card> getDeck() {
+		return deck;
 	}
 
 	public void setDateOfBirth(LocalDateTime dateOfBirth) {
