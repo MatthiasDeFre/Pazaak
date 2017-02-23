@@ -7,6 +7,7 @@ package cui;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  *
@@ -22,9 +23,26 @@ public class cui
 {
     public static void main(String[] args)
     {
-        Locale.setDefault(Locale.FRANCE);
-        Locale.setDefault(Locale.US);
-        ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
-        System.out.println(rs.getString("selectLanguage"));
+        Scanner s = new Scanner(System.in);
+        ResourceBundle wc= ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+        System.out.println(String.format(wc.getString("selectLanguage")));
+        
+        switch(s.nextInt()){
+            case 1:
+                Locale.setDefault(Locale.US);
+                break;
+            case 2:
+                Locale.setDefault(Locale.);
+                break;
+             case 3:
+                Locale.setDefault(Locale.FRANCE);
+                break;
+             default:
+                    System.out.println(wc.getString("errorNumber"));
+                    break;
+                    
+        }
+        ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+        System.out.println(rs.getString("welcome"));
     }
 }

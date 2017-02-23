@@ -16,3 +16,6 @@ hs_err_pid*
 /manifest.mf
 /vpproject/
 /build/
+/Pazaak/nbproject/private/
+/Pazaak/build/
+/Pazaak/dist/
