@@ -1,13 +1,21 @@
 package domain;
 import domain.Player;
+import exceptions.noCorrectNameException;
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
 	private Player currentUser;
 
 	public void register(String name, LocalDateTime dateOfBirth) {
-           currentUser = new Player(dateOfBirth, name);
+             //Check if user exists
+            if(players.userExists(name)) {
+                ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+                throw new noCorrectNameException(rs.getString("userExists"));
+            }    
+            currentUser = new Player(dateOfBirth, name);
             players.register(currentUser);
 	}
 

@@ -12,4 +12,14 @@ public class PlayerRepository {
 	public PlayerRepository() {
 		throw new UnsupportedOperationException();
 	}
+               public boolean userExists(String name) {
+            boolean exists = false;
+            for (Player player : players)
+            {
+                if(player.getName().equals(name)) {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
 }
