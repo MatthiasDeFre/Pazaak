@@ -15,7 +15,7 @@ public class DomainController {
     {
         //Methode for retrieving the currentPlayer data and his deck, return value 2 dimensional array
         //Index [0][] will ALWAYS contain the currentPlayer his personal data: name, date of birth
-        //Index higher than 0 will result in getting the data for a card 
+        //Index higher than 0 will result in getting the data for a card
         //[x>0][0] returns the type
         //[x>0][1] returns the value
         String[][] dataAndDeck = new String[currentUser.getDeck().size() + 1][];
