@@ -15,8 +15,14 @@ public class Player {
 	private List<Card> deck = new ArrayList<>();
 
 	public Player(LocalDateTime dateOfBirth, String name) {
-		throw new UnsupportedOperationException();
+		checkName(name);
+                checkDateOfBirth(dateOfBirth);
+                this.dateOfBirth=dateOfBirth;
+                this.name=name;
+                
+                
 	}
+        
 
 	public void makeStartdeck() {
 		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
@@ -33,7 +39,9 @@ public class Player {
 	}
 
 	public void setDateOfBirth(LocalDateTime dateOfBirth) {
+                checkDateOfBirth(dateOfBirth);
 		this.dateOfBirth = dateOfBirth;
+                
 	}
 
 	public LocalDateTime getDateOfBirth() {
@@ -41,6 +49,7 @@ public class Player {
 	}
 
 	public void setName(String name) {
+                checkName(name);
 		this.name = name;
 	}
 
@@ -56,10 +65,32 @@ public class Player {
 		return this.credits;
 	}
         private void checkName(String name) {
+             ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
             if(name == null || name.isEmpty()) {
-              ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
+             
                 throw new noCorrectNameException(rs.getString("noCorrectName"));
             }
+            if(name.length()<3)
+            {
+                
+                throw new noCorrectNameException(rs.getString("lengthLessThanThree"));
+            }
+            Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(name);
+            boolean b = m.find();
+
+            if (b)
+            {
+               throw new noCorrectNameException(rs.getString("containSpecialCharacters"));
+            }
+            p=Pattern.compile("[0-9 ]");
+            m=p.matcher(name.substring(0,0));
+            boolean c=m.find();
+            if(c)
+            {
+                throw new noCorrectNameException(rs.getString("noNumberAsFirstCharacter"));
+            }
+           
         }
         private void checkDateOfBirth(LocalDateTime dateOfBirth) {
             

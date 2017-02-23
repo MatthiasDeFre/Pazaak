@@ -1,13 +1,21 @@
 package domain;
 import domain.Player;
+import exceptions.noCorrectNameException;
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
 	private Player currentUser;
 
 	public void register(String name, LocalDateTime dateOfBirth) {
-           currentUser = new Player(dateOfBirth, name);
+             //Check if user exists
+            if(players.userExists(name)) {
+                ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+                throw new noCorrectNameException(rs.getString("userExists"));
+            }    
+            currentUser = new Player(dateOfBirth, name);
             players.register(currentUser);
 	}
 
@@ -15,7 +23,7 @@ public class DomainController {
     {
         //Methode for retrieving the currentPlayer data and his deck, return value 2 dimensional array
         //Index [0][] will ALWAYS contain the currentPlayer his personal data: name, date of birth
-        //Index higher than 0 will result in getting the data for a card 
+        //Index higher than 0 will result in getting the data for a card
         //[x>0][0] returns the type
         //[x>0][1] returns the value
         String[][] dataAndDeck = new String[currentUser.getDeck().size() + 1][];
