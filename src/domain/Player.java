@@ -1,6 +1,5 @@
 package domain;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import exceptions.*;
 import java.util.List;
@@ -9,15 +8,15 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Player {
-	private LocalDateTime dateOfBirth;
+	private int birthYear;
 	private String name;
 	private int credits;
 	private List<Card> deck = new ArrayList<>();
 
-	public Player(LocalDateTime dateOfBirth, String name) {
+	public Player(int birthYear, String name) {
 		checkName(name);
-                checkDateOfBirth(dateOfBirth);
-                this.dateOfBirth=dateOfBirth;
+                checkDateOfBirth(birthYear);
+                this.birthYear=birthYear;
                 this.name=name;
                 
                 
@@ -38,14 +37,14 @@ public class Player {
 		return deck;
 	}
 
-	public void setDateOfBirth(LocalDateTime dateOfBirth) {
-                checkDateOfBirth(dateOfBirth);
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(int birthYear) {
+                checkDateOfBirth(birthYear);
+		this.birthYear = birthYear;
                 
 	}
 
-	public LocalDateTime getDateOfBirth() {
-		return this.dateOfBirth;
+	public int getbirthYear() {
+		return this.birthYear;
 	}
 
 	public void setName(String name) {
@@ -92,7 +91,7 @@ public class Player {
             }
            
         }
-        private void checkDateOfBirth(LocalDateTime dateOfBirth) {
+        private void checkDateOfBirth(int yearOfBirth) {
             
         }
           
