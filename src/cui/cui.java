@@ -22,7 +22,6 @@ public class cui
 {
     public static void main(String[] args)
     {
-        
         Locale.setDefault(Locale.FRANCE);
         Locale.setDefault(Locale.US);
         ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
