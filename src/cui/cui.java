@@ -5,6 +5,7 @@
  */
 package cui;
 
+import domain.DomainController;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -26,23 +27,54 @@ public class cui
         Scanner s = new Scanner(System.in);
         ResourceBundle wc= ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         System.out.println(String.format(wc.getString("selectLanguage")));
-        
+        Locale currentLocale = Locale.getDefault();
+        domain.DomainController dc = new DomainController();
+     
         switch(s.nextInt()){
             case 1:
-                Locale.setDefault(Locale.US);
+                //NEDERLANDS
+                 currentLocale = new Locale("nl_BE");
                 break;
             case 2:
-                Locale.setDefault(Locale.JAPANESE);
+                //ENGLISH
+                 currentLocale = new Locale("en_US");
                 break;
              case 3:
-                Locale.setDefault(Locale.FRANCE);
+                //FRENCH
+                  currentLocale = new Locale("fr_FR");
                 break;
              default:
                     System.out.println(wc.getString("errorNumber"));
                     break;
                     
         }
-        ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-        System.out.println(rs.getString("welcome"));
+        Locale.setDefault(currentLocale);
+        ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault()); 
+        System.out.println(String.format(rs.getString("welcome")));
+        
+    switch(s.nextInt()){
+        
+            case 1:
+                //methode voor registreer
+               String name;
+               int date;
+                System.out.println(String.format("inputRegistreer"));
+                System.out.print(String.format("name"));
+                name = s.next();
+                System.out.print(String.format("date"));
+                date = s.nextInt();
+                dc.register(name, date);
+                break;
+            case 2:
+                //methode voor login
+                System.out.printf("[WIP]");
+                break;
+             default:
+                    System.out.println(rs.getString("errorNumber"));
+                    break;
+                    
+        }
+        
+        
     }
 }
