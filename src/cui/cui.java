@@ -32,7 +32,7 @@ public class cui
                 Locale.setDefault(Locale.US);
                 break;
             case 2:
-                Locale.setDefault(Locale.);
+                Locale.setDefault(Locale.JAPANESE);
                 break;
              case 3:
                 Locale.setDefault(Locale.FRANCE);
