@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import exceptions.*;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -18,7 +19,7 @@ public class Player {
                 checkDateOfBirth(birthYear);
                 this.birthYear=birthYear;
                 this.name=name;
-                
+                this.credits =0;
                 
 	}
         
@@ -92,7 +93,10 @@ public class Player {
            
         }
         private void checkDateOfBirth(int yearOfBirth) {
-            
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
+                throw new noCorrectBirthyearException("noCorretBirthyear");
+            }
         }
           
  /*   {
