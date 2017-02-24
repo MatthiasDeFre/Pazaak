@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerMapper {
 
     public void addPlayer(Player player) {
-        try (Connection conn = DriverManager.getConnection(Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO" );
             query.setString(1, player.getName());   
             query.setInt(2, player.getbirthYear());
@@ -26,7 +26,7 @@ public class PlayerMapper {
     public List<Player> givePlayers() {
         List<Player> players = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ");
             try (ResultSet rs = query.executeQuery()) {
                 while (rs.next()) {
@@ -46,12 +46,12 @@ public class PlayerMapper {
     public Player givePlayer(String name) {
         Player player = null;
 
-        try (Connection conn = DriverManager.getConnection(Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM  WHERE name = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {
-                   String name = rs.getString("name");
+                   String nameDB = rs.getString("name");
                     int date = rs.getInt("date");      
                     int credit = rs.getInt("credit");
 
@@ -66,7 +66,7 @@ public class PlayerMapper {
     }
 
     public void saveCredit(Player player) {
-        try (Connection conn = DriverManager.getConnection(Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("UPDATE  SET credi = ? WHERE name = ?");
             query.setInt(1, player.getCredits());
             query.setString(2, player.getName());
@@ -77,4 +77,4 @@ public class PlayerMapper {
     }
 }
 
-}
+
