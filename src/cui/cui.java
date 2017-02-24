@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,6 +26,8 @@ public class cui
     public static void main(String[] args)
     {
         Scanner s = new Scanner(System.in);
+
+        
         ResourceBundle wc= ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         System.out.println(String.format(wc.getString("selectLanguage")));
         Locale currentLocale = Locale.getDefault();
