@@ -33,7 +33,7 @@ public class cui
           Scanner s = new Scanner(System.in);
 
         
-     ResourceBundle wc = ResourceBundle.getBundle("resources/lang/Lang", Locale.getDefault());
+     ResourceBundle wc = ResourceBundle.getBundle("lang/Lang1", Locale.getDefault());
     System.out.println(String.format(wc.getString("selectLanguage")));
         Locale currentLocale = Locale.getDefault();
         ResourceBundle rs; 
