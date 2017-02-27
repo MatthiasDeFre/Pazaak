@@ -33,11 +33,11 @@ public class cui
           Scanner s = new Scanner(System.in);
 
         
-     ResourceBundle wc = ResourceBundle.getBundle("lang/Lang1", Locale.getDefault());
-    System.out.println(String.format(wc.getString("selectLanguage")));
+//     ResourceBundle wc = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+//    System.out.println(String.format(wc.getString("selectLanguage")));
         Locale currentLocale = Locale.getDefault();
         ResourceBundle rs; 
-     
+        System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
         switch(s.nextInt()){
             case 1:
                 //NEDERLANDS
@@ -52,7 +52,7 @@ public class cui
                   currentLocale = new Locale("fr_FR");
                 break;
              default:
-                    System.out.println(wc.getString("errorNumber"));
+                    System.out.println("error");
                     break;
                     
         }
@@ -66,10 +66,10 @@ public class cui
                 //methode voor registreer
                String name;
                int date;
-                System.out.println(String.format("inputRegistreer"));
-                System.out.print(String.format("name"));
+                System.out.println(String.format(rs.getString("inputRegistreer")));
+                System.out.print(String.format(rs.getString("name")));
                 name = s.next();
-                System.out.print(String.format("date"));
+                System.out.print(String.format(rs.getString("date")));
                 date = s.nextInt();
                 dc.register(name, date);
                 break;
