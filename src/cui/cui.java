@@ -33,10 +33,10 @@ public class cui
           Scanner s = new Scanner(System.in);
 
         
-        ResourceBundle wc= ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-        System.out.println(String.format(wc.getString("selectLanguage")));
+     ResourceBundle wc = ResourceBundle.getBundle("resources/lang/Lang", Locale.getDefault());
+    System.out.println(String.format(wc.getString("selectLanguage")));
         Locale currentLocale = Locale.getDefault();
-        domain.DomainController dc = new DomainController();
+        ResourceBundle rs; 
      
         switch(s.nextInt()){
             case 1:
@@ -57,7 +57,7 @@ public class cui
                     
         }
         Locale.setDefault(currentLocale);
-        ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault()); 
+       rs  = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         System.out.println(String.format(rs.getString("welcome")));
         
     switch(s.nextInt()){
