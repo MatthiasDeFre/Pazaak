@@ -23,9 +23,14 @@ import java.util.Scanner;
 
 public class cui
 {
-    public static void main(String[] args)
+    private DomainController dc;
+    public cui(DomainController dc)
     {
-        Scanner s = new Scanner(System.in);
+        this.dc = dc;
+    }
+    
+    public void startRegistration(){
+          Scanner s = new Scanner(System.in);
 
         
         ResourceBundle wc= ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
@@ -76,8 +81,11 @@ public class cui
                     System.out.println(rs.getString("errorNumber"));
                     break;
                     
-        }
+        
         
         
     }
+    }
+    
+      
 }
