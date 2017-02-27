@@ -27,7 +27,7 @@ public class PlayerMapper {
         List<Player> players = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM ");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g07.Player");
             try (ResultSet rs = query.executeQuery()) {
                 while (rs.next()) {
                     String name = rs.getString("name");
@@ -47,7 +47,7 @@ public class PlayerMapper {
         Player player = null;
 
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM  WHERE name = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g07.Player WHERE name = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {

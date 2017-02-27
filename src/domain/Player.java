@@ -65,7 +65,7 @@ public class Player {
 		return this.credits;
 	}
         private void checkName(String name) {
-             ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.getDefault());
+             ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
             if(name == null || name.isEmpty()) {
              
                 throw new noCorrectNameException(rs.getString("noCorrectName"));
@@ -83,8 +83,8 @@ public class Player {
             {
                throw new noCorrectNameException(rs.getString("containSpecialCharacters"));
             }
-            p=Pattern.compile("[0-9 ]");
-            m=p.matcher(name.substring(0,0));
+            p=Pattern.compile("[0-9 ]", Pattern.CASE_INSENSITIVE);
+            m=p.matcher(name.substring(0,1));
             boolean c=m.find();
             if(c)
             {

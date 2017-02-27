@@ -10,12 +10,12 @@ public class DomainController {
 
 	public void register(String name, int birthYear) {
              //Check if user exists
-            if(players.userExists(name)) {
+/*            if(players.userExists(name)) {
                 ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
                 throw new noCorrectNameException(rs.getString("userExists"));
-            }    
+            }    */
             currentUser = new Player(birthYear, name);
-            players.register(currentUser);
+             players.register(currentUser);
 	}
 
 	public String[][] getPlayerData()
@@ -43,8 +43,8 @@ public class DomainController {
 	}
 
 	public DomainController() {
-		CardMapper cardMapper = new CardMapper();
-                PlayerMapper playerMapper = new PlayerMapper();
+		players = new PlayerRepository();
+               
               
 	}
 }

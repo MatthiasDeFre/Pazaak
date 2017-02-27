@@ -1,16 +1,23 @@
 package domain;
 import domain.Player;
 import java.util.ArrayList;
+import java.util.List;
+import persistence.CardMapper;
+import persistence.PlayerMapper;
 
 public class PlayerRepository {
-	private ArrayList<Player> players = new ArrayList<Player>();
-
+	private List<Player> players = new ArrayList<Player>();
+        private persistence.CardMapper cardMapper;
+        private persistence.PlayerMapper playerMapper;
 	public void register(Player player) {
-		throw new UnsupportedOperationException();
+		playerMapper.addPlayer(player);
 	}
 
 	public PlayerRepository() {
-		throw new UnsupportedOperationException();
+		cardMapper = new CardMapper();
+                playerMapper = new PlayerMapper();
+                players = playerMapper.givePlayers();
+                
 	}
                public boolean userExists(String name) {
             boolean exists = false;
