@@ -30,9 +30,9 @@ public class PlayerMapper {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g07.Player");
             try (ResultSet rs = query.executeQuery()) {
                 while (rs.next()) {
-                    String name = rs.getString("name");
-                    int date = rs.getInt("date");       
-                    int credit = rs.getInt("credit");
+                    String name = rs.getString("playerName");
+                    int date = rs.getInt("birthYear");       
+                    int credit = rs.getInt("credits");
 
                     players.add(new Player(date, name));
                 }
