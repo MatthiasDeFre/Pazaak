@@ -15,7 +15,9 @@ public class DomainController {
                 throw new noCorrectNameException(rs.getString("userExists"));
             }    */
             currentUser = new Player(birthYear, name);
+            currentUser.makeStartdeck();
              players.register(currentUser);
+             
 	}
 
 	public String[][] getPlayerData()

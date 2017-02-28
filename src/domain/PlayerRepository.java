@@ -13,7 +13,7 @@ public class PlayerRepository {
 		playerMapper.addPlayer(player);
                 for (Card card : player.getDeck())
             {
-                cardMapper.addCard(card);
+                cardMapper.addCard(card,player.getName());
             }
 	}
 
