@@ -30,15 +30,16 @@ public class DomainController {
         String[][] dataAndDeck = new String[currentUser.getDeck().size() + 1][];
         String[] playerData = new String[3];
         String[] cardData = new String[2];
+        
         playerData[0] = currentUser.getName();
-        playerData[1] = String.valueOf(currentUser.getbirthYear());
-        playerData[2] = String.valueOf(currentUser.getCredits());
+        playerData[1] = Integer.toString(currentUser.getbirthYear());
+        playerData[2] = Integer.toString(currentUser.getCredits());
         dataAndDeck[0] = playerData;
         for (int i = 0; i < currentUser.getDeck().size() - 1; i++)
         {
-            cardData[0] = currentUser.getDeck().get(i).getType();
-            cardData[1] = String.valueOf(currentUser.getDeck().get(i).getValue());
-            dataAndDeck[i + 1] = cardData;
+dataAndDeck[i + 1][0] = currentUser.getDeck().get(i).getType();
+dataAndDeck[i + 1][1] = Integer.toString(currentUser.getDeck().get(i).getValue());
+            
         }
 
         return dataAndDeck;

@@ -60,14 +60,15 @@ public class cui
         Locale.setDefault(currentLocale);
        rs  = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         System.out.println(String.format(rs.getString("welcome")));
-        
+    
+        String name;
+        int date;
     switch(s.nextInt()){
         //Test
             case 1:
                 //methode voor registreer
-               String name;
-               int date;
-                System.out.println(String.format(rs.getString("inputRegistreer")));
+            
+                System.out.println(String.format(rs.getString("inputRegister")));
                 System.out.print(String.format(rs.getString("name")));
                 name = s.next();
                 System.out.print(String.format(rs.getString("date")));
@@ -81,12 +82,33 @@ public class cui
              default:
                     System.out.println(rs.getString("errorNumber"));
                     break;
-                    
-        
-        
-        
-    }
     }
     
-      
+    System.out.println(rs.getString("yourCards"));
+    System.out.println(String.format(giveCards()));
+    }
+        public String giveCards(){
+            String back = "";
+            String[][] arr;
+            arr = dc.getPlayerData();
+            for (int i = 1; i < arr.length-2; i++)
+            {
+                back += arr[i][0];
+                back += arr[i][1]; 
+                
+            }
+            
+            back += "%n ___ %n|   |%n|   |%n|___|";
+            back += "%n ___ %n|   |%n|   |%n|___|";
+            back += "%n ___ %n|   |%n|   |%n|___|";
+            back += arr[0][0];
+            back += arr[0][1];
+            back += arr[0][2];
+                    
+            return back;            
+        }    
 }
+    
+    
+      
+

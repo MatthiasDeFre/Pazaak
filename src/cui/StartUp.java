@@ -8,5 +8,7 @@ public class StartUp
         DomainController dc = new DomainController();
         cui cui = new cui(dc);
         cui.startRegistration();
+        
+        //Iets
     }
 }
