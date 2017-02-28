@@ -33,20 +33,21 @@ public class cui
           Scanner s = new Scanner(System.in);
 
         
-     ResourceBundle wc = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-    System.out.println(String.format(wc.getString("selectLanguage")));
+   //  ResourceBundle wc = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+   // System.out.println(String.format(wc.getString("selectLanguage")));
         Locale currentLocale = Locale.getDefault();
         ResourceBundle rs; 
         System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
         switch(s.nextInt()){
-            case 1:
-                //NEDERLANDS
-                 currentLocale = new Locale("nl_BE");
-                break;
-            case 2:
+             case 1:
                 //ENGLISH
                  currentLocale = new Locale("en_US");
                 break;
+            case 2:
+                //NEDERLANDS
+                 currentLocale = new Locale("nl_BE");
+                break;
+           
              case 3:
                 //FRENCH
                   currentLocale = new Locale("fr_FR");
