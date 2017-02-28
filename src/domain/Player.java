@@ -20,11 +20,12 @@ public class Player {
                 this.birthYear=birthYear;
                 this.name=name;
                 this.credits =0;
+                makeStartdeck();
                 
 	}
         
 
-	public void makeStartdeck() {
+	private void makeStartdeck() {
 		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
                 final int [] value = {2,4,5,6,1,3,1,2,3,5};
                 Card newCard;
