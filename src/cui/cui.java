@@ -7,6 +7,7 @@
 package cui;
 
 import domain.DomainController;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -91,7 +92,9 @@ public class cui
             String back = "";
             String[][] arr;
             arr = dc.getPlayerData();
-            for (int i = 1; i < arr.length-2; i++)
+            System.out.println(arr.length);
+               System.out.println(Arrays.deepToString(arr));
+            for (int i = 1; i <= arr.length -1; i++)
             {
                 back += arr[i][0];
                 back += arr[i][1]; 

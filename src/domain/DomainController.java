@@ -35,8 +35,11 @@ public class DomainController {
         playerData[1] = Integer.toString(currentUser.getbirthYear());
         playerData[2] = Integer.toString(currentUser.getCredits());
         dataAndDeck[0] = playerData;
-        for (int i = 0; i < currentUser.getDeck().size() - 1; i++)
+        
+        for (int i = 0; i < currentUser.getDeck().size(); i++)
         {
+            dataAndDeck[i+1] = new String[2];
+            
 dataAndDeck[i + 1][0] = currentUser.getDeck().get(i).getType();
 dataAndDeck[i + 1][1] = Integer.toString(currentUser.getDeck().get(i).getValue());
             
