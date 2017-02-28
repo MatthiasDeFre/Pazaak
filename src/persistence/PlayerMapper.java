@@ -13,10 +13,10 @@ public class PlayerMapper {
 
     public void addPlayer(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("INSERT INTO" );
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credits, birthYear) VALUES (?,?,?)" );
             query.setString(1, player.getName());   
-            query.setInt(2, player.getbirthYear());
-            query.setInt(3, player.getCredits());
+            query.setInt(2, player.getCredits());
+            query.setInt(3, player.getbirthYear());
             query.executeUpdate();
 
         } catch (SQLException ex) {

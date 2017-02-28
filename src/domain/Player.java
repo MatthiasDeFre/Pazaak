@@ -97,6 +97,7 @@ public class Player {
             if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
                 throw new noCorrectBirthyearException("noCorretBirthyear");
             }
+            
         }
           
  /*   {
