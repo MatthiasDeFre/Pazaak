@@ -92,22 +92,12 @@ public class cui
             String back = "";
             String[][] arr;
             arr = dc.getPlayerData();
-            System.out.println(arr.length);
-               System.out.println(Arrays.deepToString(arr));
             for (int i = 1; i <= arr.length -1; i++)
             {
-                back += arr[i][0];
-                back += arr[i][1]; 
-                
+                 back += arr[i][0];
+                 back += arr[i][1];
+                 back += " ";
             }
-            
-            back += "%n ___ %n|   |%n|   |%n|___|";
-            back += "%n ___ %n|   |%n|   |%n|___|";
-            back += "%n ___ %n|   |%n|   |%n|___|";
-            back += arr[0][0];
-            back += arr[0][1];
-            back += arr[0][2];
-                    
             return back;            
         }    
 }
