@@ -11,6 +11,10 @@ public class PlayerRepository {
         private persistence.PlayerMapper playerMapper;
 	public void register(Player player) {
 		playerMapper.addPlayer(player);
+                for (Card card : player.getDeck())
+            {
+                cardMapper.addCard(card);
+            }
 	}
 
 	public PlayerRepository() {
