@@ -4,7 +4,8 @@ public class Card {
 	private int value;
 
 	public Card(String type, int value) {
-		throw new UnsupportedOperationException();
+		this.type=type;
+                this.value=value;
 	}
 
 	public void setType(String type) {

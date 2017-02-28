@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardMapper {
-    public void addCard(Card card) {
+    public void addCard(Card card,String playerName) {
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("INSERT INTO" );
-            query.setString(1, card.getType());   
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (playerName,value, type) VALUES (?,?,?)" );
+            query.setString(3, card.getType()); 
+            query.setString(1, playerName);
             query.setInt(2, card.getValue());
             query.executeUpdate();
 
