@@ -43,7 +43,9 @@ public class Main extends Application {
 //scLanguage scene
 
        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("logo.png")));
-      
+       ImageView imageLogin = new ImageView(new Image(getClass().getResourceAsStream("login.png"), 100, 100, true, true));
+       ImageView imageReg = new ImageView(new Image(getClass().getResourceAsStream("reg.png"), 100, 100, true, true));
+       ImageView imageMsg = new ImageView(new Image(getClass().getResourceAsStream("error.png"), 60, 60, true, true));
         
         Label lblLanguage = new Label("Please choose your language:");
         Button btnEN = new Button("English");
@@ -86,7 +88,7 @@ public class Main extends Application {
         VBox layout = new VBox(25);
         layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR);
         
-        scLanguage = new Scene(layout, 600,325);
+        scLanguage = new Scene(layout, 600,350);
         layout.setAlignment(Pos.CENTER);
         
         stage.setScene(scLanguage);
@@ -101,7 +103,7 @@ public class Main extends Application {
         Button btnRegister = new Button(rs.getString("register"));
         Button btnBack = new Button("Go back");
         
-        btnLogin.setOnAction(e -> MessageBox.display("Bazaar", "Unknown error"));
+        btnLogin.setOnAction(e -> MessageBox.display("Bazaar", "Unknown error", imageMsg));
         
         btnLogin.setMinWidth(85);
         btnRegister.setMinWidth(85);
@@ -122,9 +124,9 @@ public class Main extends Application {
         
         buttons.setAlignment(Pos.CENTER);
         buttons.getChildren().addAll(btnLogin, btnRegister);
-        loginLayout.getChildren().addAll(lblLogin, txtUsername, txtPassword, buttons, btnBack);
+        loginLayout.getChildren().addAll(imageLogin, lblLogin, txtUsername, txtPassword, buttons, btnBack);
         
-        scLogin = new Scene(loginLayout, 600,325);
+        scLogin = new Scene(loginLayout, 600,350);
         loginLayout.setAlignment(Pos.CENTER);
         loginLayout.requestFocus();
         
@@ -147,13 +149,13 @@ public class Main extends Application {
         btnRegister2.setMinWidth(85);
         
         VBox registerLayout = new VBox(15);
-        registerLayout.getChildren().addAll(lblRegister, txtName, txtDate, btnRegister2, btnBack2);
+        registerLayout.getChildren().addAll(imageReg, lblRegister, txtName, txtDate, btnRegister2, btnBack2);
         
-        scRegister = new Scene(registerLayout, 600,325);
+        scRegister = new Scene(registerLayout, 600,350);
         registerLayout.setAlignment(Pos.CENTER);
         registerLayout.requestFocus();
         
-        btnRegister2.setOnAction(e -> MessageBox.display("Bezwaar", "Unknown error"));
+        btnRegister2.setOnAction(e -> MessageBox.display("Bezwaar", "Unknown error", imageMsg));
                 
         
         
