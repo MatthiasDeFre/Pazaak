@@ -15,7 +15,7 @@ public class PlayerMapper {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credit, birthYear) VALUES (?,?,?)" );
             query.setString(1, player.getName());   
-            query.setInt(2, player.getCredits());
+            query.setInt(2, player.getCredit());
             query.setInt(3, player.getbirthYear());
             query.executeUpdate();
 
@@ -68,7 +68,7 @@ public class PlayerMapper {
     public void saveCredit(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("UPDATE  SET credi = ? WHERE name = ?");
-            query.setInt(1, player.getCredits());
+            query.setInt(1, player.getCredit());
             query.setString(2, player.getName());
             query.executeUpdate();
         } catch (SQLException ex) {

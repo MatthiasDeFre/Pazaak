@@ -33,7 +33,7 @@ public class DomainController {
         
         playerData[0] = currentUser.getName();
         playerData[1] = Integer.toString(currentUser.getbirthYear());
-        playerData[2] = Integer.toString(currentUser.getCredits());
+        playerData[2] = Integer.toString(currentUser.getCredit());
         dataAndDeck[0] = playerData;
         
         for (int i = 0; i < currentUser.getDeck().size(); i++)

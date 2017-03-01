@@ -71,7 +71,7 @@ public class cui
             
                 System.out.println(String.format(rs.getString("inputRegister")));
                 System.out.print(String.format(rs.getString("name")));
-                name = s.next();
+                name = s.nextLine();
                 System.out.print(String.format(rs.getString("date")));
                 date = s.nextInt();
                 dc.register(name, date);

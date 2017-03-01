@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Player {
 	private int birthYear;
 	private String name;
-	private int credits;
+	private int credit;
 	private List<Card> deck = new ArrayList<>();
 
 	public Player(int birthYear, String name) {
@@ -19,7 +19,7 @@ public class Player {
                 checkDateOfBirth(birthYear);
                 this.birthYear=birthYear;
                 this.name=name;
-                this.credits =0;
+                this.credit =0;
                 makeStartdeck();
                 
 	}
@@ -58,12 +58,12 @@ public class Player {
 		return this.name;
 	}
 
-	public void setCredits(int credits) {
-		this.credits = credits;
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 
-	public int getCredits() {
-		return this.credits;
+	public int getCredit() {
+		return this.credit;
 	}
         private void checkName(String name) {
              ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
