@@ -1,4 +1,5 @@
-package cui;
+package startUp;
+import cui.cui;
 import domain.DomainController;
 
 public class StartUp
