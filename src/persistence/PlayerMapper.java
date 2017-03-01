@@ -13,7 +13,7 @@ public class PlayerMapper {
 
     public void addPlayer(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credits, birthYear) VALUES (?,?,?)" );
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credit, birthYear) VALUES (?,?,?)" );
             query.setString(1, player.getName());   
             query.setInt(2, player.getCredits());
             query.setInt(3, player.getbirthYear());
@@ -32,7 +32,7 @@ public class PlayerMapper {
                 while (rs.next()) {
                     String name = rs.getString("playerName");
                     int date = rs.getInt("birthYear");       
-                    int credit = rs.getInt("credits");
+                    int credit = rs.getInt("credit");
 
                     players.add(new Player(date, name));
                 }
