@@ -59,7 +59,8 @@ public class cui
                     
         }
         Locale.setDefault(currentLocale);
-       rs  = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+        rs  = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+       
         System.out.println(String.format(rs.getString("welcome")));
     
         String name;
@@ -71,7 +72,7 @@ public class cui
             
                 System.out.println(String.format(rs.getString("inputRegister")));
                 System.out.print(String.format(rs.getString("name")));
-                name = s.nextLine();
+                name = s.next();
                 System.out.print(String.format(rs.getString("date")));
                 date = s.nextInt();
                 dc.register(name, date);
