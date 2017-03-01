@@ -24,7 +24,7 @@ public class Player {
                 
 	}
         
-
+        //Method to generate the player's start deck / collection
 	private void makeStartdeck() {
 		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
                 final int [] value = {2,4,5,6,1,3,1,2,3,5};
@@ -65,6 +65,12 @@ public class Player {
 	public int getCredit() {
 		return this.credit;
 	}
+        
+        //Method to check if the name satisfies the Domain rules
+        //First: check if the name isn't empty or null
+        //Second: check if name length is more than 3
+        //Third: check if name contains special chars
+        //Fourth: check if name doesn't have number as first char
         private void checkName(String name) {
              ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
             if(name == null || name.isEmpty()) {
@@ -93,6 +99,8 @@ public class Player {
             }
            
         }
+        //Method to check yearOfBirth
+        //Checks if yearOfBirth satisfies the Domain Rules
         private void checkDateOfBirth(int yearOfBirth) {
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
