@@ -1,9 +1,4 @@
 package domain;
-import domain.Player;
-import exceptions.noCorrectNameException;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
 	private Player currentUser;
@@ -14,6 +9,7 @@ public class DomainController {
                 ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
                 throw new noCorrectNameException(rs.getString("userExists"));
             }    */
+
             players.userExists(name);
             currentUser = new Player(birthYear, name);
             currentUser.makeStartdeck();
