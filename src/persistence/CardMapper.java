@@ -1,5 +1,7 @@
 package persistence;
+
 import domain.Card;
+import java.lang.reflect.Array;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +11,7 @@ import java.util.List;
 
 public class CardMapper
 {
+
     public void addCard(Card card, String playerName)
     {
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
@@ -23,11 +26,11 @@ public class CardMapper
             throw new RuntimeException(ex);
         }
     }
-    
+
     public List<Card> giveStartDeck()
     {
-         List<Card> cards = new ArrayList<>();
-         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        List<Card> cards = new ArrayList<>();
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType");
             try (ResultSet rs = query.executeQuery())
@@ -45,6 +48,24 @@ public class CardMapper
         }
 
         return cards;
+    }
+
+    public int[] getIDS()
+    {
+        int[] ids;
+
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT count(Card_ID) as amount FROM ID222177_g07.CardType");
+            try (ResultSet rs = query.executeQuery())
+            {
+                ids = new int[  rs.getInt("amount")];
+            }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+
     }
 
     public List<Card> giveCards()
