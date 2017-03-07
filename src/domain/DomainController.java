@@ -7,7 +7,7 @@ import persistence.*;
 public class DomainController {
 	private PlayerRepository players;
 	private Player currentUser;
-
+        private CardRepository cardRepository;
 	public void register(String name, int birthYear) {
              //Check if user exists
 /*            if(players.userExists(name)) {
@@ -15,8 +15,7 @@ public class DomainController {
                 throw new noCorrectNameException(rs.getString("userExists"));
             }    */
             players.userExists(name);
-            currentUser = new Player(birthYear, name);
-            currentUser.makeStartdeck();
+            currentUser = new Player(birthYear, name, cardRepository.giveStartDeck());        
             players.register(currentUser);
              
 	}
@@ -51,7 +50,7 @@ dataAndDeck[i + 1][1] = Integer.toString(currentUser.getDeck().get(i).getValue()
 
 	public DomainController() {
 		players = new PlayerRepository();
-               
+                cardRepository = new CardRepository();
               
 	}
 }
