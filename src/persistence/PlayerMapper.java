@@ -79,7 +79,8 @@ public class PlayerMapper {
     }
     public void userExists(String name) {
            try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player");
+            PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player WHERE playerName = ?");
+            query.setString(1, name);
              try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {
                    String nameDB = rs.getString("playerName");
