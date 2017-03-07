@@ -14,9 +14,10 @@ public class DomainController {
                 ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
                 throw new noCorrectNameException(rs.getString("userExists"));
             }    */
+            players.userExists(name);
             currentUser = new Player(birthYear, name);
-           
-             players.register(currentUser);
+            currentUser.makeStartdeck();
+            players.register(currentUser);
              
 	}
 

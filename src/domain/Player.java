@@ -20,12 +20,12 @@ public class Player {
                 this.birthYear=birthYear;
                 this.name=name;
                 this.credit =0;
-                makeStartdeck();
+          
                 
 	}
         
         //Method to generate the player's start deck / collection
-	private void makeStartdeck() {
+	public void makeStartdeck() {
 		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
                 final int [] value = {2,4,5,6,1,3,1,2,3,5};
                 Card newCard;

@@ -6,21 +6,19 @@ import persistence.CardMapper;
 import persistence.PlayerMapper;
 
 public class PlayerRepository {
-	private List<Player> players = new ArrayList<Player>();
+	private List<Player> players = new ArrayList<>();
         private persistence.CardMapper cardMapper;
         private persistence.PlayerMapper playerMapper;
 	public void register(Player player) {
             //check if user Already exists
-            if(!userExists(player.getName()))
-            {
+            
 		playerMapper.addPlayer(player);
                 for (Card card : player.getDeck())
             {
                 cardMapper.addCard(card,player.getName());
             }
-            }
-            else
-                throw new IllegalArgumentException("Speler bestaat al");
+            
+         
 	}
 
 	public PlayerRepository() {
@@ -29,7 +27,10 @@ public class PlayerRepository {
                 players = playerMapper.givePlayers();
                 
 	}
-           private boolean userExists(String name) {
+        public void userExists(String name) {
+            playerMapper.userExists(name);
+        }
+     /*      private boolean userExists(String name) {
             boolean exists = false;
             for (Player player : players)
             {
@@ -38,5 +39,5 @@ public class PlayerRepository {
                 }
             }
             return exists;
-        }
+        }*/
 }
