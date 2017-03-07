@@ -12,14 +12,13 @@ import java.util.List;
 public class CardMapper
 {
 
-    public void addCard(Card card, String playerName)
+    public void addCard(int Cardid, int playerID)
     {
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (playerName,value, type) VALUES (?,?,?)");
-            query.setString(3, card.getType());
-            query.setString(1, playerName);
-            query.setInt(2, card.getValue());
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
+            query.setInt(1, playerID); 
+            query.setInt(2, Cardid);
             query.executeUpdate();
         } catch (SQLException ex)
         {
@@ -52,22 +51,35 @@ public class CardMapper
 
     public int[] getIDS()
     {
-        int[] ids;
-
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+       int amount=0;
+       int[] ids;
+      try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("SELECT count(Card_ID) as amount FROM ID222177_g07.CardType");
-            try (ResultSet rs = query.executeQuery())
+          PreparedStatement query = conn.prepareStatement("SELECT count(Card_ID) as amount FROM ID222177_g07.CardType");
+         try (ResultSet rs = query.executeQuery())
+            { while(rs.next()) {
+                
+          
+                amount = rs.getInt("amount");
+                  }
+            }
+           query = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType");
+           ids = new int[amount];
+          try (ResultSet rs = query.executeQuery())
             {
-                ids = new int[  rs.getInt("amount")];
+                int counter=0;
+                while(rs.next()) {
+                    ids[counter] = rs.getInt("Card_ID");
+                    counter++;
+                }
             }
         } catch (SQLException ex)
         {
             throw new RuntimeException(ex);
         }
-
+        return ids;
     }
-
+ 
     public List<Card> giveCards()
     {
         List<Card> cards = new ArrayList<>();

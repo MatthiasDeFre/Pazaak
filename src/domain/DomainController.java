@@ -12,7 +12,7 @@ public class DomainController {
 
             players.userExists(name);
             currentUser = new Player(birthYear, name, cardRepository.giveStartDeck());        
-            players.register(currentUser);
+            players.register(currentUser, cardRepository.giveIDS());
              
 	}
 

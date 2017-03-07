@@ -9,14 +9,15 @@ public class PlayerRepository {
 	private List<Player> players = new ArrayList<>();
         private persistence.CardMapper cardMapper;
         private persistence.PlayerMapper playerMapper;
-	public void register(Player player) {
+	public void register(Player player, int [] ids) {
             //check if user Already exists
             
 		playerMapper.addPlayer(player);
-                for (Card card : player.getDeck())
-            {
-                cardMapper.addCard(card,player.getName());
-            }
+            int playerID =  playerMapper.givePlayerID(player.getName());
+                for (int id : ids)
+                {
+                cardMapper.addCard(id, playerID);
+                }
             
          
 	}
@@ -24,7 +25,7 @@ public class PlayerRepository {
 	public PlayerRepository() {
 		cardMapper = new CardMapper();
                 playerMapper = new PlayerMapper();
-                players = playerMapper.givePlayers();
+              //  players = playerMapper.givePlayers();
                 
 	}
         public void userExists(String name) {

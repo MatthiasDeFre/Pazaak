@@ -14,18 +14,20 @@ public class Player {
 	private int credit;
 	private List<Card> deck = new ArrayList<>();
 
-	public Player(int birthYear, String name) {
+	public Player(int birthYear, String name, List<Card> startDeck) {
 		checkName(name);
                 checkDateOfBirth(birthYear);
                 this.birthYear=birthYear;
                 this.name=name;
                 this.credit =0;
+                deck = startDeck;
           
                 
 	}
         
+        
         //Method to generate the player's start deck / collection
-	public void makeStartdeck() {
+/*	public void makeStartdeck() {
 		final String[] type = {"+" , "+", "+", "+","+/-","+/-","-","-","-","-"};
                 final int [] value = {2,4,5,6,1,3,1,2,3,5};
                 Card newCard;
@@ -33,7 +35,7 @@ public class Player {
                 newCard = new Card(type[i], value[i]);
                 deck.add(newCard);
                 }
-	}
+	}*/
 
 	public List<Card> getDeck() {
 		return deck;
@@ -104,7 +106,7 @@ public class Player {
         private void checkDateOfBirth(int yearOfBirth) {
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
-                throw new noCorrectBirthyearException("noCorretBirthyear");
+                throw new noCorrectBirthyearException("noCorrectBirthyear");
             }
             
         }

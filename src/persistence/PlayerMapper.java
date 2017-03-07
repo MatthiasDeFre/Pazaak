@@ -25,7 +25,22 @@ public class PlayerMapper {
             throw new RuntimeException(ex);
         }
     }
-    public List<Player> givePlayers() {
+    public int givePlayerID(String name) {
+            int id=0;
+            try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+            PreparedStatement query = conn.prepareStatement("SELECT P_ID FROM ID222177_g07.Player WHERE playerName = ?");
+            query.setString(1, name);
+            try (ResultSet rs = query.executeQuery()) {
+                if (rs.next()) {
+                   id = rs.getInt("P_ID");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+            return id;
+    }
+/*    public List<Player> givePlayers() {
         List<Player> players = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
@@ -44,8 +59,8 @@ public class PlayerMapper {
         }
 
         return players;
-    }
-    public Player givePlayer(String name) {
+    }*/
+ /*   public Player givePlayer(String name) {
         Player player = null;
 
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
@@ -56,7 +71,7 @@ public class PlayerMapper {
                    String nameDB = rs.getString("playerName");
                     int date = rs.getInt("date");      
                     int credit = rs.getInt("credit");
-
+                    
                     player = new Player(date, name);
                 }
             }
@@ -65,7 +80,7 @@ public class PlayerMapper {
         }
 
         return player;
-    }
+    }*/
 
     public void saveCredit(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
