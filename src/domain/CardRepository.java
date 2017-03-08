@@ -19,9 +19,10 @@ public class CardRepository {
    public List<Card> giveStartDeck() {
        return cardMapper.giveStartDeck();
    }
-   public int[] giveIDS() {
+   //Versie 1 [not needed at this momenent]
+    /* public int[] giveIDS() {
        return cardMapper.getIDS();
-   }
+   }*/
     public CardRepository()
     {
         this.cardMapper = new CardMapper();

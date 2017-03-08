@@ -14,6 +14,13 @@ public class Player {
 	private int credit;
 	private List<Card> deck = new ArrayList<>();
 
+        //
+        /** 
+         * Constructor used to make a Player who isn't in the database
+         * @param birthYear
+         * @param name
+         * @param startDeck 
+         */
 	public Player(int birthYear, String name, List<Card> startDeck) {
 		checkName(name);
                 checkDateOfBirth(birthYear);
@@ -37,6 +44,10 @@ public class Player {
                 }
 	}*/
 
+        /**
+         * Method to get player's current deck
+         * @return List of cards
+         */
 	public List<Card> getDeck() {
 		return deck;
 	}
@@ -68,12 +79,18 @@ public class Player {
 		return this.credit;
 	}
         
-        //Method to check if the name satisfies the Domain rules
-        //First: check if the name isn't empty or null
-        //Second: check if name length is more than 3
-        //Third: check if name contains special chars
-        //Fourth: check if name doesn't have number as first char
-        private void checkName(String name) {
+      
+     /**
+     * <pre>Method to check if the name satisfies the Domain rules
+     * First: check if the name isn't empty or null 
+     * Second: check if name length is more than 3
+     * Third: check if name contains special chars
+     * Fourth: check if name doesn't have number as first char
+     * </pre>
+     * @param name Should satisfy the Domain Rules
+     * @throws noCorrectNameException if name doesn't satisfy the domain rules
+     */
+        private void checkName(String name) throws noCorrectNameException{
              ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
             if(name == null || name.isEmpty()) {
              
@@ -101,9 +118,14 @@ public class Player {
             }
            
         }
-        //Method to check yearOfBirth
-        //Checks if yearOfBirth satisfies the Domain Rules
-        private void checkDateOfBirth(int yearOfBirth) {
+     
+        /**
+         *    Method to check yearOfBirth
+         *    Checks if yearOfBirth satisfies the Domain Rules
+         * @param yearOfBirth Should be a number only (not a full date)
+         * @throws noCorrectBirthyearException if yearOfBirth doesn't satisfies the Domain Rules
+         */
+        private void checkDateOfBirth(int yearOfBirth) throws noCorrectBirthyearException{
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
                 throw new noCorrectBirthyearException("noCorrectBirthyear");

@@ -12,13 +12,14 @@ import java.util.List;
 public class CardMapper
 {
 
-    public void addCard(int Cardid, int playerID)
-    {
+    public void addCard(Card card, int playerID)
+    {   
+        int CardID = getCardID(card);
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
             query.setInt(1, playerID); 
-            query.setInt(2, Cardid);
+            query.setInt(2, CardID);
             query.executeUpdate();
         } catch (SQLException ex)
         {
@@ -48,8 +49,29 @@ public class CardMapper
 
         return cards;
     }
+    public int getCardID(Card card) {
+        int cardID=0;
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType WHERE value = ? AND type = ?");
+            query.setInt(1, card.getValue());
+            query.setString(2, card.getType());
+            try (ResultSet rs = query.executeQuery())
+            {
+                while (rs.next())
+                {
+                    cardID = rs.getInt("Card_ID");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+        return cardID;
+    }
 
-    public int[] getIDS()
+    //Versie 1 [not needed atm]
+   /* public int[] getIDS()
     {
        int amount=0;
        int[] ids;
@@ -78,7 +100,7 @@ public class CardMapper
             throw new RuntimeException(ex);
         }
         return ids;
-    }
+    }*/
  
     public List<Card> giveCards()
     {
