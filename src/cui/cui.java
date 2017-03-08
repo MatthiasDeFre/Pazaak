@@ -21,79 +21,88 @@ public class cui
     public void startPazaak()
     {
         Scanner s = new Scanner(System.in);
-
+        boolean badInput = true;
         Locale currentLocale = Locale.getDefault();
         ResourceBundle rs;
-        System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
-        switch (s.nextInt())
+        do
         {
-            case 1:
-                //ENGLISH
-                currentLocale = new Locale("en_US");
-                break;
-            case 2:
-                //NEDERLANDS
-                currentLocale = new Locale("nl_BE");
-                break;
+            System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
 
-            case 3:
-                //FRENCH
-                currentLocale = new Locale("fr_FR");
-                break;
-            default:
-                System.out.println("errorNumber");
-                break;
-        }
+            switch (s.nextInt())
+            {
+                case 1:
+                    //ENGLISH
+                    currentLocale = new Locale("en_US");
+                    badInput = false;
+                    break;
+                case 2:
+                    //NEDERLANDS
+                    currentLocale = new Locale("nl_BE");
+                    badInput = false;
+                    break;
+                case 3:
+                    //FRENCH
+                    currentLocale = new Locale("fr_FR");
+                    badInput = false;
+                    break;
+                default:
+                    System.out.println("Wrong number");
+                    break;
+            }
+        } while (badInput);
+
         Locale.setDefault(currentLocale);
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-
         System.out.println(String.format(rs.getString("welcome")));
 
         String name;
         int date;
-        try
+        badInput = true;
+        do
         {
-            switch (s.nextInt())
+            try
             {
-                //Test
-                case 1:
-                    //methode voor registreer   
-                    System.out.println(String.format(rs.getString("inputRegister")));
-                    System.out.print(String.format(rs.getString("name")));
-                    name = s.next();
-                    System.out.print(String.format(rs.getString("date")));
-                    date = s.nextInt();
+                switch (s.nextInt())
+                {
+                    //Test
+                    case 1:
+                        //methode voor registreer   
+                        System.out.println(String.format(rs.getString("inputRegister")));
+                        System.out.print(String.format(rs.getString("name")));
+                        name = s.next();
+                        System.out.print(String.format(rs.getString("date")));
+                        date = s.nextInt();
+                        dc.register(name, date);
+                        break;
 
-                    dc.register(name, date);
+                    case 2:
+                        //methode voor nieuwe wedstrijd starten
+                        System.out.printf("[WIP]");
+                        badInput = false;
+                        break;
+                    case 3:
+                        //methode voor bestaande wedstrijd verder te doen
+                        System.out.printf("[WIP]");
+                        badInput = false;
+                        break;
+                    case 4:
+                        //methode voor login
+                        System.out.printf("[WIP]");
+                        badInput = false;
+                        break;
+                    default:
+                        System.out.println("Wrong number");
+                        break;
+                }
 
-                    break;
-
-                case 2:
-                    //methode voor nieuwe wedstrijd starten
-                    System.out.printf("[WIP]");
-                    break;
-                case 3:
-                    //methode voor bestaande wedstrijd verder te doen
-                    System.out.printf("[WIP]");
-                    break;
-                case 4:
-                    //methode voor login
-                    System.out.printf("[WIP]");
-                    break;
-                default:
-
-                    System.out.println(rs.getString("errorNumber"));
-                    break;
+                System.out.println(rs.getString("yourCards"));
+                System.out.println(String.format(giveCards()));
+            } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
+            {
+                System.out.println(uex.getMessage());
             }
+        } while (badInput);
 
-            System.out.println(rs.getString("yourCards"));
-            System.out.println(String.format(giveCards()));
-        }  
-        catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
-        {
-            System.out.println(uex.getMessage());
-        }
-      
     }
 
     public String giveCards()
