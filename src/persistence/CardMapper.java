@@ -12,6 +12,11 @@ import java.util.List;
 public class CardMapper
 {
 
+    /**
+     * <pre>Method to add a card to the database using an instance of Card</pre>
+     * @param card Card object (with value and type)
+     * @param playerID PlayerID needed for FK in the database
+     */
     public void addCard(Card card, int playerID)
     {   
         int CardID = getCardID(card);
@@ -27,6 +32,10 @@ public class CardMapper
         }
     }
 
+    /**
+     * <pre>Method to return the startDeck from the database</pre>
+     * @return List of Cards
+     */
     public List<Card> giveStartDeck()
     {
         List<Card> cards = new ArrayList<>();
@@ -49,6 +58,12 @@ public class CardMapper
 
         return cards;
     }
+    
+    /**
+     * <pre>Method to return the cardID from a given instance of Card, using the value and type from the card object</pre>
+     * @param card Card object (with value and type)
+     * @return The id of the given card object
+     */
     public int getCardID(Card card) {
         int cardID=0;
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))

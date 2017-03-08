@@ -13,6 +13,10 @@ import java.util.ResourceBundle;
 import exceptions.userExistsException;
 public class PlayerMapper {
 
+    /**
+     * <pre>Method to add a player object to the database</pre>
+     * @param player Instance of the player class 
+     */
     public void addPlayer(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credit, birthYear) VALUES (?,?,?)" );
@@ -25,6 +29,12 @@ public class PlayerMapper {
             throw new RuntimeException(ex);
         }
     }
+    
+    /**
+     * <pre>Method to give the playerID for the provided player name</pre>
+     * @param name Name of the player
+     * @return The id of the provided player name
+     */
     public int givePlayerID(String name) {
             int id=0;
             try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
@@ -92,6 +102,12 @@ public class PlayerMapper {
             throw new RuntimeException(ex);
         }
     }
+    
+    /**
+     * <pre>Method to check if the user already exists in the database using the provided username
+     * Throws an userExistsException when the user already exists</pre>
+     * @param name Name of the user
+     */
     public void userExists(String name) {
            try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player WHERE playerName = ?");

@@ -16,7 +16,14 @@ import persistence.CardMapper;
 public class CardRepository {
    private List<Card> startDeck = new ArrayList<>();
    private CardMapper cardMapper;
+    /**
+     * <pre>
+     * Method to retrieve the start deck from the database
+     * @return List of cards
+     * </pre>
+     */
    public List<Card> giveStartDeck() {
+     
        return cardMapper.giveStartDeck();
    }
    //Versie 1 [not needed at this momenent]
