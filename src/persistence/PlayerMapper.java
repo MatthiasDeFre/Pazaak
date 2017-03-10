@@ -1,6 +1,8 @@
 
 package persistence;
+import domain.Card;
 import domain.Player;
+import exceptions.invalidPlayerException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,7 +14,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import exceptions.userExistsException;
 public class PlayerMapper {
-
+    private CardMapper cardMapper = new CardMapper();
     /**
      * <pre>Method to add a player object to the database</pre>
      * @param player Instance of the player class 
@@ -49,6 +51,42 @@ public class PlayerMapper {
             throw new RuntimeException(ex);
         }
             return id;
+    }
+    
+    /**
+     * Method to get an instance of player from the database with the provided name (String)
+     * @param name Name of the requested player
+     * @return An instance of {@link Player}
+     * 
+     */
+    public Player selectPlayer(String name) {
+        
+        Player selectedPlayer;
+        String playerName="";
+        int credit=0;
+        List<Card> collection;
+        boolean userExists = false;
+         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+            PreparedStatement query = conn.prepareStatement("SELECT name, credit, id FROM ID222177_g07.Player WHERE playerName = ?");
+            query.setString(1, name);
+            try (ResultSet rs = query.executeQuery()) {
+                if (rs.next()) {
+                    userExists = true;
+                   playerName = rs.getString("name");
+                   credit = rs.getInt("credit");
+                   
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        if(!userExists ) {
+             ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+             throw new invalidPlayerException(rs.getString("userDoesntExist"));
+        }
+        collection = cardMapper.giveCards(name);
+        selectedPlayer = new Player(credit, collection, playerName);
+        return selectedPlayer;
     }
 /*    public List<Player> givePlayers() {
         List<Player> players = new ArrayList<>();
@@ -124,6 +162,21 @@ public class PlayerMapper {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+    }
+    
+    public List<String> getPlayerNames() {
+       List<String> names = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+            PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player");
+             try (ResultSet rs = query.executeQuery()) {
+                if (rs.next()) {
+                   names.add(rs.getString("playerName"));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+       }  
+       return names; 
     }
 }
 

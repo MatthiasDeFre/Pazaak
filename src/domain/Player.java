@@ -13,7 +13,7 @@ public class Player {
 	private String name;
 	private int credit;
 	private List<Card> deck = new ArrayList<>();
-
+        private MatchDeck matchDeck;
         //
         /** 
          * Constructor used to make a Player who isn't in the database
@@ -31,7 +31,11 @@ public class Player {
           
                 
 	}
-        
+        public Player(int credit, List<Card> collection, String name) {
+            this.credit = credit;
+            deck = collection;
+            this.name = name;
+        }
         
         //Method to generate the player's start deck / collection
 /*	public void makeStartdeck() {
@@ -139,6 +143,25 @@ public class Player {
              ResourceBundle rs1 = ResourceBundle.getBundle("resources/Lang", Locale.US);
         System.out.println(rs1.getString("s1"));
     }*/
+        
+        //MatchDeck methods
+       public void addMatchDeck(Match match) {
+           this.matchDeck = new MatchDeck(this, match);
+           matchDeck.addCards(deck);
+       } 
+       
+       public List<Card> getMatchDeck(Match match) {
+           return matchDeck.getCards();
+       }
                    
+       public void removeCardFromDeck(Card card) {
+           for (Card cardInDeck : deck)
+           {
+               if (cardInDeck.equals(card))
+               {
+                   deck.remove(card);
+               }
+           }
+       }
         
 }

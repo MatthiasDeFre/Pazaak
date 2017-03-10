@@ -116,14 +116,19 @@ public class CardMapper
         }
         return ids;
     }*/
- 
-    public List<Card> giveCards()
+ /**
+  * Method to get the card of the provided player name
+  * @param name The name of the player
+  * @return List of the player's cards
+  */
+    public List<Card> giveCards(String name)
     {
         List<Card> cards = new ArrayList<>();
 
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM ");
+            PreparedStatement query = conn.prepareStatement("SELECT value, type FROM Card INNER JOIN CardType ON Card.Card_ID = CardType.Card_ID INNER JOIN Player ON Player.P_ID = Card.P_ID WHERE playerName = ?");
+            query.setString(1, name);
             try (ResultSet rs = query.executeQuery())
             {
                 while (rs.next())
