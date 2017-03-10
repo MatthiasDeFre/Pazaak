@@ -12,6 +12,7 @@ public class cui
 {
 
     private DomainController dc;
+    
 
     public cui(DomainController dc)
     {
@@ -20,6 +21,7 @@ public class cui
 
     public void startPazaak()
     {
+        boolean running = true;
         Scanner s = new Scanner(System.in);
         boolean badInput = true;
         Locale currentLocale = Locale.getDefault();
@@ -60,48 +62,54 @@ public class cui
         badInput = true;
         do
         {
-            try
+
+            do
             {
-                switch (s.nextInt())
+                try
                 {
-                    //Test
-                    case 1:
-                        //methode voor registreer   
-                        System.out.println(String.format(rs.getString("inputRegister")));
-                        System.out.print(String.format(rs.getString("name")));
-                        name = s.next();
-                        System.out.print(String.format(rs.getString("date")));
-                        date = s.nextInt();
-                        dc.register(name, date);
-                        break;
+                    switch (s.nextInt())
+                    {
+                        //Test
+                        case 1:
+                            //methode voor registreer   
+                            System.out.println(String.format(rs.getString("inputRegister")));
+                            System.out.print(String.format(rs.getString("name")));
+                            name = s.next();
+                            System.out.print(String.format(rs.getString("date")));
+                            date = s.nextInt();
+                            dc.register(name, date);
+                            System.out.println(rs.getString("yourCards"));
+                            System.out.println(String.format(giveCards()));
+                            break;
 
-                    case 2:
-                        //methode voor nieuwe wedstrijd starten
-                        System.out.printf("[WIP]");
-                        badInput = false;
-                        break;
-                    case 3:
-                        //methode voor bestaande wedstrijd verder te doen
-                        System.out.printf("[WIP]");
-                        badInput = false;
-                        break;
-                    case 4:
-                        //methode voor login
-                        System.out.printf("[WIP]");
-                        badInput = false;
-                        break;
-                    default:
-                        System.out.println("Wrong number");
-                        break;
+                        case 2:
+                            //methode voor nieuwe wedstrijd starten
+                            System.out.printf("[WIP]");
+                            badInput = false;
+                            break;
+                        case 3:
+                            //methode voor bestaande wedstrijd verder te doen
+                            System.out.printf("[WIP]");
+                            badInput = false;
+                            break;
+                        case 4:
+                            //methode voor login
+                            System.out.printf("[Thank you for playing pazaak]");
+                            badInput = false;
+                            running = false;
+                            break;
+
+                        default:
+                            System.out.println("Wrong number");
+                            break;
+                    }
+
+                } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
+                {
+                    System.out.println(uex.getMessage());
                 }
-
-                System.out.println(rs.getString("yourCards"));
-                System.out.println(String.format(giveCards()));
-            } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
-            {
-                System.out.println(uex.getMessage());
-            }
-        } while (badInput);
+            } while (badInput);
+        } while (running);
 
     }
 
