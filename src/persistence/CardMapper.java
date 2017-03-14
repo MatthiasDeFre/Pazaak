@@ -127,7 +127,7 @@ public class CardMapper
 
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("SELECT value, type FROM Card INNER JOIN CardType ON Card.Card_ID = CardType.Card_ID INNER JOIN Player ON Player.P_ID = Card.P_ID WHERE playerName = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT value, type FROM ID222177_g07.Card INNER JOIN ID222177_g07.CardType ON Card.Card_ID = CardType.Card_ID INNER JOIN ID222177_g07.Player ON Player.P_ID = Card.P_ID WHERE playerName = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery())
             {

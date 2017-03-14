@@ -94,10 +94,18 @@ public class cui
                                 {
                                     System.out.println(matchName);
                                 }
-                                System.out.println(rs.getString("choosePlayer"));
-                                name = s.nextLine();
+                                System.out.println(rs.getString("giveName"));
+                                name = s.next();
                                 dc.selectPlayer(name);
+                                
                             }
+                            System.out.println(rs.getString("chosenPlayers"));
+                             for (String matchPlayer : dc.getChosenPlayerNames())
+                                {
+                                    System.out.println(matchPlayer);
+                                }
+                            System.out.println(rs.getString("yesNo"));
+                            
                             badInput = false;
                             break;
                         case 3:
