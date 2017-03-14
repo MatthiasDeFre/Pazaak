@@ -2,11 +2,14 @@ package gui;
 
 
 
+
+
 import javafx.scene.image.ImageView;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,6 +46,7 @@ public class Main extends Application {
        ImageView imageLogin = new ImageView(new Image(getClass().getResourceAsStream("login.png"), 100, 100, true, true));
        ImageView imageReg = new ImageView(new Image(getClass().getResourceAsStream("reg.png"), 100, 100, true, true));
        ImageView imageMsg = new ImageView(new Image(getClass().getResourceAsStream("error.png"), 60, 60, true, true));
+       ImageView imageLoading = new ImageView(new Image(getClass().getResourceAsStream("laad.gif"), 270,270, true, true));
         
         Label lblLanguage = new Label("Please choose your language:");
         Button btnEN = new Button("English");
@@ -83,9 +87,11 @@ public class Main extends Application {
         
         
         VBox layout = new VBox(25);
-        layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR);
+        layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR, imageLoading);
         
-        scLanguage = new Scene(layout, 600,350);
+        scLanguage = new Scene(layout, 1100,700);
+        scLanguage.getStylesheets().add("gui/style.css");
+        layout.getStyleClass().add("back"); 
         layout.setAlignment(Pos.CENTER);
         
         stage.setScene(scLanguage);
@@ -117,7 +123,9 @@ public class Main extends Application {
         txtPassword.setMaxWidth(180);
         
         VBox loginLayout = new VBox(15);
+        loginLayout.setCursor(Cursor.WAIT);
         HBox buttons = new HBox(10);
+        
         
         buttons.setAlignment(Pos.CENTER);
         buttons.getChildren().addAll(btnLogin, btnRegister);
