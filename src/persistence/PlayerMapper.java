@@ -169,7 +169,7 @@ public class PlayerMapper {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player");
              try (ResultSet rs = query.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
                    names.add(rs.getString("playerName"));
                 }
             }
