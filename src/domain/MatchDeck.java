@@ -24,11 +24,7 @@ public class MatchDeck {
     }
     
     //Methods
-    
-    public void addCards(List<Card> cards) {
-        matchDeck = cards;
-    }
-    
+   
     public List<Card> getCards() {
         return matchDeck;
     }
