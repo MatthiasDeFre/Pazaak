@@ -14,14 +14,13 @@ import java.util.List;
  */
 public class MatchDeck {
     private List<Card> matchDeck = new ArrayList<>();
-    private Player player;
     private Match match;
     
     //Constructors
     
-    public MatchDeck(Player player, Match match) {
-        this.player = player;
+    public MatchDeck(Match match, List<Card> selectedCards) {
         this.match = match;
+        this.matchDeck = selectedCards;
     }
     
     //Methods
