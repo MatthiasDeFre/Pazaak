@@ -116,6 +116,10 @@ public class DomainController {
         return cardArray;
     }
     
+    public void cancelMatch() {
+        newMatch = null;
+    }
+    
     
 
         
