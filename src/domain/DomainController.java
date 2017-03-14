@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DomainController {
@@ -88,6 +89,11 @@ public class DomainController {
             domainNames[i] = names.get(i);
         }
         return domainNames;
+    }
+    
+    public String[] getChosenPlayerNames(){
+        String[] chosenPlayers = newMatch.getChoosenPlayers();
+        return chosenPlayers;
     }
     
     public String[] getPlayersWithoutMatchDeck() {
