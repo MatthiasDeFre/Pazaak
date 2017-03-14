@@ -57,7 +57,7 @@ public class Match {
         List<String> playersNoMatchDeck = new ArrayList<>();
         for (Player player : matchPlayers)
         {
-              if(player.getMatchDeck() != null) {
+              if(player.getMatchDeck() == null) {
                 playersNoMatchDeck.add(player.getName());
             }
         }     

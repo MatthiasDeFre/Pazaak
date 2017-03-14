@@ -90,22 +90,56 @@ public class cui
                             while (dc.getAmountPlayersStillNeeded() > 0)
                             {
                                 System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
-                                for (String matchName : dc.getPlayerNames())
-                                {
-                                    System.out.println(matchName);
-                                }
+                                 for (String matchName : dc.getPlayerNames())
+                            {
+                                System.out.println(matchName);
+                            }
                                 System.out.println(rs.getString("giveName"));
                                 name = s.next();
                                 dc.selectPlayer(name);
-                                
                             }
-                            System.out.println(rs.getString("chosenPlayers"));
-                             for (String matchPlayer : dc.getChosenPlayerNames())
+
+                            Boolean invoerYn = false;
+                            String input;
+                            do
+                            {
+                                System.out.println(rs.getString("chosenPlayers"));
+                                for (String matchPlayer : dc.getChosenPlayerNames())
                                 {
                                     System.out.println(matchPlayer);
                                 }
-                            System.out.println(rs.getString("yesNo"));
-                            
+                                System.out.println(rs.getString("yesNo"));
+
+                                input = s.next();
+                                if (input.equals("Yes") || input.equals("No"))
+                                {
+
+                                    if (input.equals("Yes"))
+                                    {
+                                        invoerYn = true;
+                                    } else
+                                    {
+                                        System.out.println(rs.getString("returningMain"));
+                                        invoerYn = true;
+                                    }
+                                } else
+                                {
+                                    System.out.println(rs.getString("notYN"));
+                                    invoerYn = false;
+                                }
+
+                            } while (invoerYn == false);
+                            System.out.println(rs.getString("playersWithout"));
+                            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
+                            {
+                                System.out.println(matchPlayer);
+                            }
+                            while ((dc.getPlayersWithoutMatchDeck().length) > 0)
+                            {                    
+                            System.out.println(rs.getString("selectWithout"));
+                            name = s.next();
+                            dc.selectPlayerWithoutMatchDeck(name);
+                            }
                             badInput = false;
                             break;
                         case 3:
