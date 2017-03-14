@@ -83,6 +83,10 @@ public class Player {
 		return this.credit;
 	}
         
+        public MatchDeck getMatchDeck() {
+            return matchDeck;
+        }
+        
       
      /**
      * <pre>Method to check if the name satisfies the Domain rules

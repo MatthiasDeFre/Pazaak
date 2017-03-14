@@ -90,6 +90,17 @@ public class DomainController {
         return domainNames;
     }
     
+    public String[] getPlayersWithoutMatchDeck() {
+        
+        List<String> playerNamesList = newMatch.getPlayersWithoutMatchDeck();
+        String[] playerNames = new String[playerNamesList.size()];
+        for (int i = 0; i < playerNamesList.size(); i++)
+        {
+            playerNames[i] = playerNamesList.get(i);
+        }
+        return playerNames;
+    }
+    
     public void selectPlayerWithoutMatchDeck(String name) {
         currentUser = players.selectPlayer(name);
     }

@@ -14,9 +14,8 @@ import java.util.List;
  */
 public class MatchDeck {
     private List<Card> matchDeck = new ArrayList<>();
-    private Match match;
     private Player player;
-    
+    private Match match;
     
     //Constructors
     

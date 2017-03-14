@@ -94,7 +94,7 @@ public class cui
                                 {
                                     System.out.println(matchName);
                                 }
-                               
+                                System.out.println(rs.getString("choosePlayer"));
                                 name = s.nextLine();
                                 dc.selectPlayer(name);
                             }
