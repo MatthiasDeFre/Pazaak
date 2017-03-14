@@ -14,7 +14,7 @@ public class Player {
 	private int credit;
 	private List<Card> deck = new ArrayList<>();
         private MatchDeck matchDeck;
-        //
+        
         /** 
          * Constructor used to make a Player who isn't in the database
          * @param birthYear

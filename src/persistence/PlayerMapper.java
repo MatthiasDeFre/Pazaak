@@ -67,12 +67,12 @@ public class PlayerMapper {
         List<Card> collection;
         boolean userExists = false;
          try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("SELECT name, credit, id FROM ID222177_g07.Player WHERE playerName = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, id FROM ID222177_g07.Player WHERE playerName = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {
                     userExists = true;
-                   playerName = rs.getString("name");
+                   playerName = rs.getString("playerName");
                    credit = rs.getInt("credit");
                    
                 }
