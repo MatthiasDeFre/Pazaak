@@ -127,7 +127,16 @@ public class DomainController {
     }
     
     
-
+    //make matchdeck Method
+     public void makeMatchDeck(String[][] selectedCards)
+    {
+        
+    }
+    
+    public String[][] showAvailableCards(String[][] selectedCards)
+    {
+        
+    }
         
         
 	
