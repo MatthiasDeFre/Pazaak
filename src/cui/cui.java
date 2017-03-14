@@ -4,6 +4,7 @@ import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -12,7 +13,6 @@ public class cui
 {
 
     private DomainController dc;
-    
 
     public cui(DomainController dc)
     {
@@ -55,23 +55,24 @@ public class cui
 
         Locale.setDefault(currentLocale);
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-        System.out.println(String.format(rs.getString("welcome")));
+        //    System.out.println(String.format(rs.getString("welcome")));
 
         String name;
         int date;
         badInput = true;
         do
         {
-
             do
             {
                 try
                 {
+                    s.nextLine();
+                    System.out.println(String.format(rs.getString("welcome")));
                     switch (s.nextInt())
                     {
                         //Test
                         case 1:
-                            //methode voor registreer   
+                            //methode voor registreer     
                             System.out.println(String.format(rs.getString("inputRegister")));
                             System.out.print(String.format(rs.getString("name")));
                             name = s.next();
@@ -80,11 +81,23 @@ public class cui
                             dc.register(name, date);
                             System.out.println(rs.getString("yourCards"));
                             System.out.println(String.format(giveCards()));
+                            badInput = false;
                             break;
 
                         case 2:
                             //methode voor nieuwe wedstrijd starten
-                            System.out.printf("[WIP]");
+                            dc.makeMatch();
+                            while (dc.getAmountPlayersStillNeeded() > 0)
+                            {
+                                System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
+                                for (String matchName : dc.getPlayerNames())
+                                {
+                                    System.out.println(matchName);
+                                }
+                               
+                                name = s.nextLine();
+                                dc.selectPlayer(name);
+                            }
                             badInput = false;
                             break;
                         case 3:
@@ -94,7 +107,7 @@ public class cui
                             break;
                         case 4:
                             //methode voor login
-                            System.out.printf("[Thank you for playing pazaak]");
+                            System.out.println(rs.getString("end"));
                             badInput = false;
                             running = false;
                             break;
@@ -103,10 +116,12 @@ public class cui
                             System.out.println("Wrong number");
                             break;
                     }
-
                 } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
                 {
                     System.out.println(uex.getMessage());
+                } catch (InputMismatchException ime)
+                {
+                    System.out.println(rs.getString("mismatch"));
                 }
             } while (badInput);
         } while (running);
