@@ -173,5 +173,36 @@ public class Player {
                }
            }
        }
+       
+       public void makeMatchDeck(String[][] selectedCards)
+       {
+           
+       }
+       
+       public String[][] showAvailableCards(String[][] selectedCards)
+       {
+           String cards[][]=new String[deck.size() -selectedCards.length][];
+           List <Card> deckCopy=deck;
+           
+           
+           for (int i = 0; i < selectedCards.length; i++) {
+               //kaart word toegevoegd in de methode als hij niet in het deck zit
+               if(deckCopy.contains(new Card(selectedCards[i][0],Integer.parseInt(selectedCards[i][1]))))
+               {
+                   deckCopy.remove(new Card(selectedCards[i][0],Integer.parseInt(selectedCards[i][1])));
+               }
+               
+               
+               
+               
+           }
+           for (int i = 0; i < deckCopy.size(); i++) 
+           {
+               cards[i][0]=deckCopy.get(i).getType();
+               cards[i][1]=Integer.toString(deckCopy.get(i).getValue());
+           }
+           
+           return cards;
+       }
         
 }
