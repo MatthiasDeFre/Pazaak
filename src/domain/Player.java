@@ -174,8 +174,18 @@ public class Player {
            }
        }
        
-       public void makeMatchDeck(String[][] selectedCards)
+       public void makeMatchDeck(String[][] selectedCards,Match match)
        {
+           List<Card> cards= new ArrayList<>();
+           
+           
+           for (String[] card : selectedCards) 
+           {
+               Card selectedCard=new Card(card[0],Integer.parseInt(card[1]));
+               cards.add(selectedCard);
+           }
+           matchDeck=new MatchDeck(match,cards);
+           
            
        }
        
