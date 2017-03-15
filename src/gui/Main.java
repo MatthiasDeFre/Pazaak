@@ -21,6 +21,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,9 +45,11 @@ public class Main extends Application {
         stage = primaryStage;
         
         currentLocale = Locale.getDefault();
-        
+        Font.loadFont(Main.class.getResource("dwarffat.otf").toExternalForm(), 10);
         
 //scLanguage scene
+
+       
 
        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("logo2.png")));
        ImageView imageLogin = new ImageView(new Image(getClass().getResourceAsStream("login.png"), 100, 100, true, true));
@@ -55,6 +58,7 @@ public class Main extends Application {
        ImageView imageLoading = new ImageView(new Image(getClass().getResourceAsStream("laad.gif"), 270,270, true, true));
         
         Label lblLanguage = new Label("Please choose your language:");
+        lblLanguage.setStyle("-fx-font-family: dwarffat; -fx-font-size: 23;");
         Button btnEN = new Button("English");
         Button btnNL = new Button("Nederlands");
         Button btnFR = new Button("Français");
