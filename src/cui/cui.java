@@ -190,11 +190,11 @@ public class cui
             name = s.next();
             dc.selectPlayerWithoutMatchDeck(name);
             
-            String[][] selectedCards;
-            selectedCards[0][0] = "";
+            String[][] selectedCards = new String[6][2];
+
             for (int i = 0; i < 5; i++)
             {
-                System.out.println(rs.getString("youNeed") + " " + (i+1) + " " + rs.getString("more"));
+                System.out.println(rs.getString("youNeed") + " " + (5-i) + " " + rs.getString("more"));
                 dc.showAvailableCards(selectedCards);
                 name = s.next();
                 selectedCards[i][i] = name.substring(0,1);
