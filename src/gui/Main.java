@@ -8,16 +8,22 @@ import javafx.scene.image.ImageView;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     
@@ -42,7 +48,7 @@ public class Main extends Application {
         
 //scLanguage scene
 
-       ImageView image = new ImageView(new Image(getClass().getResourceAsStream("logo.png")));
+       ImageView image = new ImageView(new Image(getClass().getResourceAsStream("logo2.png")));
        ImageView imageLogin = new ImageView(new Image(getClass().getResourceAsStream("login.png"), 100, 100, true, true));
        ImageView imageReg = new ImageView(new Image(getClass().getResourceAsStream("reg.png"), 100, 100, true, true));
        ImageView imageMsg = new ImageView(new Image(getClass().getResourceAsStream("error.png"), 60, 60, true, true));
@@ -52,11 +58,12 @@ public class Main extends Application {
         Button btnEN = new Button("English");
         Button btnNL = new Button("Nederlands");
         Button btnFR = new Button("Français");
+        Button btnFullscreen = new Button("Fullscreen");
         
-        btnEN.setMinWidth(90);
-        btnNL.setMinWidth(90);
-        btnFR.setMinWidth(90);
-        
+        btnEN.setMinWidth(120);
+        btnNL.setMinWidth(120);
+        btnFR.setMinWidth(120);
+        btnFullscreen.setMinWidth(90);
       
         
         //taalkeuze
@@ -76,6 +83,18 @@ public class Main extends Application {
              stage.setScene(scLogin);
                 });
         
+        btnFullscreen.setOnAction(e -> {
+            //maximaliseren
+            //stage.setMaximized(true);
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.setFullScreenExitHint("lol");
+            
+stage.initStyle(StageStyle.UNDECORATED);
+        
+        });
+        
+        
         
         
         Locale.setDefault(currentLocale);
@@ -87,9 +106,17 @@ public class Main extends Application {
         
         
         VBox layout = new VBox(25);
-        layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR, imageLoading);
+        layout.setPadding(new Insets(40, 0,0, 0));
+        HBox pane = new HBox(1000);
+        pane.setPadding(new Insets(0,0,0,39));
+        
+        pane.getChildren().add(btnFullscreen);
+        layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR, imageLoading, pane);
         
         scLanguage = new Scene(layout, 1100,700);
+        
+        
+        
         scLanguage.getStylesheets().add("gui/style.css");
         layout.getStyleClass().add("back"); 
         layout.setAlignment(Pos.CENTER);
@@ -106,11 +133,13 @@ public class Main extends Application {
         Button btnRegister = new Button(rs.getString("register"));
         Button btnBack = new Button("Go back");
         
+        
         btnLogin.setOnAction(e -> MessageBox.display("Bazaar", "Unknown error", imageMsg));
         
         btnLogin.setMinWidth(85);
         btnRegister.setMinWidth(85);
         btnBack.setMinWidth(85);
+
         
         
         btnBack.setOnAction(e -> stage.setScene(scLanguage));
