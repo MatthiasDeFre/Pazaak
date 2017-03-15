@@ -149,9 +149,15 @@ public class Player {
     }*/
         
         //MatchDeck methods
-       public void addMatchDeck(Match match) {
-           this.matchDeck = new MatchDeck(this, match);
-           matchDeck.addCards(deck);
+       public void addMatchDeck(Match match, String[][] selectedCards) {
+           List<Card> selectedCardsList = new ArrayList<>();
+           
+           for (int i = 0; i < selectedCards.length; i++)
+           {
+               Card newCard = new Card(selectedCards[i][0], Integer.parseInt(selectedCards[i][1]));
+               selectedCardsList.add(newCard);
+           }
+           this.matchDeck = new MatchDeck(match, selectedCardsList);
        } 
        
        public List<Card> getMatchDeck(Match match) {
