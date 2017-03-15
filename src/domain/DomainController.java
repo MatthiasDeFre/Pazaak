@@ -133,10 +133,10 @@ public class DomainController {
         currentUser.addMatchDeck(newMatch, selectedCards);
     }
     
-//    public String[][] showAvailableCards(String[][] selectedCards)
-//    {
-//        
-//    }
+ public String[][] showAvailableCards(String[][] selectedCards)
+ {
+     return currentUser.showAvailableCards(selectedCards);    
+ }
         
         
 	

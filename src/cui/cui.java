@@ -189,6 +189,25 @@ public class cui
             System.out.println(rs.getString("selectWithout"));
             name = s.next();
             dc.selectPlayerWithoutMatchDeck(name);
+            
+            String[][] selectedCards;
+            selectedCards[0][0] = "";
+            for (int i = 0; i < 5; i++)
+            {
+                System.out.println(rs.getString("youNeed") + " " + (i+1) + " " + rs.getString("more"));
+                dc.showAvailableCards(selectedCards);
+                name = s.next();
+                selectedCards[i][i] = name.substring(0,1);
+                selectedCards[i][i+1] = name.substring(1,2);
+            }
+            
+            
+           // dc.makeMatchDeck(selectedCards);
+    {
+        
+    }
+    
         }
+        
     }
 }
