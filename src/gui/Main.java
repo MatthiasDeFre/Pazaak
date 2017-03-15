@@ -86,9 +86,10 @@ public class Main extends Application {
         btnFullscreen.setOnAction(e -> {
             //maximaliseren
             //stage.setMaximized(true);
-        stage.setFullScreen(true);
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+             stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setFullScreenExitHint("lol");
+        stage.setFullScreen(true);
+       
             
 stage.initStyle(StageStyle.UNDECORATED);
         
