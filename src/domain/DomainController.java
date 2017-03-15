@@ -130,12 +130,12 @@ public class DomainController {
     //make matchdeck Method
      public void makeMatchDeck(String[][] selectedCards)
     {
-        
+        currentUser.addMatchDeck(newMatch, selectedCards);
     }
     
     public String[][] showAvailableCards(String[][] selectedCards)
     {
-        
+        return currentUser.showAvailableCards(selectedCards);
     }
         
         
