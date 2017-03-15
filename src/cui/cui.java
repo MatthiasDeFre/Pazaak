@@ -13,6 +13,10 @@ public class cui
 {
 
     private DomainController dc;
+    private String name;
+    private ResourceBundle rs;
+    
+    Scanner s = new Scanner(System.in);
 
     public cui(DomainController dc)
     {
@@ -22,10 +26,9 @@ public class cui
     public void startPazaak()
     {
         boolean running = true;
-        Scanner s = new Scanner(System.in);
         boolean badInput = true;
         Locale currentLocale = Locale.getDefault();
-        ResourceBundle rs;
+        rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         do
         {
             System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
@@ -54,11 +57,6 @@ public class cui
         } while (badInput);
 
         Locale.setDefault(currentLocale);
-        rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-        //    System.out.println(String.format(rs.getString("welcome")));
-
-        String name;
-        int date;
         badInput = true;
         do
         {
@@ -72,74 +70,13 @@ public class cui
                     {
                         //Test
                         case 1:
-                            //methode voor registreer     
-                            System.out.println(String.format(rs.getString("inputRegister")));
-                            System.out.print(String.format(rs.getString("name")));
-                            name = s.next();
-                            System.out.print(String.format(rs.getString("date")));
-                            date = s.nextInt();
-                            dc.register(name, date);
-                            System.out.println(rs.getString("yourCards"));
-                            System.out.println(String.format(giveCards()));
+                            register();
                             badInput = false;
                             break;
 
                         case 2:
                             //methode voor nieuwe wedstrijd starten
-                            dc.makeMatch();
-                            while (dc.getAmountPlayersStillNeeded() > 0)
-                            {
-                                System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
-                                 for (String matchName : dc.getPlayerNames())
-                            {
-                                System.out.println(matchName);
-                            }
-                                System.out.println(rs.getString("giveName"));
-                                name = s.next();
-                                dc.selectPlayer(name);
-                            }
-
-                            Boolean invoerYn = false;
-                            String input;
-                            do
-                            {
-                                System.out.println(rs.getString("chosenPlayers"));
-                                for (String matchPlayer : dc.getChosenPlayerNames())
-                                {
-                                    System.out.println(matchPlayer);
-                                }
-                                System.out.println(rs.getString("yesNo"));
-
-                                input = s.next();
-                                if (input.equals("Yes") || input.equals("No"))
-                                {
-
-                                    if (input.equals("Yes"))
-                                    {
-                                        invoerYn = true;
-                                    } else
-                                    {
-                                        System.out.println(rs.getString("returningMain"));
-                                        invoerYn = true;
-                                    }
-                                } else
-                                {
-                                    System.out.println(rs.getString("notYN"));
-                                    invoerYn = false;
-                                }
-
-                            } while (invoerYn == false);
-                            System.out.println(rs.getString("playersWithout"));
-                            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
-                            {
-                                System.out.println(matchPlayer);
-                            }
-                            while ((dc.getPlayersWithoutMatchDeck().length) > 0)
-                            {                    
-                            System.out.println(rs.getString("selectWithout"));
-                            name = s.next();
-                            dc.selectPlayerWithoutMatchDeck(name);
-                            }
+                            startGame();
                             badInput = false;
                             break;
                         case 3:
@@ -182,5 +119,76 @@ public class cui
             back += " ";
         }
         return back;
+    }
+
+    public void register()
+    {
+        int date;
+        System.out.println(String.format(rs.getString("inputRegister")));
+        System.out.print(String.format(rs.getString("name")));
+        name = s.next();
+        System.out.print(String.format(rs.getString("date")));
+        date = s.nextInt();
+        dc.register(name, date);
+        System.out.println(rs.getString("yourCards"));
+        System.out.println(String.format(giveCards()));
+    }
+
+    public void startGame()
+    {
+        dc.makeMatch();
+        while (dc.getAmountPlayersStillNeeded() > 0)
+        {
+            System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
+            for (String matchName : dc.getPlayerNames())
+            {
+                System.out.println(matchName);
+            }
+            System.out.println(rs.getString("giveName"));
+            name = s.next();
+            dc.selectPlayer(name);
+        }
+
+        Boolean invoerYn = false;
+        String input;
+        do
+        {
+            System.out.println(rs.getString("chosenPlayers"));
+            for (String matchPlayer : dc.getChosenPlayerNames())
+            {
+                System.out.println(matchPlayer);
+            }
+            System.out.println(rs.getString("yesNo"));
+
+            input = s.next();
+            if (input.equals("Yes") || input.equals("No"))
+            {
+
+                if (input.equals("Yes"))
+                {
+                    invoerYn = true;
+                } else
+                {
+                    System.out.println(rs.getString("returningMain"));
+                    invoerYn = true;
+                }
+            } else
+            {
+                System.out.println(rs.getString("notYN"));
+                invoerYn = false;
+            }
+
+        } while (invoerYn == false);
+        System.out.println(rs.getString("playersWithout"));
+        for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
+        {
+            System.out.println(matchPlayer);
+        }
+        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
+        {
+            System.out.println(rs.getString("selectWithout"));
+            name = s.next();
+            dc.selectPlayerWithoutMatchDeck(name);
+        }
     }
 }
