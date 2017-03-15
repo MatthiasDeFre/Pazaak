@@ -8,7 +8,6 @@
 
 .lblLanguage {
     -fx-font-size: 25;
-    -fx-font-family: "upheaval";
     
 }
 
@@ -17,10 +16,6 @@
     -fx-text-fill: white;
 }
 
-@font-face {
-    font-family: 'dwarffat';
-    src: url('dwarffat.otf');
-}
 
 
 .button {
@@ -35,7 +30,7 @@
     -fx-text-fill: #654b00;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-padding: 10 20 10 20;
-    -fx-font-family: "dwarffat.otf";
+    -fx-padding: 1 1 1 1;
+
     
 }

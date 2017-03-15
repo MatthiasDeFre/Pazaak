@@ -56,18 +56,23 @@ public class Main extends Application {
        ImageView imageReg = new ImageView(new Image(getClass().getResourceAsStream("reg.png"), 100, 100, true, true));
        ImageView imageMsg = new ImageView(new Image(getClass().getResourceAsStream("error.png"), 60, 60, true, true));
        ImageView imageLoading = new ImageView(new Image(getClass().getResourceAsStream("laad.gif"), 270,270, true, true));
+       ImageView imageEN = new ImageView(new Image(getClass().getResourceAsStream("img/EN.png"), 300,300, true, true));
+       ImageView imageNL = new ImageView(new Image(getClass().getResourceAsStream("img/NL.png"), 300,300, true, true));
+       ImageView imageFR = new ImageView(new Image(getClass().getResourceAsStream("img/FR.png"), 300,300, true, true));
         
         Label lblLanguage = new Label("Please choose your language:");
         lblLanguage.setStyle("-fx-font-family: dwarffat; -fx-font-size: 23;");
-        Button btnEN = new Button("English");
-        Button btnNL = new Button("Nederlands");
-        Button btnFR = new Button("Français");
+        Button btnEN = new Button("", imageEN);
+        btnEN.setStyle("-fx-font-family: dwarffat; -fx-font-size: 23;");
+        Button btnNL = new Button("", imageNL);
+        Button btnFR = new Button("", imageFR);
         Button btnFullscreen = new Button("Fullscreen");
         
         btnEN.setMinWidth(120);
         btnNL.setMinWidth(120);
         btnFR.setMinWidth(120);
         btnFullscreen.setMinWidth(90);
+        stage.setMaximized(true);
       
         
         //taalkeuze
@@ -89,7 +94,7 @@ public class Main extends Application {
         
         btnFullscreen.setOnAction(e -> {
             //maximaliseren
-            //stage.setMaximized(true);
+            
              stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setFullScreenExitHint("lol");
         stage.setFullScreen(true);
@@ -113,7 +118,7 @@ stage.initStyle(StageStyle.UNDECORATED);
         VBox layout = new VBox(25);
         layout.setPadding(new Insets(40, 0,0, 0));
         HBox pane = new HBox(1000);
-        pane.setPadding(new Insets(0,0,0,39));
+        pane.setPadding(new Insets(0,0,20,15));
         
         pane.getChildren().add(btnFullscreen);
         layout.getChildren().addAll(image,lblLanguage, btnEN, btnNL, btnFR, imageLoading, pane);
