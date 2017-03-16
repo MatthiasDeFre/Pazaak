@@ -64,6 +64,10 @@ public class Match {
         return playersNoMatchDeck;
     }
     
+    /**
+     * Method to check if the chosen player was already selected for the match
+     * @param player Player object that needs to be checked
+     */
     private void playerAlreadySelected(Player player) {
         if(matchPlayers.contains(player)) {
            ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());

@@ -8,6 +8,17 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+/**
+ * <pre>
+ * Properties:
+ * int birthYear
+ * String name
+ * int credit
+ * List<{@link Card.setType}>
+ * </pre>
+ * @author Matthias
+ */
 public class Player {
 	private int birthYear;
 	private String name;
@@ -174,11 +185,19 @@ public class Player {
            }
        }
        
+       
+       /**
+        * <pre>Method to give a player a matchdeck based on the provided 2 dimensional String array
+        * Converts the content of the 2 dimensional array 
+        * to instances of {@link Card} class 
+        * Also needs an instance of match to create the matchdeck instance</pre>
+        * @param selectedCards
+        * @param match 
+        */
        public void makeMatchDeck(String[][] selectedCards,Match match)
-       {
+       { 
            List<Card> cards= new ArrayList<>();
-           
-           
+ 
            for (String[] card : selectedCards) 
            {
                Card selectedCard=new Card(card[0],Integer.parseInt(card[1]));
@@ -192,22 +211,17 @@ public class Player {
        public String[][] showAvailableCards(String[][] selectedCards)
        {
            String cards[][]=new String[deck.size() -selectedCards.length][];
-           List <Card> deckCopy=deck;
-           
-           
+           List <Card> deckCopy=deck;                    
            for (int i = 0; i < selectedCards.length; i++) {
                //kaart word toegevoegd in de methode als hij niet in het deck zit
                if(deckCopy.contains(new Card(selectedCards[i][0],Integer.parseInt(selectedCards[i][1]))))
                {
                    deckCopy.remove(new Card(selectedCards[i][0],Integer.parseInt(selectedCards[i][1])));
-               }
-               
-               
-               
-               
+               }                                                
            }
            for (int i = 0; i < deckCopy.size(); i++) 
            {
+               cards[i] = new String[2];
                cards[i][0]=deckCopy.get(i).getType();
                cards[i][1]=Integer.toString(deckCopy.get(i).getValue());
            }

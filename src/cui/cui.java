@@ -190,16 +190,26 @@ public class cui
             name = s.next();
             dc.selectPlayerWithoutMatchDeck(name);
             
-            String[][] selectedCards = new String[6][2];
-
+           // String[][] selectedCards = new String[6][2];
+            String[][] selectedCards = new String[0][2];
+            String[][] selectedCardsCopy;
             for (int i = 0; i < 5; i++)
             {
-                System.out.println(rs.getString("youNeed") + " " + (5-i) + " " + rs.getString("more"));
+                System.out.println(rs.getString("youNeed") + " " + (5-i) + " " + rs.getString("more"));  
+                selectedCardsCopy = selectedCards;
+                //#JENS de kaarten effectief tonen, niet alleen de method oproepen
                 dc.showAvailableCards(selectedCards);
+                
+               
+                selectedCards = new String[i+1][2];
+                //#JENS de waarden van selectedCardsCopy terug zetten naar de nieuwe selectedCards
+                
+                //#JENS de geselecteerde kaart toevoegen aan selectedCards
                 name = s.next();
                 selectedCards[i][i] = name.substring(0,1);
                 selectedCards[i][i+1] = name.substring(1,2);
             }
+            //#JENS make matchdeck effectief oproepen
             
             
            // dc.makeMatchDeck(selectedCards);
