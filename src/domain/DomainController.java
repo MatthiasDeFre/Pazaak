@@ -19,6 +19,13 @@ public class DomainController {
               
 	}
     //Make a new user methods
+        
+     /**
+      * <pre>Method to register a user in the database
+      *  User will only be added if the user doesn't already exist in the database</pre>
+      * @param name The name of the player
+      * @param birthYear The year of birth of the Player
+      */
     public void register(String name, int birthYear)
     {
      
@@ -66,20 +73,38 @@ public class DomainController {
         
         
     //Match methods
+    /**
+     * Method to make a new Match and give the value to newMatch property
+     */
     public void makeMatch()
     {
         newMatch = new Match();
     }
 
+    /**
+     * <pre>Method to add a player to a match using the PlayerRepository to get the Player object</pre>
+     * @param name Name of the player that needs to be added to the match 
+     */
     public void selectPlayer(String name)
     {
         newMatch.addPlayer(players.selectPlayer(name));
     }
     
+    /**
+     * Method to get the amount of players still needed to start the match
+     * @return int value of the amount of players needed
+     */
     public int getAmountPlayersStillNeeded() {
         return newMatch.getAmountPlayersStillNeeded();
     }
  
+    /**
+     * <pre>
+     * ############# Herbekijk deze methode ############
+     * Method to get the names of the players who are in the database
+     * </pre>
+     * @return String[] containing the names of the players (database)
+     */
     public String[] getPlayerNames()
     {
         List<String> names = players.getPlayerNames();
@@ -91,11 +116,19 @@ public class DomainController {
         return domainNames;
     }
     
+    /**
+     * Method to get the names of the players that were chosen for the current match
+     * @return String[] containing the names of the players (newMatch)
+     */
     public String[] getChosenPlayerNames(){
         String[] chosenPlayers = newMatch.getChoosenPlayers();
         return chosenPlayers;
     }
     
+    /**
+     * Method to get the names of the players who don't have a matchdeck yet for the currentMatch
+     * @return String[] containt the names of the players without a matchdeck (newMatch)
+     */
     public String[] getPlayersWithoutMatchDeck() {
         
         List<String> playerNamesList = newMatch.getPlayersWithoutMatchDeck();
@@ -107,10 +140,17 @@ public class DomainController {
         return playerNames;
     }
     
+    /**
+     * <pre>Method to select a player without a matchdeck
+     * The value of currentUser is set to a the selected player
+     * The domaincontroller can now use currentUser to give the player a matchdeck and retrieve the players personal information</pre>
+     * @param name Name of the player that doesn't have a matchdeck
+     */
     public void selectPlayerWithoutMatchDeck(String name) {
         currentUser = players.selectPlayer(name);
     }
     
+    //Gebruiken we dit?
     public String[][] getPlayerCards() {
         List<Card> cardList = currentUser.getDeck();
         String[][] cardArray = new String[cardList.size()][2];
@@ -122,21 +162,35 @@ public class DomainController {
         return cardArray;
     }
     
+    /**
+     * Method to cancel the match and destroy the newMatch instance
+     */
     public void cancelMatch() {
         newMatch = null;
     }
     
     
     //make matchdeck Method
+    
+    /**
+     * <pre>Method to make a matchdeck with the provided String[][] of selectedCards
+     * The currentUser gets attributed a matchdeck</pre>
+     * @param selectedCards The cards that the player want to be part of his matchdeck
+     */
      public void makeMatchDeck(String[][] selectedCards)
     {
         currentUser.addMatchDeck(newMatch, selectedCards);
     }
     
- public String[][] showAvailableCards(String[][] selectedCards)
- {
-     return currentUser.showAvailableCards(selectedCards);    
- }
+     /**
+      * Method to get the cards that are available to the currentUser
+      * @param selectedCards The cards that the player already has selected
+      * @return String[][] containing the information of the cards, for more information on array data {@link getPlayerData()}
+      */
+    public String[][] showAvailableCards(String[][] selectedCards)
+    {
+        return currentUser.showAvailableCards(selectedCards);
+    }
         
         
 	

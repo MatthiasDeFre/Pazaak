@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class Match {
     private List<Player> matchPlayers = new ArrayList<>();
     private final static int AMOUNT_PLAYERS = 2;
+    private List<Round> matchRounds = new ArrayList<>();
     
     /**
      * Method to add a player to the match
@@ -75,9 +76,67 @@ public class Match {
         }
     }
     
+    //New round methods
     
+    /**
+     * Method to add a new round to the current matchRounds
+     */
+    public void addNewRound() {
+        matchRounds.add(new Round());
+    }
     
+    //Match over methods
     
+    /**
+     * <pre>Method to return the player that won the match
+     * Method should only be called if matchEnded has returned true</pre>
+     * @return Instance of {@link Player} who won the match
+     */
+    public Player whoWon() {
+        Player winner;
+        if (getScoring()[0] == 3)
+        {
+            winner = matchPlayers.get(0);
+        } else
+        {
+            winner = matchPlayers.get(1);
+        }
+        return winner;
+
+    }
+
+    /**
+     * Method to check if the match has ended or not
+     * @return true if match has ended, will return false if match has not ended yet
+     */
+    public boolean matchEnded()
+    {
+        boolean gg = false;
+        
+         if (getScoring()[0] == 3 || getScoring()[1] == 3)
+        {
+            gg = true;
+        }
+        return gg;
+    } 
+    
+    /**
+     * Method to return the current score between the two players
+     * @return int[], index 0 contains player 1 his score, index 1 contains player 2 his score
+     */
+    public int[] getScoring() {
+        int[] score = new int[AMOUNT_PLAYERS];
+        for (Round matchRound : matchRounds)
+        {
+            if(matchRound.getWinner().equals(matchPlayers.get(0))) {
+                score[0]++;
+            }
+            else {
+               score[1]++;
+            }
+        }
+       return score;
+    }
     
     
 }

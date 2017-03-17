@@ -7,10 +7,10 @@ package domain;
  * int value
  * 
  * Methods:
- * setType {@link Card.setType}
+ * setType {@link Card.setType(String type}
  * getype {@link Card.getType}
- * setValue {@link Card.setValue}
- * getValue {@link Card.getValue}
+ * setValue {@link Card.setValue(int value}
+ * getValue {@link Card.getValue(}
  * @author Team-07 </pre>
  */
 public class Card {

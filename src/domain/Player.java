@@ -15,17 +15,24 @@ import java.util.regex.Pattern;
  * int birthYear
  * String name
  * int credit
- * List<{@link Card.setType}>
+ * List &lt;{@link Card}&gt; deck
+ * {@link Matchdeck} matchDeck
+ * 
+ * Methods:
+ * getDeck {@link getDeck()}
+ * setDateOfBirth {@link setDateOfBirth(int birthYear)}
+ * 
  * </pre>
  * @author Matthias
  */
 public class Player {
+    
 	private int birthYear;
 	private String name;
 	private int credit;
 	private List<Card> deck = new ArrayList<>();
         private MatchDeck matchDeck;
-        
+
         /** 
          * Constructor used to make a Player who isn't in the database
          * @param birthYear
@@ -67,6 +74,10 @@ public class Player {
 		return deck;
 	}
 
+        /**
+         * Method to set the Player's year of birth
+         * @param birthYear Full year of birth, 4 number
+         */
 	public void setDateOfBirth(int birthYear) {
                 checkDateOfBirth(birthYear);
 		this.birthYear = birthYear;
@@ -159,7 +170,13 @@ public class Player {
         System.out.println(rs1.getString("s1"));
     }*/
         
-        //MatchDeck methods
+      //MatchDeck methods
+    /**
+     * <pre>Method to add a matchdeck with the provided String[][] of selectedCards
+     * The currentUser gets attributed a matchdeck</pre>
+     * @param selectedCards The cards that the player want to be part of his
+     * @param match To make sure the matchdeck is only valid for the current match
+         */
        public void addMatchDeck(Match match, String[][] selectedCards) {
            List<Card> selectedCardsList = new ArrayList<>();
            
@@ -175,6 +192,7 @@ public class Player {
            return matchDeck.getCards();
        }
                    
+       //Onnodig waarschijnlijk?
        public void removeCardFromDeck(Card card) {
            for (Card cardInDeck : deck)
            {

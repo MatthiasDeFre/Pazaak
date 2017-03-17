@@ -10,8 +10,11 @@ import java.util.List;
 import persistence.CardMapper;
 
 /**
- *
- * @author Matthias
+ * <pre>Class to get cards from the database and make them into instances of {@link Card}
+ * Properties:
+ * List<
+ * 
+ * @author Team-07</pre>
  */
 public class CardRepository {
     
@@ -28,14 +31,13 @@ public class CardRepository {
     /**
      * <pre>
      * Method to retrieve the start deck from the database
-     * @return List of cards
+     * Calls the cardMapper method {@link persistence.CardMapper#giveStartDeck()}
      * </pre>
+     * @return List of cards
+     * 
      */
-
-    //Make a new user methods
     public List<Card> giveStartDeck()
     {
-
         return cardMapper.giveStartDeck();
     }
    //Versie 1 [not needed at this momenent]

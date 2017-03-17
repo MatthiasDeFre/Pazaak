@@ -164,6 +164,10 @@ public class PlayerMapper {
         }
     }
     
+    /**
+     * Method to return all the player names from the database
+     * @return List&lt;String&gt; containing the player names
+     */
     public List<String> getPlayerNames() {
        List<String> names = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {

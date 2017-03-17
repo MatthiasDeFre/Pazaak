@@ -9,23 +9,23 @@ package exceptions;
  *
  * @author Matthias
  */
-public class notEnoughPlayers extends RuntimeException{
+public class notEnoughPlayersException extends RuntimeException{
 
-    public notEnoughPlayers()
+    public notEnoughPlayersException()
     {
     }
 
-    public notEnoughPlayers(String message)
+    public notEnoughPlayersException(String message)
     {
         super(message);
     }
 
-    public notEnoughPlayers(String message, Throwable cause)
+    public notEnoughPlayersException(String message, Throwable cause)
     {
         super(message, cause);
     }
 
-    public notEnoughPlayers(Throwable cause)
+    public notEnoughPlayersException(Throwable cause)
     {
         super(cause);
     }

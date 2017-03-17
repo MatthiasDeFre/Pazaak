@@ -195,7 +195,7 @@ public class cui
             String[][] selectedCardsCopy;
             for (int i = 0; i < 5; i++)
             {
-                System.out.println(rs.getString("youNeed") + " " + (5-i) + " " + rs.getString("more"));  
+                System.out.println(rs.getString("youNeed") + " " + (6-i) + " " + rs.getString("more"));  
                 selectedCardsCopy = selectedCards;
                 //#JENS de kaarten effectief tonen, niet alleen de method oproepen
                 dc.showAvailableCards(selectedCards);

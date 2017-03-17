@@ -13,7 +13,9 @@ public class CardMapper
 {
 
     /**
-     * <pre>Method to add a card to the database using an instance of Card</pre>
+     * <pre>
+     * Method to add a card to the database using an instance of Card
+     * </pre>
      * @param card Card object (with value and type)
      * @param playerID PlayerID needed for FK in the database
      */
@@ -33,7 +35,9 @@ public class CardMapper
     }
 
     /**
-     * <pre>Method to return the startDeck from the database</pre>
+     * <pre>Method to return the startDeck from the database
+     * The method will get the "type" and "value" columns from the CardType table in the database and make an instance of {@link domain.Card} with these 2 values
+     * This card will then add the instance of Card to the List of cards that the method will return at the end</pre>
      * @return List of Cards
      */
     public List<Card> giveStartDeck()
@@ -60,7 +64,9 @@ public class CardMapper
     }
     
     /**
-     * <pre>Method to return the cardID from a given instance of Card, using the value and type from the card object</pre>
+     * <pre>
+     * Method to return the cardID from a given instance of Card, using the value and type from the card object
+     * </pre>
      * @param card Card object (with value and type)
      * @return The id of the given card object
      */
@@ -117,7 +123,10 @@ public class CardMapper
         return ids;
     }*/
  /**
-  * Method to get the card of the provided player name
+  * <pre>
+  * Method to get the cards of the provided player name
+  * The method will retrieve the player his cards by using the provided name and using this in the SQL INNER JOIN statement
+  * </pre>
   * @param name The name of the player
   * @return List of the player's cards
   */
