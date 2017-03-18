@@ -36,10 +36,11 @@ public class PlayerRepository {
 
         playerMapper.addPlayer(player);
         int playerID = playerMapper.givePlayerID(player.getName());
-        for (Card card : player.getDeck())
+      /*  for (Card card : player.getDeck())
         {
             cardMapper.addCard(card, playerID);
-        }
+        }*/
+       cardMapper.addCards(player.getDeck(), playerID);
 
     }
 

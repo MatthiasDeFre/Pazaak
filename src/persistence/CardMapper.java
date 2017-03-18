@@ -181,4 +181,50 @@ public class CardMapper
 
         return card;
     }
+    
+    
+     public List<Integer> getCardIDs(List<Card> cards, java.sql.Connection conn) {
+        List<Integer> cardID = new ArrayList<>();
+        try
+        {
+             PreparedStatement query;
+            for (Card card : cards)
+            {                 
+            query  = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType WHERE value = ? AND type = ?");
+            query.setInt(1, card.getValue());
+            query.setString(2, card.getType());
+            try (ResultSet rs = query.executeQuery())
+            {
+                if (rs.next())
+                {
+                    cardID.add(rs.getInt("Card_ID"));
+                }
+            }
+         }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+        return cardID;
+    }
+     
+       public void addCards(List<Card> cards, int playerID)
+       {   
+      
+        
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        {
+            List<Integer> cardIDs = getCardIDs(cards, conn);
+            for (int i = 0; i < cards.size(); i++)
+            {                       
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
+            query.setInt(1, playerID); 
+            query.setInt(2, cardIDs.get(i));
+            query.executeUpdate();
+            }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+    }  
 }
