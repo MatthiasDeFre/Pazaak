@@ -15,7 +15,7 @@ public class cui
     private DomainController dc;
     private String name;
     private ResourceBundle rs;
-    
+
     Scanner s = new Scanner(System.in);
 
     public cui(DomainController dc)
@@ -151,6 +151,7 @@ public class cui
 
         Boolean invoerYn = false;
         String input;
+        int inputnumber;
         do
         {
             System.out.println(rs.getString("chosenPlayers"));
@@ -189,35 +190,51 @@ public class cui
             System.out.println(rs.getString("selectWithout"));
             name = s.next();
             dc.selectPlayerWithoutMatchDeck(name);
-            
-           // String[][] selectedCards = new String[6][2];
+
+            // String[][] selectedCards = new String[6][2];
             String[][] selectedCards = new String[0][2];
-            String[][] selectedCardsCopy;
+            String[][] selectedCardsCopy;      
+
             for (int i = 0; i < 5; i++)
             {
-                System.out.println(rs.getString("youNeed") + " " + (6-i) + " " + rs.getString("more"));  
+                System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
                 selectedCardsCopy = selectedCards;
-                //#JENS de kaarten effectief tonen, niet alleen de method oproepen
-                dc.showAvailableCards(selectedCards);
-                
-               
-                selectedCards = new String[i+1][2];
+                int count = 1;
+                System.out.println(rs.getString("chooseNumber"));
+                for (String[] available : dc.showAvailableCards(selectedCards))
+                {
+                    System.out.println("[" + count++ + "] " + available[0] + available[1]);
+                }
+                inputnumber = s.nextInt();
+
+                if (inputnumber < 1 || inputnumber > i + 5)
+                {
+                    throw new IllegalArgumentException();
+                } else
+                {
+                    String[][] available = dc.showAvailableCards(selectedCards);
+                    for (int x = 0; x < available.length; x++)
+                    {
+                        selectedCardsCopy[x][0] = available[inputnumber - 1][0];
+                        selectedCardsCopy[x][1] = available[inputnumber - 1][1];
+                    }
+//                 selectedCards = new String[i+1][2];
+//                 for (int j = 0; j < selectedCardsCopy.length; j++)
+//                {
+//                  selectedCards[j][0]  = selectedCardsCopy[j][0];
+//                  selectedCards[j][1]  = selectedCardsCopy[j][1];
+//                }
+                }
+
                 //#JENS de waarden van selectedCardsCopy terug zetten naar de nieuwe selectedCards
-                
                 //#JENS de geselecteerde kaart toevoegen aan selectedCards
-                name = s.next();
-                selectedCards[i][i] = name.substring(0,1);
-                selectedCards[i][i+1] = name.substring(1,2);
             }
-            //#JENS make matchdeck effectief oproepen
-            
-            
-           // dc.makeMatchDeck(selectedCards);
-    {
-        
-    }
-    
+            //    dc.makeMatchDeck(selectedCards);
+            {
+
+            }
+
         }
-        
+
     }
 }
