@@ -58,13 +58,33 @@ public class Match {
         List<String> playersNoMatchDeck = new ArrayList<>();
         for (Player player : matchPlayers)
         {
-              if(player.getMatchDeck() == null) {
+            if(player.getMatchDeck() == null) {
                 playersNoMatchDeck.add(player.getName());
             }
         }     
         return playersNoMatchDeck;
     }
     
+ /*   public void addMatchDeckToPlayer(Player currentPlayer, String[][] selectedCards){
+        for (Player matchPlayer : matchPlayers)
+        {
+            if(currentPlayer.equals(matchPlayer)) {
+                matchPlayer.addMatchDeck(this, selectedCards);
+            }
+        }
+    }
+ */  
+    
+    public Player selectPlayer(String name) {
+        Player selectedPlayer = null;
+        for (Player matchPlayer : matchPlayers)
+        {
+            if(matchPlayer.getName().equals(name)) {
+               selectedPlayer = matchPlayer;
+            }
+        }
+        return selectedPlayer;
+    }
     /**
      * Method to check if the chosen player was already selected for the match
      * @param player Player object that needs to be checked

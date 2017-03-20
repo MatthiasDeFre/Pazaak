@@ -1,4 +1,7 @@
 package domain;
+
+import java.util.Objects;
+
 /**
  * <pre>
  * Class to make instances of Cards
@@ -44,4 +47,25 @@ public class Card {
     {
         return this.value;
     }
+
+    @Override
+    public boolean equals(Object other)
+    {
+          if (!(other instanceof Card)) {
+        return false;
+    }
+    Card that = (Card) other;
+    return this.type.equals(that.type) && this.value == that.value; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.type);
+        hash = 53 * hash + this.value;
+        return hash;
+    }
+    
+    
 }

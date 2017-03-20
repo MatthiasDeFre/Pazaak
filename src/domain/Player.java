@@ -5,6 +5,7 @@ import exceptions.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -229,7 +230,7 @@ public class Player {
        public String[][] showAvailableCards(String[][] selectedCards)
        {
            String cards[][]=new String[deck.size() -selectedCards.length][];
-           List <Card> deckCopy=deck;                    
+           List <Card> deckCopy= new ArrayList<>(deck);                    
            for (int i = 0; i < selectedCards.length; i++) {
                //kaart word toegevoegd in de methode als hij niet in het deck zit
                if(deckCopy.contains(new Card(selectedCards[i][0],Integer.parseInt(selectedCards[i][1]))))
@@ -246,5 +247,29 @@ public class Player {
            
            return cards;
        }
+
+    @Override
+    public boolean equals(Object other)
+    {
+         if (!(other instanceof Player)) {
+        return false;
+    }
+    Player that = (Player) other;
+    return this.name.equals(that.name);
+       
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 29 * hash + this.birthYear;
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + this.credit;
+        hash = 29 * hash + Objects.hashCode(this.deck);
+        return hash;
+    }
+       
+       
         
 }

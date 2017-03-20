@@ -57,6 +57,7 @@ public class cui
         } while (badInput);
 
         Locale.setDefault(currentLocale);
+              rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         badInput = true;
         do
         {
@@ -180,13 +181,14 @@ public class cui
             }
 
         } while (invoerYn == false);
-        System.out.println(rs.getString("playersWithout"));
+        
+        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
+        {
+            System.out.println(rs.getString("playersWithout"));
         for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
         {
             System.out.println(matchPlayer);
         }
-        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
-        {
             System.out.println(rs.getString("selectWithout"));
             name = s.next();
             dc.selectPlayerWithoutMatchDeck(name);
@@ -195,7 +197,7 @@ public class cui
             String[][] selectedCards = new String[0][2];
             String[][] selectedCardsCopy;      
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i <= 5; i++)
             {
                 System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
                 selectedCardsCopy = selectedCards;
@@ -210,31 +212,53 @@ public class cui
                 if (inputnumber < 1 || inputnumber > i + 5)
                 {
                     throw new IllegalArgumentException();
-                } else
-                {
+                }
                     String[][] available = dc.showAvailableCards(selectedCards);
-                    for (int x = 0; x < available.length; x++)
-                    {
-                        selectedCardsCopy[x][0] = available[inputnumber - 1][0];
-                        selectedCardsCopy[x][1] = available[inputnumber - 1][1];
-                    }
+                    selectedCards = new String[i+1][2];
+                     for (int j = 0; j < selectedCardsCopy.length; j++)
+                {
+                    selectedCards[j][0] = selectedCardsCopy[j][0];
+                    selectedCards[j][1] = selectedCardsCopy[j][1];
+                    
+                }
+                  
+                selectedCards[i][0] = available[inputnumber - 1][0];
+                selectedCards[i][1] = available[inputnumber - 1][1];
+                        //selectedCardsCopy[i][0] = available[inputnumber - 1][0];
+                        //  selectedCardsCopy[i][1] = available[inputnumber - 1][1];
+                   
 //                 selectedCards = new String[i+1][2];
 //                 for (int j = 0; j < selectedCardsCopy.length; j++)
 //                {
 //                  selectedCards[j][0]  = selectedCardsCopy[j][0];
 //                  selectedCards[j][1]  = selectedCardsCopy[j][1];
 //                }
-                }
+                
 
                 //#JENS de waarden van selectedCardsCopy terug zetten naar de nieuwe selectedCards
                 //#JENS de geselecteerde kaart toevoegen aan selectedCards
             }
+            dc.makeMatchDeck(selectedCards);
             //    dc.makeMatchDeck(selectedCards);
-            {
-
-            }
+          
 
         }
+          matchStarted();
 
+   
+        
+    }
+    public void matchStarted() {
+        int roundAmount =1;
+        do
+        {            
+            System.out.println(rs.getString("roundStarted") + " " + roundAmount);
+            startNewRound();
+            roundAmount++;
+        } while (dc.matchEnded() == false);
+    } 
+    
+    public void startNewRound() {
+        
     }
 }

@@ -147,7 +147,9 @@ public class DomainController {
      * @param name Name of the player that doesn't have a matchdeck
      */
     public void selectPlayerWithoutMatchDeck(String name) {
-        currentUser = players.selectPlayer(name);
+     //   currentUser = players.selectPlayer(name);
+         currentUser = newMatch.selectPlayer(name);
+       
     }
     
     //Gebruiken we dit?
@@ -179,6 +181,7 @@ public class DomainController {
      */
      public void makeMatchDeck(String[][] selectedCards)
     {
+       // newMatch.addMatchDeckToPlayer(currentUser, selectedCards);
         currentUser.addMatchDeck(newMatch, selectedCards);
     }
     
@@ -191,7 +194,12 @@ public class DomainController {
     {
         return currentUser.showAvailableCards(selectedCards);
     }
-        
+    
+    
+    //Match started methods
+    public boolean matchEnded() {
+        return newMatch.matchEnded();   
+    }
         
 	
 }
