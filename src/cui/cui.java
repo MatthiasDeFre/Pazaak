@@ -2,6 +2,7 @@ package cui;
 
 import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
+import exceptions.noCorrectInputException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
 import java.util.InputMismatchException;
@@ -15,6 +16,7 @@ public class cui
     private DomainController dc;
     private String name;
     private ResourceBundle rs;
+    boolean badInput = true;
 
     Scanner s = new Scanner(System.in);
 
@@ -26,7 +28,7 @@ public class cui
     public void startPazaak()
     {
         boolean running = true;
-        boolean badInput = true;
+
         Locale currentLocale = Locale.getDefault();
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         do
@@ -153,82 +155,85 @@ public class cui
         Boolean invoerYn = false;
         String input;
         int inputnumber;
-        do
-        {
-            System.out.println(rs.getString("chosenPlayers"));
-            for (String matchPlayer : dc.getChosenPlayerNames())
+        
+            do
             {
-                System.out.println(matchPlayer);
-            }
-            System.out.println(rs.getString("yesNo"));
-
-            input = s.next();
-            if (input.equals("Yes") || input.equals("No"))
-            {
-
-                if (input.equals("Yes"))
+                System.out.println(rs.getString("chosenPlayers"));
+                for (String matchPlayer : dc.getChosenPlayerNames())
                 {
-                    invoerYn = true;
+                    System.out.println(matchPlayer);
+                }
+                System.out.println(rs.getString("yesNo"));
+
+                input = s.next().toLowerCase();
+                if (input.equals("yes") || input.equals("no"))
+                {
+
+                    if (input.equals("yes"))
+                    {
+                        invoerYn = true;
+                    } else
+                    {
+                        System.out.println(rs.getString("returningMain"));
+                        invoerYn = true;
+                    }
                 } else
                 {
-                    System.out.println(rs.getString("returningMain"));
-                    invoerYn = true;
+                    System.out.println(rs.getString("notYN"));
+                    invoerYn = false;
                 }
-            } else
+
+            } while (invoerYn == false);
+
+            while ((dc.getPlayersWithoutMatchDeck().length) > 0)
             {
-                System.out.println(rs.getString("notYN"));
-                invoerYn = false;
-            }
-
-        } while (invoerYn == false);
-
-        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
-        {
-            System.out.println(rs.getString("playersWithout"));
-            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
-            {
-                System.out.println(matchPlayer);
-            }
-            System.out.println(rs.getString("selectWithout"));
-            name = s.next();
-            dc.selectPlayerWithoutMatchDeck(name);
-
-            // String[][] selectedCards = new String[6][2];
-            String[][] selectedCards = new String[0][2];
-            String[][] selectedCardsCopy;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
-                selectedCardsCopy = selectedCards;
-                int count = 1;
-                System.out.println(rs.getString("chooseNumber"));
-                for (String[] available : dc.showAvailableCards(selectedCards))
+                badInput = true;
+                System.out.println(rs.getString("playersWithout"));
+                for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
                 {
-                    System.out.println("[" + count++ + "] " + available[0] + available[1]);
+                    System.out.println(matchPlayer);
                 }
-                inputnumber = s.nextInt();
-                String[][] available = dc.showAvailableCards(selectedCards);
-                if (inputnumber < 1 || inputnumber > available.length)
-                {
-                    throw new IllegalArgumentException();
-                }
+                System.out.println(rs.getString("selectWithout"));
+                name = s.next();
+                dc.selectPlayerWithoutMatchDeck(name);
 
-                selectedCards = new String[i + 1][2];
-                for (int j = 0; j < selectedCardsCopy.length; j++)
+                // String[][] selectedCards = new String[6][2];
+                String[][] selectedCards = new String[0][2];
+                String[][] selectedCardsCopy;
+
+                for (int i = 0; i <= 5; i++)
                 {
-                    selectedCards[j][0] = selectedCardsCopy[j][0];
-                    selectedCards[j][1] = selectedCardsCopy[j][1];
+                    System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
+                    selectedCardsCopy = selectedCards;
+                    int count = 1;
+                    System.out.println(rs.getString("chooseNumber"));
+                    for (String[] available : dc.showAvailableCards(selectedCards))
+                    {
+                        System.out.println("[" + count++ + "] " + available[0] + available[1]);
+                    }
+                    inputnumber = s.nextInt();
+                    String[][] available = dc.showAvailableCards(selectedCards);
+                    if (inputnumber < 1 || inputnumber > available.length)
+                    {
+                        System.out.println(rs.getString("errorNumber"));
+                    }
+
+                    selectedCards = new String[i + 1][2];
+                    for (int j = 0; j < selectedCardsCopy.length; j++)
+                    {
+                        selectedCards[j][0] = selectedCardsCopy[j][0];
+                        selectedCards[j][1] = selectedCardsCopy[j][1];
+
+                    }
+
+                    selectedCards[i][0] = available[inputnumber - 1][0];
+                    selectedCards[i][1] = available[inputnumber - 1][1];
 
                 }
-
-                selectedCards[i][0] = available[inputnumber - 1][0];
-                selectedCards[i][1] = available[inputnumber - 1][1];
+                dc.makeMatchDeck(selectedCards);
 
             }
-            dc.makeMatchDeck(selectedCards);
-
-        }
+       
         matchStarted();
 
     }
