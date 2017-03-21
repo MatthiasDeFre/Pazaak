@@ -2,7 +2,6 @@ package cui;
 
 import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
-import exceptions.noCorrectInputException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
 import java.util.InputMismatchException;
