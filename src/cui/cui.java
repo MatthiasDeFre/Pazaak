@@ -243,6 +243,7 @@ public class cui
         do
         {
             System.out.println(rs.getString("roundStarted") + " " + roundAmount);
+            s.nextLine();
             startNewRound();
             roundAmount++;
         } while (dc.matchEnded() == false);
