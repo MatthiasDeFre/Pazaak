@@ -121,9 +121,17 @@ public class Match {
         {
             winner = matchPlayers.get(1);
         }
+        addCreditToWinner(winner);
         return winner;
 
     }
+    
+    private void addCreditToWinner(Player winner )
+    {
+        winner.setCredit(winner.getCredit()+5);
+    }
+    
+    
 
     /**
      * Method to check if the match has ended or not
