@@ -200,6 +200,21 @@ public class DomainController {
     public boolean matchEnded() {
         return newMatch.matchEnded();   
     }
+    
+    /**
+     * Method get the winnerData of the game
+     * @return String[],index0=playerName,index1=credit
+     */
+    public String[] getWinnerData()
+    {
+        String[] winnerData=new String[2];
+        
+        currentUser= newMatch.whoWon();
+        winnerData[0]=currentUser.getName();
+        winnerData[1]=Integer.toString(currentUser.getCredit());
+        
+        return winnerData;
+    }
         
 	
 }
