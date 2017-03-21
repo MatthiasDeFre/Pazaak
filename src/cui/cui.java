@@ -32,7 +32,6 @@ public class cui
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         do
         {
-            System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
 
             switch (s.nextInt())
             {
@@ -55,7 +54,10 @@ public class cui
                     System.out.println("Wrong number");
                     break;
             }
-        } while (badInput);
+          
+        
+        }
+        while (badInput);
 
         Locale.setDefault(currentLocale);
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
@@ -154,99 +156,99 @@ public class cui
         Boolean invoerYn = false;
         String input;
         int inputnumber;
-        
-            do
+
+        do
+        {
+            System.out.println(rs.getString("chosenPlayers"));
+            for (String matchPlayer : dc.getChosenPlayerNames())
             {
-                System.out.println(rs.getString("chosenPlayers"));
-                for (String matchPlayer : dc.getChosenPlayerNames())
-                {
-                    System.out.println(matchPlayer);
-                }
-                System.out.println(rs.getString("yesNo"));
+                System.out.println(matchPlayer);
+            }
+            System.out.println(rs.getString("yesNo"));
 
-                input = s.next().toLowerCase();
-                if (input.equals("yes") || input.equals("no"))
-                {
+            input = s.next().toLowerCase();
+            if (input.equals("yes") || input.equals("no"))
+            {
 
-                    if (input.equals("yes"))
-                    {
-                        invoerYn = true;
-                    } else
-                    {
-                        System.out.println(rs.getString("returningMain"));
-                        invoerYn = true;
-                    }
+                if (input.equals("yes"))
+                {
+                    invoerYn = true;
                 } else
                 {
-                    System.out.println(rs.getString("notYN"));
-                    invoerYn = false;
+                    System.out.println(rs.getString("returningMain"));
+                    invoerYn = true;
                 }
-
-            } while (invoerYn == false);
-
-            while ((dc.getPlayersWithoutMatchDeck().length) > 0)
+            } else
             {
-                badInput = true;
-                System.out.println(rs.getString("playersWithout"));
-                for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
+                System.out.println(rs.getString("notYN"));
+                invoerYn = false;
+            }
+
+        } while (invoerYn == false);
+
+        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
+        {
+            badInput = true;
+            System.out.println(rs.getString("playersWithout"));
+            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
+            {
+                System.out.println(matchPlayer);
+            }
+            System.out.println(rs.getString("selectWithout"));
+            name = s.next();
+            dc.selectPlayerWithoutMatchDeck(name);
+
+            // String[][] selectedCards = new String[6][2];
+            String[][] selectedCards = new String[0][2];
+            String[][] selectedCardsCopy;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
+                selectedCardsCopy = selectedCards;
+                int count = 1;
+                System.out.println(rs.getString("chooseNumber"));
+                for (String[] available : dc.showAvailableCards(selectedCards))
                 {
-                    System.out.println(matchPlayer);
+                    System.out.println("[" + count++ + "] " + available[0] + available[1]);
                 }
-                System.out.println(rs.getString("selectWithout"));
-                name = s.next();
-                dc.selectPlayerWithoutMatchDeck(name);
-
-                // String[][] selectedCards = new String[6][2];
-                String[][] selectedCards = new String[0][2];
-                String[][] selectedCardsCopy;
-
-                for (int i = 0; i <= 5; i++)
+                inputnumber = s.nextInt();
+                String[][] available = dc.showAvailableCards(selectedCards);
+                if (inputnumber < 1 || inputnumber > available.length)
                 {
-                    System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
-                    selectedCardsCopy = selectedCards;
-                    int count = 1;
-                    System.out.println(rs.getString("chooseNumber"));
-                    for (String[] available : dc.showAvailableCards(selectedCards))
-                    {
-                        System.out.println("[" + count++ + "] " + available[0] + available[1]);
-                    }
-                    inputnumber = s.nextInt();
-                    String[][] available = dc.showAvailableCards(selectedCards);
-                    if (inputnumber < 1 || inputnumber > available.length)
-                    {
-                        System.out.println(rs.getString("errorNumber"));
-                    }
+                    System.out.println(rs.getString("errorNumber"));
+                }
 
-                    selectedCards = new String[i + 1][2];
-                    for (int j = 0; j < selectedCardsCopy.length; j++)
-                    {
-                        selectedCards[j][0] = selectedCardsCopy[j][0];
-                        selectedCards[j][1] = selectedCardsCopy[j][1];
-
-                    }
-
-                    selectedCards[i][0] = available[inputnumber - 1][0];
-                    selectedCards[i][1] = available[inputnumber - 1][1];
+                selectedCards = new String[i + 1][2];
+                for (int j = 0; j < selectedCardsCopy.length; j++)
+                {
+                    selectedCards[j][0] = selectedCardsCopy[j][0];
+                    selectedCards[j][1] = selectedCardsCopy[j][1];
 
                 }
-                dc.makeMatchDeck(selectedCards);
+
+                selectedCards[i][0] = available[inputnumber - 1][0];
+                selectedCards[i][1] = available[inputnumber - 1][1];
 
             }
-       
+            dc.makeMatchDeck(selectedCards);
+
+        }
+
         matchStarted();
 
     }
 
     public void matchStarted()
     {
+        System.out.println(rs.getString("roundStarted") + " " );
+        s.nextLine();
         int roundAmount = 1;
-        do
-        {
-            System.out.println(rs.getString("roundStarted") + " " + roundAmount);
-            s.nextLine();
-            startNewRound();
-            roundAmount++;
-        } while (dc.matchEnded() == false);
+        //do
+       // {
+         //   startNewRound();
+       //     roundAmount++;
+       // } while (dc.matchEnded() == false);
     }
 
     public void startNewRound()
