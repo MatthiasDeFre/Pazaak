@@ -14,6 +14,7 @@ public class cui
 
     private DomainController dc;
     private String name;
+    private int inputNumber;
     private ResourceBundle rs;
     boolean badInput = true;
 
@@ -30,34 +31,40 @@ public class cui
 
         Locale currentLocale = Locale.getDefault();
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+
         do
         {
-
-            switch (s.nextInt())
+            try
             {
-                case 1:
-                    //ENGLISH
-                    currentLocale = new Locale("en_US");
-                    badInput = false;
-                    break;
-                case 2:
-                    //NEDERLANDS
-                    currentLocale = new Locale("nl_BE");
-                    badInput = false;
-                    break;
-                case 3:
-                    //FRENCH
-                    currentLocale = new Locale("fr_FR");
-                    badInput = false;
-                    break;
-                default:
-                    System.out.println("Wrong number");
-                    break;
+                System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
+                switch (s.nextInt())
+                {
+                    case 1:
+                        //ENGLISH
+                        currentLocale = new Locale("en_US");
+                        badInput = false;
+                        break;
+                    case 2:
+                        //NEDERLANDS
+                        currentLocale = new Locale("nl_BE");
+                        badInput = false;
+                        break;
+                    case 3:
+                        //FRENCH
+                        currentLocale = new Locale("fr_FR");
+                        badInput = false;
+                        break;
+                    default:
+                        System.out.println("Wrong number");
+                        break;
+                }
+            } catch (InputMismatchException re)
+            {
+                System.out.println("Value is not valid \nOngeldeige waarde \nValue invalable");
+                s.nextLine();
             }
-          
-        
-        }
-        while (badInput);
+
+        } while (badInput);
 
         Locale.setDefault(currentLocale);
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
@@ -155,7 +162,6 @@ public class cui
 
         Boolean invoerYn = false;
         String input;
-        int inputnumber;
 
         do
         {
@@ -185,7 +191,13 @@ public class cui
             }
 
         } while (invoerYn == false);
+        makeMatchDeck();
+        matchStarted();
 
+    }
+
+    public void makeMatchDeck()
+    {
         while ((dc.getPlayersWithoutMatchDeck().length) > 0)
         {
             badInput = true;
@@ -212,9 +224,9 @@ public class cui
                 {
                     System.out.println("[" + count++ + "] " + available[0] + available[1]);
                 }
-                inputnumber = s.nextInt();
+                inputNumber = s.nextInt();
                 String[][] available = dc.showAvailableCards(selectedCards);
-                if (inputnumber < 1 || inputnumber > available.length)
+                if (inputNumber < 1 || inputNumber > available.length)
                 {
                     System.out.println(rs.getString("errorNumber"));
                 }
@@ -227,28 +239,26 @@ public class cui
 
                 }
 
-                selectedCards[i][0] = available[inputnumber - 1][0];
-                selectedCards[i][1] = available[inputnumber - 1][1];
+                selectedCards[i][0] = available[inputNumber - 1][0];
+                selectedCards[i][1] = available[inputNumber - 1][1];
 
             }
             dc.makeMatchDeck(selectedCards);
-
         }
-
-        matchStarted();
-
     }
 
     public void matchStarted()
     {
-        System.out.println(rs.getString("roundStarted") + " " );
+        System.out.println(rs.getString("roundStarted") + " ");
         s.nextLine();
         int roundAmount = 1;
-        //do
-       // {
-         //   startNewRound();
-       //     roundAmount++;
-       // } while (dc.matchEnded() == false);
+        do
+        {
+            startNewRound();
+            
+            roundAmount++;
+        } while (dc.matchEnded() == false);
+        System.out.println(rs.getString("winnerIs"));
     }
 
     public void startNewRound()
