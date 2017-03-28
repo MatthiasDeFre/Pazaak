@@ -5,6 +5,9 @@
  */
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Matthias
@@ -12,6 +15,12 @@ package domain;
 public class Round {
     private Player winner;
     private Player loser;
+    private List <Integer> setDeck;
+    public Round()
+    {
+        generateSetDeck();
+    }
+    
 
     public Player getWinner()
     {
@@ -33,5 +42,17 @@ public class Round {
         this.loser = loser;
     }
     
-    
+    private void generateSetDeck()
+    {
+        List <Integer> setDeck= new ArrayList<>();
+        for (int i = 1; i <= 4; i++)
+        {
+            for (int j = 1; j <= 10; j++)
+            {
+                setDeck.add(j);
+            }
+        }
+        this.setDeck=setDeck;
+       
+    }
 }
