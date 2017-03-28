@@ -258,7 +258,7 @@ public class cui
             
             roundAmount++;
         } while (dc.matchEnded() == false);
-        System.out.println(rs.getString("winnerIs"));
+        System.out.println(rs.getString("winnerIs") + dc.whoWon());
     }
 
     public void startNewRound()

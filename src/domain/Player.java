@@ -3,9 +3,11 @@ package domain;
 import java.util.ArrayList;
 import exceptions.*;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -186,6 +188,11 @@ public class Player {
                Card newCard = new Card(selectedCards[i][0], Integer.parseInt(selectedCards[i][1]));
                selectedCardsList.add(newCard);
            }
+           long seed = System.nanoTime();
+           Collections.shuffle(selectedCardsList, new Random(seed));
+           Collections.shuffle(selectedCardsList, new Random(seed));
+           selectedCardsList.remove(selectedCardsList.size() - 1);
+           selectedCardsList.remove(selectedCardsList.size() - 1);
            this.matchDeck = new MatchDeck(match, selectedCardsList);
        } 
        
