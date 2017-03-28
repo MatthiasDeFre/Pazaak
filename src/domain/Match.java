@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author Matthias
+ * @author Team07
  */
 public class Match {
     private List<Player> matchPlayers = new ArrayList<>();
