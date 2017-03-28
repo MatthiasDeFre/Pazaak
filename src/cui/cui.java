@@ -134,15 +134,22 @@ public class cui
 
     public void register()
     {
-        int date;
-        System.out.println(String.format(rs.getString("inputRegister")));
-        System.out.print(String.format(rs.getString("name")));
-        name = s.next();
-        System.out.print(String.format(rs.getString("date")));
-        date = s.nextInt();
-        dc.register(name, date);
-        System.out.println(rs.getString("yourCards"));
-        System.out.println(String.format(giveCards()));
+        try
+        {
+
+            int date;
+            System.out.println(String.format(rs.getString("inputRegister")));
+            System.out.print(String.format(rs.getString("name")));
+            name = s.next();
+            System.out.print(String.format(rs.getString("date")));
+            date = s.nextInt();
+            dc.register(name, date);
+            System.out.println(rs.getString("yourCards"));
+            System.out.println(String.format(giveCards()));
+        } catch (noCorrectBirthyearException ne)
+        {
+            System.out.println(rs.getString("noCorrectBirthYear"));
+        }
     }
 
     public void startGame()
@@ -249,13 +256,13 @@ public class cui
 
     public void matchStarted()
     {
-        System.out.println(rs.getString("roundStarted") + " ");
+        System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
         int roundAmount = 1;
         do
         {
             startNewRound();
-            
+
             roundAmount++;
         } while (dc.matchEnded() == false);
         System.out.println(rs.getString("winnerIs") + dc.whoWon());
@@ -263,6 +270,7 @@ public class cui
 
     public void startNewRound()
     {
+        System.out.println(rs.getString("roundStarted"));
 
     }
 }
