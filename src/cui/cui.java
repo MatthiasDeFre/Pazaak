@@ -249,7 +249,7 @@ public class cui
 
     public void matchStarted()
     {
-        System.out.println(rs.getString("roundStarted") + " ");
+        System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
         int roundAmount = 1;
         do
@@ -263,6 +263,8 @@ public class cui
 
     public void startNewRound()
     {
+        System.out.println(rs.getString("roundStarted"));
+        
 
     }
 }
