@@ -216,9 +216,13 @@ public class DomainController {
         return winnerData;
     }
         
+    /**
+     * Method to get the name of the player who won, and set his credit in the database
+     * @return Name of the player who won
+     */
     public String whoWon() {
         Player winner = newMatch.whoWon();
-        players.setPlayerCredit(winner.getName(), winner.getCredit());
+        players.setPlayerCredit(winner);
         return winner.getName();
     }
 	

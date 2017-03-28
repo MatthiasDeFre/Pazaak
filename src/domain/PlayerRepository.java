@@ -94,8 +94,8 @@ public class PlayerRepository {
      * <pre>Method to set the player his credit to a new value</pre>
      * @param name Name of the player
      */
-    public void setPlayerCredit(String name, int credit) {
-        
+    public void setPlayerCredit(Player player) {
+        playerMapper.saveCredit(player);
     }
 }
     
