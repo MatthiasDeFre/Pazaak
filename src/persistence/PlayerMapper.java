@@ -65,15 +65,17 @@ public class PlayerMapper {
         String playerName="";
         int credit=0;
         List<Card> collection;
+        int birthYear = 0;
         boolean userExists = false;
          try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, P_ID FROM ID222177_g07.Player WHERE playerName = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, P_ID, birthYear FROM ID222177_g07.Player WHERE playerName = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {
                     userExists = true;
                    playerName = rs.getString("playerName");
                    credit = rs.getInt("credit");
+                   birthYear = rs.getInt("birthYear");
                    
                 }
             }
@@ -85,7 +87,7 @@ public class PlayerMapper {
              throw new invalidPlayerException(rs.getString("userDoesntExist"));
         }
         collection = cardMapper.giveCards(name);
-        selectedPlayer = new Player(credit, collection, playerName);
+        selectedPlayer = new Player(credit, collection, playerName, birthYear);
         return selectedPlayer;
     }
 /*    public List<Player> givePlayers() {

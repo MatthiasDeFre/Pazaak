@@ -6,7 +6,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -44,15 +46,20 @@ public class Round {
     
     private void generateSetDeck()
     {
-        List <Integer> setDeck= new ArrayList<>();
+        List <Integer> setDeckPrivate= new ArrayList<>();
         for (int i = 1; i <= 4; i++)
         {
             for (int j = 1; j <= 10; j++)
             {
-                setDeck.add(j);
+                setDeckPrivate.add(j);
             }
         }
-        this.setDeck=setDeck;
+        long seed = System.nanoTime();
+        Collections.shuffle(setDeckPrivate, new Random(seed));
+        Collections.shuffle(setDeckPrivate, new Random(seed));
+        this.setDeck=setDeckPrivate;
        
     }
+    
+    
 }

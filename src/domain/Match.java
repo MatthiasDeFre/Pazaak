@@ -166,5 +166,9 @@ public class Match {
        return score;
     }
     
+    public String[][] getRoundSituation() {
+        String[][] roundSituation = new String[5][5];
+        return roundSituation;
+    }
     
 }
