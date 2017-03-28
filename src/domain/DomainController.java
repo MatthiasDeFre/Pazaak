@@ -216,5 +216,10 @@ public class DomainController {
         return winnerData;
     }
         
+    public String whoWon() {
+        Player winner = newMatch.whoWon();
+        players.setPlayerCredit(winner.getName(), winner.getCredit());
+        return winner.getName();
+    }
 	
 }
