@@ -7,6 +7,7 @@ package domain;
 
 import exceptions.invalidPlayerException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -167,7 +168,42 @@ public class Match {
     }
     
     public String[][] getRoundSituation() {
-        String[][] roundSituation = new String[5][5];
+        String[][] roundSituation = new String[4][];
+        roundSituation[0] = new String[matchRounds.get(matchRounds.size()-1).getPlayersGameBoards()[0].length]; //Done
+        roundSituation[1] = new String[matchRounds.get(matchRounds.size()-1).getPlayersGameBoards()[1].length]; //Done
+        roundSituation[2] = new String[2]; //Done
+        roundSituation[3] = new String[matchPlayers.get(0).getMatchDeck(this).size()];
+        roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()];
+            
+        int[][] gameBoards = matchRounds.get(matchRounds.size()-1).getPlayersGameBoards();
+        
+        //Extra manier, check snelheid
+      //  roundSituation[0] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(0)).split("[\\[\\]]")[1].split(", "); 
+      //  roundSituation[1] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(1)).split("[\\[\\]]")[1].split(", "); 
+        for (int i = 0; i < AMOUNT_PLAYERS; i++)
+        {
+            for (int j = 0; i < roundSituation[i].length; j++)
+            {
+                roundSituation[i][j] = String.valueOf(gameBoards[i][j]);
+            }
+        }
+             
+        //   roundSituation[0][0] = matchRounds.get((matchRounds.size()-1)).getPlayersGameBoards(0);
+          
+      //  roundSituation[2][0] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(0));
+      //  roundSituation[2][1] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(1));
+        
+        for (int i = 3; i < 5; i++)
+        {
+            for (int j = 0; j < roundSituation[j].length; j++)
+            {
+                roundSituation[i][j] = String.valueOf(matchPlayers.get(i-3).getMatchDeck(this));
+            }
+        }
+        
+        roundSituation[4][0] = matchRounds.get(matchRounds.size()-1).getWinner().getName();
+        
+        
         return roundSituation;
     }
     
