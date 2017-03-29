@@ -52,10 +52,11 @@ public class Player {
           
                 
 	}
-        public Player(int credit, List<Card> collection, String name) {
+        public Player(int credit, List<Card> collection, String name, int birthYear) {
             this.credit = credit;
             deck = collection;
             this.name = name;
+            this.birthYear = birthYear;
         }
         
         //Method to generate the player's start deck / collection

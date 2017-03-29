@@ -5,6 +5,11 @@
  */
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 /**
  *
  * @author Matthias
@@ -12,6 +17,12 @@ package domain;
 public class Round {
     private Player winner;
     private Player loser;
+    private List <Integer> setDeck;
+    public Round()
+    {
+        generateSetDeck();
+    }
+    
 
     public Player getWinner()
     {
@@ -31,6 +42,23 @@ public class Round {
     public void setLoser(Player loser)
     {
         this.loser = loser;
+    }
+    
+    private void generateSetDeck()
+    {
+        List <Integer> setDeckPrivate= new ArrayList<>();
+        for (int i = 1; i <= 4; i++)
+        {
+            for (int j = 1; j <= 10; j++)
+            {
+                setDeckPrivate.add(j);
+            }
+        }
+        long seed = System.nanoTime();
+        Collections.shuffle(setDeckPrivate, new Random(seed));
+        Collections.shuffle(setDeckPrivate, new Random(seed));
+        this.setDeck=setDeckPrivate;
+       
     }
     
     

@@ -2,7 +2,9 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import exceptions.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 public class DomainController {
     
     //Attributes
@@ -87,7 +89,12 @@ public class DomainController {
      */
     public void selectPlayer(String name)
     {
-        newMatch.addPlayer(players.selectPlayer(name));
+       List<String> names = players.getPlayerNames();
+       if(!names.contains(name)) {
+         ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+         throw new invalidPlayerException(rs.getString("invalidPlayer"));
+       }
+       newMatch.addPlayer(players.selectPlayer(name)); 
     }
     
     /**
