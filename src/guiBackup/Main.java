@@ -1,4 +1,4 @@
-    package gui;
+package guiBackup;
 
 
 
@@ -127,7 +127,7 @@ stage.initStyle(StageStyle.UNDECORATED);
         
         
         
-        scLanguage.getStylesheets().add("gui/style.css");
+        scLanguage.getStylesheets().add("guiBackup/style.css");
         layout.getStyleClass().add("back"); 
         layout.setAlignment(Pos.CENTER);
         
