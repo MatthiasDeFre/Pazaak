@@ -18,8 +18,12 @@ public class Round {
     private Player winner;
     private Player loser;
     private List <Integer> setDeck;
+    private int[][] gameBoard;
+    private boolean[] gameBoardFrozen = new boolean[2];
+    
     public Round()
     {
+        
         generateSetDeck();
     }
     
@@ -61,5 +65,24 @@ public class Round {
        
     }
     
+    public List<Integer> getSetDeck() {
+        return setDeck;
+    }
+    
+    public int[][] getPlayersGameBoards() {
+        return gameBoard;
+    }
+    
+    public int[] getRoundScorePlayer() {
+        int[] playerScore= new int[2];
+        for (int i = 0; i < 2; i++)
+        {
+        for (int j = 0; j < gameBoard[i].length; j++)
+        {
+            playerScore[i] += gameBoard[i][j];
+        }
+        }
+        return playerScore;
+    }
     
 }
