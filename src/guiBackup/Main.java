@@ -21,10 +21,19 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.net.URL;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 
 public class Main extends Application {
     
@@ -49,7 +58,22 @@ public class Main extends Application {
         
 //scLanguage scene
 
+        final URL resource = getClass().getResource("Menu.mp3");
+        final Media media = new Media(resource.toString());
+        final MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setVolume(0.25);
+        mediaPlayer.play();
+          
+       final URL resourceq = getClass().getResource("Click.mp3");
+        final Media mediaq = new Media(resourceq.toString());
+        final MediaPlayer mediaPlayerq = new MediaPlayer(mediaq);
+
+        
+        
+        final AudioClip mediaPlayerh = new AudioClip(getClass().getResource("Hover.mp3").toExternalForm());
        
+
 
        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("logo2.png")));
        ImageView imageLogin = new ImageView(new Image(getClass().getResourceAsStream("login.png"), 100, 100, true, true));
@@ -78,24 +102,94 @@ public class Main extends Application {
         //taalkeuze
         
         btnEN.setOnAction(e -> {
-             currentLocale = new Locale("en_US");
-             stage.setScene(scLogin);
+            mediaPlayerq.play();
+            
+            
+            mediaPlayer.stop();
+            currentLocale = new Locale("en_US");
+            stage.setScene(scLogin);
                 });
         
         btnNL.setOnAction(e -> {
              currentLocale = new Locale("nl_BE");
              stage.setScene(scLogin);
                 });
+
         
         btnFR.setOnAction(e -> {
              currentLocale = new Locale("fr_FR");
              stage.setScene(scLogin);
+             
                 });
+        
+        
+        
+        
+        
+        btnEN.setOnMouseEntered((MouseEvent t) ->
+        {
+            mediaPlayerh.play();
+            
+            btnEN.setScaleX(1.1);
+            btnEN.setScaleY(1.1);
+        });
+        
+        btnEN.setOnMouseExited((MouseEvent t) ->
+        {
+            mediaPlayerh.play();
+            btnEN.setScaleX(1);
+            btnEN.setScaleY(1);
+        });
+        
+        
+        
+        
+        
+        
+        btnNL.setOnMouseEntered((MouseEvent t) ->
+        {
+            mediaPlayerh.play();
+            
+            btnNL.setScaleX(1.1);
+            btnNL.setScaleY(1.1);
+            
+        });
+        
+        btnNL.setOnMouseExited((MouseEvent t) ->
+        {
+            
+            
+            btnNL.setScaleX(1);
+            btnNL.setScaleY(1);
+            
+        });
+        
+        
+        
+        
+          btnFR.setOnMouseEntered((MouseEvent t) ->
+        {
+            
+            mediaPlayerh.play();
+            
+            btnFR.setScaleX(1.1);
+            btnFR.setScaleY(1.1);
+        });
+          
+          btnFR.setOnMouseExited((MouseEvent t) ->
+        {
+            
+           
+            
+            btnFR.setScaleX(1);
+            btnFR.setScaleY(1);
+        });
+          
         
         btnFullscreen.setOnAction(e -> {
             //maximaliseren
             
-             stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setFullScreenExitHint("lol");
         stage.setFullScreen(true);
        

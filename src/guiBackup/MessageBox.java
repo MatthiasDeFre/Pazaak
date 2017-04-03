@@ -23,6 +23,8 @@ public class MessageBox {
         stage.setMinWidth(310);
         stage.setMinHeight(180);
         
+        
+        
         Label lblMessage = new Label(message);
         Button btnClose = new Button("Sluit");
         
@@ -31,10 +33,13 @@ public class MessageBox {
         btnClose.setOnAction(e -> stage.close());
         
         VBox layout = new VBox(10);
+        
         layout.getChildren().addAll(img, lblMessage,btnClose);
         layout.setAlignment(Pos.CENTER);
         
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add("guiBackup/style.css");
+        layout.getStyleClass().add("back");
         stage.setScene(scene);
         stage.showAndWait();
         
