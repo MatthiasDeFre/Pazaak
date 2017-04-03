@@ -8,6 +8,7 @@ package domain;
 import exceptions.invalidPlayerException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -97,14 +98,6 @@ public class Match {
         }
     }
     
-    //New round methods
-    
-    /**
-     * Method to add a new round to the current matchRounds
-     */
-    public void addNewRound() {
-        matchRounds.add(new Round());
-    }
     
     //Match over methods
     
@@ -167,44 +160,90 @@ public class Match {
        return score;
     }
     
+    //Round methods
+    
+    private int determineStartPlayer()
+    {
+        int startPlayerIndex = 0;
+        if (matchPlayers.get(0).getbirthYear() > matchPlayers.get(1).getbirthYear() && matchRounds.size()+1 % 2 != 0)
+        {
+            startPlayerIndex = 1;
+        } else if (matchPlayers.get(0).getbirthYear() == matchPlayers.get(1).getbirthYear())
+        {
+             List<String> sortedList = new ArrayList<>();
+             sortedList.add(matchPlayers.get(0).getName());
+             sortedList.add(matchPlayers.get(1).getName());
+             java.util.Collections.sort(sortedList);
+             if(matchPlayers.get(0).getName().equals(sortedList.get(0))) {
+                 startPlayerIndex = 1;
+             }
+        }
+        return startPlayerIndex;
+    }
+
+    public void startNewRound()
+    {   
+        matchRounds.add(new Round(determineStartPlayer()));
+    }
+    
+    public void nextTurn() {
+        matchRounds.get(matchRounds.size() -1).nextTurn();
+    }
+    
+    public void freezeBoard() {
+          matchRounds.get(matchRounds.size() -1).freezeBoard();
+          matchRounds.get(matchRounds.size() -1).nextTurn();
+    }
+    
+    public boolean roundEnded() {
+        return matchRounds.get(matchRounds.size()-1).roundEnded();
+    }
+    
+    
     public String[][] getRoundSituation() {
-        String[][] roundSituation = new String[4][];
-        roundSituation[0] = new String[matchRounds.get(matchRounds.size()-1).getPlayersGameBoards()[0].length]; //Done
-        roundSituation[1] = new String[matchRounds.get(matchRounds.size()-1).getPlayersGameBoards()[1].length]; //Done
-        roundSituation[2] = new String[2]; //Done
-        roundSituation[3] = new String[matchPlayers.get(0).getMatchDeck(this).size()];
-        roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()];
-            
-        int[][] gameBoards = matchRounds.get(matchRounds.size()-1).getPlayersGameBoards();
-        
+        String[][] roundSituation = new String[6][];
+        Round currentRound = matchRounds.get(matchRounds.size()-1);
+        roundSituation[0] = new String[currentRound.getPlayersGameBoards()[0].length]; //Player 1 board
+        roundSituation[1] = new String[currentRound.getPlayersGameBoards()[1].length]; //Player 2 board
+        roundSituation[2] = new String[2]; //Scores 0 = player 1, 1 = player 2
+        roundSituation[3] = new String[matchPlayers.get(0).getMatchDeck(this).size()]; //Player 1 deck
+        roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()]; //Player 2 deck
+        roundSituation[5] = new String[1];
+        int[][] gameBoards = currentRound.getPlayersGameBoards();
+        String[][] gameBoardCardSort = currentRound.getPlayerGameBoardCardSorts();
         //Extra manier, check snelheid
       //  roundSituation[0] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(0)).split("[\\[\\]]")[1].split(", "); 
       //  roundSituation[1] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(1)).split("[\\[\\]]")[1].split(", "); 
         for (int i = 0; i < AMOUNT_PLAYERS; i++)
         {
-            for (int j = 0; i < roundSituation[i].length; j++)
+            for (int j = 0; j < roundSituation[i].length; j++)
             {
-                roundSituation[i][j] = String.valueOf(gameBoards[i][j]);
+                roundSituation[i][j] = gameBoardCardSort[i][j] + gameBoards[i][j];
             }
-        }
-             
-        //   roundSituation[0][0] = matchRounds.get((matchRounds.size()-1)).getPlayersGameBoards(0);
-          
+        }        
+        //   roundSituation[0][0] = matchRounds.get((matchRounds.size()-1)).getPlayersGameBoards(0);    
       //  roundSituation[2][0] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(0));
       //  roundSituation[2][1] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(1));
-        
+        for (int i = 0; i < AMOUNT_PLAYERS; i++)
+        {
+            roundSituation[2][i] = String.valueOf(currentRound.getScores()[i]);
+        }
+      
         for (int i = 3; i < 5; i++)
         {
-            for (int j = 0; j < roundSituation[j].length; j++)
+            for (int j = 0; j < roundSituation[i].length; j++)
             {
-                roundSituation[i][j] = String.valueOf(matchPlayers.get(i-3).getMatchDeck(this));
+                roundSituation[i][j] = matchPlayers.get(i-3).getMatchDeck(this).get(j).getType() + matchPlayers.get(i-3).getMatchDeck(this).get(j).getValue();
             }
         }
-        
-        roundSituation[4][0] = matchRounds.get(matchRounds.size()-1).getWinner().getName();
-        
-        
+        roundSituation[5][0] = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getName();
         return roundSituation;
+    }
+    
+    public void playCard(int cardIndex) {
+        Card cardToBePlayed = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1);
+        matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).remove(cardIndex-1);
+        matchRounds.get(matchRounds.size()-1).playCard(cardToBePlayed.getValue(), cardToBePlayed.getType());
     }
     
 }

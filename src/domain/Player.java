@@ -277,7 +277,8 @@ public class Player {
         hash = 29 * hash + Objects.hashCode(this.deck);
         return hash;
     }
-       
+
+  
        
         
 }

@@ -232,5 +232,30 @@ public class DomainController {
         players.setPlayerCredit(winner);
         return winner.getName();
     }
+    
+    public void startNewRound() {
+        newMatch.startNewRound();
+    }
+    
+    public String[][] getRoundSituation() {
+      return newMatch.getRoundSituation();
+    }
+    
+    public void playCard(int cardIndex) {
+        newMatch.playCard(cardIndex);
+    }
+    
+    public void nextTurn() {
+        newMatch.nextTurn();
+    }
+    
+    public void freezeBoard() {
+        newMatch.freezeBoard();
+    }
+    
+    public boolean roundEnded()
+    {
+        return newMatch.roundEnded();
+    }
 	
 }

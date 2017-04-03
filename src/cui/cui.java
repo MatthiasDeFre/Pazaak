@@ -4,6 +4,7 @@ import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -271,6 +272,32 @@ public class cui
     public void startNewRound()
     {
         System.out.println(rs.getString("roundStarted"));
+        dc.startNewRound();
+        do
+        { 
+            System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+            System.out.println("What do yo want to do?");
+            turnChoice(s.nextInt());
+            s.nextLine();
+        } while (!dc.roundEnded());
 
+    }
+    
+    private void turnChoice(int choice) {
+        switch(choice) {
+            case 1: 
+                dc.nextTurn();
+                break;
+            case 2:
+                //Indien geen kaarten moet hier nog komen
+                System.out.println("Which card do you want to be play?");
+                dc.playCard(s.nextInt());
+                System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                break;
+            case 3:
+                dc.freezeBoard();
+                break;
+                
+        }
     }
 }
