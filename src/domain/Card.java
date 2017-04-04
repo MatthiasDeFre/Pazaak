@@ -48,6 +48,10 @@ public class Card {
         return this.value;
     }
 
+    public void changeSign() {
+        this.value *= -1;
+    }
+    
     @Override
     public boolean equals(Object other)
     {

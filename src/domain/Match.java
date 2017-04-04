@@ -150,13 +150,17 @@ public class Match {
         int[] score = new int[AMOUNT_PLAYERS];
         for (Round matchRound : matchRounds)
         {
-            if(matchRound.getWinner().equals(matchPlayers.get(0))) {
-                score[0]++;
-            }
-            else {
-               score[1]++;
+            if(matchRound.getDraw() == false) {                 
+                if (matchRound.getWinner().equals(matchPlayers.get(0)))
+                {
+                    score[0]++;
+                } else
+                {
+                    score[1]++;
+                }
             }
         }
+        System.out.println(score[0] + " " + score[1]);
        return score;
     }
     
@@ -165,7 +169,7 @@ public class Match {
     private int determineStartPlayer()
     {
         int startPlayerIndex = 0;
-        if (matchPlayers.get(0).getbirthYear() > matchPlayers.get(1).getbirthYear() && matchRounds.size()+1 % 2 != 0)
+        if (matchPlayers.get(0).getbirthYear() > matchPlayers.get(1).getbirthYear() && ((matchRounds.size()+1) % 2) != 0)
         {
             startPlayerIndex = 1;
         } else if (matchPlayers.get(0).getbirthYear() == matchPlayers.get(1).getbirthYear())
@@ -196,9 +200,11 @@ public class Match {
     }
     
     public boolean roundEnded() {
+        if(matchRounds.get(matchRounds.size()-1).roundEnded()) {
+            matchRounds.get(matchRounds.size()-1).setRoundEndedResults(matchPlayers);
+        }
         return matchRounds.get(matchRounds.size()-1).roundEnded();
     }
-    
     
     public String[][] getRoundSituation() {
         String[][] roundSituation = new String[6][];
@@ -244,6 +250,9 @@ public class Match {
         Card cardToBePlayed = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1);
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).remove(cardIndex-1);
         matchRounds.get(matchRounds.size()-1).playCard(cardToBePlayed.getValue(), cardToBePlayed.getType());
+    }
+    public void changeCardSign(int cardIndex){
+        matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeSign();
     }
     
 }

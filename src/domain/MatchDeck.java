@@ -28,5 +28,4 @@ public class MatchDeck {
     public List<Card> getCards() {
         return matchDeck;
     }
-    
 }

@@ -134,7 +134,7 @@ public class PlayerMapper {
 
     public void saveCredit(Player player) {
         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
-            PreparedStatement query = conn.prepareStatement("UPDATE  SET credit = ? WHERE name = ?");
+            PreparedStatement query = conn.prepareStatement("UPDATE ID222177_g07.Player SET credit = ? WHERE playerName = ?");
             query.setInt(1, player.getCredit());
             query.setString(2, player.getName());
             query.executeUpdate();

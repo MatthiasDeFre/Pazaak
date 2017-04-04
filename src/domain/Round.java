@@ -6,6 +6,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,7 @@ import java.util.Random;
 public class Round {
     private Player winner;
     private Player loser;
+    private boolean draw;
     private List <Integer> setDeck;
     private int[][] gameBoard = new int[2][0];
     private String[][] gameBoardCardSort = new String[2][0];
@@ -38,6 +40,9 @@ public class Round {
         return winner;
     }
 
+    public boolean getDraw() {
+        return this.draw;
+    }
     public void setWinner(Player winner)
     {
         this.winner = winner;
@@ -119,8 +124,11 @@ public class Round {
         } else if(currentTurnPlayerIndex == 1 && gameBoardFrozen[0] == false) {
             currentTurnPlayerIndex = 0;
         }
-        playCard(setDeck.get(setDeck.size()-1), "setDeckCard");
-        setDeck.remove(setDeck.size()-1);
+        if(gameBoardFrozen[currentTurnPlayerIndex] == false) {
+             playCard(setDeck.get(setDeck.size()-1), "setDeckCard");
+             setDeck.remove(setDeck.size()-1);
+        }
+       
     }
     
     public void freezeBoard() {
@@ -160,6 +168,19 @@ public class Round {
             roundEnded = true;
         }
         return roundEnded;
+    }
+    
+    public void setRoundEndedResults(List<Player> roundPlayers) {
+        System.out.println(Arrays.toString(scores));
+        calculateGameBoardScores();
+        if(scores[0] == scores[1]) {
+            this.draw = true;
+        } else if(scores[0] > scores[1] && scores[0] <= 20 || scores[1] > 20 && scores[0] <= 20){
+            this.winner = roundPlayers.get(0);
+            
+        } else {
+            this.winner = roundPlayers.get(1);
+        }
     }
     
     private void calculateGameBoardScores() {

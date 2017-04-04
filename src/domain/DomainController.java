@@ -245,6 +245,10 @@ public class DomainController {
         newMatch.playCard(cardIndex);
     }
     
+    public void changeCardSign(int cardIndex) {
+        
+    }
+    
     public void nextTurn() {
         newMatch.nextTurn();
     }
