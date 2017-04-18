@@ -35,7 +35,7 @@ public class PlayerRepository {
         //check if user Already exists
 
         playerMapper.addPlayer(player);
-        int playerID = playerMapper.givePlayerID(player.getName());
+        int playerID = getPlayerId(player);
       /*  for (Card card : player.getDeck())
         {
             cardMapper.addCard(card, playerID);
@@ -85,6 +85,11 @@ public class PlayerRepository {
      */
     public void setPlayerCredit(Player player) {
         playerMapper.saveCredit(player);
+    }
+    
+    public int getPlayerId(Player player){
+        int playerID = playerMapper.givePlayerID(player.getName());
+        return playerID;
     }
 }
     
