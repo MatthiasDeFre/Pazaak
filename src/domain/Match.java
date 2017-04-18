@@ -21,7 +21,7 @@ public class Match {
     private List<Player> matchPlayers = new ArrayList<>();
     private final static int AMOUNT_PLAYERS = 2;
     private List<Round> matchRounds = new ArrayList<>();
-    
+    private boolean AI;
     /**
      * Method to add a player to the match
      * @param player Instance of player
@@ -146,7 +146,7 @@ public class Match {
      * Method to return the current score between the two players
      * @return int[], index 0 contains player 1 his score, index 1 contains player 2 his score
      */
-    public int[] getScoring() {
+    private int[] getScoring() {
         int[] score = new int[AMOUNT_PLAYERS];
         for (Round matchRound : matchRounds)
         {
@@ -187,7 +187,11 @@ public class Match {
 
     public void startNewRound()
     {   
+        if(this.AI) {
+        matchRounds.add(new RoundAI(determineStartPlayer(), matchPlayers.get(1)));
+        } else {
         matchRounds.add(new Round(determineStartPlayer()));
+        }
     }
     
     public void nextTurn() {
@@ -196,7 +200,7 @@ public class Match {
     
     public void freezeBoard() {
           matchRounds.get(matchRounds.size() -1).freezeBoard();
-          matchRounds.get(matchRounds.size() -1).nextTurn();
+          //matchRounds.get(matchRounds.size() -1).nextTurn();
     }
     
     public boolean roundEnded() {
@@ -209,24 +213,17 @@ public class Match {
     public String[][] getRoundSituation() {
         String[][] roundSituation = new String[6][];
         Round currentRound = matchRounds.get(matchRounds.size()-1);
-        roundSituation[0] = new String[currentRound.getPlayersGameBoards()[0].length]; //Player 1 board
-        roundSituation[1] = new String[currentRound.getPlayersGameBoards()[1].length]; //Player 2 board
+        roundSituation[0] = currentRound.getPlayersGameBoards()[0]; //Player 1 board
+        roundSituation[1] =  currentRound.getPlayersGameBoards()[1]; //Player 2 board
         roundSituation[2] = new String[2]; //Scores 0 = player 1, 1 = player 2
         roundSituation[3] = new String[matchPlayers.get(0).getMatchDeck(this).size()]; //Player 1 deck
         roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()]; //Player 2 deck
         roundSituation[5] = new String[1];
-        int[][] gameBoards = currentRound.getPlayersGameBoards();
-        String[][] gameBoardCardSort = currentRound.getPlayerGameBoardCardSorts();
+     //   int[][] gameBoards = currentRound.getPlayersGameBoards();
+       // String[][] gameBoardCardSort = currentRound.getPlayerGameBoardCardSorts();
         //Extra manier, check snelheid
       //  roundSituation[0] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(0)).split("[\\[\\]]")[1].split(", "); 
-      //  roundSituation[1] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(1)).split("[\\[\\]]")[1].split(", "); 
-        for (int i = 0; i < AMOUNT_PLAYERS; i++)
-        {
-            for (int j = 0; j < roundSituation[i].length; j++)
-            {
-                roundSituation[i][j] = gameBoardCardSort[i][j] + gameBoards[i][j];
-            }
-        }        
+      //  roundSituation[1] = Arrays.toString(matchRounds.get(matchRounds.size()-1).getPlayersGameBoards(1)).split("[\\[\\]]")[1].split(", ");  
         //   roundSituation[0][0] = matchRounds.get((matchRounds.size()-1)).getPlayersGameBoards(0);    
       //  roundSituation[2][0] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(0));
       //  roundSituation[2][1] = String.valueOf(matchRounds.get(matchRounds.size()-1).getRoundScorePlayer(1));
@@ -249,10 +246,23 @@ public class Match {
     public void playCard(int cardIndex) {
         Card cardToBePlayed = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1);
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).remove(cardIndex-1);
-        matchRounds.get(matchRounds.size()-1).playCard(cardToBePlayed.getValue(), cardToBePlayed.getType());
+        matchRounds.get(matchRounds.size()-1).playCard(cardToBePlayed);
     }
     public void changeCardSign(int cardIndex){
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeSign();
     }
+    
+    public boolean isAIMatch() {
+        return this.AI;
+    }
+    
+    public void setAI(boolean AI) {
+        this.AI = AI;
+    }
+    
+    public boolean getAIWantsNextTurn() {
+        return ((RoundAI)matchRounds.get(matchRounds.size()-1)).getAIwantsNextTurn();
+    }
+    
     
 }

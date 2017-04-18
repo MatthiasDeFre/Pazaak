@@ -54,17 +54,6 @@ public class PlayerRepository {
         playerMapper.userExists(name);
     }
 
-    /*      private boolean userExists(String name) {
-            boolean exists = false;
-            for (Player player : players)
-            {
-                if(player.getName().equals(name)) {
-                    exists = true;
-                }
-            }
-            return exists;
-        }*/
-
     //Make a new match methods
     /**
      * Method to return an instance of {@link Player} with the provided name
@@ -92,7 +81,7 @@ public class PlayerRepository {
     
     /**
      * <pre>Method to set the player his credit to a new value</pre>
-     * @param name Name of the player
+     * @param player Instance of the player which credits need to be increased
      */
     public void setPlayerCredit(Player player) {
         playerMapper.saveCredit(player);

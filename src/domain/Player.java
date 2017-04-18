@@ -200,41 +200,7 @@ public class Player {
        public List<Card> getMatchDeck(Match match) {
            return matchDeck.getCards();
        }
-                   
-       //Onnodig waarschijnlijk?
-       public void removeCardFromDeck(Card card) {
-           for (Card cardInDeck : deck)
-           {
-               if (cardInDeck.equals(card))
-               {
-                   deck.remove(card);
-               }
-           }
-       }
-       
-       
-       /**
-        * <pre>Method to give a player a matchdeck based on the provided 2 dimensional String array
-        * Converts the content of the 2 dimensional array 
-        * to instances of {@link Card} class 
-        * Also needs an instance of match to create the matchdeck instance</pre>
-        * @param selectedCards
-        * @param match 
-        */
-       public void makeMatchDeck(String[][] selectedCards,Match match)
-       { 
-           List<Card> cards= new ArrayList<>();
- 
-           for (String[] card : selectedCards) 
-           {
-               Card selectedCard=new Card(card[0],Integer.parseInt(card[1]));
-               cards.add(selectedCard);
-           }
-           matchDeck=new MatchDeck(match,cards);
-           
-           
-       }
-       
+                       
        public String[][] showAvailableCards(String[][] selectedCards)
        {
            String cards[][]=new String[deck.size() -selectedCards.length][];

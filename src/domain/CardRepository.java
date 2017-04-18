@@ -40,10 +40,5 @@ public class CardRepository {
     {
         return cardMapper.giveStartDeck();
     }
-   //Versie 1 [not needed at this momenent]
-    /* public int[] giveIDS() {
-       return cardMapper.getIDS();
-   }*/
-  
    
 }

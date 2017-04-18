@@ -183,7 +183,7 @@ public class CardMapper
     }
     
     
-     public List<Integer> getCardIDs(List<Card> cards, java.sql.Connection conn) {
+     private List<Integer> getCardIDs(List<Card> cards, java.sql.Connection conn) {
         List<Integer> cardID = new ArrayList<>();
         try
         {

@@ -261,5 +261,16 @@ public class DomainController {
     {
         return newMatch.roundEnded();
     }
-	
+    
+    public boolean isAIMatch() {
+        return newMatch.isAIMatch();
+    }
+    
+    public void setAIMatch(boolean AI) {
+        newMatch.setAI(AI);
+    }
+    
+    public boolean getAIWantsNextTurn() {
+        return newMatch.getAIWantsNextTurn();
+    }
 }

@@ -20,20 +20,27 @@ public class Round {
     private Player loser;
     private boolean draw;
     private List <Integer> setDeck;
-    private int[][] gameBoard = new int[2][0];
-    private String[][] gameBoardCardSort = new String[2][0];
-    private boolean[] gameBoardFrozen = new boolean[2];
-    private int[] scores = new int[2];
+  //  private int[][] gameBoard = new int[2][0];
+ //   private String[][] gameBoardCardSort = new String[2][0];
+  //  private boolean[] gameBoardFrozen = new boolean[2];
+  //  private int[] scores = new int[2];
     private int currentTurnPlayerIndex;
+    
+    private final List<GameBoard> gameBoardList = new ArrayList<>();
     
     public Round(int startPlayerIndex)
     {      
-        this.currentTurnPlayerIndex = startPlayerIndex;
+        if(startPlayerIndex == 0) {
+            this.currentTurnPlayerIndex = 1;
+        } else {
+            this.currentTurnPlayerIndex = 0;
+        }
+        this.gameBoardList.add(new GameBoard());
+        this.gameBoardList.add(new GameBoard());
         generateSetDeck();
-        playCard(setDeck.get(setDeck.size()-1), "setDeckCard");
-        setDeck.remove(setDeck.size()-1);
     }
     
+   
 
     public Player getWinner()
     {
@@ -61,16 +68,18 @@ public class Round {
     public int getCurrentPlayerIndex() {
         return this.currentTurnPlayerIndex;
     }
-    
-    public void setCurrentPlayerIndexNextTurn() {
-       if(currentTurnPlayerIndex == 0 && gameBoardFrozen[1] == false) {
-            this.currentTurnPlayerIndex = 1;
-        }
-        else {
-            this.currentTurnPlayerIndex = 0;
-        }
+
+    public List<GameBoard> getGameBoardList()
+    {
+        return gameBoardList;
+    }
+    protected void setCurrentPlayerIndex(int currentPlayerIndex) {
+        this.currentTurnPlayerIndex = currentPlayerIndex;
     }
     
+    public List<Integer> getSetDeck() {
+        return this.setDeck;
+    }
     
     private void generateSetDeck()
     {
@@ -89,56 +98,53 @@ public class Round {
        
     }
     
-    public List<Integer> getSetDeck() {
-        return setDeck;
+    
+    public String[][] getPlayersGameBoards() {
+       String[][] gameBoards = new String[2][];
+        for (int i = 0; i < gameBoardList.size(); i++)
+        {
+            gameBoards[i] = new String[gameBoardList.get(i).getGameBoardCards().size()];
+            for (int j = 0; j < gameBoards[i].length; j++)
+            {
+                Card gameBoardCard = gameBoardList.get(i).getGameBoardCards().get(j);
+                gameBoards[i][j] = gameBoardCard.getType() + gameBoardCard.getValue();
+            }
+        }
+        return gameBoards;
     }
     
-    public int[][] getPlayersGameBoards() {
-        return gameBoard;
-    }
-    
-    public String[][] getPlayerGameBoardCardSorts() {
+  /*  public String[][] getPlayerGameBoardCardSorts() {
         return gameBoardCardSort;
     }
-    
+    */
     public int [] getScores() {
-        calculateGameBoardScores();
-        return this.scores;
-    }
-    
-    public int[] getRoundScorePlayer() {
-        int[] playerScore= new int[2];
-        for (int i = 0; i < 2; i++)
-        {
-        for (int j = 0; j < gameBoard[i].length; j++)
-        {
-            playerScore[i] += gameBoard[i][j];
-        }
-        }
-        return playerScore;
+      int[] scores=  calculateGameBoardScores();
+        return scores;
     }
     
     public void nextTurn() {
-        if(currentTurnPlayerIndex == 0 && gameBoardFrozen[1] == false) {
+        System.out.println("next turn");
+        if(currentTurnPlayerIndex == 0 && gameBoardList.get(1).getFrozen() == false) {
             currentTurnPlayerIndex = 1;
-        } else if(currentTurnPlayerIndex == 1 && gameBoardFrozen[0] == false) {
+        } else if(currentTurnPlayerIndex == 1 && gameBoardList.get(0).getFrozen() == false) {
             currentTurnPlayerIndex = 0;
-        }
-        if(gameBoardFrozen[currentTurnPlayerIndex] == false) {
-             playCard(setDeck.get(setDeck.size()-1), "setDeckCard");
+        } 
+        if(gameBoardList.get(currentTurnPlayerIndex).getFrozen() == false) {
+            playCard(new Card("setDeckCard",setDeck.get(setDeck.size()-1)));
              setDeck.remove(setDeck.size()-1);
         }
        
     }
     
     public void freezeBoard() {
-        gameBoardFrozen[currentTurnPlayerIndex] = true;
+       gameBoardList.get(currentTurnPlayerIndex).freezeBoard();
+      // this.nextTurn();
     }
     
     
-    public void playCard(int cardValue, String cardSort) {
+    public void playCard(Card card) {
         //Make a copy from the array
-        int[] cardValueArrayCopy = gameBoard[currentTurnPlayerIndex];
+    /*    int[] cardValueArrayCopy = gameBoard[currentTurnPlayerIndex];
         String[] cardSortArrayCopy = gameBoardCardSort[currentTurnPlayerIndex];
         
         //Make the old arrays 1 bigger
@@ -151,28 +157,31 @@ public class Round {
         
         //Put card value and sort into last element of newly formed array
         gameBoard[currentTurnPlayerIndex][gameBoard[currentTurnPlayerIndex].length-1] = cardValue;
-        gameBoardCardSort[currentTurnPlayerIndex] [gameBoardCardSort[currentTurnPlayerIndex].length-1] = cardSort;
+        gameBoardCardSort[currentTurnPlayerIndex] [gameBoardCardSort[currentTurnPlayerIndex].length-1] = cardSort;*/
+        gameBoardList.get(currentTurnPlayerIndex).playCard(card);
+    
+        
        
     }
     
     public boolean roundEnded() {
         boolean roundEnded = false;
-        calculateGameBoardScores();
+        int[] scores = calculateGameBoardScores();
         if(scores[0] > 20 || scores[1] > 20) {
             roundEnded = true;
         }
-        if(gameBoard[0].length == 9 || gameBoard[1].length == 9) {
+        if(gameBoardList.get(0).getGameBoardCards().size() == 9 || gameBoardList.get(1).getGameBoardCards().size() == 9) {
             roundEnded = true;
         }
-        if(gameBoardFrozen[0] == true && gameBoardFrozen[1] == true) {
+        if(gameBoardList.get(0).getFrozen() == true && gameBoardList.get(1).getFrozen()  == true) {
             roundEnded = true;
         }
         return roundEnded;
     }
     
     public void setRoundEndedResults(List<Player> roundPlayers) {
-        System.out.println(Arrays.toString(scores));
-        calculateGameBoardScores();
+       
+       int[] scores = calculateGameBoardScores();
         if(scores[0] == scores[1]) {
             this.draw = true;
         } else if(scores[0] > scores[1] && scores[0] <= 20 || scores[1] > 20 && scores[0] <= 20){
@@ -183,16 +192,21 @@ public class Round {
         }
     }
     
-    private void calculateGameBoardScores() {
+    private int [] calculateGameBoardScores() {
        
-        scores = new int[2];
-        for (int i = 0; i < gameBoard.length; i++)
+        int[] scoresList = new int[2];
+        scoresList[0] = gameBoardList.get(0).calculateGameBoardScore();
+        scoresList[1] = gameBoardList.get(1).calculateGameBoardScore();
+        return scoresList;
+    /*    for (int i = 0; i < gameBoard.length; i++)
         {
             for (int scorePlayer : gameBoard[i])
             {
                 scores[i] += scorePlayer;
             }
-        }
+        }*/
        
     }
+    
+
 }

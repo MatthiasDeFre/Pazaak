@@ -45,6 +45,10 @@ public class Card {
 
     public int getValue()
     {
+        return Math.abs(this.value);
+    }
+    
+    public int getTrueValue() {
         return this.value;
     }
 

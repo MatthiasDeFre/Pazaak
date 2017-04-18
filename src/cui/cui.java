@@ -18,7 +18,9 @@ public class cui
     private int inputNumber;
     private ResourceBundle rs;
     boolean badInput = true;
-
+    private boolean playedCard = false;
+    private boolean cantNextTurn = false;
+    
     Scanner s = new Scanner(System.in);
 
     public cui(DomainController dc)
@@ -119,7 +121,7 @@ public class cui
 
     }
 
-    public String giveCards()
+    private String giveCards()
     {
         String back = "";
         String[][] arr;
@@ -133,7 +135,7 @@ public class cui
         return back;
     }
 
-    public void register()
+    private void register()
     {
         try
         {
@@ -153,7 +155,7 @@ public class cui
         }
     }
 
-    public void startGame()
+    private void startGame()
     {
         dc.makeMatch();
         while (dc.getAmountPlayersStillNeeded() > 0)
@@ -204,7 +206,7 @@ public class cui
 
     }
 
-    public void makeMatchDeck()
+    private void makeMatchDeck()
     {
         while ((dc.getPlayersWithoutMatchDeck().length) > 0)
         {
@@ -248,17 +250,25 @@ public class cui
                 }
 
                 selectedCards[i][0] = available[inputNumber - 1][0];
-                selectedCards[i][1] = available[inputNumber - 1][1];
-
+                if (selectedCards[i][0].equals("-"))
+                {
+                    selectedCards[i][1] = "-" + available[inputNumber - 1][1];
+                } else
+                {
+                    selectedCards[i][1] = available[inputNumber - 1][1];
+                }
             }
             dc.makeMatchDeck(selectedCards);
         }
     }
 
-    public void matchStarted()
+    private void matchStarted()
     {
         System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
+        System.out.println("AI match?");
+        boolean ai = s.nextBoolean();
+        dc.setAIMatch(ai);
         int roundAmount = 1;
         do
         {
@@ -269,33 +279,46 @@ public class cui
         System.out.println(rs.getString("winnerIs") + dc.whoWon());
     }
 
-    public void startNewRound()
+    private void startNewRound()
     {
         System.out.println(rs.getString("roundStarted"));
         dc.startNewRound();
+        playedCard = false;
         do
-        { 
+        {
+                if (playedCard == false)
+                {
+                    dc.nextTurn();            
+                }
+            
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            System.out.println("What do yo want to do?");
-            turnChoice(s.nextInt());
-            s.nextLine();
-        } while (!dc.roundEnded());
+            // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+            if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false)
+            {
+                System.out.println("What do yo want to do?");
+                turnChoice(s.nextInt());
+                s.nextLine();
+            }
+        } while (!dc.roundEnded() || playedCard);
+        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
 
     }
     
     private void turnChoice(int choice) {
         switch(choice) {
             case 1: 
-                dc.nextTurn();
+                playedCard = false;
                 break;
             case 2:
                 //Indien geen kaarten moet hier nog komen
                 System.out.println("Which card do you want to be play?");
                 dc.playCard(s.nextInt());
                 System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                playedCard = true;
                 break;
             case 3:
-                dc.freezeBoard();
+                dc.freezeBoard();  
+                playedCard = false;
                 break;
                 
         }
