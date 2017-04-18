@@ -4,6 +4,7 @@ import java.util.List;
 import exceptions.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import persistence.PlayerMapper;
 public class DomainController {
     
     //Attributes
@@ -286,7 +287,7 @@ public class DomainController {
         Card card = new Card(availableCard[cardIndex][0],cardValue);
         
         //GEEF KAART MEE AAN REPO
-        cardRepository.buyCard(card);
+        cardRepository.buyCard(card,players.getPlayerId(currentUser));
         
         //VOEG KAART TOE AAN LOKAAL MATCHDECK OF VRAAG MATCHDECK OPNIEUW OP IN DE DATABASE
         currentUser.getDeck().add(card);
