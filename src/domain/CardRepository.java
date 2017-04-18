@@ -40,5 +40,10 @@ public class CardRepository {
     {
         return cardMapper.giveStartDeck();
     }
+    
+    public void buyCard(Card card, int playerIndex)
+    {
+      cardMapper.buyCard(card, playerIndex);
+    }
    
 }
