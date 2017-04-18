@@ -45,7 +45,7 @@ public class CardMapper
         List<Card> cards = new ArrayList<>();
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType");
+            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType WHERE startDeck = 1");
             try (ResultSet rs = query.executeQuery())
             {
                 while (rs.next())
