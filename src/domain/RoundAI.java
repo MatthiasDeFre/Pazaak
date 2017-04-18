@@ -123,7 +123,10 @@ public class RoundAI extends Round {
                 }
             });
         }
-        minusMargin = minusCardList.get(0).getValue();
+        if(minusCardList.size() > 0) {
+             minusMargin = minusCardList.get(minusCardList.size()-1).getValue();
+        }
+       
         System.out.println("Minusmargin: " + minusMargin);
         return minusMargin;
     }
