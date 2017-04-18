@@ -150,7 +150,7 @@ public class Match {
         int[] score = new int[AMOUNT_PLAYERS];
         for (Round matchRound : matchRounds)
         {
-            if(matchRound.getDraw() == false) {                 
+          /*  if(matchRound.getDraw() == false) {                 
                 if (matchRound.getWinner().equals(matchPlayers.get(0)))
                 {
                     score[0]++;
@@ -158,7 +158,16 @@ public class Match {
                 {
                     score[1]++;
                 }
-            }
+            }*/
+            if(!matchRound.getStatus().equals("draw")) {                 
+                if (matchRound.getStatus().equals(matchPlayers.get(0).getName()))
+                {
+                    score[0]++;
+                } else
+                {
+                    score[1]++;
+                }
+        }
         }
         System.out.println(score[0] + " " + score[1]);
        return score;
