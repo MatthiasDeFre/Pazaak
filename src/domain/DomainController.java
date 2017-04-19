@@ -246,7 +246,26 @@ public class DomainController {
     }
     
     public void changeCardSign(int cardIndex) {
+        currentUser.getMatchDeck(newMatch).get(cardIndex).changeSign();
+    }
+    
+    public String[][] showPossibleChanges() {
+        String[][] possibleChanges = new String[0][2];
         
+       for(Card card : currentUser.getMatchDeck(newMatch)) {      
+            if (card.getType().equals("+/-"))
+            {
+                String[][] arrayCopy = possibleChanges;
+                possibleChanges = new String[arrayCopy.length + 1][2];
+                for (int i = 0; i < arrayCopy.length; i++)
+                {
+                    possibleChanges[i][0] = arrayCopy[i][0];
+                    possibleChanges[i][1] = arrayCopy[i][1];
+                }
+            }
+        }
+        
+        return possibleChanges;
     }
     
     public void nextTurn() {

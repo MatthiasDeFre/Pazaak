@@ -132,11 +132,11 @@ public class RoundAI extends Round {
     }
         
     private void calculateMove(double [][] differentMoveWithRiskPercentage) {
-        if(differentMoveWithRiskPercentage[0][0] > 0.0 && getGameBoardList().get(1).calculateGameBoardScore() < 20) {
+        if(differentMoveWithRiskPercentage[0][0] > 0.60 && getGameBoardList().get(1).calculateGameBoardScore() < 20) {
            // this.nextTurn();
            AIwantsNextTurn = true;
         } else {
-            if(aiTurn().getType().equals("noCardFound")) {
+            if(!aiTurn().getType().equals("noCardFound")) {
                 playCard(aiTurn());
                 AI.getMatchDeck().getCards().remove(aiTurn());
                 makeAIMove();
