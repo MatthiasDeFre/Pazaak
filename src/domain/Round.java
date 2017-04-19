@@ -16,9 +16,16 @@ import java.util.Random;
  * @author Matthias
  */
 public class Round {
-    private Player winner;
+    
+    //RecycleBin
+   /* private Player winner;
     private Player loser;
-    private boolean draw;
+    private boolean draw;*/
+    
+    //Status
+    private String status = null;
+    
+    
     private List <Integer> setDeck;
   //  private int[][] gameBoard = new int[2][0];
  //   private String[][] gameBoardCardSort = new String[2][0];
@@ -42,7 +49,7 @@ public class Round {
     
    
 
-    public Player getWinner()
+   /* public Player getWinner()
     {
         return winner;
     }
@@ -64,7 +71,7 @@ public class Round {
     {
         this.loser = loser;
     }
-    
+    */
     public int getCurrentPlayerIndex() {
         return this.currentTurnPlayerIndex;
     }
@@ -121,6 +128,10 @@ public class Round {
       int[] scores=  calculateGameBoardScores();
         return scores;
     }
+    public String getStatus() {
+        return this.status;
+    }
+    
     
     public void nextTurn() {
         System.out.println("next turn");
@@ -182,13 +193,19 @@ public class Round {
     public void setRoundEndedResults(List<Player> roundPlayers) {
        
        int[] scores = calculateGameBoardScores();
-        if(scores[0] == scores[1]) {
-            this.draw = true;
-        } else if(scores[0] > scores[1] && scores[0] <= 20 || scores[1] > 20 && scores[0] <= 20){
-            this.winner = roundPlayers.get(0);
-            
-        } else {
-            this.winner = roundPlayers.get(1);
+        if(scores[0] == scores[1])
+        {
+            //   this.draw = true;
+            this.status = "draw";
+        } else if (scores[0] > scores[1] && scores[0] <= 20 || scores[1] > 20 && scores[0] <= 20)
+        {
+            //     this.winner = roundPlayers.get(0);
+            this.status = roundPlayers.get(0).getName();
+
+        } else
+        {
+            //      this.winner = roundPlayers.get(1);
+            this.status = roundPlayers.get(1).getName();
         }
     }
     

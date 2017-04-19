@@ -45,6 +45,9 @@ public class Card {
 
     public int getValue()
     {
+        if(getType().contains("+/-")) {
+            return getTrueValue();
+        }
         return Math.abs(this.value);
     }
     

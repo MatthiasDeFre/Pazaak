@@ -1,10 +1,10 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import exceptions.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import persistence.PlayerMapper;
 public class DomainController {
     
     //Attributes
@@ -246,7 +246,26 @@ public class DomainController {
     }
     
     public void changeCardSign(int cardIndex) {
+        currentUser.getMatchDeck(newMatch).get(cardIndex).changeSign();
+    }
+    
+    public String[][] showPossibleChanges() {
+        String[][] possibleChanges = new String[0][2];
         
+       for(Card card : currentUser.getMatchDeck(newMatch)) {      
+            if (card.getType().equals("+/-"))
+            {
+                String[][] arrayCopy = possibleChanges;
+                possibleChanges = new String[arrayCopy.length + 1][2];
+                for (int i = 0; i < arrayCopy.length; i++)
+                {
+                    possibleChanges[i][0] = arrayCopy[i][0];
+                    possibleChanges[i][1] = arrayCopy[i][1];
+                }
+            }
+        }
+        
+        return possibleChanges;
     }
     
     public void nextTurn() {
@@ -273,4 +292,25 @@ public class DomainController {
     public boolean getAIWantsNextTurn() {
         return newMatch.getAIWantsNextTurn();
     }
+    
+    public void buyCard(int cardIndex,String[][]availableCard)
+    {
+        //MAAK EEN KAART
+        int cardValue = Integer.parseInt(availableCard[cardIndex][1]);
+        
+        if (availableCard[cardIndex][0].equals("-"))
+        {
+            cardValue*=-1;
+        }
+        
+        Card card = new Card(availableCard[cardIndex][0],cardValue);
+        
+        //GEEF KAART MEE AAN REPO
+        cardRepository.buyCard(card,players.getPlayerId(currentUser));
+        
+        //VOEG KAART TOE AAN LOKAAL MATCHDECK OF VRAAG MATCHDECK OPNIEUW OP IN DE DATABASE
+        currentUser.getDeck().add(card);
+    }
+    
+    
 }

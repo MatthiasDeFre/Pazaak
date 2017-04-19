@@ -45,7 +45,7 @@ public class CardMapper
         List<Card> cards = new ArrayList<>();
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
-            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType");
+            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType WHERE startDeck = 1");
             try (ResultSet rs = query.executeQuery())
             {
                 while (rs.next())
@@ -75,7 +75,7 @@ public class CardMapper
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType WHERE value = ? AND type = ?");
-            query.setInt(1, card.getValue());
+            query.setInt(1, card.getTrueValue());
             query.setString(2, card.getType());
             try (ResultSet rs = query.executeQuery())
             {
@@ -191,7 +191,7 @@ public class CardMapper
             for (Card card : cards)
             {                 
             query  = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType WHERE value = ? AND type = ?");
-            query.setInt(1, card.getValue());
+            query.setInt(1, card.getTrueValue());
             query.setString(2, card.getType());
             try (ResultSet rs = query.executeQuery())
             {
@@ -226,5 +226,19 @@ public class CardMapper
         {
             throw new RuntimeException(ex);
         }
-    }  
+    }
+       public void buyCard(Card card, int playerID)
+       {
+           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        {                                            
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
+            query.setInt(1, playerID); 
+            query.setInt(2, getCardID(card));
+            query.executeUpdate();
+            
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+       }
 }
