@@ -8,14 +8,13 @@ package startUp;
 import domain.DomainController;
 import gui.scenes.LanguageSelection;
 import gui.scenes.MainMenu;
+import javafx.application.Application;
 import javafx.scene.Scene;
 
-/**
- *
- * @author User
- */
+
 public class StartUpGUI
 {
+
     public static void main(String[] args)
     {
         DomainController dc = new DomainController();
@@ -35,4 +34,5 @@ public class StartUpGUI
         stage.setScene(scene);
         stage.show();
     }
+
 }
