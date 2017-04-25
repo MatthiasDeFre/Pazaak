@@ -9,7 +9,8 @@ public class MainMenu extends BorderPane
 {
      private final DomeinController dc;
     
-     public void panel {}
+     
+     //public void panel {}
     
     
     

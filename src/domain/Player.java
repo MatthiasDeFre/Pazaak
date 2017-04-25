@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import exceptions.*;
-import java.io.Serializable;
+
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  * </pre>
  * @author Matthias
  */
-public class Player implements Serializable{
+public class Player{
     
 	private int birthYear;
 	private String name;
