@@ -15,7 +15,7 @@ import java.util.List;
 public class MatchDeck{
     private List<Card> matchDeck = new ArrayList<>();
     private Match match;
-     private static final long serialVersionUID = 45L;
+    
     //Constructors
     
     public MatchDeck(Match match, List<Card> selectedCards) {
