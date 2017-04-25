@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author Matthias
+ * @author Matthias Test
  */
 public class RoundAI extends Round {
 
