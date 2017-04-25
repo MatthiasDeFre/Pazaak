@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -16,11 +17,11 @@ import java.util.Objects;
  * getValue {@link Card.getValue(}
  * @author Team-07 </pre>
  */
-public class Card {
+public class Card implements Serializable{
     //Attributes
     private String type;
     private int value;
-
+     private static final long serialVersionUID = 44L;
     //Constructors
     public Card(String type, int value)
     {

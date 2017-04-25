@@ -2,8 +2,19 @@ package domain;
 
 import java.util.List;
 import exceptions.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistence.MatchMapper;
 import persistence.PlayerMapper;
 public class DomainController {
     
@@ -13,12 +24,14 @@ public class DomainController {
         private CardRepository cardRepository;
         private Match newMatch;
         
+        private MatchMapper matchMapper;
+        
         
     //Constructors
         public DomainController() {
 		players = new PlayerRepository();
                 cardRepository = new CardRepository();
-              
+                matchMapper = new MatchMapper();
 	}
     //Make a new user methods
         
@@ -250,21 +263,28 @@ public class DomainController {
     }
     
     public String[][] showPossibleChanges() {
-        String[][] possibleChanges = new String[0][2];
+        String[][] possibleChanges = new String[0][3];
         
-       for(Card card : currentUser.getMatchDeck(newMatch)) {      
+       //for(Card card : currentUser.getMatchDeck(newMatch)) {      
+        for (int j = 0; j < newMatch.getCurrentPlayer().getMatchDeck(newMatch).size(); j++)
+        {
+            Card card = newMatch.getCurrentPlayer().getMatchDeck(newMatch).get(j); 
             if (card.getType().equals("+/-"))
             {
                 String[][] arrayCopy = possibleChanges;
-                possibleChanges = new String[arrayCopy.length + 1][2];
+                possibleChanges = new String[arrayCopy.length + 1][3];
                 for (int i = 0; i < arrayCopy.length; i++)
                 {
                     possibleChanges[i][0] = arrayCopy[i][0];
                     possibleChanges[i][1] = arrayCopy[i][1];
+                    possibleChanges[i][2] = arrayCopy[i][2];
                 }
+                possibleChanges[arrayCopy.length + 1][0] = card.getType();
+                possibleChanges[arrayCopy.length + 1][1] = String.valueOf(card.getValue());
+                possibleChanges[arrayCopy.length + 1][2] = String.valueOf(j);
             }
-        }
-        
+       // }
+          }
         return possibleChanges;
     }
     
@@ -312,5 +332,27 @@ public class DomainController {
         currentUser.getDeck().add(card);
     }
     
+    public void saveMatch(String matchName) throws IOException {
+         try(ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(new File("myFile.data")))) {
+              System.out.println("dc");
+            // no need to specify members individually
+            oos.writeObject(newMatch);
+            FileInputStream fileOutputStream = new FileInputStream("myFile.data");
+            matchMapper.addMatch(matchName, fileOutputStream);
+        }
+    }
+    
+    public void loadMatch(String matchName) {
+            try
+            {
+                newMatch = matchMapper.loadMatch(matchName);
+                Path path = Paths.get("loadFile.data");
+                Files.delete(path);
+            } catch (IOException | ClassNotFoundException ex)
+            {
+                Logger.getLogger(DomainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
     
 }

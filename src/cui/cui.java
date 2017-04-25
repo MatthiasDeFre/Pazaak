@@ -4,11 +4,14 @@ import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class cui
 {
@@ -95,6 +98,7 @@ public class cui
                             break;
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
+                            dc.loadMatch();
                             System.out.printf("[WIP]");
                             badInput = false;
                             break;
@@ -301,6 +305,15 @@ public class cui
             }
         } while (!dc.roundEnded() || playedCard);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+        System.out.println("Do yo want save?");
+        try
+        {
+            System.out.println("cui");
+            dc.saveMatch(s.nextLine());
+        } catch (IOException ex)
+        {
+            Logger.getLogger(cui.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     

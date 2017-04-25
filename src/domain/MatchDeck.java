@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import java.util.List;
  *
  * @author Matthias
  */
-public class MatchDeck {
+public class MatchDeck implements Serializable{
     private List<Card> matchDeck = new ArrayList<>();
     private Match match;
-    
+     private static final long serialVersionUID = 45L;
     //Constructors
     
     public MatchDeck(Match match, List<Card> selectedCards) {

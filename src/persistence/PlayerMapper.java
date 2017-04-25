@@ -184,6 +184,53 @@ public class PlayerMapper {
        }  
        return names; 
     }
+    
+    public int givePlayerID(String name, java.sql.Connection conn)
+    {
+        int id = 0;
+        try
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT P_ID FROM ID222177_g07.Player WHERE playerName = ?");
+            query.setString(1, name);
+            try (ResultSet rs = query.executeQuery())
+            {
+                if (rs.next())
+                {
+                    id = rs.getInt("P_ID");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+        return id;
+    }
+    
+    public Player getPlayer(int playerID, java.sql.Connection conn) {
+        Player selectedPlayer;
+        String playerName = "";
+        int credit = 0;
+        int birthYear = 0;
+        try
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, birthYear FROM ID222177_g07.Player WHERE playerID = ?");
+            query.setInt(1, playerID);
+            try (ResultSet rs = query.executeQuery())
+            {
+                if (rs.next())
+                {
+                    playerName = rs.getString("playerName");
+                    credit = rs.getInt("credit");
+                    birthYear = rs.getInt("birthYear");
+
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        selectedPlayer = new Player(credit, playerName, birthYear);
+        return selectedPlayer;
+    }
 }
 
 

@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import java.util.Random;
  *
  * @author Matthias
  */
-public class Round {
+public class Round implements Serializable{
     
     //RecycleBin
    /* private Player winner;
@@ -24,16 +25,16 @@ public class Round {
     
     //Status
     private String status = null;
+     private static final long serialVersionUID = 46L;
     
-    
-    private List <Integer> setDeck;
+    private transient List <Integer> setDeck;
   //  private int[][] gameBoard = new int[2][0];
  //   private String[][] gameBoardCardSort = new String[2][0];
   //  private boolean[] gameBoardFrozen = new boolean[2];
   //  private int[] scores = new int[2];
     private int currentTurnPlayerIndex;
     
-    private final List<GameBoard> gameBoardList = new ArrayList<>();
+    private transient final List<GameBoard> gameBoardList = new ArrayList<>();
     
     public Round(int startPlayerIndex)
     {      
@@ -223,6 +224,10 @@ public class Round {
             }
         }*/
        
+    }
+    
+    public void setStatus(int index) {
+        
     }
     
 

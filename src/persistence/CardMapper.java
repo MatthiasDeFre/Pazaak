@@ -183,7 +183,7 @@ public class CardMapper
     }
     
     
-     private List<Integer> getCardIDs(List<Card> cards, java.sql.Connection conn) {
+     public List<Integer> getCardIDs(List<Card> cards, java.sql.Connection conn) {
         List<Integer> cardID = new ArrayList<>();
         try
         {
@@ -240,5 +240,28 @@ public class CardMapper
         {
             throw new RuntimeException(ex);
         }
+       }
+       
+       public Card getCard(int cardID, java.sql.Connection conn)
+    {
+        Card card = null;
+        try
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.Card  WHERE cardID = ?");
+            query.setInt(1, cardID);
+            try (ResultSet rs = query.executeQuery())
+            {
+                if (rs.next())
+                {
+                    String type = rs.getString("type");
+                    int value = rs.getInt("value");
+                    card = new Card(type, value);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+        return card;
        }
 }

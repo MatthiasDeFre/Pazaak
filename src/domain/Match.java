@@ -6,6 +6,7 @@
 package domain;
 
 import exceptions.invalidPlayerException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +18,10 @@ import java.util.ResourceBundle;
  *
  * @author Team07
  */
-public class Match {
+public class Match implements Serializable{
+    
+    private static final long serialVersionUID = 42L;
+    
     private List<Player> matchPlayers = new ArrayList<>();
     private final static int AMOUNT_PLAYERS = 2;
     private List<Round> matchRounds = new ArrayList<>();
@@ -52,6 +56,13 @@ public class Match {
         return playerNames;
     }
     
+    public List<Player> getMatchPlayers() {
+        return this.matchPlayers;
+    }
+    
+    public List<Round> getMatchRounds() {
+        return this.matchRounds;
+    }
     /**
      * Method to get all the players without a matchdeck
      * @return A list of string of player names without a matchdeck
@@ -146,7 +157,7 @@ public class Match {
      * Method to return the current score between the two players
      * @return int[], index 0 contains player 1 his score, index 1 contains player 2 his score
      */
-    private int[] getScoring() {
+    public int[] getScoring() {
         int[] score = new int[AMOUNT_PLAYERS];
         for (Round matchRound : matchRounds)
         {
@@ -175,7 +186,7 @@ public class Match {
     
     //Round methods
     
-    private int determineStartPlayer()
+    public int determineStartPlayer()
     {
         int startPlayerIndex = 0;
         if (matchPlayers.get(0).getbirthYear() > matchPlayers.get(1).getbirthYear() && ((matchRounds.size()+1) % 2) != 0)
@@ -273,5 +284,11 @@ public class Match {
         return ((RoundAI)matchRounds.get(matchRounds.size()-1)).getAIwantsNextTurn();
     }
     
+    public Player getCurrentPlayer() {
+        return  matchPlayers.get(matchRounds.get(matchRounds.size() -1).getCurrentPlayerIndex());
+    }
     
+    public void addRound(Round round) {
+        matchRounds.add(round);
+    }
 }

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import exceptions.*;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.regex.Pattern;
  * </pre>
  * @author Matthias
  */
-public class Player {
+public class Player implements Serializable{
     
 	private int birthYear;
 	private String name;
@@ -36,6 +37,7 @@ public class Player {
 	private List<Card> deck = new ArrayList<>();
         private MatchDeck matchDeck;
 
+        private static final long serialVersionUID = 43L;
         /** 
          * Constructor used to make a Player who isn't in the database
          * @param birthYear
@@ -53,10 +55,18 @@ public class Player {
                 
 	}
         public Player(int credit, List<Card> collection, String name, int birthYear) {
-            this.credit = credit;
+          /*  this.credit = credit;
             deck = collection;
             this.name = name;
-            this.birthYear = birthYear;
+            this.birthYear = birthYear;*/
+          this(credit, name, birthYear);
+          deck = collection;
+        }
+        
+        public Player(int credit, String name, int birthYear) {
+                this.birthYear=birthYear;
+                this.name=name;
+                this.credit =0;
         }
         
         //Method to generate the player's start deck / collection
@@ -196,6 +206,10 @@ public class Player {
            selectedCardsList.remove(selectedCardsList.size() - 1);
            this.matchDeck = new MatchDeck(match, selectedCardsList);
        } 
+       
+       public void addMatchDeck(Match match, List<Card> cards) {
+           this.matchDeck = new MatchDeck(match, cards);
+       }
        
        public List<Card> getMatchDeck(Match match) {
            return matchDeck.getCards();
