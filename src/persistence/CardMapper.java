@@ -1,7 +1,6 @@
 package persistence;
 
 import domain.Card;
-import java.lang.reflect.Array;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -264,4 +263,27 @@ public class CardMapper
         }
         return card;
        }
+       
+       public List<Card> showBuyableCards(int playerID){
+           List<Card>buyableCards=new ArrayList<>();
+           
+           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+           {
+           PreparedStatement query= conn.prepareStatement("SELECT Card_ID \n" +
+            "FROM   CardType\n" +
+            "WHERE  Card_ID NOT IN (SELECT Card_ID FROM Card WHERE P_ID = ?)");
+           query.setInt(1, playerID);
+           try (ResultSet rs = query.executeQuery())
+            {
+                if (rs.next())
+                {
+                    buyableCards.add(getCard(rs.getInt(1), conn));
+                }
+            }
+           }
+           
+           catch()
+           
+       }
+       
 }
