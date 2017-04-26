@@ -332,9 +332,7 @@ public class DomainController {
         currentUser.getDeck().add(card);
     }
     
-    public void saveMatch(String matchName) {
-        
-            System.out.println("dc");       
+    public void saveMatch(String matchName) { 
             matchMapper.saveMatchNoBlob(matchName, newMatch);
         
     }

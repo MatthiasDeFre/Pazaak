@@ -135,7 +135,6 @@ public class Round{
     
     
     public void nextTurn() {
-        System.out.println("next turn");
         if(currentTurnPlayerIndex == 0 && gameBoardList.get(1).getFrozen() == false) {
             currentTurnPlayerIndex = 1;
         } else if(currentTurnPlayerIndex == 1 && gameBoardList.get(0).getFrozen() == false) {

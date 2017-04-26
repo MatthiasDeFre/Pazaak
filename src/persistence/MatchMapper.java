@@ -39,7 +39,6 @@ public class MatchMapper {
     
     public void addMatch(String matchName, FileInputStream fileInputStream)
     {
-         System.out.println("mapper");
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Match (name,matchFile) VALUES (?,?)" );
             query.setString(1, matchName);   
@@ -81,8 +80,6 @@ public class MatchMapper {
                     }
                     //       FileInputStream in = (FileInputStream)rs.getBlob(1);
                     //  ObjectInputStream d = new ObjectInputStream(in);
-                    System.out.println(Arrays.toString(match.getChoosenPlayers()));
-                    System.out.println(Arrays.toString(match.getScoring()));
                 }
             }
         } catch (SQLException ex)

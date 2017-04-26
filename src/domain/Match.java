@@ -179,8 +179,7 @@ public class Match{
                     score[1]++;
                 }
         }
-        }
-        System.out.println(score[0] + " " + score[1]);
+        } 
        return score;
     }
     
