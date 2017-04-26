@@ -25,7 +25,7 @@ public class Round{
     
     //Status
     private String status = null;
-     private static final long serialVersionUID = 46L;
+    
     
     private List <Integer> setDeck;
   //  private int[][] gameBoard = new int[2][0];

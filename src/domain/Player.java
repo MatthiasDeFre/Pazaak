@@ -37,7 +37,7 @@ public class Player{
 	private List<Card> deck = new ArrayList<>();
         private MatchDeck matchDeck;
 
-        private static final long serialVersionUID = 43L;
+        
         /** 
          * Constructor used to make a Player who isn't in the database
          * @param birthYear

@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class Match{
     
-    private static final long serialVersionUID = 42L;
+    
     
     private List<Player> matchPlayers = new ArrayList<>();
     private final static int AMOUNT_PLAYERS = 2;

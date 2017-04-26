@@ -20,7 +20,7 @@ public class Card{
     //Attributes
     private String type;
     private int value;
-     private static final long serialVersionUID = 44L;
+    
     //Constructors
     public Card(String type, int value)
     {
