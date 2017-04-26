@@ -332,27 +332,16 @@ public class DomainController {
         currentUser.getDeck().add(card);
     }
     
-    public void saveMatch(String matchName) throws IOException {
-         try(ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(new File("myFile.data")))) {
-              System.out.println("dc");
-            // no need to specify members individually
-            oos.writeObject(newMatch);
-            FileInputStream fileOutputStream = new FileInputStream("myFile.data");
-            matchMapper.addMatch(matchName, fileOutputStream);
-        }
+    public void saveMatch(String matchName) {
+        
+            System.out.println("dc");       
+            matchMapper.saveMatchNoBlob(matchName, newMatch);
+        
     }
     
-    public void loadMatch(String matchName) {
-            try
-            {
-                newMatch = matchMapper.loadMatch(matchName);
-                Path path = Paths.get("loadFile.data");
-                Files.delete(path);
-            } catch (IOException | ClassNotFoundException ex)
-            {
-                Logger.getLogger(DomainController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public void loadMatch(String matchName) {     
+                newMatch = matchMapper.loadMatchNoBlob(matchName);
+         
     }
     
 }

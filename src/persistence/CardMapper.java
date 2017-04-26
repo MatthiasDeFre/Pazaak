@@ -247,7 +247,7 @@ public class CardMapper
         Card card = null;
         try
         {
-            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.Card  WHERE cardID = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType  WHERE Card_ID = ?");
             query.setInt(1, cardID);
             try (ResultSet rs = query.executeQuery())
             {

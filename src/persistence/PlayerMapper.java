@@ -213,7 +213,7 @@ public class PlayerMapper {
         int birthYear = 0;
         try
         {
-            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, birthYear FROM ID222177_g07.Player WHERE playerID = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, birthYear FROM ID222177_g07.Player WHERE P_ID = ?");
             query.setInt(1, playerID);
             try (ResultSet rs = query.executeQuery())
             {

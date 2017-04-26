@@ -98,7 +98,7 @@ public class cui
                             break;
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
-                            dc.loadMatch();
+                            dc.loadMatch("SaveGameTest4");
                             System.out.printf("[WIP]");
                             badInput = false;
                             break;
@@ -306,14 +306,10 @@ public class cui
         } while (!dc.roundEnded() || playedCard);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
         System.out.println("Do yo want save?");
-        try
-        {
+        
             System.out.println("cui");
             dc.saveMatch(s.nextLine());
-        } catch (IOException ex)
-        {
-            Logger.getLogger(cui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
     }
     

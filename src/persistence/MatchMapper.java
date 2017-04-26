@@ -98,7 +98,7 @@ public class MatchMapper {
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
             
             //Match
-            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Match (name, player1ID, player2ID, aiMatch) VALUES (?,?,?,?)");
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Match (matchName, player1ID, player2ID, aiMatch) VALUES (?,?,?,?)");
             for (int i = 0; i < match.getChoosenPlayers().length; i++)
             {
                 playerID[i] = playerMapper.givePlayerID(match.getChoosenPlayers()[i], conn);
@@ -131,12 +131,19 @@ public class MatchMapper {
             for (int i = 0; i < match.getMatchRounds().size(); i++)
             {
                 Round matchRound = match.getMatchRounds().get(i);
-                query = conn.prepareStatement("INSERT INTO ID222177_g07.Round (matchID, roundID, playerID) VALUES (?,?,?)");
+                query = conn.prepareStatement("INSERT INTO ID222177_g07.Round (matchID, roundNumber, playerID) VALUES (?,?,?)");
                 query.setInt(1, matchID);
                 query.setInt(2, i);
-                int status = Integer.parseInt(matchRound.getStatus());
-                if(status != -1) {
-                    query.setInt(3, playerID[status]);
+                String status = matchRound.getStatus();
+                if(!(status.equals("draw"))) {
+                 //   query.setInt(3, playerID[status]);
+                    if(match.getMatchPlayers().get(0).getName().equals(status)) {
+                        query.setInt(3, playerID[0]);
+                    } else {
+                        query.setInt(3, playerID[1]);
+                    }
+                } else {
+                    query.setNull(3, java.sql.Types.INTEGER);
                 }
                 query.executeUpdate();
             }
@@ -151,7 +158,7 @@ public class MatchMapper {
         int matchID = 0;
         try
         {
-            PreparedStatement query = conn.prepareStatement("SELECT matchID FROM ID222177_g07.MatchDeck WHERE matchName = ?");
+            PreparedStatement query = conn.prepareStatement("SELECT matchID FROM ID222177_g07.Match WHERE matchName = ?");
             query.setString(1, matchName);
             try (ResultSet rs = query.executeQuery())
             {
@@ -230,7 +237,7 @@ public class MatchMapper {
         List<Round> matchRounds = new ArrayList<>();
           try
         {
-            PreparedStatement query = conn.prepareStatement("SELECT status FROM ID222177_g07.MatchDeck WHERE matchID = ? ");
+            PreparedStatement query = conn.prepareStatement("SELECT playerID FROM ID222177_g07.MatchDeck WHERE matchID = ? ");
             query.setInt(1, matchID);
             try (ResultSet rs = query.executeQuery())
             {
@@ -239,7 +246,7 @@ public class MatchMapper {
                   Round round = new Round(match.determineStartPlayer());
                   int status = rs.getInt(1);
                   if(status == 0) {
-                  status += -1;
+                  status = -1;
                   } else  {
                      if(status == playerID[0]) {
                          status = 0;
