@@ -29,7 +29,6 @@ public class RoundAI extends Round {
     @Override
     public void nextTurn()
     {
-        System.out.println("next turn");
         if (getCurrentPlayerIndex() == 0 && getGameBoardList().get(1).getFrozen() == false)
         {
             AIwantsNextTurn = true;
@@ -78,12 +77,10 @@ public class RoundAI extends Round {
         {
             if (getSetDeck().get(i) + getGameBoardList().get(1).calculateGameBoardScore() + minusMargin > 20)
             {
-                System.out.println(getSetDeck().get(i));
                 cardAmountEqualToLose++;
             }
         }
         notLosePercentage = 1.0 - (((double) cardAmountEqualToLose) / getSetDeck().size());
-        System.out.println(notLosePercentage);
         double[][] winRisk = new double[1][1];
         winRisk[0][0] = notLosePercentage;
         return winRisk;
@@ -126,8 +123,6 @@ public class RoundAI extends Round {
         if(minusCardList.size() > 0) {
              minusMargin = minusCardList.get(minusCardList.size()-1).getValue();
         }
-       
-        System.out.println("Minusmargin: " + minusMargin);
         return minusMargin;
     }
         

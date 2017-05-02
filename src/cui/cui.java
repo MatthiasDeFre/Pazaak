@@ -99,7 +99,7 @@ public class cui
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
                             dc.loadMatch("SaveGameTest4");
-                            System.out.printf("[WIP]");
+                            System.out.printf("[Work in progress, sorry]");
                             badInput = false;
                             break;
                         case 4:

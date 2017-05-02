@@ -179,9 +179,9 @@ public class Player{
           
  /*   {
         ResourceBundle rs = ResourceBundle.getBundle("resources/Lang", Locale.GERMANY);
-        System.out.println(rs.getString("s1"));
+       
              ResourceBundle rs1 = ResourceBundle.getBundle("resources/Lang", Locale.US);
-        System.out.println(rs1.getString("s1"));
+
     }*/
         
       //MatchDeck methods
