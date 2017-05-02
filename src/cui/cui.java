@@ -4,17 +4,13 @@ import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
 import exceptions.userExistsException;
 import exceptions.noCorrectNameException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class cui
-{
+public class cui {
 
     private DomainController dc;
     private String name;
@@ -23,28 +19,25 @@ public class cui
     boolean badInput = true;
     private boolean playedCard = false;
     private boolean cantNextTurn = false;
-    
+    private boolean continueGame = true;
+
     Scanner s = new Scanner(System.in);
 
-    public cui(DomainController dc)
-    {
+    public cui(DomainController dc) {
         this.dc = dc;
     }
 
-    public void startPazaak()
-    {
+    public void startPazaak() {
         boolean running = true;
+        
 
         Locale currentLocale = Locale.getDefault();
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
 
-        do
-        {
-            try
-            {
+        do {
+            try {
                 System.out.println("For English press 1 \nVoor Nederlands druk op 2 \nPour Français appuyez 3.");
-                switch (s.nextInt())
-                {
+                switch (s.nextInt()) {
                     case 1:
                         //ENGLISH
                         currentLocale = new Locale("en_US");
@@ -64,8 +57,7 @@ public class cui
                         System.out.println("Wrong number");
                         break;
                 }
-            } catch (InputMismatchException re)
-            {
+            } catch (InputMismatchException re) {
                 System.out.println("Value is not valid \nOngeldeige waarde \nValue invalable");
                 s.nextLine();
             }
@@ -75,16 +67,12 @@ public class cui
         Locale.setDefault(currentLocale);
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
         badInput = true;
-        do
-        {
-            do
-            {
-                try
-                {
+        do {
+            do {
+                try {
                     s.nextLine();
                     System.out.println(String.format(rs.getString("welcome")));
-                    switch (s.nextInt())
-                    {
+                    switch (s.nextInt()) {
                         //Test
                         case 1:
                             register();
@@ -98,8 +86,8 @@ public class cui
                             break;
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
+
                             dc.loadMatch("SaveGameTest4");
-                            System.out.printf("[Work in progress, sorry]");
                             badInput = false;
                             break;
                         case 4:
@@ -113,11 +101,9 @@ public class cui
                             System.out.println("Wrong number");
                             break;
                     }
-                } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex)
-                {
+                } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex) {
                     System.out.println(uex.getMessage());
-                } catch (InputMismatchException ime)
-                {
+                } catch (InputMismatchException ime) {
                     System.out.println(rs.getString("mismatch"));
                 }
             } while (badInput);
@@ -125,13 +111,11 @@ public class cui
 
     }
 
-    private String giveCards()
-    {
+    private String giveCards() {
         String back = "";
         String[][] arr;
         arr = dc.getPlayerData();
-        for (int i = 1; i <= arr.length - 1; i++)
-        {
+        for (int i = 1; i <= arr.length - 1; i++) {
             back += arr[i][0];
             back += arr[i][1];
             back += " ";
@@ -139,10 +123,8 @@ public class cui
         return back;
     }
 
-    private void register()
-    {
-        try
-        {
+    private void register() {
+        try {
 
             int date;
             System.out.println(String.format(rs.getString("inputRegister")));
@@ -153,20 +135,16 @@ public class cui
             dc.register(name, date);
             System.out.println(rs.getString("yourCards"));
             System.out.println(String.format(giveCards()));
-        } catch (noCorrectBirthyearException ne)
-        {
+        } catch (noCorrectBirthyearException ne) {
             System.out.println(rs.getString("noCorrectBirthYear"));
         }
     }
 
-    private void startGame()
-    {
+    private void startGame() {
         dc.makeMatch();
-        while (dc.getAmountPlayersStillNeeded() > 0)
-        {
+        while (dc.getAmountPlayersStillNeeded() > 0) {
             System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
-            for (String matchName : dc.getPlayerNames())
-            {
+            for (String matchName : dc.getPlayerNames()) {
                 System.out.println(matchName);
             }
             System.out.println(rs.getString("giveName"));
@@ -177,29 +155,23 @@ public class cui
         Boolean invoerYn = false;
         String input;
 
-        do
-        {
+        do {
             System.out.println(rs.getString("chosenPlayers"));
-            for (String matchPlayer : dc.getChosenPlayerNames())
-            {
+            for (String matchPlayer : dc.getChosenPlayerNames()) {
                 System.out.println(matchPlayer);
             }
             System.out.println(rs.getString("yesNo"));
 
             input = s.next().toLowerCase();
-            if (input.equals("yes") || input.equals("no"))
-            {
+            if (input.equals("yes") || input.equals("no")) {
 
-                if (input.equals("yes"))
-                {
+                if (input.equals("yes")) {
                     invoerYn = true;
-                } else
-                {
+                } else {
                     System.out.println(rs.getString("returningMain"));
                     invoerYn = true;
                 }
-            } else
-            {
+            } else {
                 System.out.println(rs.getString("notYN"));
                 invoerYn = false;
             }
@@ -210,14 +182,11 @@ public class cui
 
     }
 
-    private void makeMatchDeck()
-    {
-        while ((dc.getPlayersWithoutMatchDeck().length) > 0)
-        {
+    private void makeMatchDeck() {
+        while ((dc.getPlayersWithoutMatchDeck().length) > 0) {
             badInput = true;
             System.out.println(rs.getString("playersWithout"));
-            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
-            {
+            for (String matchPlayer : dc.getPlayersWithoutMatchDeck()) {
                 System.out.println(matchPlayer);
             }
             System.out.println(rs.getString("selectWithout"));
@@ -228,37 +197,31 @@ public class cui
             String[][] selectedCards = new String[0][2];
             String[][] selectedCardsCopy;
 
-            for (int i = 0; i <= 5; i++)
-            {
+            for (int i = 0; i <= 5; i++) {
                 System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
                 selectedCardsCopy = selectedCards;
                 int count = 1;
                 System.out.println(rs.getString("chooseNumber"));
-                for (String[] available : dc.showAvailableCards(selectedCards))
-                {
+                for (String[] available : dc.showAvailableCards(selectedCards)) {
                     System.out.println("[" + count++ + "] " + available[0] + available[1]);
                 }
                 inputNumber = s.nextInt();
                 String[][] available = dc.showAvailableCards(selectedCards);
-                if (inputNumber < 1 || inputNumber > available.length)
-                {
+                if (inputNumber < 1 || inputNumber > available.length) {
                     System.out.println(rs.getString("errorNumber"));
                 }
 
                 selectedCards = new String[i + 1][2];
-                for (int j = 0; j < selectedCardsCopy.length; j++)
-                {
+                for (int j = 0; j < selectedCardsCopy.length; j++) {
                     selectedCards[j][0] = selectedCardsCopy[j][0];
                     selectedCards[j][1] = selectedCardsCopy[j][1];
 
                 }
 
                 selectedCards[i][0] = available[inputNumber - 1][0];
-                if (selectedCards[i][0].equals("-"))
-                {
+                if (selectedCards[i][0].equals("-")) {
                     selectedCards[i][1] = "-" + available[inputNumber - 1][1];
-                } else
-                {
+                } else {
                     selectedCards[i][1] = available[inputNumber - 1][1];
                 }
             }
@@ -266,70 +229,73 @@ public class cui
         }
     }
 
-    private void matchStarted()
-    {
+    private void matchStarted() {
         System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
         System.out.println("AI match?");
         boolean ai = s.nextBoolean();
         dc.setAIMatch(ai);
         int roundAmount = 1;
-        do
-        {
+        do {
             startNewRound();
 
             roundAmount++;
-        } while (dc.matchEnded() == false);
+        } while (dc.matchEnded() == false || continueGame == true);
         System.out.println(rs.getString("winnerIs") + dc.whoWon());
     }
 
-    private void startNewRound()
-    {
+    private void startNewRound() {
         System.out.println(rs.getString("roundStarted"));
+        
         dc.startNewRound();
         playedCard = false;
-        do
-        {
-                if (playedCard == false)
-                {
-                    dc.nextTurn();            
-                }
-            
+        do {
+            if (playedCard == false) {
+                dc.nextTurn();
+            }
+
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false)
-            {
-                System.out.println("What do yo want to do?");
+            if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
+                System.out.println(rs.getString("whatWant"));
                 turnChoice(s.nextInt());
                 s.nextLine();
             }
         } while (!dc.roundEnded() || playedCard);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-        System.out.println("Do yo want save?");
-        
-            System.out.println("cui");
-            dc.saveMatch(s.nextLine());
-       
+        System.out.println(rs.getString("wantSave"));
+        String input = s.nextLine();
+        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+            System.out.println(rs.getString("whichName"));
+            input = s.nextLine();
+            dc.saveMatch(input);
+        } else {
+            if (input.toLowerCase().equals("n")) {
+                continueGame = false;
+            } else {
+                System.out.println(rs.getString("wrongInput"));
+            }
+        }
 
     }
-    
+
     private void turnChoice(int choice) {
-        switch(choice) {
-            case 1: 
+        switch (choice) {
+            case 1:
                 playedCard = false;
                 break;
             case 2:
                 //Indien geen kaarten moet hier nog komen
-                System.out.println("Which card do you want to be play?");
+                System.out.println(rs.getString("whichCard"));
                 dc.playCard(s.nextInt());
                 System.out.println(Arrays.deepToString(dc.getRoundSituation()));
                 playedCard = true;
                 break;
             case 3:
-                dc.freezeBoard();  
+                dc.freezeBoard();
                 playedCard = false;
                 break;
-                
+
         }
     }
 }
