@@ -20,6 +20,13 @@ public class Card{
     //Attributes
     private String type;
     private int value;
+    private int price;
+
+    public Card(String type, int value, int price)
+    {
+        this(type, value);
+        this.price = price;
+    }
     
     //Constructors
     public Card(String type, int value)
@@ -31,6 +38,16 @@ public class Card{
     public void setType(String type)
     {
         this.type = type;
+    }
+
+    public int getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(int price)
+    {
+        this.price = price;
     }
 
     public String getType()
@@ -88,6 +105,7 @@ public class Card{
         hash = 53 * hash + this.value;
         return hash;
     }
+    
     
     
 }
