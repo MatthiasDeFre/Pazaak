@@ -50,5 +50,7 @@ public class CardRepository {
     {
       cardMapper.buyCard(card, playerIndex);
     }
+    
+    
    
 }

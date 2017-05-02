@@ -151,9 +151,26 @@ public class MatchMapper {
         }
     }
 
-    public CardMapper getCardMapper()
+    public List<String> getSavegameNames()
     {
-        return cardMapper;
+        List<String> savegameNames = new ArrayList<>();
+         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        {
+            PreparedStatement query = conn.prepareStatement("SELECT matchName FROM ID222177_g07.Match");
+            try (ResultSet rs = query.executeQuery())
+            {
+                while (rs.next())
+                {
+                  savegameNames.add(rs.getString("matchName"));
+                         
+                }
+            }
+            
+        } catch (SQLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+       return savegameNames;
     }
     
     private int getMatchID(String matchName, java.sql.Connection conn) {
