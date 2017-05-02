@@ -7,8 +7,8 @@ import domain.DomainController;
 
 public class MainMenu extends BorderPane
 {
-     private final DomeinController dc;
-    
+     //private final DomeinController dc;
+     
      
      //public void panel {}
     

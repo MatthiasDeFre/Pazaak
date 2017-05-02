@@ -18,7 +18,7 @@ public class StartUpGUI
     public static void main(String[] args)
     {
         DomainController dc = new DomainController();
-        Scene scene = new Scene(new LanguageSelection(dc), 420, 69);
+        //Scene scene = new Scene(new LanguageSelection(dc), 420, 69);
         
         
 //        if (gebruiker nog geen taal heeft geselcteerd)
@@ -30,9 +30,9 @@ public class StartUpGUI
 //              Scene scene = new Scene(new MainMenu(dc), 420, 69);  
 //        }        
         
-        scene.getStylesheets().add("/gui/styles.css");
-        stage.setScene(scene);
-        stage.show();
+        //scene.getStylesheets().add("/gui/styles.css");
+        //stage.setScene(scene);
+        //stage.show();
     }
 
 }
