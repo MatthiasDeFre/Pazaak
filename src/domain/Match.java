@@ -230,14 +230,14 @@ public class Match{
     }
     
     public String[][] getRoundSituation() {
-        String[][] roundSituation = new String[6][];
+        String[][] roundSituation = new String[5][];
         Round currentRound = matchRounds.get(matchRounds.size()-1);
         roundSituation[0] = currentRound.getPlayersGameBoards()[0]; //Player 1 board
         roundSituation[1] =  currentRound.getPlayersGameBoards()[1]; //Player 2 board
         roundSituation[2] = new String[2]; //Scores 0 = player 1, 1 = player 2
-        roundSituation[3] = new String[matchPlayers.get(0).getMatchDeck(this).size()]; //Player 1 deck
-        roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()]; //Player 2 deck
-        roundSituation[5] = new String[1];
+        roundSituation[3] = new String[matchPlayers.get(currentRound.getCurrentPlayerIndex()).getMatchDeck(this).size()]; //Current Player deck
+      //   roundSituation[4] = new String[matchPlayers.get(1).getMatchDeck(this).size()]; //Player 2 deck
+        roundSituation[4] = new String[1];
      //   int[][] gameBoards = currentRound.getPlayersGameBoards();
        // String[][] gameBoardCardSort = currentRound.getPlayerGameBoardCardSorts();
         //Extra manier, check snelheid
@@ -251,14 +251,18 @@ public class Match{
             roundSituation[2][i] = String.valueOf(currentRound.getScores()[i]);
         }
       
-        for (int i = 3; i < 5; i++)
+     /*   for (int i = 3; i < 5; i++)
         {
             for (int j = 0; j < roundSituation[i].length; j++)
             {
                 roundSituation[i][j] = matchPlayers.get(i-3).getMatchDeck(this).get(j).getType() + matchPlayers.get(i-3).getMatchDeck(this).get(j).getValue();
             }
+        }*/
+        for (int j = 0; j < roundSituation[3].length; j++)
+        {
+            roundSituation[3][j] = matchPlayers.get(currentRound.getCurrentPlayerIndex()).getMatchDeck(this).get(j).getType() + matchPlayers.get(currentRound.getCurrentPlayerIndex()).getMatchDeck(this).get(j).getValue();
         }
-        roundSituation[5][0] = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getName();
+        roundSituation[4][0] = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getName();
         return roundSituation;
     }
     
@@ -290,4 +294,7 @@ public class Match{
     public void addRound(Round round) {
         matchRounds.add(round);
     }
+    
+   
+    
 }
