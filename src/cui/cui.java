@@ -86,8 +86,7 @@ public class cui {
                             break;
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
-
-                            dc.loadMatch("SaveGameTest4");
+                            loadMatch();
                             badInput = false;
                             break;
                         case 4:
@@ -297,5 +296,10 @@ public class cui {
                 break;
 
         }
+    }
+    
+    private void loadMatch(){
+        System.out.println(rs.getString("whichSave"));
+        dc.loadMatch(s.nextLine());
     }
 }
