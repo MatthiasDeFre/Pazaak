@@ -345,4 +345,20 @@ public class DomainController {
          
     }
     
+    public String[][] showBuyableCards(){
+        List<Card> buyableCardList= cardRepository.showBuyableCards(currentUser.getName());
+        String[][] buyableCardArray= new String[buyableCardList.size()][3];
+        Card card;
+        
+        for (int i = 0; i < buyableCardList.size(); i++)
+        {
+            card=buyableCardList.get(i);
+            buyableCardArray[i][0]=card.getType();
+            buyableCardArray[i][1]=String.valueOf(card.getValue());
+            buyableCardArray[i][2]=String.valueOf(card.getPrice());
+                  
+        }       
+        return buyableCardArray;    
+    }
+    
 }
