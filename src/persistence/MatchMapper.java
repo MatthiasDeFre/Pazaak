@@ -150,6 +150,11 @@ public class MatchMapper {
             throw new RuntimeException(ex);
         }
     }
+
+    public CardMapper getCardMapper()
+    {
+        return cardMapper;
+    }
     
     private int getMatchID(String matchName, java.sql.Connection conn) {
         int matchID = 0;
