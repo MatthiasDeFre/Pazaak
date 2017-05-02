@@ -264,20 +264,20 @@ public class CardMapper
         return card;
        }
        
-       public List<Card> showBuyableCards(int playerID){
+       public List<Card> showBuyableCards(String playerName){
            List<Card>buyableCards=new ArrayList<>();
            
            try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
            {
-           PreparedStatement query= conn.prepareStatement("SELECT Card_ID \n" +
+           PreparedStatement query= conn.prepareStatement("SELECT type, value, price \n" +
             "FROM   CardType\n" +
-            "WHERE  Card_ID NOT IN (SELECT Card_ID FROM Card WHERE P_ID = ?)");
-           query.setInt(1, playerID);
+            "WHERE  Card_ID NOT IN (SELECT Card_ID FROM Card INNER JOIN Player ON Player.P_ID=Card.P_ID WHERE playerName = ?)");
+           query.setString(1, playerName);
            try (ResultSet rs = query.executeQuery())
             {
-                if (rs.next())
+                while (rs.next())
                 {
-                    buyableCards.add(getCard(rs.getInt(1), conn));
+                    buyableCards.add( new Card(rs.getString("type"), rs.getInt("value"), rs.getInt("price")));
                 }
             }
            }

@@ -51,6 +51,8 @@ public class CardRepository {
       cardMapper.buyCard(card, playerIndex);
     }
     
-    
+    public List<Card> showBuyableCards(String playerName){
+        return cardMapper.showBuyableCards(playerName);
+    }
    
 }
