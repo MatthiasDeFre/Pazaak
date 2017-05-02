@@ -1,4 +1,4 @@
-package gui.scenes;
+package gui3.scenes;
 
 import javafx.scene.layout.BorderPane;
 import domain.DomainController;

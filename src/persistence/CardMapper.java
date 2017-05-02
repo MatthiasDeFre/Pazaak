@@ -282,7 +282,10 @@ public class CardMapper
             }
            }
            
-           catch()
+           catch(SQLException ex) {
+                 throw new RuntimeException(ex);
+           }
+           return buyableCards;
            
        }
        

@@ -246,6 +246,9 @@ public class DomainController {
         return winner.getName();
     }
     
+    /**
+     * Method to start a new Round to the current instance of match (newMatch)
+     */
     public void startNewRound() {
         newMatch.startNewRound();
     }

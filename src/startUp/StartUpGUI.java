@@ -6,8 +6,8 @@
 package startUp;
 
 import domain.DomainController;
-import gui.scenes.LanguageSelection;
-import gui.scenes.MainMenu;
+import gui3.scenes.LanguageSelection;
+import gui3.scenes.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 

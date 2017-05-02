@@ -1,5 +1,5 @@
 
-package gui.scenes;
+package gui3.scenes;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

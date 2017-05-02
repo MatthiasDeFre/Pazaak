@@ -41,6 +41,11 @@ public class CardRepository {
         return cardMapper.giveStartDeck();
     }
     
+    /**
+     * Method to buy a Card
+     * @param card Instance of Card
+     * @param playerIndex The id of the player where the Card needs to be added to
+     */
     public void buyCard(Card card, int playerIndex)
     {
       cardMapper.buyCard(card, playerIndex);

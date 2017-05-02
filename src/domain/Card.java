@@ -43,6 +43,10 @@ public class Card{
         this.value = value;
     }
 
+    /**
+     * Method to give the the signed representation of the Card value incase the Card is a +/- else it returns the unsigned representation of it
+     * @return The value of the Card 
+     */
     public int getValue()
     {
         if(getType().contains("+/-")) {
@@ -51,10 +55,17 @@ public class Card{
         return Math.abs(this.value);
     }
     
+    /**
+     * Method to give the the signed representation of the Card value
+     * @return The value of the Card 
+     */
     public int getTrueValue() {
         return this.value;
     }
 
+    /**
+     * Method to change the sign of the Card (Should only be used on +/- Cards
+     */
     public void changeSign() {
         this.value *= -1;
     }
