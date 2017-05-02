@@ -234,10 +234,13 @@ public class cui {
         System.out.println("AI match?");
         boolean ai = s.nextBoolean();
         dc.setAIMatch(ai);
+        playMatch();
+    }
+    
+    private void playMatch(){
         int roundAmount = 1;
         do {
             startNewRound();
-
             roundAmount++;
         } while (dc.matchEnded() == false || continueGame == true);
         System.out.println(rs.getString("winnerIs") + dc.whoWon());
@@ -254,6 +257,15 @@ public class cui {
             }
 
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+            String[][] situation = dc.getRoundSituation();
+            
+            for (String playerName : dc.getPlayerNames()) {
+                int index =0;
+                System.out.println(rs.getString("score") + playerName + situation[2][index]);
+                index++;
+            }
+            System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
+            
             // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
                 System.out.println(rs.getString("whatWant"));
@@ -300,6 +312,8 @@ public class cui {
     
     private void loadMatch(){
         System.out.println(rs.getString("whichSave"));
+        s.nextLine();
         dc.loadMatch(s.nextLine());
+        playMatch();
     }
 }
