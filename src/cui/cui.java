@@ -29,7 +29,6 @@ public class cui {
 
     public void startPazaak() {
         boolean running = true;
-        
 
         Locale currentLocale = Locale.getDefault();
         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
@@ -90,6 +89,9 @@ public class cui {
                             badInput = false;
                             break;
                         case 4:
+                            //methode voor een kaart te kopen
+                            buyCard();
+                        case 5:
                             //methode voor login
                             System.out.println(rs.getString("end"));
                             badInput = false;
@@ -161,18 +163,18 @@ public class cui {
             }
             System.out.println(rs.getString("yesNo"));
 
-            input = s.next().toLowerCase();
-            if (input.equals("yes") || input.equals("no")) {
+            input = s.next().substring(0, 1);
 
-                if (input.equals("yes")) {
-                    invoerYn = true;
-                } else {
+            if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+                invoerYn = true;
+            } else {
+                if (input.toLowerCase().equals("n")) {
                     System.out.println(rs.getString("returningMain"));
                     invoerYn = true;
+                } else {
+                    System.out.println(rs.getString("wrongInput"));
+                    invoerYn = false;
                 }
-            } else {
-                System.out.println(rs.getString("notYN"));
-                invoerYn = false;
             }
 
         } while (invoerYn == false);
@@ -195,36 +197,59 @@ public class cui {
             // String[][] selectedCards = new String[6][2];
             String[][] selectedCards = new String[0][2];
             String[][] selectedCardsCopy;
+            Boolean wantsToBuy = true;
+            do {
+                System.out.println(rs.getString("buyCard"));
 
-            for (int i = 0; i <= 5; i++) {
-                System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
-                selectedCardsCopy = selectedCards;
-                int count = 1;
-                System.out.println(rs.getString("chooseNumber"));
-                for (String[] available : dc.showAvailableCards(selectedCards)) {
-                    System.out.println("[" + count++ + "] " + available[0] + available[1]);
-                }
-                inputNumber = s.nextInt();
-                String[][] available = dc.showAvailableCards(selectedCards);
-                if (inputNumber < 1 || inputNumber > available.length) {
-                    System.out.println(rs.getString("errorNumber"));
-                }
+                String input = s.next().substring(0, 1);
 
-                selectedCards = new String[i + 1][2];
-                for (int j = 0; j < selectedCardsCopy.length; j++) {
-                    selectedCards[j][0] = selectedCardsCopy[j][0];
-                    selectedCards[j][1] = selectedCardsCopy[j][1];
+                if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
 
-                }
+                    System.out.println(rs.getString("whichCard"));
+                    int index = 0;
+                    for (String[] string : dc.showBuyableCards()) {
+                        System.out.println(index++ + ": " + Arrays.toString(string));
+                    }
+                    input = s.next();
+                    dc.buyCard(index - 1, selectedCards);
 
-                selectedCards[i][0] = available[inputNumber - 1][0];
-                if (selectedCards[i][0].equals("-")) {
-                    selectedCards[i][1] = "-" + available[inputNumber - 1][1];
                 } else {
-                    selectedCards[i][1] = available[inputNumber - 1][1];
+                    if (input.toLowerCase().equals("n")) {
+                        System.out.println(rs.getString("returningMain"));
+                        for (int i = 0; i <= 5; i++) {
+                            System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
+                            selectedCardsCopy = selectedCards;
+                            int count = 1;
+                            System.out.println(rs.getString("chooseNumber"));
+                            for (String[] available : dc.showAvailableCards(selectedCards)) {
+                                System.out.println("[" + count++ + "] " + available[0] + available[1]);
+                            }
+                            inputNumber = s.nextInt();
+                            String[][] available = dc.showAvailableCards(selectedCards);
+                            if (inputNumber < 1 || inputNumber > available.length) {
+                                System.out.println(rs.getString("errorNumber"));
+                            }
+
+                            selectedCards = new String[i + 1][2];
+                            for (int j = 0; j < selectedCardsCopy.length; j++) {
+                                selectedCards[j][0] = selectedCardsCopy[j][0];
+                                selectedCards[j][1] = selectedCardsCopy[j][1];
+
+                            }
+
+                            selectedCards[i][0] = available[inputNumber - 1][0];
+                            if (selectedCards[i][0].equals("-")) {
+                                selectedCards[i][1] = "-" + available[inputNumber - 1][1];
+                            } else {
+                                selectedCards[i][1] = available[inputNumber - 1][1];
+                            }
+                        }
+                        dc.makeMatchDeck(selectedCards);
+                    } else {
+                        System.out.println(rs.getString("notYN"));
+                    }
                 }
-            }
-            dc.makeMatchDeck(selectedCards);
+            } while (wantsToBuy);
         }
     }
 
@@ -236,8 +261,8 @@ public class cui {
         dc.setAIMatch(ai);
         playMatch();
     }
-    
-    private void playMatch(){
+
+    private void playMatch() {
         int roundAmount = 1;
         do {
             startNewRound();
@@ -248,7 +273,7 @@ public class cui {
 
     private void startNewRound() {
         System.out.println(rs.getString("roundStarted"));
-        
+
         dc.startNewRound();
         playedCard = false;
         do {
@@ -258,14 +283,15 @@ public class cui {
 
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             String[][] situation = dc.getRoundSituation();
-            
+            int index = 0;
             for (String playerName : dc.getChosenPlayerNames()) {
-                int index =0;
-                System.out.println(rs.getString("score") + playerName + situation[2][index]);
+
+                System.out.println(rs.getString("score") + playerName + " " + situation[2][index]);
                 index++;
             }
             System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
-            
+            System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
+
             // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
                 System.out.println(rs.getString("whatWant"));
@@ -275,6 +301,7 @@ public class cui {
         } while (!dc.roundEnded() || playedCard);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
         System.out.println(rs.getString("wantSave"));
+
         String input = s.nextLine();
         if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
             System.out.println(rs.getString("whichName"));
@@ -298,6 +325,11 @@ public class cui {
             case 2:
                 //Indien geen kaarten moet hier nog komen
                 System.out.println(rs.getString("whichCard"));
+                int count = 0;
+                String[][] situation = dc.getRoundSituation();
+                for (String string : situation[3]) {
+                    System.out.println(++count + ": " + string);
+                }
                 dc.playCard(s.nextInt());
                 System.out.println(Arrays.deepToString(dc.getRoundSituation()));
                 playedCard = true;
@@ -309,11 +341,20 @@ public class cui {
 
         }
     }
-    
-    private void loadMatch(){
+
+    private void loadMatch() {
         System.out.println(rs.getString("whichSave"));
+        System.out.println(Arrays.toString(dc.getSavegameNames()));
         s.nextLine();
         dc.loadMatch(s.nextLine());
         playMatch();
+    }
+
+    private void buyCard() {
+        System.out.println(rs.getString("whichPlayer"));
+        for (String matchName : dc.getPlayerNames()) {
+            System.out.println(matchName);
+
+        }
     }
 }
