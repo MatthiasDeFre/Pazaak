@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.MatchMapper;
@@ -35,5 +36,7 @@ public class MatchRepository {
         return newMatch;
     }
     
-    public 
+    public List<String> getSavegameNames() {
+        return matchMapper.getSavegameNames();
+    }
 }

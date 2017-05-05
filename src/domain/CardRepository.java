@@ -51,6 +51,11 @@ public class CardRepository {
       cardMapper.buyCard(card, playerIndex);
     }
     
+    /**
+     * Method to show all the Cards that the player doesn't own
+     * @param playerName Name of the player 
+     * @return List of Card objects containing: type, value and price
+     */
     public List<Card> showBuyableCards(String playerName){
         return cardMapper.showBuyableCards(playerName);
     }

@@ -259,7 +259,7 @@ public class cui {
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             String[][] situation = dc.getRoundSituation();
             
-            for (String playerName : dc.getPlayerNames()) {
+            for (String playerName : dc.getChosenPlayerNames()) {
                 int index =0;
                 System.out.println(rs.getString("score") + playerName + situation[2][index]);
                 index++;

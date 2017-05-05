@@ -346,7 +346,7 @@ public class DomainController {
     }
     
     public String[][] showBuyableCards(){
-        List<Card> buyableCardList= cardRepository.(currentUser.getName());
+        List<Card> buyableCardList= cardRepository.showBuyableCards(currentUser.getName());
         String[][] buyableCardArray= new String[buyableCardList.size()][3];
         Card card;
         

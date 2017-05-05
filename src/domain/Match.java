@@ -186,7 +186,7 @@ public class Match{
     //Round methods
     
     public int determineStartPlayer()
-    {
+    {   
         int startPlayerIndex = 0;
         if (matchPlayers.get(0).getbirthYear() > matchPlayers.get(1).getbirthYear() && ((matchRounds.size()+1) % 2) != 0)
         {
@@ -204,6 +204,9 @@ public class Match{
         return startPlayerIndex;
     }
 
+    /**
+     * Method to add a new round the match
+     */
     public void startNewRound()
     {   
         if(this.AI) {
@@ -213,15 +216,26 @@ public class Match{
         }
     }
     
+    /**
+     * Method to go to the nextTurn {@link domain.Round#nextTurn()}
+     */
     public void nextTurn() {
         matchRounds.get(matchRounds.size() -1).nextTurn();
     }
     
+    /**
+     * Method to freeze the board of the current player {@link domain.Round#freezeBoard()} 
+     */
     public void freezeBoard() {
           matchRounds.get(matchRounds.size() -1).freezeBoard();
           //matchRounds.get(matchRounds.size() -1).nextTurn();
     }
     
+    /**
+     * <pre> Method to check if the current round has ended.
+     * Incase the round has ended the results of the current round will be set</pre>
+     * @return 
+     */
     public boolean roundEnded() {
         if(matchRounds.get(matchRounds.size()-1).roundEnded()) {
             matchRounds.get(matchRounds.size()-1).setRoundEndedResults(matchPlayers);
@@ -229,6 +243,15 @@ public class Match{
         return matchRounds.get(matchRounds.size()-1).roundEnded();
     }
     
+    /**
+     * <pre>Method to return an array containing the current round's situation
+     * Index [0][] the gameboard of Player 1
+     * Index [1][] the gameboard of Player 2
+     * Index [2][] scores of the players [0] score player 1, [1] score player 2
+     * Index [3][] the deck of the currentplayer, only the current player's deck get shown to prevent cheating
+     * Index [4][] the name of the player whose turn it is
+     * @return An array containing all information to setup the the situation of a current round (see above for more information)
+     */
     public String[][] getRoundSituation() {
         String[][] roundSituation = new String[5][];
         Round currentRound = matchRounds.get(matchRounds.size()-1);
@@ -266,11 +289,22 @@ public class Match{
         return roundSituation;
     }
     
+    /**
+     * <pre> Method to retrieve the Card from the player his deck
+     * and add this to the current round's gameboard {@link domain.Round#playCard(domain.Card)}.
+     * This also removes the card from the player's deck</pre>
+     * @param cardIndex 
+     */
     public void playCard(int cardIndex) {
         Card cardToBePlayed = matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1);
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).remove(cardIndex-1);
         matchRounds.get(matchRounds.size()-1).playCard(cardToBePlayed);
     }
+    
+    /**
+     * Method to change the sign of the card (whose index was giving) of the current player
+     * @param cardIndex The index of the card that needs to be changed
+     */
     public void changeCardSign(int cardIndex){
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeSign();
     }
@@ -287,10 +321,18 @@ public class Match{
         return ((RoundAI)matchRounds.get(matchRounds.size()-1)).getAIwantsNextTurn();
     }
     
+    /**
+     * Method to return the current player
+     * @return 
+     */
     public Player getCurrentPlayer() {
         return  matchPlayers.get(matchRounds.get(matchRounds.size() -1).getCurrentPlayerIndex());
     }
     
+    /**
+     * Method to add an existing instance of Round to the match
+     * @param round Instance of Round, the instance should at least contain the status field 
+     */
     public void addRound(Round round) {
         matchRounds.add(round);
     }

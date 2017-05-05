@@ -133,7 +133,12 @@ public class Round{
         return this.status;
     }
     
-    
+    /**
+     * <pre> Method to go to the nextTurn {@link domain.Round#nextTurn()}
+     * Depending on the status of the gameboard ({@link domain.GameBoard#getFrozen()}
+     * will set the turn to the next player.
+     * If the next turn's player's board is not frozen a new Card will be added to his gameboard and removed from the setdeck</pre>
+     */
     public void nextTurn() {
         if(currentTurnPlayerIndex == 0 && gameBoardList.get(1).getFrozen() == false) {
             currentTurnPlayerIndex = 1;
