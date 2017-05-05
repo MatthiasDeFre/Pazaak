@@ -211,7 +211,7 @@ public class cui {
                         System.out.println(index++ + ": " + Arrays.toString(string));
                     }
                     input = s.next();
-                    dc.buyCard(index - 1, selectedCards);
+                 //   dc.buyCard(index - 1, );
 
                 } else {
                     if (input.toLowerCase().equals("n")) {

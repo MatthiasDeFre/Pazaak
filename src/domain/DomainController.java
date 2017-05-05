@@ -23,7 +23,7 @@ public class DomainController {
 	private Player currentUser;
         private CardRepository cardRepository;
         private Match newMatch;
-        
+        private MatchRepository matchRepository;
         private MatchMapper matchMapper;
         
         
@@ -32,6 +32,7 @@ public class DomainController {
 		players = new PlayerRepository();
                 cardRepository = new CardRepository();
                 matchMapper = new MatchMapper();
+                matchRepository = new MatchRepository();
 	}
     //Make a new user methods
         
@@ -343,6 +344,17 @@ public class DomainController {
     public void loadMatch(String matchName) {     
                 newMatch = matchMapper.loadMatchNoBlob(matchName);
          
+    }
+    
+    public String[] getSavegameNames(){
+        List<String> saveGamesList = matchRepository.getSavegameNames();
+        String[] saveGames = new String[saveGamesList.size()];
+        
+        for (int i =0; i < saveGamesList.size(); i++)
+        {
+            saveGames[i] = saveGamesList.get(i);
+        }
+        return saveGames;
     }
     
     public String[][] showBuyableCards(){
