@@ -74,6 +74,7 @@ public class cui {
                     switch (s.nextInt()) {
                         //Test
                         case 1:
+                            //methode om een nieuwe gerbuiker aan te maken
                             register();
                             badInput = false;
                             break;
@@ -89,9 +90,6 @@ public class cui {
                             badInput = false;
                             break;
                         case 4:
-                            //methode voor een kaart te kopen
-                            buyCard();
-                        case 5:
                             //methode voor login
                             System.out.println(rs.getString("end"));
                             badInput = false;
@@ -214,8 +212,7 @@ public class cui {
                  //   dc.buyCard(index - 1, );
 
                 } else {
-                    if (input.toLowerCase().equals("n")) {
-                        System.out.println(rs.getString("returningMain"));
+                    if (input.toLowerCase().equals("n")) {                       
                         for (int i = 0; i <= 5; i++) {
                             System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
                             selectedCardsCopy = selectedCards;
@@ -256,9 +253,17 @@ public class cui {
     private void matchStarted() {
         System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
-        System.out.println("AI match?");
-        boolean ai = s.nextBoolean();
-        dc.setAIMatch(ai);
+        System.out.println(rs.getString("wantAI"));
+        String input = s.nextLine().substring(0,1);
+        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+                dc.setAIMatch(true);
+            } else {
+                if (input.toLowerCase().equals("n")) {
+                    dc.setAIMatch(false);
+                } else {
+                    System.out.println(rs.getString("wrongInput"));
+                }
+            }
         playMatch();
     }
 
