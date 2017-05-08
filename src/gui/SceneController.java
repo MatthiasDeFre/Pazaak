@@ -29,8 +29,8 @@ public class SceneController  extends StackPane {
     
     //mainmuic voor methode
     URL mainMenuMusicURL = getClass().getResource("../../assets/sfx/music/Menu.mp3");
-    Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
-    MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
+    //Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
+    //MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
     
     
     
@@ -142,7 +142,7 @@ public class SceneController  extends StackPane {
         }
     }
     
-    public void startMusic() {
+  /*  public void startMusic() {
     // Main Menu music
     //word voorlopig niet gebruikt
     
@@ -157,7 +157,7 @@ public class SceneController  extends StackPane {
    
         mainMenuMusic.stop();
         
-    }
+    }*/
 
     
 }
