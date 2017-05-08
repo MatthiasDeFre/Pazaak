@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1100.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.MainMenuController">
+  <children>
+    <VBox fx:id="vbox" alignment="CENTER" layoutX="-7.0" maxHeight="675.0" maxWidth="1212.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1212.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
+      <children>
+            <ImageView fitHeight="117.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/menu/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="55.0" />
+               </VBox.margin>
+            </ImageView>
+            
+            <Label fx:id="lblTop" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="1.0" prefHeight="35.0" prefWidth="758.0" text="What else?" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow level="0.36" />
+               </effect>
+            </Label>
+            
+            <Button id="buttons" fx:id="btnStartGame" graphicTextGap="0.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#btnStartGameClick" onMouseEntered="#btnStartGameEnter" onMouseExited="#btnStartGameExit" prefHeight="50.0" prefWidth="450.0" stylesheets="@../../assets/css/menu.css" text="start game" textOverrun="CLIP" VBox.vgrow="NEVER">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button id="buttons" fx:id="btnRegister" graphicTextGap="0.0" layoutX="375.0" layoutY="340.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#btnRegisterClick" onMouseEntered="#btnRegisterEnter" onMouseExited="#btnRegisterExit" prefHeight="50.0" prefWidth="450.0" stylesheets="@../../assets/css/menu.css" text="register" textOverrun="CLIP">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button id="buttons" fx:id="btnCredits" graphicTextGap="0.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#btnCreditsClick" onMouseEntered="#btnCreditsEnter" onMouseExited="#btnCreditsExit" prefHeight="50.0" prefWidth="450.0" stylesheets="@../../assets/css/menu.css" text="CREDITS" textOverrun="CLIP">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="1212.0">
+               <children>
+                  <Button id="buttonL" fx:id="btnSettings" graphicTextGap="0.0" maxHeight="50.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnSettingsClick" onMouseEntered="#btnSettingsEnter" onMouseExited="#btnSettingsExit" prefHeight="69.0" prefWidth="150.0" stylesheets="@../../assets/css/menu.css" text="SETTINGS" textOverrun="CLIP">
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="buttonR" fx:id="btnExit" graphicTextGap="0.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#btnExitClick" onMouseEntered="#btnExitEnter" onMouseExited="#btnExitExit" stylesheets="@../../assets/css/menu.css" text="Exit" textOverrun="CLIP">
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/menu/sprite.gif" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ImageView>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

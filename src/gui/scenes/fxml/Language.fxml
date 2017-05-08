@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="675.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.LanguageController">
+  <children>
+      <BorderPane maxHeight="675.0" maxWidth="1200.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1200.0" styleClass="back" stylesheets="@../../assets/css/menu.css">
+         <center>
+          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1100.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="imgNL" fitHeight="69.0" fitWidth="111.0" onMouseClicked="#clickNL" onMouseEntered="#enterNL" onMouseExited="#exitNL" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/menu/NL.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgEN" fitHeight="69.0" fitWidth="111.0" onMouseClicked="#clickEN" onMouseEntered="#enterEN" onMouseExited="#exitEN" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/menu/EN.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imgFR" fitHeight="69.0" fitWidth="111.0" onMouseClicked="#clickFR" onMouseEntered="#enterFR" onMouseExited="#exitFR" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/menu/FR.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="270.0" />
+               </BorderPane.margin>
+          </HBox>
+         </center>
+         <bottom>
+            <Label fx:id="lblLang" style="-fx-font-size: 35;" text="Label" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="220.0" top="20.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+         </bottom>
+      </BorderPane>
+  </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1200.0" minHeight="675.0" minWidth="1200.0" prefHeight="675" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.SettingsController">
+  <children>
+    <VBox fx:id="vbox" alignment="CENTER" maxHeight="675" maxWidth="1100.0" minHeight="675" minWidth="1100.0" prefHeight="675" prefWidth="1200.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+            <Label id="label" fx:id="lblSettings" stylesheets="@../../assets/css/menu.css" text="Label" />
+            
+            <Button id="buttons" fx:id="btnLanguage" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnLanguageClick" onMouseEntered="#btnLanguageEnter" onMouseExited="#btnLanguageExit" stylesheets="@../../assets/css/menu.css" text="LANGUAGE" textOverrun="CLIP" VBox.vgrow="NEVER">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button id="buttons" fx:id="btnSound" graphicTextGap="0.0" layoutX="375.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnSoundClick" onMouseEntered="#btnSoundEnter" onMouseExited="#btnSoundExit" stylesheets="@../../assets/css/menu.css" text="MUTE SOUND" textOverrun="CLIP">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" layoutX="377.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" stylesheets="@../../assets/css/menu.css" text="MAIN MENU" textOverrun="CLIP">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

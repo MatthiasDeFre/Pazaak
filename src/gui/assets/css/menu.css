@@ -1,0 +1,83 @@
+.back {
+    -fx-background-color: #081F29;
+    -fx-font-family: "Upheaval TT -BRK-";  
+    
+
+    -fx-text-fill: white;
+     
+}
+
+.lblLanguage {
+    -fx-font-size: 25;
+    
+}
+
+#label {
+    
+    -fx-text-fill: white;
+    -fx-font-family: "Upheaval TT -BRK-";
+    -fx-font-size: 30;
+-fx-margin: -50px;
+}
+
+.label {
+    
+    -fx-text-fill: white;
+    -fx-font-family: "Upheaval TT -BRK-";
+    -fx-font-size: 30;
+    -fx-margin: -50px;
+}
+
+
+
+#buttons {
+    
+    
+    -fx-font-family: "Upheaval TT -BRK-";   
+    -fx-font-size: 25;
+    -fx-text-fill: black;
+    
+    -fx-background-color: #FF9800;
+    -fx-background-radius: 1;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-border-color: #424242;
+    -fx-border-width: 3px;
+    -fx-padding: 5 5 5 5;
+    -fx-min-width: 400px;
+    
+}
+
+#buttonL {
+    
+    
+    -fx-font-family: "Upheaval TT -BRK-";   
+    -fx-font-size: 25;
+    -fx-text-fill: black;
+    
+    -fx-background-color: #FF9800;
+    -fx-background-radius: 1;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-border-color: #424242;
+    -fx-border-width: 3px;
+    -fx-padding: 5 5 5 5;
+    -fx-min-width: 215px;
+
+    
+}
+
+#buttonR {
+    
+    
+    -fx-font-family: "Upheaval TT -BRK-";   
+    -fx-font-size: 25;
+    -fx-text-fill: black;
+    
+    -fx-background-color: #FF9800;
+    -fx-background-radius: 1;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-border-color: #424242;
+    -fx-border-width: 3px;
+    -fx-padding: 5 5 5 5;
+    -fx-min-width: 215px;
+    
+}
