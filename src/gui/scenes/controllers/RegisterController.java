@@ -18,6 +18,8 @@ public class RegisterController implements Initializable, _Scene {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 rs = rb;
+
+
     }    
     
     @Override

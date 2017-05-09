@@ -40,6 +40,7 @@ public class MainMenuController implements Initializable, _Scene {
     
     //scene controller
     SceneController controller;
+     private ResourceBundle rs;
     
     // Main Menu music
     URL mainMenuMusicURL = getClass().getResource("../../assets/sfx/music/Menu.mp3");
@@ -86,28 +87,29 @@ public class MainMenuController implements Initializable, _Scene {
     
     
     public void initialize(URL url, ResourceBundle rb) {
+        rs = rb;
         
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         
         lblTop.setText(randomTop[index]);
         
         //assert btnStartGame != null;
-        btnStartGame.setText(rb.getString("startGame")); 
+        btnStartGame.setText(rs.getString("startGame")); 
         
         btnStartGame.setGraphic(imgStartGame);
         
         //assert btnRegister != null;
-        btnRegister.setText(rb.getString("register"));
+        btnRegister.setText(rs.getString("register"));
         btnRegister.setGraphic(imgRegister);
         
-        btnCredits.setText(rb.getString("credits"));
+        btnCredits.setText(rs.getString("credits"));
         btnCredits.setGraphic(imgCredits);
         
         //assert btnSettings != null;
-        btnSettings.setText(rb.getString("settings"));
+        btnSettings.setText(rs.getString("settings"));
         btnSettings.setGraphic(imgSettings);
         
-        btnExit.setText(rb.getString("exit"));
+        btnExit.setText(rs.getString("exit"));
         btnExit.setGraphic(imgExit);
         
         
