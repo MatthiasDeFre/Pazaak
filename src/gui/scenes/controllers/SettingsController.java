@@ -29,7 +29,7 @@ public class SettingsController implements Initializable, _Scene {
     
     //scene controller
     SceneController controller;
-    
+     private ResourceBundle rs;
     
     
     
@@ -60,7 +60,7 @@ public class SettingsController implements Initializable, _Scene {
     
     
     public void initialize(URL url, ResourceBundle rb) {
-        
+        rs = rb;
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         
         hoverAudioClip.setVolume(0.5);
@@ -86,6 +86,7 @@ public class SettingsController implements Initializable, _Scene {
     
     
     
+    @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
         controller.unloadScreen(Main.screen1ID);

@@ -9,8 +9,8 @@ import javafx.stage.StageStyle;
 public interface _Scene {
     
     //set parrent
-    public void setScreenParent(SceneController screenPage);
+    public abstract void setScreenParent(SceneController screenPage);
 
-    
-    
+   
+
 }

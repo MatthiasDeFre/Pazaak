@@ -47,6 +47,7 @@ public class CreditsController implements Initializable, _Scene {
     
     
     
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         
@@ -115,6 +116,7 @@ public class CreditsController implements Initializable, _Scene {
     
     
     
+    @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
             controller.unloadScreen(Main.screen1ID);

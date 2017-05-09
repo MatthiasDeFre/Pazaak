@@ -5,6 +5,7 @@ package gui.scenes.controllers;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
+import java.security.interfaces.RSAKey;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,7 +25,8 @@ import javafx.scene.text.Font;
 
 
 public class GameController implements Initializable, _Scene {
-    
+    //lagnuage
+    private ResourceBundle rs;
     //scene controller
     SceneController controller;
     
@@ -57,7 +59,7 @@ public class GameController implements Initializable, _Scene {
     public void initialize(URL url, ResourceBundle rb) {
         
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
-        
+        rs = rb;
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
@@ -78,6 +80,7 @@ public class GameController implements Initializable, _Scene {
     
     
     
+    @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
         

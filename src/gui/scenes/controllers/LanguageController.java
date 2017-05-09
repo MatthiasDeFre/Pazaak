@@ -5,6 +5,7 @@ package gui.scenes.controllers;
 import gui.Main;
 import gui.SceneController;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +20,9 @@ import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 
 public class LanguageController implements Initializable , _Scene {
-
+ private ResourceBundle rs;
     SceneController controller;
+    Locale currentLocale = Locale.getDefault();
     
     @FXML private ImageView imgNL;
     @FXML private ImageView imgEN;
@@ -77,9 +79,11 @@ public class LanguageController implements Initializable , _Scene {
     private void clickNL(){
        //hier handmatig laden ander start muziek al
        clickAudioClip.play();
+       controller.setLanguague(2);
        controller.unloadScreen(Main.screen1ID);
        controller.loadScreen(Main.screen1ID, Main.screen1File);
        controller.setScreen(Main.screen1ID);
+       
        
     }
     
@@ -105,9 +109,12 @@ public class LanguageController implements Initializable , _Scene {
     @FXML
     private void clickEN(){
        //hier handmatig laden ander start muziek al
+       
        clickAudioClip.play();
+        controller.setLanguague(1);
        controller.loadScreen(Main.screen1ID, Main.screen1File);
        controller.setScreen(Main.screen1ID);
+      
        
     }
     
@@ -130,10 +137,13 @@ public class LanguageController implements Initializable , _Scene {
     //FR
     @FXML
     private void clickFR(){
+        
        //hier handmatig laden ander start muziek al
        clickAudioClip.play();
+     controller.setLanguague(3);
        controller.loadScreen(Main.screen1ID, Main.screen1File);
        controller.setScreen(Main.screen1ID);
+       
        
     }
     
