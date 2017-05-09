@@ -61,7 +61,7 @@ public class RegisterController implements Initializable, _Scene {
        
        clickAudioClip.play();
        
-       controller.setScreen(Main.screen2ID);
+       controller.setScreen(Main.screen1ID);
        
        
     }
@@ -91,7 +91,7 @@ public class RegisterController implements Initializable, _Scene {
        
        clickAudioClip.play();
        
-       controller.setScreen(Main.screen2ID);
+       lblError.setText("klik");
        
        
     }
