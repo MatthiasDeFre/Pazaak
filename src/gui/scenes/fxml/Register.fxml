@@ -10,27 +10,34 @@
 
 <AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.RegisterController">
   <children>
-    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="register">
+        <Label id="big" fx:id="lblRegister" text="register">
           <font>
             <Font size="18.0" />
           </font>
         </Label>
-            <Label text="Name" />
-            <TextField>
+            <Label fx:id="lblName" text="Name" />
+            <TextField id="textField" fx:id="txtName" maxWidth="240.0" minHeight="25.0" promptText="name">
                <VBox.margin>
                   <Insets left="300.0" right="300.0" />
                </VBox.margin>
+               <font>
+                  <Font size="33.0" />
+               </font>
             </TextField>
-            <Label text="Birthyear" />
-            <TextField>
+            <Label fx:id="lblBirthYear" text="Birthyear" />
+            <TextField id="textField" fx:id="txtBirthYear" maxWidth="240.0" minHeight="25.0" promptText="birthyear">
                <VBox.margin>
                   <Insets left="300.0" right="300.0" />
                </VBox.margin>
+               <font>
+                  <Font size="33.0" />
+               </font>
             </TextField>
-            <Button mnemonicParsing="false" text="Button" />
-            <Label text="Label" />
+            <Label id="error" fx:id="lblError" text="Label" />
+            <Button id="buttons" fx:id="btnRegister" mnemonicParsing="false" text="Register" />
+            <Button id="buttons" fx:id="btnMainmenu" layoutX="410.0" layoutY="467.0" mnemonicParsing="false" text="Main Menu" />
       </children>
     </VBox>
   </children>

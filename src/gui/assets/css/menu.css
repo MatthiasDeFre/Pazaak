@@ -12,6 +12,17 @@
     
 }
 
+#big {
+    -fx-font-size: 45;
+    
+}
+
+#error {
+    -fx-font-size: 21;
+    -fx-text-fill: red;
+    
+}
+
 #label {
     
     -fx-text-fill: white;
@@ -81,3 +92,26 @@
     -fx-min-width: 215px;
     
 }
+
+#textField {
+
+    -fx-font-family: "Upheaval TT -BRK-";   
+    -fx-font-size: 25;
+    -fx-border-color: #424242;
+    -fx-focus-color: #FF9800;
+    -fx-border-width: 3px;
+}
+
+#textField:hover {
+
+
+    -fx-font-size: 25;
+    -fx-border-color: #FF9800;
+}
+
+/*#textField:focused {
+
+
+    -fx-font-size: 25;
+    -fx-border-color: #FF9800;
+}*/

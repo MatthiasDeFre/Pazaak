@@ -183,7 +183,7 @@ private ResourceBundle rs;
                 }
         Locale.setDefault(currentLocale);
          rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-         System.out.println(rs.getString("welcome"));
+         
     }
     
   /*  public void startMusic() {
