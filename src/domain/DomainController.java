@@ -306,17 +306,17 @@ public class DomainController {
         return newMatch.getAIWantsNextTurn();
     }
     
-    public void buyCard(int cardIndex,String[][]availableCard)
+    public void buyCard(String[] availableCard)
     {
         //MAAK EEN KAART
-        int cardValue = Integer.parseInt(availableCard[cardIndex][1]);
+        int cardValue = Integer.parseInt(availableCard[1]);
         
-        if (availableCard[cardIndex][0].equals("-"))
+        if (availableCard[0].equals("-"))
         {
             cardValue*=-1;
         }
         
-        Card card = new Card(availableCard[cardIndex][0],cardValue);
+        Card card = new Card(availableCard[0],cardValue);
         
         if(currentUser.getCredit() < card.getPrice() )
         {
