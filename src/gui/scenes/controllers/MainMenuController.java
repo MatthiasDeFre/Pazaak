@@ -5,6 +5,7 @@ package gui.scenes.controllers;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -27,11 +28,15 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
-
+import sun.security.rsa.RSACore;
 
 
 
 public class MainMenuController implements Initializable, _Scene {
+    
+    //Languageshizzle
+  
+    
     
     //scene controller
     SceneController controller;
@@ -70,6 +75,8 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML private Button btnCredits;
     @FXML private Button btnExit;
     @FXML private Label lblTop;
+
+   
     
      
         
@@ -85,22 +92,24 @@ public class MainMenuController implements Initializable, _Scene {
         lblTop.setText(randomTop[index]);
         
         //assert btnStartGame != null;
-        btnStartGame.setText("Start Game"); 
+        btnStartGame.setText(rb.getString("startGame")); 
+        
         btnStartGame.setGraphic(imgStartGame);
         
         //assert btnRegister != null;
-        btnRegister.setText("Register");
+        btnRegister.setText(rb.getString("register"));
         btnRegister.setGraphic(imgRegister);
         
-        btnCredits.setText("Credits");
+        btnCredits.setText(rb.getString("credits"));
         btnCredits.setGraphic(imgCredits);
         
         //assert btnSettings != null;
-        btnSettings.setText("Settings");
+        btnSettings.setText(rb.getString("settings"));
         btnSettings.setGraphic(imgSettings);
         
-        btnExit.setText("Exit");
+        btnExit.setText(rb.getString("exit"));
         btnExit.setGraphic(imgExit);
+        
         
        
         
@@ -118,6 +127,7 @@ public class MainMenuController implements Initializable, _Scene {
     
     
     
+    @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
         
@@ -162,7 +172,6 @@ public class MainMenuController implements Initializable, _Scene {
         clickAudioClip.play();
         controller.loadScreen(Main.screen4ID, Main.screen4File);
         controller.setScreen(Main.screen4ID);
-        System.out.println("s");
        
     }
     
@@ -274,6 +283,6 @@ public class MainMenuController implements Initializable, _Scene {
        btnExit.setScaleX(1);
        btnExit.setScaleY(1);
        
-        
+       
     }
 }

@@ -10,17 +10,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 
+
 public class RegisterController implements Initializable, _Scene {
 
-    SceneController controller;
-
+    private SceneController controller;
+ private ResourceBundle rs;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+rs = rb;
     }    
     
+    @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
+        
     }
 
     @FXML

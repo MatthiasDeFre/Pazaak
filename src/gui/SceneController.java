@@ -19,11 +19,20 @@ import java.net.URL;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.StageStyle;
+import domain.DomainController;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 //scherm toevoegen --> 
 
 public class SceneController  extends StackPane {
+    
+    //language
+private ResourceBundle rs;
+ Locale currentLocale = Locale.getDefault();
 
+
+    private DomainController dc = new DomainController();
     private HashMap<String, Node> screens = new HashMap<>();
     
     
@@ -37,6 +46,7 @@ public class SceneController  extends StackPane {
     
     public SceneController() {
         super();//mario
+        
     }
 
     //scherm toevoegrn aan lijst
@@ -55,6 +65,7 @@ public class SceneController  extends StackPane {
         try {
             
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
+            myLoader.setResources(rs);
             Parent loadScreen = (Parent) myLoader.load();
             _Scene myScreenControler = ((_Scene) myLoader.getController());
             myScreenControler.setScreenParent(this);
@@ -140,6 +151,39 @@ public class SceneController  extends StackPane {
         } else {
             return true;
         }
+        
+    }
+    
+    public DomainController getDC(){
+        return dc;
+    }
+    
+    public ResourceBundle getRS() {
+    rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+    return rs;
+}
+    
+    public void setLanguague(int index){
+        switch (index) {
+                    case 1:
+                        //ENGLISH
+                        currentLocale = new Locale("en_US");
+                        break;
+                    case 2:
+                        //NEDERLANDS
+                        currentLocale = new Locale("nl_BE"); 
+                        break;
+                    case 3:
+                        //FRENCH
+                        currentLocale = new Locale("fr_FR");   
+                        break;
+                    default:
+                        System.out.println("Wrong number");
+                        break;
+                }
+        Locale.setDefault(currentLocale);
+         rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+         System.out.println(rs.getString("welcome"));
     }
     
   /*  public void startMusic() {
