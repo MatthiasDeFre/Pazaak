@@ -34,9 +34,23 @@ public class GameBoard {
         } else if(cardType.contains("&")){
             for (Card gameBoardCard : gameBoardCards)
             {
-                //if(gameBoardCard.getValue() ==)
+                if(!gameBoardCard.getType().equals("setDeckCard"))
+                {
+                    switch(gameBoardCard.getType()){
+                        case "+":gameBoardCard.setType("-");break;
+                        case "-":gameBoardCard.setType("+");break;
+                        
+                        
+                    }
+                    gameBoardCard.changeSign();
+                }
+                    
+                    
             }
+        }else if(cardType.contains("xT")){
+            frozen=true;
         }
+        
         gameBoardCards.add(card);
     }
 
@@ -57,6 +71,7 @@ public class GameBoard {
     {
         return this.gameBoardCards;
     }
+
 
     /**
      * <pre> Method to calculate the score of the gameboard and return it
