@@ -145,6 +145,10 @@ public class Player{
                 
                 throw new noCorrectNameException(rs.getString("lengthLessThanThree"));
             }
+            if(name.length()>68)
+            {              
+                throw new noCorrectNameException(rs.getString("lengthTooLong"));
+            }
             Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
             Matcher m = p.matcher(name);
             boolean b = m.find();
