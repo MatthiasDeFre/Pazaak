@@ -57,6 +57,12 @@ public class MainMenuController implements Initializable, _Scene {
     
     //exit sound
     final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit.mp3").toExternalForm());
+    final AudioClip Exit2AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit2.mp3").toExternalForm());
+    final AudioClip Exit3AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit3.mp3").toExternalForm());
+    
+    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
+    Random random1 = new Random();
+    int index1 = random1.nextInt(randomExit.length);
     
     ImageView imgExit = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/exit.png"), 42,34, true, true));
     ImageView imgSettings = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/settings.png"), 42,32, true, true));
@@ -67,7 +73,7 @@ public class MainMenuController implements Initializable, _Scene {
     //random zinnen hier:
     final String[] randomTop = {"Made in Düsseldorf", "Deze zin is bijzaak", "Dé polyvalente kaartsimulator", "Sponsored by Danio Danone"};
     Random random = new Random();
-    int index = random.nextInt(randomTop.length);
+    int index = random.nextInt(randomTop.length-1);
 
     
     @FXML private Button btnStartGame;
@@ -201,7 +207,7 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML
     public void btnCreditsClick(){
      
-        clickAudioClip.play();
+        
         mainMenuMusic.stop();
         controller.loadScreen(Main.screen5ID, Main.screen5File);
         controller.setScreen(Main.screen5ID);
@@ -261,15 +267,38 @@ public class MainMenuController implements Initializable, _Scene {
     
     @FXML
     public void btnExitClick() throws InterruptedException{
-     
+        
+       // lblTop.setText("Closing");
         //clickAudioClip.play();
+        
+        
         mainMenuMusic.stop();
-        ExitAudioClip.play();
-        Thread.sleep(2000);
-        Platform.exit();
+        
+        randomExit[index1].play();
+        
+        switch(index1) {
+            
+            //win xp
+            case 0: Thread.sleep(2000);
+                    Platform.exit();
+                    break;
+            
+            //win vista
+            case 1: Thread.sleep(2200);
+                    Platform.exit();
+                    break;
+               
+            //win 7
+            case 2: Thread.sleep(4200);
+                    Platform.exit();
+                    break;
+            
+            
+        }
        
     }
     
+ 
     @FXML
     public void btnExitEnter(){
         

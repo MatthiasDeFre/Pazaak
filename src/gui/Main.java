@@ -31,6 +31,8 @@ public class Main extends Application {
     public static String screen6File = "scenes/fxml/SideDeck.fxml";
     public static String screen7ID = "Game";
     public static String screen7File = "scenes/fxml/Game.fxml";
+    public static String screen8ID = "Intro";
+    public static String screen8File = "scenes/fxml/Intro.fxml";
     
 
     
@@ -52,9 +54,10 @@ public class Main extends Application {
         //mainContainer.loadScreen(Main.screen3ID, Main.screen3File);
         //mainContainer.loadScreen(Main.screen4ID, Main.screen4File);
         //mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
+        mainContainer.loadScreen(Main.screen8ID, Main.screen8File);
         
         //beginscherm:
-        mainContainer.setScreen(Main.screen2ID);
+        mainContainer.setScreen(Main.screen8ID);
         
         
 
