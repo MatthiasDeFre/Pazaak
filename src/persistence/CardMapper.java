@@ -270,8 +270,8 @@ public class CardMapper
            try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
            {
            PreparedStatement query= conn.prepareStatement("SELECT type, value, price \n" +
-            "FROM   CardType\n" +
-            "WHERE  Card_ID NOT IN (SELECT Card_ID FROM Card INNER JOIN Player ON Player.P_ID=Card.P_ID WHERE playerName = ?)");
+            "FROM ID222177_g07.CardType\n" +
+            "WHERE Card_ID NOT IN (SELECT Card_ID FROM ID222177_g07.Card INNER JOIN ID222177_g07.Player ON Player.P_ID=Card.P_ID WHERE playerName = ?)");
            query.setString(1, playerName);
            try (ResultSet rs = query.executeQuery())
             {
