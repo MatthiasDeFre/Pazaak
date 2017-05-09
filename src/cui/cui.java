@@ -185,7 +185,8 @@ public class cui {
         while ((dc.getPlayersWithoutMatchDeck().length) > 0) {
             badInput = true;
             System.out.println(rs.getString("playersWithout"));
-            for (String matchPlayer : dc.getPlayersWithoutMatchDeck()) {
+            for (String matchPlayer : dc.getPlayersWithoutMatchDeck())
+            {
                 System.out.println(matchPlayer);
             }
             System.out.println(rs.getString("selectWithout"));
@@ -195,58 +196,65 @@ public class cui {
             // String[][] selectedCards = new String[6][2];
             String[][] selectedCards = new String[0][2];
             String[][] selectedCardsCopy;
-            Boolean wantsToBuy = true;
-            do {
+
+            //   dc.buyCard(index - 1, );
+            for (int i = 0; i <= 5; i++)
+            {
+
                 System.out.println(rs.getString("buyCard"));
-
                 String input = s.next().substring(0, 1);
+                if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y"))
+                {
+                    boolean buyCard = true;
+                    while (buyCard)
+                    {
 
-                if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-
-                    System.out.println(rs.getString("whichCard"));
-                    int index = 0;
-                    for (String[] string : dc.showBuyableCards()) {
-                        System.out.println(index++ + ": " + Arrays.toString(string));
-                    }
-                    input = s.next();
-                 //   dc.buyCard(index - 1, );
-
-                } else {
-                    if (input.toLowerCase().equals("n")) {                       
-                        for (int i = 0; i <= 5; i++) {
-                            System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
-                            selectedCardsCopy = selectedCards;
-                            int count = 1;
-                            System.out.println(rs.getString("chooseNumber"));
-                            for (String[] available : dc.showAvailableCards(selectedCards)) {
-                                System.out.println("[" + count++ + "] " + available[0] + available[1]);
-                            }
-                            inputNumber = s.nextInt();
-                            String[][] available = dc.showAvailableCards(selectedCards);
-                            if (inputNumber < 1 || inputNumber > available.length) {
-                                System.out.println(rs.getString("errorNumber"));
-                            }
-
-                            selectedCards = new String[i + 1][2];
-                            for (int j = 0; j < selectedCardsCopy.length; j++) {
-                                selectedCards[j][0] = selectedCardsCopy[j][0];
-                                selectedCards[j][1] = selectedCardsCopy[j][1];
-
-                            }
-
-                            selectedCards[i][0] = available[inputNumber - 1][0];
-                            if (selectedCards[i][0].equals("-")) {
-                                selectedCards[i][1] = "-" + available[inputNumber - 1][1];
-                            } else {
-                                selectedCards[i][1] = available[inputNumber - 1][1];
-                            }
+                        System.out.println(rs.getString("whichCard"));
+                        int index = 0;
+                        for (String[] string : dc.showBuyableCards())
+                        {
+                            System.out.println(index++ + ": " + Arrays.toString(string));
                         }
-                        dc.makeMatchDeck(selectedCards);
-                    } else {
-                        System.out.println(rs.getString("notYN"));
+                        System.out.println(rs.getString("buyCard"));
+                        buyCard = s.nextBoolean();
+                    }
+                } else if (input.toLowerCase().equals("n"))
+                {
+                    System.out.println(rs.getString("youNeed") + " " + (6 - i) + " " + rs.getString("more"));
+                    selectedCardsCopy = selectedCards;
+                    int count = 1;
+                    System.out.println(rs.getString("chooseNumber"));
+                    for (String[] available : dc.showAvailableCards(selectedCards))
+                    {
+                        System.out.println("[" + count++ + "] " + available[0] + available[1]);
+                    }
+                    inputNumber = s.nextInt();
+                    String[][] available = dc.showAvailableCards(selectedCards);
+                    if (inputNumber < 1 || inputNumber > available.length)
+                    {
+                        System.out.println(rs.getString("errorNumber"));
+                    }
+
+                    selectedCards = new String[i + 1][2];
+                    for (int j = 0; j < selectedCardsCopy.length; j++)
+                    {
+                        selectedCards[j][0] = selectedCardsCopy[j][0];
+                        selectedCards[j][1] = selectedCardsCopy[j][1];
+
+                    }
+
+                    selectedCards[i][0] = available[inputNumber - 1][0];
+                    if (selectedCards[i][0].equals("-"))
+                    {
+                        selectedCards[i][1] = "-" + available[inputNumber - 1][1];
+                    } else
+                    {
+                        selectedCards[i][1] = available[inputNumber - 1][1];
                     }
                 }
-            } while (wantsToBuy);
+            }
+                dc.makeMatchDeck(selectedCards);
+         
         }
     }
 
