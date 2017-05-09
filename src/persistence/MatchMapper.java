@@ -198,14 +198,17 @@ public class MatchMapper {
         int matchID= 0;
         int[] playerID = new int[2];
         Match match = new Match();
+        boolean matchFound = false;
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("SELECT matchID, player1ID, player2ID FROM ID222177_g07.Match WHERE matchName = ?");
             query.setString(1, name);
+          
             try (ResultSet rs = query.executeQuery())
             {
                 while (rs.next())
                 {
+                    matchFound = true;
                     matchID = rs.getInt("matchID");
                     playerID[0] = rs.getInt("player1ID");
                     playerID[1] = rs.getInt("player2ID");
@@ -226,6 +229,9 @@ public class MatchMapper {
         } catch (SQLException ex)
         {
             throw new RuntimeException(ex);
+        }
+        if(matchFound == false) {
+            match = null;
         }
         return match;
     }

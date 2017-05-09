@@ -2,20 +2,9 @@ package domain;
 
 import java.util.List;
 import exceptions.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import persistence.MatchMapper;
-import persistence.PlayerMapper;
 public class DomainController {
     
     //Attributes
@@ -317,21 +306,28 @@ public class DomainController {
         return newMatch.getAIWantsNextTurn();
     }
     
-    public void buyCard(int cardIndex,String[][]availableCard)
+    public void buyCard(String[] availableCard)
     {
         //MAAK EEN KAART
-        int cardValue = Integer.parseInt(availableCard[cardIndex][1]);
+        int cardValue = Integer.parseInt(availableCard[1]);
         
-        if (availableCard[cardIndex][0].equals("-"))
+        if (availableCard[0].equals("-"))
         {
             cardValue*=-1;
         }
         
-        Card card = new Card(availableCard[cardIndex][0],cardValue);
+        Card card = new Card(availableCard[0],cardValue);
+        
+        if(currentUser.getCredit() < card.getPrice() )
+        {
+            ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+            throw new notEnoughCreditsException(rs.getString("notEnoughCredits"));
+        }
         
         //GEEF KAART MEE AAN REPO
         cardRepository.buyCard(card,players.getPlayerId(currentUser));
-        
+        currentUser.setCredit(currentUser.getCredit()-card.getPrice());
+        players.setPlayerCredit(currentUser);
         //VOEG KAART TOE AAN LOKAAL MATCHDECK OF VRAAG MATCHDECK OPNIEUW OP IN DE DATABASE
         currentUser.getDeck().add(card);
     }

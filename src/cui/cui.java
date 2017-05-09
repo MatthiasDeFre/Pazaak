@@ -356,11 +356,19 @@ public class cui {
     }
 
     private void loadMatch() {
+        Boolean input = true;
+        do {
+        try {    
         System.out.println(rs.getString("whichSave"));
         System.out.println(Arrays.toString(dc.getSavegameNames()));
         s.nextLine();
         dc.loadMatch(s.nextLine());
         playMatch();
+        input=false;
+         } catch (IndexOutOfBoundsException ioe) {
+            System.out.println(rs.getString("errorLoad"));
+        }
+         } while (input);
     }
 
     private void buyCard() {

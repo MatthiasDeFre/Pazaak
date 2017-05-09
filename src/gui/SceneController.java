@@ -157,11 +157,7 @@ private ResourceBundle rs;
     public DomainController getDC(){
         return dc;
     }
-    
-    public ResourceBundle getRS() {
-    rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
-    return rs;
-}
+
     
     public void setLanguague(int index){
         switch (index) {

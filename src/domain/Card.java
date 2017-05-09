@@ -87,6 +87,15 @@ public class Card{
         this.value *= -1;
     }
     
+    public void changeValue() {
+        String[] values = this.type.split("/+///-");
+        if(this.value == Integer.parseInt(values[0])) {
+           this.value = Integer.parseInt(values[1]);
+        } else {
+          this.value = Integer.parseInt(values[0]);
+        }
+    }
+    
     @Override
     public boolean equals(Object other)
     {

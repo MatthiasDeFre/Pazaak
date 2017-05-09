@@ -175,6 +175,9 @@ public class Round{
         gameBoard[currentTurnPlayerIndex][gameBoard[currentTurnPlayerIndex].length-1] = cardValue;
         gameBoardCardSort[currentTurnPlayerIndex] [gameBoardCardSort[currentTurnPlayerIndex].length-1] = cardSort;*/
         gameBoardList.get(currentTurnPlayerIndex).playCard(card);
+        if(card.getType().equals("xT")){
+            nextTurn();
+        }
     
         
        
@@ -201,7 +204,30 @@ public class Round{
         if(scores[0] == scores[1])
         {
             //   this.draw = true;
-            this.status = "draw";
+            boolean player1T = false;
+            boolean player2T = false;
+            
+            for (int i = 0; i < gameBoardList.size(); i++)
+            {
+                
+                for (Card card : gameBoardList.get(i).getGameBoardCards())
+                {
+                    if(card.getType().equals("xT"))
+                       if(i==0){
+                           player1T=true;
+                       } else{
+                           player2T=true;
+                       }
+                    
+                }
+            }
+            if(player1T == true && player2T == false)
+                this.status=roundPlayers.get(0).getName();
+            else if(player1T==false && player2T==true)
+                this.status=roundPlayers.get(1).getName();
+            else 
+                this.status = "draw";
+
         } else if (scores[0] > scores[1] && scores[0] <= 20 || scores[1] > 20 && scores[0] <= 20)
         {
             //     this.winner = roundPlayers.get(0);
