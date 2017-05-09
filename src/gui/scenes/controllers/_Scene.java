@@ -10,7 +10,7 @@ public interface _Scene {
     
     //set parrent
     public abstract void setScreenParent(SceneController screenPage);
-
+    
    
 
 }

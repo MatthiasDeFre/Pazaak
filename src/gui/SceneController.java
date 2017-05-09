@@ -15,10 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import gui.scenes.controllers._Scene;
-import java.net.URL;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.StageStyle;
 import domain.DomainController;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -34,12 +30,7 @@ private ResourceBundle rs;
 
     private DomainController dc = new DomainController();
     private HashMap<String, Node> screens = new HashMap<>();
-    
-    
-    //mainmuic voor methode
-    URL mainMenuMusicURL = getClass().getResource("../../assets/sfx/music/Menu.mp3");
-    //Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
-    //MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
+   
     
     
     
@@ -49,12 +40,12 @@ private ResourceBundle rs;
         
     }
 
-    //scherm toevoegrn aan lijst
+    //scherm toevoegen aan lijst
     public void addScreen(String name, Node screen) {
         screens.put(name, screen);
     }
 
-    //
+    
     public Node getScreen(String name) {
         return screens.get(name);
     }
@@ -64,18 +55,18 @@ private ResourceBundle rs;
         
         try {
             
-            FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
-            myLoader.setResources(rs);
-            Parent loadScreen = (Parent) myLoader.load();
-            _Scene myScreenControler = ((_Scene) myLoader.getController());
-            myScreenControler.setScreenParent(this);
+            //loader
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            loader.setResources(rs);
+            Parent loadScreen = (Parent) loader.load();
+            _Scene sceneControler = ((_Scene) loader.getController());
+            sceneControler.setScreenParent(this);
             addScreen(name, loadScreen);
-            
+            //
             return true;
             
         } catch (Exception e) {
             
-            System.out.println("dfefe");
             System.out.println(e.getMessage());
             
             return false;
@@ -182,22 +173,7 @@ private ResourceBundle rs;
          
     }
     
-  /*  public void startMusic() {
-    // Main Menu music
-    //word voorlopig niet gebruikt
-    
-    mainMenuMusic.setCycleCount(mainMenuMusic.INDEFINITE);
-        mainMenuMusic.setVolume(0.25);
-        mainMenuMusic.play();
-        
-    }
-    
-    public void stopMusic() {
-    
-   
-        mainMenuMusic.stop();
-        
-    }*/
+
 
     
 }

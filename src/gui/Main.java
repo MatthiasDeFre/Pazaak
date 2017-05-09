@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -64,6 +65,11 @@ public class Main extends Application {
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
+        
+        
+        //fade kleur (was wit (met dash haha (ok genoeg haakjes (haakception (nog eentje omt af te leren))))
+        scene.setFill(Color.web("#081F29"));
+        
         primaryStage.setScene(scene);
         primaryStage.show();
         
