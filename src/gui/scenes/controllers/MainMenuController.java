@@ -89,7 +89,7 @@ public class MainMenuController implements Initializable, _Scene {
     public void initialize(URL url, ResourceBundle rb) {
         rs = rb;
         
-        System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
+        //System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         
         lblTop.setText(randomTop[index]);
         
