@@ -142,9 +142,10 @@ public class SettingsController implements Initializable, _Scene {
     @FXML
     public void btnSoundClick(){
      
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-        System.out.println("s");
+        //clickAudioClip.play();
+        
+        System.out.println("Sound muted");//rs!!
+        btnSound.setText("unmute sound");
        
     }
     

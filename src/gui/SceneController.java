@@ -90,7 +90,7 @@ private ResourceBundle rs;
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
                         
                         //fade bij klik
-                        new KeyFrame(new Duration(500), new EventHandler<ActionEvent>() {   //500
+                        new KeyFrame(new Duration(750), new EventHandler<ActionEvent>() {   //500
                             
                     @Override
                     
@@ -103,7 +103,7 @@ private ResourceBundle rs;
                                 new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
                                 
                                 //fade na klik
-                                new KeyFrame(new Duration(500), new KeyValue(opacity, 1.0)));   //500
+                                new KeyFrame(new Duration(750), new KeyValue(opacity, 1.0)));   //500
                         fadeIn.play();
                     }
                 }, new KeyValue(opacity, 0.0)));
