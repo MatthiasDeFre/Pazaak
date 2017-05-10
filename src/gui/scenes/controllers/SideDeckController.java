@@ -43,10 +43,10 @@ public class SideDeckController implements Initializable, _Scene {
    
     
     
-    @FXML private Button btnLanguage;
-    @FXML private Button btnMultiplayer;
-    @FXML private Button btnSettings;
-    @FXML private Label lblSettings;
+    @FXML private Button btnConfirm;
+    @FXML private Button btnCancel;
+    //@FXML private Button btnSettings;
+    @FXML private Label lblSideDeck;
      
         
     
@@ -61,16 +61,16 @@ public class SideDeckController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
-        //assert btnLanguage != null;
-        btnLanguage.setText("Language"); 
+        //assert btnConfirm != null;
+        btnConfirm.setText("Language"); 
         
-        //assert btnMultiplayer != null;
-        btnMultiplayer.setText("Mute Sound");
+        //assert btnCancel != null;
+        btnCancel.setText("Mute Sound");
         
         //assert btnSettings != null;
         
-        assert lblSettings != null;
-        lblSettings.setText("Back to main menu");
+        assert lblSideDeck != null;
+        lblSideDeck.setText("Back to main menu");
         
 
     }
@@ -100,10 +100,10 @@ public class SideDeckController implements Initializable, _Scene {
        
     }
     
-//btnLanguage
+//btnConfirm
     
     @FXML
-    public void btnLanguageClick(){
+    public void btnConfirmClick(){
        
        clickAudioClip.play();
        controller.setScreen(Main.screen1ID);
@@ -111,26 +111,26 @@ public class SideDeckController implements Initializable, _Scene {
     }
     
     @FXML
-    public void btnLanguageEnter(){
+    public void btnConfirmEnter(){
         
        hoverAudioClip.play();
-       btnLanguage.setScaleX(1.1);
-       btnLanguage.setScaleY(1.1);
+       btnConfirm.setScaleX(1.1);
+       btnConfirm.setScaleY(1.1);
         
     }
     
     @FXML
-    public void btnLanguageExit(){
+    public void btnConfirmExit(){
        
-       btnLanguage.setScaleX(1);
-       btnLanguage.setScaleY(1);
+       btnConfirm.setScaleX(1);
+       btnConfirm.setScaleY(1);
    
     }
 
-//btnMultiplayer
+//btnCancel
     
     @FXML
-    public void btnMultiplayerClick(){
+    public void btnCancelClick(){
      
         clickAudioClip.play();
         controller.setScreen(Main.screen2ID);
@@ -139,19 +139,19 @@ public class SideDeckController implements Initializable, _Scene {
     }
     
     @FXML
-    public void btnMultiplayerEnter(){
+    public void btnCancelEnter(){
         
        hoverAudioClip.play();
-       btnMultiplayer.setScaleX(1.1);
-       btnMultiplayer.setScaleY(1.1);
+       btnCancel.setScaleX(1.1);
+       btnCancel.setScaleY(1.1);
         
     }
     
     @FXML
-    public void btnMultiplayerExit(){
+    public void btnCancelExit(){
        
-       btnMultiplayer.setScaleX(1);
-       btnMultiplayer.setScaleY(1);
+       btnCancel.setScaleX(1);
+       btnCancel.setScaleY(1);
        
         
     }
@@ -170,16 +170,16 @@ public class SideDeckController implements Initializable, _Scene {
     public void btnSettingsEnter(){
         
        hoverAudioClip.play();
-       btnSettings.setScaleX(1.1);
-       btnSettings.setScaleY(1.1);
+       //btnSettings.setScaleX(1.1);
+      // btnSettings.setScaleY(1.1);
         
     }
     
     @FXML
     public void btnSettingsExit(){
        
-       btnSettings.setScaleX(1);
-       btnSettings.setScaleY(1);
+      // btnSettings.setScaleX(1);
+      // btnSettings.setScaleY(1);
        
         
     }

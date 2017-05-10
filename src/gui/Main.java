@@ -75,7 +75,7 @@ public class Main extends Application {
         
         //icon instellen
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img/menu/fav4.png")));
-        primaryStage.setTitle("Pazaak Indev v34.93939");
+        primaryStage.setTitle("Pazaak Alpha 2.1");
         
         //geen maximize/resize
         primaryStage.setResizable(false);
