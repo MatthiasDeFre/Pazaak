@@ -16,8 +16,11 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import gui.scenes.controllers._Scene;
 import domain.DomainController;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 //scherm toevoegen --> 
 
@@ -26,7 +29,12 @@ public class SceneController  extends StackPane {
     //language
 private ResourceBundle rs;
  Locale currentLocale = Locale.getDefault();
-
+ public boolean isMuted = false;
+ 
+ URL mainMenuMusicURL = getClass().getResource("assets/sfx/music/Menu.mp3");
+    Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
+    MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
+    
 
     private DomainController dc = new DomainController();
     private HashMap<String, Node> screens = new HashMap<>();
@@ -137,7 +145,7 @@ private ResourceBundle rs;
     //unload scherm/scéne
     public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
-            //System.out.println("oei");
+            
             return false;
         } else {
             return true;
@@ -165,13 +173,36 @@ private ResourceBundle rs;
                         currentLocale = new Locale("fr_FR");   
                         break;
                     default:
-                        System.out.println("Wrong number");
+                        
                         break;
                 }
         Locale.setDefault(currentLocale);
          rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
          
     }
+    
+    public void playMusic() {
+        
+    // Main Menu music
+        if (!isMuted) {
+            mainMenuMusic.setCycleCount(mainMenuMusic.INDEFINITE);
+    mainMenuMusic.setVolume(0.20);
+    mainMenuMusic.play();
+        }
+    
+        
+    }
+    
+    public void stopMusic() {
+        
+    // Main Menu music
+    
+    mainMenuMusic.stop();
+        
+    }
+    
+    
+    
     
 
 

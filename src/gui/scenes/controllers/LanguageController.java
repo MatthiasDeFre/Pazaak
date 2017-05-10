@@ -47,7 +47,7 @@ public class LanguageController implements Initializable , _Scene {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         lblLang.setText("");
-        System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
+        Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName();
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
@@ -77,7 +77,10 @@ public class LanguageController implements Initializable , _Scene {
     //NL
     @FXML
     private void clickNL(){
-       //hier handmatig laden ander start muziek al
+       //hier handmatig laden anders start muziek al
+       
+       controller.playMusic();
+       
        clickAudioClip.play();
        controller.setLanguague(2);
        controller.unloadScreen(Main.screen1ID);
@@ -109,6 +112,7 @@ public class LanguageController implements Initializable , _Scene {
     @FXML
     private void clickEN(){
        //hier handmatig laden ander start muziek al
+       controller.playMusic();
        
        clickAudioClip.play();
         controller.setLanguague(1);
@@ -139,6 +143,9 @@ public class LanguageController implements Initializable , _Scene {
     private void clickFR(){
         
        //hier handmatig laden ander start muziek al
+       
+       controller.playMusic();
+       
        clickAudioClip.play();
      controller.setLanguague(3);
        controller.loadScreen(Main.screen1ID, Main.screen1File);

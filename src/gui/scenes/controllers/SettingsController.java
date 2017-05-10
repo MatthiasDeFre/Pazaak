@@ -144,6 +144,8 @@ public class SettingsController implements Initializable, _Scene {
      
         //clickAudioClip.play();
         
+        controller.isMuted = true; 
+        controller.stopMusic();
         System.out.println("Sound muted");//rs!!
         btnSound.setText("unmute sound");
        

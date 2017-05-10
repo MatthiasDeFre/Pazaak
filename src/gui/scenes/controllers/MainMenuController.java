@@ -42,10 +42,8 @@ public class MainMenuController implements Initializable, _Scene {
     SceneController controller;
      private ResourceBundle rs;
     
-    // Main Menu music
-    URL mainMenuMusicURL = getClass().getResource("../../assets/sfx/music/Menu.mp3");
-    Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
-    MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
+
+
     
    
     
@@ -119,12 +117,7 @@ public class MainMenuController implements Initializable, _Scene {
         btnExit.setGraphic(imgExit);
         
         
-       
         
-        //main menu muzioek
-        mainMenuMusic.setCycleCount(mainMenuMusic.INDEFINITE);
-        mainMenuMusic.setVolume(0.25);
-        mainMenuMusic.play();
         
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
@@ -208,7 +201,7 @@ public class MainMenuController implements Initializable, _Scene {
     public void btnCreditsClick(){
      
         
-        mainMenuMusic.stop();
+        //mainMenuMusic.stop();
         controller.loadScreen(Main.screen5ID, Main.screen5File);
         controller.setScreen(Main.screen5ID);
         
@@ -239,7 +232,7 @@ public class MainMenuController implements Initializable, _Scene {
     public void btnSettingsClick(){
      
         clickAudioClip.play();
-        mainMenuMusic.stop();
+        //mainMenuMusic.stop();
         controller.loadScreen(Main.screen3ID, Main.screen3File);
         controller.setScreen(Main.screen3ID);
        
@@ -272,7 +265,7 @@ public class MainMenuController implements Initializable, _Scene {
         //clickAudioClip.play();
         
         
-        mainMenuMusic.stop();
+        //mainMenuMusic.stop();
         
         randomExit[index1].play();
         
