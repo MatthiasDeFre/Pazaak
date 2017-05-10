@@ -102,17 +102,15 @@ public class IntroController implements Initializable, _Scene {
             mp.stop();
             });
             
+            credits.setOnKeyPressed((event) -> {
+                System.out.println("dqudjwqjqwfdhjqiodbhnpqiudhnquidpqwhu");
+            });
             
-            
-    
-    
-    
-
-
-
     }
     
-   
+   @FXML private void keyPressed(){
+       System.out.println("ssddss");
+    }
     
     
     @Override

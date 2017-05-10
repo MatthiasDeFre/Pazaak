@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.media.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 
-<AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1100.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.IntroController">
+<AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1100.0" minHeight="675.0" minWidth="1200.0" onKeyPressed="#keyPressed" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.IntroController">
   <children>
     <VBox fx:id="vbox" alignment="CENTER" maxHeight="675.0" maxWidth="1100.0" minHeight="675.0" minWidth="1100.0" prefHeight="675.0" prefWidth="1100.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
