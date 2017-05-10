@@ -1,6 +1,9 @@
 
 package gui.scenes.controllers;
 
+import exceptions.noCorrectBirthyearException;
+import exceptions.noCorrectNameException;
+import exceptions.userExistsException;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
@@ -31,6 +34,8 @@ public class RegisterController implements Initializable, _Scene {
     @FXML Button btnMainMenu;
     @FXML Button btnRegister;
     
+    //Error sound
+    final AudioClip errorAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Error.mp3").toExternalForm());
     
     //Hover sound
     final AudioClip hoverAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Hover.mp3").toExternalForm());
@@ -90,8 +95,19 @@ public class RegisterController implements Initializable, _Scene {
     public void btnRegisterClick(){
        
        clickAudioClip.play();
-       
-       lblError.setText("klik");
+       try {
+           controller.getDC().register(txtName.getText(), Integer.parseInt(txtBirthYear.getText()));
+           lblError.setText("succes");
+       } catch(userExistsException | noCorrectBirthyearException | noCorrectNameException uex) {
+           errorAudioClip.play();
+        lblError.setText(uex.getMessage());
+       } catch(NumberFormatException nEx) {
+          errorAudioClip.play();
+          lblError.setText(rs.getString("noNumber"));
+       } catch(RuntimeException rtEx) {
+            lblError.setText(rs.getString("noInternet"));
+       }
+       //lblError.setText("klik");
        
        
     }

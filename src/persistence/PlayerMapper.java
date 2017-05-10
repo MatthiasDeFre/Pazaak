@@ -154,8 +154,8 @@ public class PlayerMapper {
             query.setString(1, name);
              try (ResultSet rs = query.executeQuery()) {
                 if (rs.next()) {
-                   String nameDB = rs.getString("playerName");
-                   if(name.equals(nameDB)) {
+                   String nameDB = rs.getString("playerName").toLowerCase();
+                   if(name.toLowerCase().equals(nameDB)) {
                     ResourceBundle resourceBundle = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
                        throw new userExistsException(resourceBundle.getString("userExists"));
                    }
