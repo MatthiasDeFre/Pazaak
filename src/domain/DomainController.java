@@ -74,6 +74,11 @@ public class DomainController {
 
         return dataAndDeck;
     }
+    
+    public Integer getPlayerCredits()
+    {
+       return currentUser.getCredit();
+    }
         
         
         

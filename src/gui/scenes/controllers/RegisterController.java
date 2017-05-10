@@ -50,9 +50,9 @@ public class RegisterController implements Initializable, _Scene {
     txtName.setPromptText(rs.getString("name"));
           
     
-    txtName.setTooltip(new Tooltip("davton"));
+    txtName.setTooltip(new Tooltip(rs.getString("nameTooltip")));
     txtName.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
-    txtBirthYear.setTooltip(new Tooltip("davton"));
+    txtBirthYear.setTooltip(new Tooltip(rs.getString("birthYearTooltip")));
     txtBirthYear.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
     
     
@@ -107,7 +107,7 @@ public class RegisterController implements Initializable, _Scene {
        } catch(RuntimeException rtEx) {
             lblError.setText(rs.getString("noInternet"));
        }
-       //lblError.setText("klik");
+       
        
        
     }

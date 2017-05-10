@@ -15,6 +15,10 @@ screen6ID = "SideDeck";
 
 screen7ID = "Game";
 
+screen8ID = "Shop";
+
+
+
 ------------------------------------
 
 ls,un,d,sc --> *5

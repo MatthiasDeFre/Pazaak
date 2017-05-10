@@ -1,16 +1,13 @@
 package gui;
 
-import java.net.URL;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 
@@ -47,7 +44,7 @@ public class Main extends Application {
         
         SceneController mainContainer = new SceneController();
         
-        //testsxtsvtscs
+        
         mainContainer.setLanguague(2);
         
         //mainContainer.loadScreen(Main.screen1ID, Main.screen1File);
