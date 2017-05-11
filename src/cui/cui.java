@@ -227,9 +227,9 @@ public class cui {
                                     buyAnotherCard = false;
                                 }
                             }
-
+                            
                         } while (buyAnotherCard == false);
-
+                        i--;
                         /*  do 
                        {
                           boolean notBuyCard;

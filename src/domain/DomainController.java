@@ -321,7 +321,7 @@ public class DomainController {
             cardValue*=-1;
         }
         
-        Card card = new Card(availableCard[0],cardValue);
+        Card card = new Card(availableCard[0],cardValue, Integer.parseInt(availableCard[2]));
         
         if(currentUser.getCredit() < card.getPrice() )
         {
