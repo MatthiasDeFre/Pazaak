@@ -175,8 +175,10 @@ public class Player{
          */
         private void checkDateOfBirth(int yearOfBirth) throws noCorrectBirthyearException{
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            
             if(!(currentYear - yearOfBirth <= 99 && currentYear - yearOfBirth >= 3)) {
-                throw new noCorrectBirthyearException("noCorrectBirthyear");
+                ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+                throw new noCorrectBirthyearException(rs.getString("noCorrectBirthYear"));
             }
             
         }

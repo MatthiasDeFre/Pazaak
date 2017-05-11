@@ -135,7 +135,7 @@ public class cui {
             System.out.println(rs.getString("yourCards"));
             System.out.println(String.format(giveCards()));
         } catch (noCorrectBirthyearException ne) {
-            System.out.println(rs.getString("noCorrectBirthYear"));
+            System.out.println(ne.getMessage());
         }
     }
 
