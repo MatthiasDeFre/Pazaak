@@ -54,7 +54,16 @@ load" (Main.id)
 
 minHeight="675.0" minWidth="1200.0"
 
+--------------------------------0---
 
+message aanmaken
+
+        controller.message = "tedavst";
+       controller.button1 = "btn1";
+       controller.button2 = "but2";
+       
+       controller.loadScreen(Main.screen10ID, Main.screen10File);
+       controller.setScreen(Main.screen10ID)
 
 
 

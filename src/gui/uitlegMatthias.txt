@@ -19,7 +19,7 @@ SideDeck:
 	kaarten ophalen die huidige speler in bezit heeft
 	confirmatie
 
-        # Dit gebeurt aan de hand van de methode getPlayersWithoutMatchDeck dus in theorie moet gewoon de namen tonen van de spelers door middel van die methode en dan zo hun matchdeck aanmaken
+        # Dit gebeurt aan de hand van de methode getPlayersWithoutMatchDeck() dus in theorie moet gewoon de namen tonen van de spelers door middel van die methode en dan zo hun matchdeck aanmaken
 	
 	Spel
 
@@ -32,21 +32,21 @@ Store:
 toon kaarten die speler nog niet heeft.
 te dure kaarten greyed out	# Dit is extra niet op focussen en doet dit later eens volledig Pazaak af is
 credits tonen getPlayerCredits()
-buyCard() # Dit neemt een String[] waarvan op 0 het type staat, 1 de waarde van de kaart en 2 de prijs, dit zal worden opgemaakt door middel van de gegevens die in de huidige kaart info staat
+buyCard() # Dit neemt een veerle.String[] waarvan op 0 het type staat, 1 de waarde van de kaart en 2 de prijs, dit zal worden opgemaakt door middel van de gegevens die in de huidige kaart info staat
 
 buttons: btnBackToChooseSideDeck
-btnBackToTheFuture
+btnBack
 
 
 
 selectSideDeck
---> button koop xtra kaarten (scnShop)
+--> button koop extra kaarten (scnShop)
 
 # Misschien een mogelijkheid om kaarten te verwijderen uit het sideDeck maar dit is geen prioriteit, ge kunt een back / reset knop doet die de scene terug zet
 
 Game:
 
-# Ik zou werken met 2 gridpanes zoals gij al zei voor de gameboarden en dan misschien 2 gridpanes of hbox ofzo voor de speler kaarten
+# Ik zou werken met 2 gridpanes zoals u al zei voor de gameborden en dan misschien 2 gridpanes of hbox ofzo voor de speler kaarten
     playCard(int index) neemt een index aan van de kaart die moet toegevoegd worden dus indien ge 4 kaarten hebt en ge speelt kaart 3 moet ge 3 meegeven maar als ge daarna kaart 4 speelt zal index 4 moeten meegegeven worden
     Dit kunt ge oplossen door de gespeelde kaart op disabled te zetten of gwn te verwijderen ofzo
     Dit moogt gij doen maar zal anders ik of Jens ofzo doen

@@ -71,9 +71,7 @@ public class MessageController implements Initializable, _Scene {
         //inhoud message/knoppen hier
         
         
-        lblMessage.setText(controller.message);
-        btn1.setText(controller.button1);
-        btn2.setText(controller.button2);
+      
         
 
     }
@@ -85,10 +83,15 @@ public class MessageController implements Initializable, _Scene {
     public void setScreenParent(SceneController screenParent){
         
         controller = screenParent;
+        lblMessage.setText(controller.message);
+        btn1.setText(controller.button1);
+        btn2.setText(controller.button2);
         
         
     };
+    
 
+       
     @FXML
     public void goToScreen2(ActionEvent event){
         
@@ -188,5 +191,6 @@ public class MessageController implements Initializable, _Scene {
         
     }
 
+    
 
 }
