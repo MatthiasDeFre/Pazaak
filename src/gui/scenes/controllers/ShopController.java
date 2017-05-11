@@ -45,10 +45,9 @@ public class ShopController implements Initializable, _Scene {
    
     
     
-    @FXML private Button btnLanguage;
-    @FXML private Button btnMultiplayer;
-    @FXML private Button btnSettings;
-    @FXML private Label lblSettings;
+
+    @FXML private Button btnMain;
+
      
         
     
@@ -63,17 +62,13 @@ public class ShopController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
-        //assert btnLanguage != null;
-        btnLanguage.setText("Language"); 
+
         
-        //assert btnMultiplayer != null;
-        btnMultiplayer.setText("Mute Sound");
+
         
-        //assert btnSettings != null;
+        //assert btnMain != null;
         
-        assert lblSettings != null;
-        lblSettings.setText("Back to main menu");
-        
+
 
     }
     
@@ -102,66 +97,12 @@ public class ShopController implements Initializable, _Scene {
        
     }
     
-//btnLanguage
-    
-    @FXML
-    public void btnLanguageClick(){
-       
-       clickAudioClip.play();
-       controller.setScreen(Main.screen1ID);
-       
-    }
-    
-    @FXML
-    public void btnLanguageEnter(){
-        
-       hoverAudioClip.play();
-       btnLanguage.setScaleX(1.1);
-       btnLanguage.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnLanguageExit(){
-       
-       btnLanguage.setScaleX(1);
-       btnLanguage.setScaleY(1);
-   
-    }
 
-//btnMultiplayer
+    
+    //btnMain
     
     @FXML
-    public void btnMultiplayerClick(){
-     
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-        System.out.println("s");
-       
-    }
-    
-    @FXML
-    public void btnMultiplayerEnter(){
-        
-       hoverAudioClip.play();
-       btnMultiplayer.setScaleX(1.1);
-       btnMultiplayer.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnMultiplayerExit(){
-       
-       btnMultiplayer.setScaleX(1);
-       btnMultiplayer.setScaleY(1);
-       
-        
-    }
-    
-    //btnSettings
-    
-    @FXML
-    public void btnSettingsClick(){
+    public void btnMainClick(){
      
         clickAudioClip.play();
         controller.setScreen(Main.screen2ID);
@@ -169,19 +110,19 @@ public class ShopController implements Initializable, _Scene {
     }
     
     @FXML
-    public void btnSettingsEnter(){
+    public void btnMainEnter(){
         
        hoverAudioClip.play();
-       btnSettings.setScaleX(1.1);
-       btnSettings.setScaleY(1.1);
+       btnMain.setScaleX(1.1);
+       btnMain.setScaleY(1.1);
         
     }
     
     @FXML
-    public void btnSettingsExit(){
+    public void btnMainExit(){
        
-       btnSettings.setScaleX(1);
-       btnSettings.setScaleY(1);
+       btnMain.setScaleX(1);
+       btnMain.setScaleY(1);
        
         
     }

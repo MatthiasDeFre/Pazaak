@@ -37,7 +37,7 @@ buyCard() # Dit neemt een veerle.String[] waarvan op 0 het type staat, 1 de waar
 buttons: btnBackToChooseSideDeck
 btnBack
 
-
+11 kaarten
 
 selectSideDeck
 --> button koop extra kaarten (scnShop)

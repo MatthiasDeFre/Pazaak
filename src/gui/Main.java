@@ -55,7 +55,9 @@ public class Main extends Application {
         //mainContainer.loadScreen(Main.screen3ID, Main.screen3File);
         //mainContainer.loadScreen(Main.screen4ID, Main.screen4File);
         //mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
-        mainContainer.loadScreen(Main.screen8ID, Main.screen8File);
+        mainContainer.loadScreen(Main.screen8ID, Main.screen8File); //intro
+        //mainContainer.loadScreen(Main.screen9ID, Main.screen9File);
+        
         
         //beginscherm:
         mainContainer.setScreen(Main.screen8ID);
