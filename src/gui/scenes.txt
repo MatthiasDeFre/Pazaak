@@ -17,7 +17,7 @@ screen7ID = "Game";
 
 screen8ID = "Shop";
 
-screen9ID = "";
+screen9ID = "Intro";
 
 screen10ID = "Message";
 

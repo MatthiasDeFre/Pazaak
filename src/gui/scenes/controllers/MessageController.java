@@ -41,10 +41,7 @@ public class MessageController implements Initializable, _Scene {
     //Click sound
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
     
-    private final String msg = controller.message;
-    private final String button1 = controller.button1;
-    private final String button2 = controller.button2;
-   
+
     
     
     @FXML private Button btn1;
@@ -74,9 +71,9 @@ public class MessageController implements Initializable, _Scene {
         //inhoud message/knoppen hier
         
         
-        lblMessage.setText(msg);
-        btn1.setText(button1);
-        btn2.setText(button2);
+        lblMessage.setText(controller.message);
+        btn1.setText(controller.button1);
+        btn2.setText(controller.button2);
         
 
     }

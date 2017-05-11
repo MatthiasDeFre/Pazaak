@@ -145,7 +145,7 @@ public class MainMenuController implements Initializable, _Scene {
        
        clickAudioClip.play();
        
-       controller.message = "test";
+       controller.message = "tedavst";
        controller.button1 = "btn1";
        controller.button2 = "but2";
        
