@@ -144,7 +144,15 @@ public class MainMenuController implements Initializable, _Scene {
     public void btnStartGameClick(){
        
        clickAudioClip.play();
-       controller.setScreen(Main.screen2ID);
+       
+       controller.message = "test";
+       controller.button1 = "btn1";
+       controller.button2 = "but2";
+       
+       controller.loadScreen(Main.screen10ID, Main.screen10File);
+       controller.setScreen(Main.screen10ID);
+       
+       
        
     }
     

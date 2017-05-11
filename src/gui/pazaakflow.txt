@@ -1,0 +1,35 @@
+Standaard verloop
+
+Language 
+
+
+SideDeck:
+
+	Welke spelers gaan spelen.
+	Spelers hebben geen matchdeck, kiezen?
+
+	Speler1 kiest matchdeck
+	kaarten ophalen die huidige speler in bezit heeft
+	confirmatie
+	
+	Speler2 kiest matchdeck
+	kaarten ophalen die huidige speler in bezit heeft
+	confirmatie
+	
+	Spel
+
+
+Store:
+
+toon kaarten die speler nog niet heeft.
+te dure kaarten greyed out	
+credits tonen getPlayerCredits()
+buyCard()
+
+buttons: btnBackToChooseSideDeck
+btnBackToTheFuture
+
+
+
+selectSideDeck
+--> button koop xtra kaarten (scnShop)

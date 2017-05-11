@@ -54,7 +54,7 @@ public class RegisterController implements Initializable, _Scene {
     txtName.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
     txtBirthYear.setTooltip(new Tooltip(rs.getString("birthYearTooltip")));
     txtBirthYear.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
-    
+    lblError.setText("");
     
     
     
@@ -95,6 +95,7 @@ public class RegisterController implements Initializable, _Scene {
     public void btnRegisterClick(){
        
        clickAudioClip.play();
+       
        try {
            controller.getDC().register(txtName.getText(), Integer.parseInt(txtBirthYear.getText()));
            lblError.setText("succes");

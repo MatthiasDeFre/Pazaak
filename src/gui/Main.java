@@ -31,7 +31,10 @@ public class Main extends Application {
     public static String screen7File = "scenes/fxml/Game.fxml";
     public static String screen8ID = "Intro";
     public static String screen8File = "scenes/fxml/Intro.fxml";
-    
+    public static String screen9ID = "Shop";
+    public static String screen9File = "scenes/fxml/Shop.fxml";
+    public static String screen10ID = "Message";
+    public static String screen10File = "scenes/fxml/Message.fxml";
 
     
     @Override

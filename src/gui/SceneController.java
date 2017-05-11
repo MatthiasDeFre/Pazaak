@@ -31,6 +31,13 @@ private ResourceBundle rs;
  Locale currentLocale = Locale.getDefault();
  public boolean isMuted = false;
  
+public String message = "standaard bericht";
+  public String button1 = "button 1";
+  public String button2 = "button 2";
+
+ 
+ 
+ 
  URL mainMenuMusicURL = getClass().getResource("assets/sfx/music/Menu.mp3");
     Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
     MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);

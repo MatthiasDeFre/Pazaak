@@ -17,7 +17,9 @@ screen7ID = "Game";
 
 screen8ID = "Shop";
 
+screen9ID = "";
 
+screen10ID = "Message";
 
 ------------------------------------
 
@@ -37,6 +39,8 @@ pt,o,st,r & a --> *3
 dur fad
 
 500/1000
+
+wit
 
 ------------------------------------
 
