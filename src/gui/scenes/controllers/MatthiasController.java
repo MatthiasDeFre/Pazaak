@@ -80,8 +80,8 @@ public class MatthiasController implements Initializable, _Scene {
         controller = screenParent;
         String[][] selectedCardsArray = new String[0][2];
         controller.getDC().makeMatch();
-        controller.getDC().selectPlayer("pater");
-        controller.getDC().selectPlayerWithoutMatchDeck("pater");
+        controller.getDC().selectPlayer("Ron");
+        controller.getDC().selectPlayerWithoutMatchDeck("Ron");
         int column =   0;
         int row = 0;
         filledSlots = new boolean[6];

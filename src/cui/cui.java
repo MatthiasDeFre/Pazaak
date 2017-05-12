@@ -227,7 +227,7 @@ public class cui {
                                     buyAnotherCard = false;
                                 }
                             }
-                            
+
                         } while (buyAnotherCard == false);
                         i--;
                         /*  do 
@@ -323,7 +323,7 @@ public class cui {
                 turnChoice(s.nextInt());
                 s.nextLine();
             }
-        } while (!dc.roundEnded() || playedCard);
+        } while (!dc.roundEnded());
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
         System.out.println(rs.getString("wantSave"));
 
@@ -348,17 +348,23 @@ public class cui {
                 playedCard = false;
                 break;
             case 2:
+
                 //Indien geen kaarten moet hier nog komen
-                System.out.println(rs.getString("whichCard"));
                 int count = 0;
                 String[][] situation = dc.getRoundSituation();
-                for (String string : situation[3]) {
-                    System.out.println(++count + ": " + string);
+                if (situation[3].length != 0) {
+                    System.out.println(rs.getString("whichCard"));
+                    for (String string : situation[3]) {
+                        System.out.println(++count + ": " + string);
+                    }
+                    dc.playCard(s.nextInt());
+                    System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                    playedCard = true;
+                } else {
+                    System.out.println(rs.getString("noCards"));
+                    playedCard = true;
                 }
-                dc.playCard(s.nextInt());
-                System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                playedCard = true;
-                break;
+
             case 3:
                 dc.freezeBoard();
                 playedCard = false;
@@ -389,5 +395,10 @@ public class cui {
             System.out.println(matchName);
 
         }
+    }
+    
+    private String getPossibleChanges(){
+   
+    return "helemaal niks";
     }
 }
