@@ -60,13 +60,12 @@ public class MainMenuController implements Initializable, _Scene {
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
     
     //exit sound
-    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit.mp3").toExternalForm());
-    final AudioClip Exit2AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit2.mp3").toExternalForm());
-    final AudioClip Exit3AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit3.mp3").toExternalForm());
+    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Error.mp3").toExternalForm());
+
     
-    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
-    Random random1 = new Random();
-    int index1 = random1.nextInt(randomExit.length);
+//    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
+//    Random random1 = new Random();
+//    int index1 = random1.nextInt(randomExit.length);
     
     ImageView imgExit = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/exit.png"), 42,34, true, true));
     ImageView imgSettings = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/settings.png"), 42,32, true, true));
@@ -323,7 +322,7 @@ public class MainMenuController implements Initializable, _Scene {
 //                    break;
 //            
 //            
-
+        ExitAudioClip.play();
         controller.message = "I'm sorry Dave, I'm afraid I can't do that";//rs plz
        controller.button1 = "Keep playing";
        controller.button2 = "EXIT";
