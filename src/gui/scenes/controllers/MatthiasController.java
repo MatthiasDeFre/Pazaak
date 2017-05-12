@@ -36,7 +36,7 @@ public class MatthiasController implements Initializable, _Scene {
     SceneController controller;
     
     private int selectedCardsAmount;
-    
+    private boolean[] filledSlots;
     
     
    
@@ -84,6 +84,7 @@ public class MatthiasController implements Initializable, _Scene {
         controller.getDC().selectPlayerWithoutMatchDeck("pater");
         int column =   0;
         int row = 0;
+        filledSlots = new boolean[6];
          for (String[] card: controller.getDC().getPlayerCards())
         {
            String imageUrl = "";
@@ -117,12 +118,12 @@ public class MatthiasController implements Initializable, _Scene {
                     CardGUI cardGUI  = (CardGUI) event.getSource();
                     
                     //If the clicked card is interactable the event is caused
-                    if(cardGUI.isInteractable()) {
+                    if(cardGUI.isInteractable() && selectedCardsAmount < 6) {
                     cardGUI.setInteractable(false);
                  //   ((CardGUI) event.getSource()).setInteractable(false);
                     
                  //Make a new card that will be placed on the selectedCards Gridpane
-                    CardGUI newCardGUI = new CardGUI(cardGUI.getUrl(), cardGUI.getType(),cardGUI.getValue(), GridPane.getRowIndex(cardGUI), GridPane.getColumnIndex(cardGUI));
+                    CardGUI newCardGUI = new CardGUI(cardGUI.getUrl(), cardGUI.getType(),cardGUI.getValue(),  GridPane.getColumnIndex(cardGUI), GridPane.getRowIndex(cardGUI));
                     
                     //Event to put the selectedCard back to the ownedCards Gridpane
                     newCardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -139,16 +140,61 @@ public class MatthiasController implements Initializable, _Scene {
                                         cardGUI.setInteractable(true);
                                         cardGUI.setImage(new Image(cardGUI.getUrl()));
                                         selectedCards.getChildren().remove(oldCardGUI);
+                                        filledSlots[GridPane.getColumnIndex(oldCardGUI)] = false;
+                                        selectedCardsAmount--;
                                     
                                 }
                             }
-                           }
-                       });
-                       selectedCards.add(newCardGUI, selectedCardsAmount++, 0);
-                       cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                            }
+                        });
+                        newCardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event)
+                            {
+
+                                hoverAudioClip.play();
+                                ((CardGUI) event.getSource()).setScaleX(1.5);
+                                ((CardGUI) event.getSource()).setScaleY(1.5);
+
+                            }
+                        });
+                        newCardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event)
+                            {
+                                ((CardGUI) event.getSource()).setScaleX(1);
+                                ((CardGUI) event.getSource()).setScaleY(1);
+                            }
+                        });
+                        selectedCards.add(newCardGUI, indexFirstEmpty(), 0);
+                        selectedCardsAmount++;
+                        filledSlots[indexFirstEmpty()] = true;
+                        cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                    }
+            
+               }
+            });
+            cardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                   if (((CardGUI) event.getSource()).isInteractable())
+                   {
+                        hoverAudioClip.play();
+                       ((CardGUI) event.getSource()).setScaleX(1.5);
+                       ((CardGUI) event.getSource()).setScaleY(1.5);
                    }
                }
-            });  
+           });
+           cardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent event)
+               {
+                    ((CardGUI) event.getSource()).setScaleX(1);
+                    ((CardGUI) event.getSource()).setScaleY(1);
+               }
+           });
+          
          //  ownedCards.getChildren().add(cardGUI);
          ownedCards.add(cardGUI, column , row);
          column++;
@@ -160,6 +206,13 @@ public class MatthiasController implements Initializable, _Scene {
  
     };
     
+    private int indexFirstEmpty() {
+      int index = 0;
+      while(filledSlots[index] == true) {
+          index++;
+      }
+      return index;
+    }
 //btnLanguage
     
   
