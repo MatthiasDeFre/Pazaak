@@ -98,17 +98,17 @@ public class MatthiasController implements Initializable, _Scene {
               case "D":
                  imageUrl = "gui/assets/img//game/cards/" + "D" + ".png";
               break;
-              case "1+/2":
+              case "1+/-2":
                  imageUrl =  "gui/assets/img//game/cards/" + "1±2" + ".png";
               break;
                case "xT":
-                 imageUrl = "gui/assets/img//game/cards/" +  "±T" + ".png";
+                 imageUrl = "gui/assets/img//game/cards/±" + card[1]+ "T" + ".png";
               break;
                case "2&4": case "3&6":
                  imageUrl = "gui/assets/img//game/cards/" + card[0] + ".png";
               break;
            }
-            
+            System.out.println(imageUrl);
            CardGUI cardGUI = new CardGUI(imageUrl, card[0], Integer.parseInt(card[1]));
            cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
                @Override
