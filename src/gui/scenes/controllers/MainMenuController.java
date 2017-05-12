@@ -8,6 +8,10 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -19,6 +23,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +33,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import sun.security.rsa.RSACore;
 
 
@@ -54,13 +60,12 @@ public class MainMenuController implements Initializable, _Scene {
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
     
     //exit sound
-    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit.mp3").toExternalForm());
-    final AudioClip Exit2AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit2.mp3").toExternalForm());
-    final AudioClip Exit3AudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Exit3.mp3").toExternalForm());
+    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Error.mp3").toExternalForm());
+
     
-    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
-    Random random1 = new Random();
-    int index1 = random1.nextInt(randomExit.length);
+//    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
+//    Random random1 = new Random();
+//    int index1 = random1.nextInt(randomExit.length);
     
     ImageView imgExit = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/exit.png"), 42,34, true, true));
     ImageView imgSettings = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/settings.png"), 42,32, true, true));
@@ -72,7 +77,7 @@ public class MainMenuController implements Initializable, _Scene {
     final String[] randomTop = {"Made in Düsseldorf", "Deze zin is bijzaak", "Dé polyvalente kaartsimulator", "Sponsored by Danio Danone"};
     Random random = new Random();
     int index = random.nextInt(randomTop.length-1);
-
+    Glow selectGlow = new Glow(1.7f);
     
     @FXML private Button btnStartGame;
     @FXML private Button btnRegister;
@@ -80,10 +85,10 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML private Button btnCredits;
     @FXML private Button btnExit;
     @FXML private Label lblTop;
-
+@FXML private ImageView img;
    
     
-     
+     final Timeline timelineRot = new Timeline();
         
     
     
@@ -122,6 +127,27 @@ public class MainMenuController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
+        
+        
+    
+        
+        
+        
+           final Glow glow = new Glow();
+    glow.setLevel(0.0);
+    img.setEffect(glow);
+
+    
+    
+    final Timeline timeline = new Timeline();
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.setAutoReverse(true);
+    final KeyValue kv = new KeyValue(glow.levelProperty(), 1); //0.3
+    final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv); //700
+    timeline.getKeyFrames().add(kf);
+    timeline.play();        
+       
+        
       
     }
     
@@ -145,9 +171,10 @@ public class MainMenuController implements Initializable, _Scene {
        
        clickAudioClip.play();
        
-       controller.message = "tedavst";
-       controller.button1 = "btn1";
-       controller.button2 = "but2";
+       controller.message = "New or load game?";//rs plz
+       controller.button1 = "New Game";
+       controller.button2 = "Load Game";
+       controller.messageId = "1";
        
        controller.loadScreen(Main.screen10ID, Main.screen10File);
        controller.setScreen(Main.screen10ID);
@@ -209,7 +236,7 @@ public class MainMenuController implements Initializable, _Scene {
     public void btnCreditsClick(){
      
         
-        //mainMenuMusic.stop();
+        controller.stopMusic();
         controller.loadScreen(Main.screen5ID, Main.screen5File);
         controller.setScreen(Main.screen5ID);
         
@@ -269,34 +296,42 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML
     public void btnExitClick() throws InterruptedException{
         
-       // lblTop.setText("Closing");
-        //clickAudioClip.play();
-        
-        
-        //mainMenuMusic.stop();
-        
-        randomExit[index1].play();
-        
-        switch(index1) {
-            
-            //win xp
-            case 0: Thread.sleep(2000);
-                    Platform.exit();
-                    break;
-            
-            //win vista
-            case 1: Thread.sleep(2200);
-                    Platform.exit();
-                    break;
-               
-            //win 7
-            case 2: Thread.sleep(4200);
-                    Platform.exit();
-                    break;
-            
-            
-        }
+//       // lblTop.setText("Closing");
+//        //clickAudioClip.play();
+//        
+//        
+//        //mainMenuMusic.stop();
+//        
+//        randomExit[index1].play();
+//        
+//        switch(index1) {
+//            
+//            //win xp
+//            case 0: Thread.sleep(2000);
+//                    Platform.exit();
+//                    break;
+//            
+//            //win vista
+//            case 1: Thread.sleep(2200);
+//                    Platform.exit();
+//                    break;
+//               
+//            //win 7
+//            case 2: Thread.sleep(4200);
+//                    Platform.exit();
+//                    break;
+//            
+//            
+        ExitAudioClip.play();
+        controller.message = "I'm sorry Dave, I'm afraid I can't do that";//rs plz
+       controller.button1 = "Keep playing";
+       controller.button2 = "EXIT";
+       controller.messageId = "6";  //init6 lel
        
+       controller.loadScreen(Main.screen10ID, Main.screen10File);
+       controller.setScreen(Main.screen10ID);
+
+        
     }
     
  
@@ -317,4 +352,6 @@ public class MainMenuController implements Initializable, _Scene {
        
        
     }
+    
+
 }

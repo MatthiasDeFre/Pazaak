@@ -5,21 +5,24 @@ package gui.scenes.controllers;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
-import java.security.interfaces.RSAKey;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.media.AudioClip;
 
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 
 
@@ -41,15 +44,16 @@ public class MessageController implements Initializable, _Scene {
     //Click sound
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
     
-
+     ImageView imgMain = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/main.png"), 41,41, true, true));
     
     
     @FXML private Button btn1;
     @FXML private Button btn2;
     @FXML private Button btnMain;
     @FXML private Label lblMessage;
+    @FXML private ImageView img;
     
-    
+    private Image image = new Image(getClass().getResourceAsStream("../../assets/img/menu/hal.png"), 80,80, true,true);
     
      
         
@@ -62,7 +66,7 @@ public class MessageController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
-
+        btnMain.setGraphic(imgMain);
         
         //assert btnMain != null;
         
@@ -87,6 +91,24 @@ public class MessageController implements Initializable, _Scene {
         btn1.setText(controller.button1);
         btn2.setText(controller.button2);
         
+        if (controller.messageId == "6") { //exit
+            final Glow glow = new Glow();
+    glow.setLevel(0.0);
+    
+    btn1.setEffect(glow);
+    final Timeline timeline = new Timeline();
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.setAutoReverse(true);
+    final KeyValue kv = new KeyValue(glow.levelProperty(), 0.6);
+    final KeyFrame kf = new KeyFrame(Duration.millis(700), kv);
+    timeline.getKeyFrames().add(kf);
+    timeline.play();  
+            
+            btn1.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+            btn2.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+            img.setFitHeight(80);
+            img.setImage(image);
+        }
         
     };
     
@@ -113,9 +135,33 @@ public class MessageController implements Initializable, _Scene {
     public void btn1Click(){
        
        clickAudioClip.play();
-     //  controller.setScreen(Main.screen1ID);
-      controller.loadScreen(Main.screen6ID, Main.screen6File);
-       controller.setScreen(Main.screen6ID);
+       
+       //New or load game
+       if (controller.messageId == "1") {
+            controller.message = "New game";//rs plz
+       controller.button1 = "Quick Play";
+       controller.button2 = "Play vs AI";
+       
+       controller.messageId = "2";
+       controller.loadScreen(Main.screen10ID, Main.screen10File);
+       controller.setScreen(Main.screen10ID);
+       
+        }
+       else if (controller.messageId == "2") { //player vs player
+            
+       controller.loadScreen(Main.screen11ID, Main.screen11File);
+       controller.setScreen(Main.screen11ID);
+        }
+       else if (controller.messageId == "6") { //exit
+            
+       controller.loadScreen(Main.screen1ID, Main.screen1File);
+       controller.setScreen(Main.screen1ID);
+        }
+       
+       
+       
+       
+       
        
     }
     
@@ -141,9 +187,16 @@ public class MessageController implements Initializable, _Scene {
     @FXML
     public void btn2Click(){
      
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-        System.out.println("s");
+        
+        //New or load game
+       if (controller.messageId == "1") {
+           clickAudioClip.play();
+            System.out.println("Load game WIP");
+        }
+       else if (controller.messageId == "6") {
+            System.out.println("Exiting");
+            Platform.exit();
+        }
        
     }
     
@@ -171,7 +224,10 @@ public class MessageController implements Initializable, _Scene {
     public void btnMainClick(){
      
         clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
+        
+        
+        
+        controller.setScreen(Main.screen1ID);
        
     }
     

@@ -1,18 +1,24 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 
 public class Main extends Application {
     
+    
+      
+
     
     //alle scenes
     public static String screen1ID = "MainMenu";
@@ -35,7 +41,10 @@ public class Main extends Application {
     public static String screen9File = "scenes/fxml/Shop.fxml";
     public static String screen10ID = "Message";
     public static String screen10File = "scenes/fxml/Message.fxml";
-
+    public static String screen11ID = "SelectPlayer";
+    public static String screen11File = "scenes/fxml/SelectPlayer.fxml";
+    
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -57,10 +66,11 @@ public class Main extends Application {
         //mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
         mainContainer.loadScreen(Main.screen8ID, Main.screen8File); //intro
         //mainContainer.loadScreen(Main.screen9ID, Main.screen9File);
+        //mainContainer.loadScreen(Main.screen11ID, Main.screen11File);
         
         
         //beginscherm:
-        mainContainer.setScreen(Main.screen8ID);
+        mainContainer.setScreen(Main.screen8ID); //9
         
         
 
@@ -77,7 +87,24 @@ public class Main extends Application {
         
         //icon instellen
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img/menu/fav4.png")));
-        primaryStage.setTitle("Pazaak Alpha 2.1");
+        primaryStage.setTitle("Pazaak  v1.253 Pre-release");
+        
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+          public void handle(WindowEvent we) {
+              we.consume();
+              final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("assets/sfx/sounds/Error.mp3").toExternalForm());
+              ExitAudioClip.play();
+              
+              System.out.println("Stage is closing");
+              mainContainer.message = "I'm sorry Dave, I'm afraid I can't do that";//rs plz
+       mainContainer.button1 = "Keep playing";
+       mainContainer.button2 = "EXIT";
+       mainContainer.messageId = "6";  //init6 lel
+       
+       mainContainer.loadScreen(Main.screen10ID, Main.screen10File);
+       mainContainer.setScreen(Main.screen10ID);
+          }
+      });     
         
         //geen maximize/resize
         primaryStage.setResizable(false);

@@ -19,6 +19,7 @@ import domain.DomainController;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -32,6 +33,7 @@ private ResourceBundle rs;
  public boolean isMuted = false;
  
 public String message = "standaard bericht";
+public String messageId = "";
   public String button1 = "button 1";
   public String button2 = "button 2";
 
@@ -41,6 +43,11 @@ public String message = "standaard bericht";
  URL mainMenuMusicURL = getClass().getResource("assets/sfx/music/Menu.mp3");
     Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
     MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
+    
+    
+    
+     //exit sound
+    
     
 
     private DomainController dc = new DomainController();
@@ -105,7 +112,7 @@ public String message = "standaard bericht";
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
                         
                         //fade bij klik
-                        new KeyFrame(new Duration(750), new EventHandler<ActionEvent>() {   //500
+                        new KeyFrame(new Duration(500), new EventHandler<ActionEvent>() {   //500
                             
                     @Override
                     
@@ -118,7 +125,7 @@ public String message = "standaard bericht";
                                 new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
                                 
                                 //fade na klik
-                                new KeyFrame(new Duration(750), new KeyValue(opacity, 1.0)));   //500
+                                new KeyFrame(new Duration(500), new KeyValue(opacity, 1.0)));   //500
                         fadeIn.play();
                     }
                 }, new KeyValue(opacity, 0.0)));
@@ -207,6 +214,7 @@ public String message = "standaard bericht";
     mainMenuMusic.stop();
         
     }
+    
     
     
     
