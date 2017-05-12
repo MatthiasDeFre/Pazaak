@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -47,6 +48,9 @@
                <font>
                   <Font size="29.0" />
                </font>
+               <effect>
+                  <Reflection fraction="0.67" topOffset="-10.0" topOpacity="0.19" />
+               </effect>
             </Label>
          </bottom>
       </BorderPane>

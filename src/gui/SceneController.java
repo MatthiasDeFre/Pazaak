@@ -32,6 +32,7 @@ private ResourceBundle rs;
  public boolean isMuted = false;
  
 public String message = "standaard bericht";
+public String messageId = "";
   public String button1 = "button 1";
   public String button2 = "button 2";
 

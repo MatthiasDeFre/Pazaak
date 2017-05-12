@@ -35,7 +35,8 @@ public class Main extends Application {
     public static String screen9File = "scenes/fxml/Shop.fxml";
     public static String screen10ID = "Message";
     public static String screen10File = "scenes/fxml/Message.fxml";
-
+    public static String screen11ID = "SelectPlayer";
+    public static String screen11File = "scenes/fxml/SelectPlayer.fxml";
     
     @Override
     public void start(Stage primaryStage) {
@@ -57,10 +58,11 @@ public class Main extends Application {
         //mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
         mainContainer.loadScreen(Main.screen8ID, Main.screen8File); //intro
         //mainContainer.loadScreen(Main.screen9ID, Main.screen9File);
+        //mainContainer.loadScreen(Main.screen11ID, Main.screen11File);
         
         
         //beginscherm:
-        mainContainer.setScreen(Main.screen8ID);
+        mainContainer.setScreen(Main.screen8ID); //9
         
         
 
@@ -77,7 +79,7 @@ public class Main extends Application {
         
         //icon instellen
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img/menu/fav4.png")));
-        primaryStage.setTitle("Pazaak Alpha 2.1");
+        primaryStage.setTitle("Pazaak  v1.253 Pre-release");
         
         //geen maximize/resize
         primaryStage.setResizable(false);

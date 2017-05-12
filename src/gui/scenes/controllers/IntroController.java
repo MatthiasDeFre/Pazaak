@@ -82,8 +82,10 @@ public class IntroController implements Initializable, _Scene {
             mp.setOnEndOfMedia(() -> {
 
                 //terug naar menu
+                
                 controller.loadScreen(Main.screen2ID, Main.screen2File);
                 controller.setScreen(Main.screen2ID);
+                
 
 
             });

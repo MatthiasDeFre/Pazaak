@@ -81,7 +81,7 @@ public class CreditsController implements Initializable, _Scene {
 
             
             mp.setOnEndOfMedia(() -> {
-
+                controller.playMusic();
                 //terug naar menu
                 controller.loadScreen(Main.screen1ID, Main.screen1File);
                 controller.setScreen(Main.screen1ID);
@@ -90,7 +90,7 @@ public class CreditsController implements Initializable, _Scene {
             });
 
             mp.setOnStopped(() -> {
-
+                controller.playMusic();
                 controller.loadScreen(Main.screen1ID, Main.screen1File);
                 controller.setScreen(Main.screen1ID);
 
@@ -98,6 +98,7 @@ public class CreditsController implements Initializable, _Scene {
             
 
             credits.setOnMouseClicked(Event->{
+                controller.playMusic(); 
             System.out.println("s");
             clickAudioClip.play();
             mp.stop();
