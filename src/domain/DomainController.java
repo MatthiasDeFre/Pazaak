@@ -374,4 +374,15 @@ public class DomainController {
         return buyableCardArray;    
     }
     
+     public String[][] showAvailableCards()
+    {
+        String[][] deckArray = new String[currentUser.getDeck().size()][2];
+        int index = 0;
+        for (Card card : currentUser.getDeck())
+        {
+            deckArray[index++][0] = card.getType();
+            deckArray[index++][1] = String.valueOf(card.getValue());
+        }
+        return deckArray;
+    }
 }

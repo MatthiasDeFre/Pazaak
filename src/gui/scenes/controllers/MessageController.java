@@ -113,7 +113,9 @@ public class MessageController implements Initializable, _Scene {
     public void btn1Click(){
        
        clickAudioClip.play();
-       controller.setScreen(Main.screen1ID);
+     //  controller.setScreen(Main.screen1ID);
+      controller.loadScreen(Main.screen6ID, Main.screen6File);
+       controller.setScreen(Main.screen6ID);
        
     }
     
