@@ -43,6 +43,7 @@ selectSideDeck
 --> button koop extra kaarten (scnShop)
 
 # Misschien een mogelijkheid om kaarten te verwijderen uit het sideDeck maar dit is geen prioriteit, ge kunt een back / reset knop doet die de scene terug zet
+#######GERRIT############ De buttons confirm en cancel aanpassen: deze zouden return to MatchDeckPlayerSelect moeten gaan en een confirm knop die een domeinmethode aanroept dit zal ik doen of gij moogt da ook doen
 
 Game:
 
