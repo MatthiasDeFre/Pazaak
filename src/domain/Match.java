@@ -337,6 +337,12 @@ public class Match{
         matchRounds.add(round);
     }
     
-   
+    public MatchDeck showMatchDeckOtherPlayer(){
+      return  matchPlayers.get((matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex() +1) % 2).getMatchDeck();
+    }
+    
+    public void changeValueCard(int cardIndex) { 
+        matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeValue();
+    }
     
 }
