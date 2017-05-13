@@ -55,6 +55,7 @@ public class SelectPlayerController implements Initializable, _Scene {
 
     @FXML private Button btnMain;
     @FXML private Label lblSettings;
+    @FXML private Label lblError;
     @FXML private ListView list1;
     @FXML private ListView list2;
      ObservableList<String> playerList;
@@ -124,10 +125,25 @@ public class SelectPlayerController implements Initializable, _Scene {
     public void btnConfirmClick(){
        
        clickAudioClip.play();
-       controller.stopMusic();
-       controller.playSideMusic();
-       controller.loadScreen(Main.screen6ID, Main.screen6File);
-       controller.setScreen(Main.screen6ID);
+       
+      String name1 =  list1.getSelectionModel().getSelectedItem().toString();
+      String name2 = list2.getSelectionModel().getSelectedItem().toString();
+        try
+        {
+            controller.getDC().makeMatch();
+            controller.getDC().selectPlayer(name1);
+            controller.getDC().selectPlayer(name2);
+            controller.stopMusic();
+            controller.playSideMusic();
+            controller.loadScreen(Main.screen6ID, Main.screen6File);
+            controller.setScreen(Main.screen6ID);
+      } catch (Exception e)
+        {
+            lblError.setText(e.getMessage());
+        }
+        
+           
+        
        
        
     }

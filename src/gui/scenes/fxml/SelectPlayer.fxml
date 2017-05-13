@@ -40,7 +40,7 @@
                   </ListView>
                </children>
             </HBox>
-            <Label text="Error" />
+            <Label fx:id="lblError" text="Error" />
             
             <Button id="buttons" fx:id="btnConfirm" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="52.0" prefWidth="491.0" stylesheets="@../../assets/css/menu.css" text="Play" textOverrun="CLIP" VBox.vgrow="NEVER">
                <effect>

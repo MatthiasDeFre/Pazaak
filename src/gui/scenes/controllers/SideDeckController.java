@@ -229,9 +229,10 @@ public class SideDeckController implements Initializable, _Scene {
           {
               cards[index][0] = ((CardGUI) card).getType();
               cards[index][1] = String.valueOf(((CardGUI) card).getValue());
+              index++;
           }
           controller.getDC().makeMatchDeck(cards);
-          System.out.println("deckMade");
+          
     }
   
 }
