@@ -353,13 +353,35 @@ public class cui {
                 int count = 0;
                 String[][] situation = dc.getRoundSituation();
                 if (situation[3].length != 0) {
+                    boolean input = false;
+                    System.out.println("Play Carr or change value / sign");
+                    input= s.nextBoolean();
+                    if(input) {
                     System.out.println(rs.getString("whichCard"));
+                    
                     for (String string : situation[3]) {
                         System.out.println(++count + ": " + string);
                     }
                     dc.playCard(s.nextInt());
                     System.out.println(Arrays.deepToString(dc.getRoundSituation()));
                     playedCard = true;
+                                         
+                    } else {
+                        System.out.println("Change sign?");
+                        boolean change = false;
+                        change = s.nextBoolean();
+                        if(change) {
+                            System.out.println(Arrays.deepToString(dc.showPossibleChanges()));
+                            int cardIndex = s.nextInt();
+                            dc.changeCardSign(cardIndex);
+                        } else {
+                            System.out.println(Arrays.deepToString(dc.showPossibleValueChanges()));
+                            int cardIndex = s.nextInt();
+                            dc.changeCardValue(cardIndex);
+                        }
+                           System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                           playedCard = true;
+                    }
                 } else {
                     System.out.println(rs.getString("noCards"));
                     playedCard = true;

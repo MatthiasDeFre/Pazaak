@@ -256,8 +256,8 @@ public class DomainController {
         newMatch.playCard(cardIndex);
     }
     
-    public void changeCardSign(int cardIndex) {
-        currentUser.getMatchDeck(newMatch).get(cardIndex).changeSign();
+    public void changeCardSign(int cardIndex) {      
+         newMatch.changeCardSign(cardIndex);
     }
     
     public String[][] showPossibleChanges() {
@@ -277,9 +277,9 @@ public class DomainController {
                     possibleChanges[i][1] = arrayCopy[i][1];
                     possibleChanges[i][2] = arrayCopy[i][2];
                 }
-                possibleChanges[arrayCopy.length + 1][0] = card.getType();
-                possibleChanges[arrayCopy.length + 1][1] = String.valueOf(card.getValue());
-                possibleChanges[arrayCopy.length + 1][2] = String.valueOf(j);
+                possibleChanges[arrayCopy.length ][0] = card.getType();
+                possibleChanges[arrayCopy.length ][1] = String.valueOf(card.getValue());
+                possibleChanges[arrayCopy.length ][2] = String.valueOf(j);
             }
        // }
           }
@@ -385,4 +385,45 @@ public class DomainController {
         }
         return deckArray;
     }
+     
+     public String[][] showMatchDeckOtherPlayer() {
+       String[][] deckArray = new String[newMatch.showMatchDeckOtherPlayer().getCards().size()][2];
+        int index = 0;
+        for (Card card : newMatch.showMatchDeckOtherPlayer().getCards())
+        {
+            deckArray[index++][0] = card.getType();
+            deckArray[index++][1] = String.valueOf(card.getValue());
+        }
+        return deckArray;
+     }
+     
+     public String[][] showPossibleValueChanges() {
+           String[][] possibleChanges = new String[0][3];
+        
+       //for(Card card : currentUser.getMatchDeck(newMatch)) {      
+        for (int j = 0; j < newMatch.getCurrentPlayer().getMatchDeck(newMatch).size(); j++)
+        {
+            Card card = newMatch.getCurrentPlayer().getMatchDeck(newMatch).get(j); 
+            if (card.getType().matches("[0-9]/+///-[0-9]"))
+            {
+                String[][] arrayCopy = possibleChanges;
+                possibleChanges = new String[arrayCopy.length + 1][3];
+                for (int i = 0; i < arrayCopy.length; i++)
+                {
+                    possibleChanges[i][0] = arrayCopy[i][0];
+                    possibleChanges[i][1] = arrayCopy[i][1];
+                    possibleChanges[i][2] = arrayCopy[i][2];
+                }
+                possibleChanges[arrayCopy.length + 1][0] = card.getType();
+                possibleChanges[arrayCopy.length + 1][1] = String.valueOf(card.getValue());
+                possibleChanges[arrayCopy.length + 1][2] = String.valueOf(j);
+            }
+       // }
+          }
+        return possibleChanges;
+     }
+     
+     public void changeCardValue(int cardindex) {
+         newMatch.changeValueCard(cardindex);
+     }
 }

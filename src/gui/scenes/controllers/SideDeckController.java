@@ -2,19 +2,25 @@
 
 package gui.scenes.controllers;
 
+import gui.CardGUI;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
+import java.security.interfaces.RSAKey;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 import javafx.scene.media.AudioClip;
 
@@ -24,11 +30,13 @@ import javafx.scene.text.Font;
 
 
 public class SideDeckController implements Initializable, _Scene {
-    
+    //lagnuage
+    private ResourceBundle rs;
     //scene controller
     SceneController controller;
-     private ResourceBundle rs;
     
+    private int selectedCardsAmount;
+    private boolean[] filledSlots;
     
     
    
@@ -43,11 +51,10 @@ public class SideDeckController implements Initializable, _Scene {
    
     
     
-    @FXML private Button btnConfirm;
     @FXML private Button btnCancel;
-  
-    @FXML private Label lblSideDeck;
-     
+    @FXML private Button btnConfirm;
+    @FXML private GridPane ownedCards;
+    @FXML private GridPane selectedCards;
         
     
     
@@ -55,24 +62,14 @@ public class SideDeckController implements Initializable, _Scene {
     
     
     public void initialize(URL url, ResourceBundle rb) {
-        rs = rb;
-        System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         
+        System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
+        rs = rb;
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
-        
-        //assert btnConfirm != null;
-        btnConfirm.setText("Language"); 
-        
-        //assert btnCancel != null;
-        btnCancel.setText("Mute Sound");
-        
-        //assert btnSettings != null;
-        
-        assert lblSideDeck != null;
-        lblSideDeck.setText("Back to main menu");
-        
-
+        btnConfirm.setDisable(true);
+      
+       
     }
     
     
@@ -81,106 +78,160 @@ public class SideDeckController implements Initializable, _Scene {
     @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
-        
-        
-    };
+        String[][] selectedCardsArray = new String[0][2];
+        controller.getDC().makeMatch();
+        controller.getDC().selectPlayer("Ron");
+        controller.getDC().selectPlayerWithoutMatchDeck("Ron");
+        int column =   0;
+        int row = 0;
+        filledSlots = new boolean[6];
+         for (String[] card: controller.getDC().getPlayerCards())
+        {
+           String imageUrl = "";
+           switch(card[0]) {
+               case "+": case "-":
+                    imageUrl = "gui/assets/img/game/cards/" + card[0] + card[1] + ".png";
+              break;
+              case "+/-":
+                  imageUrl = "gui/assets/img/game/cards/" + "±" + card[1] + ".png";
+              break;
+              case "D":
+                 imageUrl = "gui/assets/img/game/cards/" + "D" + ".png";
+              break;
+              case "1+/-2":
+                 imageUrl =  "gui/assets/img/game/cards/" + "1±2" + ".png";
+              break;
+               case "xT":
+                 imageUrl = "gui/assets/img/game/cards/±" + card[1]+ "T" + ".png";
+              break;
+               case "2&4": case "3&6":
+                 imageUrl = "gui/assets/img/game/cards/" + card[0] + ".png";
+              break;
+           }
+            System.out.println(imageUrl);
+           CardGUI cardGUI = new CardGUI(imageUrl, card[0], Integer.parseInt(card[1]));
+           cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent event)
+               {
+                   //Get the source of the event
+                    CardGUI cardGUI  = (CardGUI) event.getSource();
+                    
+                    //If the clicked card is interactable the event is caused
+                    if(cardGUI.isInteractable() && selectedCardsAmount < 6) {
+                    cardGUI.setInteractable(false);
+                 //   ((CardGUI) event.getSource()).setInteractable(false);
+                    
+                 //Make a new card that will be placed on the selectedCards Gridpane
+                    CardGUI newCardGUI = new CardGUI(cardGUI.getUrl(), cardGUI.getType(),cardGUI.getValue(),  GridPane.getColumnIndex(cardGUI), GridPane.getRowIndex(cardGUI));
+                    
+                    //Event to put the selectedCard back to the ownedCards Gridpane
+                    newCardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event)
+                        {
+                            CardGUI cardGUI = null;
+                            for (Node node : ownedCards.getChildren())
+                            {
+                                 CardGUI oldCardGUI  = (CardGUI) event.getSource();
+                                if (GridPane.getColumnIndex((CardGUI)node) == oldCardGUI.getIndeces()[0] && GridPane.getRowIndex((CardGUI)node) == oldCardGUI.getIndeces()[1])
+                                {
+                                        cardGUI = (CardGUI) node;
+                                        cardGUI.setInteractable(true);
+                                        cardGUI.setImage(new Image(cardGUI.getUrl()));
+                                        selectedCards.getChildren().remove(oldCardGUI);
+                                        filledSlots[GridPane.getColumnIndex(oldCardGUI)] = false;
+                                        selectedCardsAmount--;
+                                        if(selectedCardsAmount < 6){
+                                            btnConfirm.setDisable(true);
+                                        }
+                                    
+                                }
+                            }
+                            }
+                        });
+                        newCardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event)
+                            {
 
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
+                                hoverAudioClip.play();
+                                ((CardGUI) event.getSource()).setScaleX(1.5);
+                                ((CardGUI) event.getSource()).setScaleY(1.5);
+
+                            }
+                        });
+                        newCardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event)
+                            {
+                                ((CardGUI) event.getSource()).setScaleX(1);
+                                ((CardGUI) event.getSource()).setScaleY(1);
+                            }
+                        });
+                        selectedCards.add(newCardGUI, indexFirstEmpty(), 0);
+                        selectedCardsAmount++;
+                        filledSlots[indexFirstEmpty()] = true;
+                        if(selectedCardsAmount >= 6) {
+                            btnConfirm.setDisable(false);
+                        }
+                        cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                    }
+            
+               }
+            });
+            cardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                   if (((CardGUI) event.getSource()).isInteractable())
+                   {
+                        hoverAudioClip.play();
+                       ((CardGUI) event.getSource()).setScaleX(1.5);
+                       ((CardGUI) event.getSource()).setScaleY(1.5);
+                   }
+               }
+           });
+           cardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent event)
+               {
+                    ((CardGUI) event.getSource()).setScaleX(1);
+                    ((CardGUI) event.getSource()).setScaleY(1);
+               }
+           });
+          
+         //  ownedCards.getChildren().add(cardGUI);
+         ownedCards.add(cardGUI, column , row);
+         column++;
+         if(column == 6) {
+             row++;
+             column = 0;
+         }
+        }
+ 
+    };
+    
+    private int indexFirstEmpty() {
+      int index = 0;
+      while(filledSlots[index] == true) {
+          index++;
+      }
+      return index;
     }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
-    
-//btnConfirm
-    
-    @FXML
+//btnLanguage
+      @FXML
     public void btnConfirmClick(){
        
-       clickAudioClip.play();
-       controller.setScreen(Main.screen1ID);
-       
+          String[][] cards = new String[6][2];
+          int index = 0;
+          for (Node card : selectedCards.getChildren())
+          {
+              cards[index][0] = ((CardGUI) card).getType();
+              cards[index][1] = String.valueOf(((CardGUI) card).getValue());
+          }
+          controller.getDC().makeMatchDeck(cards);
+          System.out.println("deckMade");
     }
-    
-    @FXML
-    public void btnConfirmEnter(){
-        
-       hoverAudioClip.play();
-       btnConfirm.setScaleX(1.1);
-       btnConfirm.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnConfirmExit(){
-       
-       btnConfirm.setScaleX(1);
-       btnConfirm.setScaleY(1);
-   
-    }
-
-//btnCancel
-    
-    @FXML
-    public void btnCancelClick(){
-     
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-        System.out.println("s");
-       
-    }
-    
-    @FXML
-    public void btnCancelEnter(){
-        
-       hoverAudioClip.play();
-       btnCancel.setScaleX(1.1);
-       btnCancel.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnCancelExit(){
-       
-       btnCancel.setScaleX(1);
-       btnCancel.setScaleY(1);
-       
-        
-    }
-    
-    //btnSettings
-    
-    @FXML
-    public void btnSettingsClick(){
-     
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-       
-    }
-    
-    @FXML
-    public void btnSettingsEnter(){
-        
-       hoverAudioClip.play();
-       //btnSettings.setScaleX(1.1);
-      // btnSettings.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnSettingsExit(){
-       
-      // btnSettings.setScaleX(1);
-      // btnSettings.setScaleY(1);
-       
-        
-    }
+  
 }
