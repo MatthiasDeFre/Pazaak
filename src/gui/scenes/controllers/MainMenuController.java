@@ -72,7 +72,7 @@ public class MainMenuController implements Initializable, _Scene {
     ImageView imgStartGame = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/game.png"), 42,32, true, true));
     ImageView imgRegister = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/register.png"), 42,34, true, true));
     ImageView imgCredits = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/credits.png"), 42,34, true, true));
-    
+   
     //random zinnen hier:
     final String[] randomTop = {"Made in Düsseldorf", "Deze zin is bijzaak", "Dé polyvalente kaartsimulator", "Sponsored by Danio Danone"};
     Random random = new Random();

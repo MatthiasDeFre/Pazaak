@@ -14,7 +14,7 @@
   <children>
     <VBox fx:id="vbox" alignment="CENTER" maxHeight="675" maxWidth="1100.0" minHeight="675" minWidth="1100.0" prefHeight="675" prefWidth="1200.0" styleClass="background" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-            <Label text="0-1" />
+            <Label fx:id="lblScore" text="0-1" />
             <GridPane minHeight="530.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="540.0" />
@@ -27,7 +27,7 @@
                 <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="117.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane GridPane.rowIndex="1">
+                  <GridPane fx:id="player1Deck" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,7 +39,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
-                  <GridPane layoutX="10.0" layoutY="88.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane fx:id="player2Deck" layoutX="10.0" layoutY="88.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,7 +51,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <GridPane GridPane.rowIndex="2">
+                  <GridPane fx:id="player1SideDeck" GridPane.rowIndex="2">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -64,8 +64,8 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="naam1" />
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" text="6" textAlignment="RIGHT">
+                        <Label fx:id="lblPlayer1" text="naam1" />
+                        <Label fx:id="lblPlayer1Score" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" text="6" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets left="380.0" />
                            </HBox.margin>
@@ -74,15 +74,15 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
-                        <Label text="5" />
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" text="naam2" textAlignment="RIGHT">
+                        <Label fx:id="lblPlayer2Score" text="5" />
+                        <Label fx:id="lblPlayer2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" text="naam2" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets left="380.0" />
                            </HBox.margin>
                         </Label>
                      </children>
                   </HBox>
-                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <GridPane fx:id="player2SideDeck" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -95,8 +95,8 @@
                   </GridPane>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button id="buttonB" fx:id="btnSettings" graphicTextGap="0.0" minWidth="265.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="STAND" textOverrun="CLIP" />
-                        <Button id="buttonB" fx:id="btnSettings1" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
+                        <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
+                        <Button id="buttonB" fx:id="btnStand" graphicTextGap="0.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnStandClick" onMouseEntered="#btnStandEnter" onMouseExited="#btnStandEnter" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="STAND" textOverrun="CLIP" />
                      </children>
                   </VBox>
                </children>

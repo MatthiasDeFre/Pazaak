@@ -39,6 +39,12 @@ public class CreditsController implements Initializable, _Scene {
 
     
     @FXML private MediaView credits;
+    
+    
+    
+    
+    
+    
     final Media m = new Media(getClass().getResource("../../assets/sfx/media/credits.mp4").toExternalForm());
             final MediaPlayer mp = new MediaPlayer(m);
             
@@ -58,12 +64,12 @@ public class CreditsController implements Initializable, _Scene {
             
             
             credits.setMediaPlayer(mp);
-            final DoubleProperty width = credits.fitWidthProperty();
-            final DoubleProperty height = credits.fitHeightProperty();
-//
-           width.bind(Bindings.selectDouble(credits.sceneProperty(), "width"));
-              height.bind(Bindings.selectDouble(credits.sceneProperty(), "height"));
-//
+//            final DoubleProperty width = credits.fitWidthProperty();
+//            final DoubleProperty height = credits.fitHeightProperty();
+////
+//           width.bind(Bindings.selectDouble(credits.sceneProperty(), "width"));
+//              height.bind(Bindings.selectDouble(credits.sceneProperty(), "height"));
+////
        credits.setPreserveRatio(true);
  
 //            mp.setVolume(0.85);

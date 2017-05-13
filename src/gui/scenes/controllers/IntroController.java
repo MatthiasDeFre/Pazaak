@@ -31,7 +31,7 @@ public class IntroController implements Initializable, _Scene {
     //@FXML private Label lbl;
     
     final Media m = new Media(getClass().getResource("../../assets/sfx/media/intro.mp4").toExternalForm());
-            final MediaPlayer mp = new MediaPlayer(m);
+    final MediaPlayer mp = new MediaPlayer(m);
             
      
         

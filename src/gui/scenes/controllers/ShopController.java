@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 import javafx.scene.media.AudioClip;
 
@@ -47,8 +48,8 @@ public class ShopController implements Initializable, _Scene {
     
 
     @FXML private Button btnMain;
-
-     
+    @FXML private GridPane buyableCards1; //rij 1 van buyable kaarten (8 x 1)
+    @FXML private GridPane buyableCards2; //rij 2 (5 x 1)
         
     
     

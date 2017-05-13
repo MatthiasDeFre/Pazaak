@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 import javafx.scene.media.AudioClip;
 
@@ -46,10 +47,19 @@ public class GameController implements Initializable, _Scene {
     
     
 
-    @FXML private Button btnSettings;
-
-     
-        
+    @FXML private Button btnEndTurn;
+    @FXML private Button btnStand;
+    @FXML private GridPane player1Deck;
+    @FXML private GridPane player2Deck;
+    @FXML private GridPane player1SideDeck;
+    @FXML private GridPane player2SideDeck; 
+    @FXML private Label lblScore; 
+    @FXML private Label lblPlayer1; 
+    @FXML private Label lblPlayer2; 
+    @FXML private Label lblPlayer1Score; 
+    @FXML private Label lblPlayer2Score; 
+    
+    
     
     
     @Override
@@ -97,30 +107,59 @@ public class GameController implements Initializable, _Scene {
     
 
     
+    //btnEnd turn
+    
+    @FXML
+    public void btnEndTurnClick(){
+     
+        clickAudioClip.play();
+        //
+       
+    }
+    
+    @FXML
+    public void btnEndTurnEnter(){
+        
+       hoverAudioClip.play();
+       btnEndTurn.setScaleX(1.1);
+       btnEndTurn.setScaleY(1.1);
+        
+    }
+    
+    @FXML
+    public void btnEndTurnExit(){
+       
+       btnEndTurn.setScaleX(1);
+       btnEndTurn.setScaleY(1);
+       
+        
+    }
+    
+    
     //btnSettings
     
     @FXML
-    public void btnSettingsClick(){
+    public void btnStandClick(){
      
         clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
+        //
        
     }
     
     @FXML
-    public void btnSettingsEnter(){
+    public void btnStandEnter(){
         
        hoverAudioClip.play();
-       btnSettings.setScaleX(1.1);
-       btnSettings.setScaleY(1.1);
+       btnStand.setScaleX(1.1);
+       btnStand.setScaleY(1.1);
         
     }
     
     @FXML
-    public void btnSettingsExit(){
+    public void btnStandExit(){
        
-       btnSettings.setScaleX(1);
-       btnSettings.setScaleY(1);
+       btnStand.setScaleX(1);
+       btnStand.setScaleY(1);
        
         
     }
