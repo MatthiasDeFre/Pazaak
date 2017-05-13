@@ -47,10 +47,13 @@ public class ShopController implements Initializable, _Scene {
     
     
 
-    @FXML private Button btnMain;
+    @FXML private Button btnBuy;
     @FXML private GridPane buyableCards1; //rij 1 van buyable kaarten (8 x 1)
     @FXML private GridPane buyableCards2; //rij 2 (5 x 1)
-        
+    @FXML private ImageView imgSelectedCard; //@matthias, wnr je over een kaart hovert word(t) die hier in het groot getoont
+    @FXML private Label lblCredits;
+    @FXML private Label lblCost;
+    @FXML private Label lblExplanation;
     
     
     @Override
@@ -83,47 +86,34 @@ public class ShopController implements Initializable, _Scene {
         
     };
 
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
-    }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
+
     
 
     
     //btnMain
     
     @FXML
-    public void btnMainClick(){
+    public void btnBuyClick(){
      
         clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
+        
        
     }
     
     @FXML
-    public void btnMainEnter(){
+    public void btnBuyEnter(){
         
        hoverAudioClip.play();
-       btnMain.setScaleX(1.1);
-       btnMain.setScaleY(1.1);
+       btnBuy.setScaleX(1.1);
+       btnBuy.setScaleY(1.1);
         
     }
     
     @FXML
-    public void btnMainExit(){
+    public void btnBuyExit(){
        
-       btnMain.setScaleX(1);
-       btnMain.setScaleY(1);
+       btnBuy.setScaleX(1);
+       btnBuy.setScaleY(1);
        
         
     }

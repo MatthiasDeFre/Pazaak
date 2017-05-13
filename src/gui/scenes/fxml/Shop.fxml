@@ -52,7 +52,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
-                        <Label prefHeight="88.0" prefWidth="778.0" text="Label">
+                        <Label fx:id="lblCredits" prefHeight="88.0" prefWidth="778.0" text="Label">
                            <font>
                               <Font size="52.0" />
                            </font>
@@ -61,18 +61,18 @@
                   </VBox>
                   <VBox prefHeight="525.0" prefWidth="447.0">
                      <children>
-                        <ImageView fitHeight="243.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label prefHeight="103.0" prefWidth="442.0" text="uitleg">
+                        <ImageView fx:id="imgSelectedCard" fitHeight="243.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="lblExplanation" prefHeight="103.0" prefWidth="442.0" text="uitleg">
                            <font>
                               <Font size="46.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="67.0" prefWidth="445.0" text="Prijs">
+                        <Label fx:id="lblCost" prefHeight="67.0" prefWidth="445.0" text="Prijs">
                            <font>
                               <Font size="34.0" />
                            </font>
                         </Label>
-                        <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
+                        <Button id="buttons" fx:id="btnBuy" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnBuyEnter" onMouseExited="#btnBuyExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
                            <effect>
                               <Glow />
                            </effect>

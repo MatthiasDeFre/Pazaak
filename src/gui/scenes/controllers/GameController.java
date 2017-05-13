@@ -90,24 +90,11 @@ public class GameController implements Initializable, _Scene {
         
     };
 
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
-    }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
+
     
 
     
-    //btnEnd turn
+    //btnEndTurn
     
     @FXML
     public void btnEndTurnClick(){
@@ -136,7 +123,7 @@ public class GameController implements Initializable, _Scene {
     }
     
     
-    //btnSettings
+    //btnStand
     
     @FXML
     public void btnStandClick(){
