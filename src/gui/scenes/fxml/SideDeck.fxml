@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
@@ -43,17 +44,47 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button id="buttonR" fx:id="btnCancel1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="287.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="291.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="52.0" right="59.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="buttons" fx:id="btnCancel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="376.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="buy more cards (trial expired)" textOverrun="CLIP">
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="59.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="buttons" fx:id="btnConfirm" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="300.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="Confirm" textOverrun="CLIP">
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="59.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
          </children>
     </VBox>
-      <Button id="buttons" fx:id="btnConfirm" graphicTextGap="0.0" layoutX="774.0" layoutY="597.0" minWidth="300.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="Confirm" textOverrun="CLIP">
-         <effect>
-            <Glow />
-         </effect>
-      </Button>
-      <Button id="buttons" fx:id="btnCancel" graphicTextGap="0.0" layoutX="24.0" layoutY="595.0" minWidth="376.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="376.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
-         <effect>
-            <Glow />
-         </effect>
-      </Button>
   </children>
 </AnchorPane>

@@ -1,5 +1,14 @@
 .back {
-    -fx-background-color: #081F29;
+/*    fx-background-color: #081F29;*/
+    -fx-font-family: "Upheaval TT -BRK-";  
+    
+
+    -fx-text-fill: white;
+     
+}
+
+.background {
+        -fx-background-color: #081F29;
     -fx-font-family: "Upheaval TT -BRK-";  
     
 

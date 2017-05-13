@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -20,6 +21,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1100.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.MainMenuController">
   <children>
+      <MediaView fx:id="media" fitHeight="200.0" fitWidth="200.0" />
     <VBox fx:id="vbox" alignment="CENTER" layoutX="-7.0" maxHeight="675.0" maxWidth="1212.0" minHeight="675.0" minWidth="1200.0" prefHeight="675.0" prefWidth="1212.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
       <children>
             <ImageView fx:id="img" fitHeight="117.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true">
@@ -87,7 +89,7 @@
             </ImageView>
       </children>
     </VBox>
-      <Label id="labelBig" layoutX="15.0" layoutY="625.0" prefHeight="50.0" prefWidth="343.0" stylesheets="@../../assets/css/menu.css" text="v1.253 Pre-release" />
+      <Label id="labelBig" layoutX="15.0" layoutY="625.0" prefHeight="50.0" prefWidth="343.0" stylesheets="@../../assets/css/menu.css" text="v2.3 Beta" />
       <Label id="labelBig" layoutX="893.0" layoutY="630.0" prefHeight="45.0" prefWidth="430.0" stylesheets="@../../assets/css/menu.css" text="Copyright team 07" />
   </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -18,105 +19,69 @@
 
 <AnchorPane id="AnchorPane" maxHeight="675.0" maxWidth="1200.0" minHeight="675.0" minWidth="1200.0" prefHeight="675" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.controllers.ShopController">
   <children>
-    <VBox fx:id="vbox" alignment="CENTER" maxHeight="675" maxWidth="1100.0" minHeight="675" minWidth="1100.0" prefHeight="675" prefWidth="1200.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox prefHeight="675.0" prefWidth="1200.0">
          <children>
-            <HBox prefHeight="180.0" prefWidth="576.0">
+            <GridPane gridLinesVisible="true" prefHeight="234.0" prefWidth="1200.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <HBox prefHeight="530.0" prefWidth="1206.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="163.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="562.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="163.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/game/cards/back.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <VBox prefHeight="526.0" prefWidth="750.0">
+                     <children>
+                        <GridPane gridLinesVisible="true" prefHeight="190.0" prefWidth="750.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <Label prefHeight="88.0" prefWidth="778.0" text="Label">
+                           <font>
+                              <Font size="52.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="525.0" prefWidth="447.0">
+                     <children>
+                        <ImageView fitHeight="243.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="103.0" prefWidth="442.0" text="uitleg">
+                           <font>
+                              <Font size="46.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="67.0" prefWidth="445.0" text="Prijs">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Label>
+                        <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" layoutX="780.0" layoutY="601.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="39.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="MAIN MENU" textOverrun="CLIP">
-         <effect>
-            <Glow />
-         </effect>
-      </Button>
   </children>
 </AnchorPane>

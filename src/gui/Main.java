@@ -68,9 +68,10 @@ public class Main extends Application {
         //mainContainer.loadScreen(Main.screen9ID, Main.screen9File);
         //mainContainer.loadScreen(Main.screen11ID, Main.screen11File);
         
+       // mainContainer.loadScreen(Main.screen7ID, Main.screen7File);
         
         //beginscherm:
-        mainContainer.setScreen(Main.screen8ID); //9
+        mainContainer.setScreen(Main.screen8ID); //8
         
         
 
@@ -87,12 +88,13 @@ public class Main extends Application {
         
         //icon instellen
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img/menu/fav4.png")));
-        primaryStage.setTitle("Pazaak  v1.253 Pre-release");
+        primaryStage.setTitle("Pazaak v2.3 Beta");
         
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
           public void handle(WindowEvent we) {
               we.consume();
               final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("assets/sfx/sounds/Error.mp3").toExternalForm());
+              ExitAudioClip.setVolume(0.6);
               ExitAudioClip.play();
               
               System.out.println("Stage is closing");

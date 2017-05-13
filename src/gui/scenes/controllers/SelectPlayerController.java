@@ -124,6 +124,8 @@ public class SelectPlayerController implements Initializable, _Scene {
     public void btnConfirmClick(){
        
        clickAudioClip.play();
+       controller.stopMusic();
+       controller.playSideMusic();
        controller.loadScreen(Main.screen6ID, Main.screen6File);
        controller.setScreen(Main.screen6ID);
        

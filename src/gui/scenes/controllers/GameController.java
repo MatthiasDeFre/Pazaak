@@ -45,10 +45,9 @@ public class GameController implements Initializable, _Scene {
    
     
     
-    @FXML private Button btnLanguage;
-    @FXML private Button btnMultiplayer;
+
     @FXML private Button btnSettings;
-    @FXML private Label lblSettings;
+
      
         
     
@@ -64,15 +63,9 @@ public class GameController implements Initializable, _Scene {
         clickAudioClip.setVolume(0.5);
         
         //assert btnLanguage != null;
-        btnLanguage.setText("Language"); 
+
         
-        //assert btnMultiplayer != null;
-        btnMultiplayer.setText("Mute Sound");
-        
-        //assert btnSettings != null;
-        
-        assert lblSettings != null;
-        lblSettings.setText("Back to main menu");
+       
         
 
     }
@@ -102,61 +95,7 @@ public class GameController implements Initializable, _Scene {
        
     }
     
-//btnLanguage
-    
-    @FXML
-    public void btnLanguageClick(){
-       
-       clickAudioClip.play();
-       controller.setScreen(Main.screen1ID);
-       
-    }
-    
-    @FXML
-    public void btnLanguageEnter(){
-        
-       hoverAudioClip.play();
-       btnLanguage.setScaleX(1.1);
-       btnLanguage.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnLanguageExit(){
-       
-       btnLanguage.setScaleX(1);
-       btnLanguage.setScaleY(1);
-   
-    }
 
-//btnMultiplayer
-    
-    @FXML
-    public void btnMultiplayerClick(){
-     
-        clickAudioClip.play();
-        controller.setScreen(Main.screen2ID);
-        System.out.println("s");
-       
-    }
-    
-    @FXML
-    public void btnMultiplayerEnter(){
-        
-       hoverAudioClip.play();
-       btnMultiplayer.setScaleX(1.1);
-       btnMultiplayer.setScaleY(1.1);
-        
-    }
-    
-    @FXML
-    public void btnMultiplayerExit(){
-       
-       btnMultiplayer.setScaleX(1);
-       btnMultiplayer.setScaleY(1);
-       
-        
-    }
     
     //btnSettings
     

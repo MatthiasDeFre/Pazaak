@@ -44,6 +44,9 @@ public String messageId = "";
     Media mainMenuMusicMedia = new Media(mainMenuMusicURL.toString());
     MediaPlayer mainMenuMusic = new MediaPlayer(mainMenuMusicMedia);
     
+    URL sideMusicURL = getClass().getResource("assets/sfx/music/SideDeck.mp3");
+    Media sideMusicMedia = new Media(sideMusicURL.toString());
+    MediaPlayer sideMusic = new MediaPlayer(sideMusicMedia);
     
     
      //exit sound
@@ -200,7 +203,7 @@ public String messageId = "";
     // Main Menu music
         if (!isMuted) {
             mainMenuMusic.setCycleCount(mainMenuMusic.INDEFINITE);
-    mainMenuMusic.setVolume(0.20);
+    mainMenuMusic.setVolume(0.9);
     mainMenuMusic.play();
         }
     
@@ -212,6 +215,26 @@ public String messageId = "";
     // Main Menu music
     
     mainMenuMusic.stop();
+        
+    }
+    
+    public void playSideMusic() {
+        
+    // Main Menu music
+        if (!isMuted) {
+            sideMusic.setCycleCount(sideMusic.INDEFINITE);
+    sideMusic.setVolume(0.2);
+    sideMusic.play();
+        }
+    
+        
+    }
+    
+    public void stopSideMusic() {
+        
+    // Main Menu music
+    
+    sideMusic.stop();
         
     }
     

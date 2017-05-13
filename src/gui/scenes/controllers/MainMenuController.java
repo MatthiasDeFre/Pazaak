@@ -86,7 +86,10 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML private Button btnExit;
     @FXML private Label lblTop;
 @FXML private ImageView img;
-   
+
+   @FXML private MediaView media;
+    final Media m = new Media(getClass().getResource("../../assets/sfx/media/loop.mp4").toExternalForm());
+            final MediaPlayer mp = new MediaPlayer(m);
     
      final Timeline timelineRot = new Timeline();
         
@@ -127,7 +130,21 @@ public class MainMenuController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         
-        
+        media.setMediaPlayer(mp);
+            final DoubleProperty width = media.fitWidthProperty();
+            final DoubleProperty height = media.fitHeightProperty();
+//
+           width.bind(Bindings.selectDouble(media.sceneProperty(), "width"));
+              height.bind(Bindings.selectDouble(media.sceneProperty(), "height"));
+//
+       media.setPreserveRatio(true);
+       mp.setCycleCount(MediaPlayer.INDEFINITE);
+ 
+//            mp.setVolume(0.85);
+//            
+//             
+//            
+            mp.play();
         
     
         

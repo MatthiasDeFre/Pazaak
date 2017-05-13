@@ -45,7 +45,7 @@ public class SideDeckController implements Initializable, _Scene {
     
     @FXML private Button btnConfirm;
     @FXML private Button btnCancel;
-    //@FXML private Button btnSettings;
+  
     @FXML private Label lblSideDeck;
      
         
