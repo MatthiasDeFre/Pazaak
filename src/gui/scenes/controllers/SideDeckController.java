@@ -3,6 +3,7 @@
 package gui.scenes.controllers;
 
 import gui.CardGUI;
+import gui.Main;
 import gui.SceneController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +45,7 @@ public class SideDeckController implements Initializable, _Scene {
    
     
     
-    @FXML private Button btnCancel;
+    @FXML private Button btnShop;
     @FXML private Button btnConfirm;
     @FXML private GridPane ownedCards;
     @FXML private GridPane selectedCards;
@@ -73,8 +74,8 @@ public class SideDeckController implements Initializable, _Scene {
         controller = screenParent;
         String[][] selectedCardsArray = new String[0][2];
         controller.getDC().makeMatch();
-        controller.getDC().selectPlayer("Ron");
-        controller.getDC().selectPlayerWithoutMatchDeck("Ron");
+        controller.getDC().selectPlayer("tyreg");
+        controller.getDC().selectPlayerWithoutMatchDeck("tyreg");
         int column =   0;
         int row = 0;
         filledSlots = new boolean[6];
@@ -83,10 +84,10 @@ public class SideDeckController implements Initializable, _Scene {
            String imageUrl = "";
            switch(card[0]) {
                case "+": case "-":
-                    imageUrl = "gui/assets/img/game/cards/" + card[0] + card[1] + ".png";
+                    imageUrl = "gui/assets/img/game/cards/" + card[0] + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
               break;
               case "+/-":
-                  imageUrl = "gui/assets/img/game/cards/" + "±" + card[1] + ".png";
+                  imageUrl = "gui/assets/img/game/cards/" + "±" + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
               break;
               case "D":
                  imageUrl = "gui/assets/img/game/cards/" + "D" + ".png";
@@ -95,7 +96,7 @@ public class SideDeckController implements Initializable, _Scene {
                  imageUrl =  "gui/assets/img/game/cards/" + "1±2" + ".png";
               break;
                case "xT":
-                 imageUrl = "gui/assets/img/game/cards/±" + card[1]+ "T" + ".png";
+                 imageUrl = "gui/assets/img/game/cards/±" + String.valueOf(Math.abs(Integer.parseInt(card[1])))+ "T" + ".png";
               break;
                case "2&4": case "3&6":
                  imageUrl = "gui/assets/img/game/cards/" + card[0] + ".png";
@@ -213,19 +214,33 @@ public class SideDeckController implements Initializable, _Scene {
       return index;
     }
 //btnLanguage
-      @FXML
-    public void btnConfirmClick(){
-       
-          String[][] cards = new String[6][2];
-          int index = 0;
-          for (Node card : selectedCards.getChildren())
-          {
-              cards[index][0] = ((CardGUI) card).getType();
-              cards[index][1] = String.valueOf(((CardGUI) card).getValue());
-              index++;
-          }
-          controller.getDC().makeMatchDeck(cards);
-          
+    @FXML
+    public void btnConfirmClick()
+    {
+
+        String[][] cards = new String[6][2];
+        int index = 0;
+        for (Node card : selectedCards.getChildren())
+        {
+            cards[index][0] = ((CardGUI) card).getType();
+            cards[index][1] = String.valueOf(((CardGUI) card).getValue());
+            index++;
+        }
+        controller.getDC().makeMatchDeck(cards);
+        controller.getDC().selectPlayer("pater");
+        controller.getDC().selectPlayerWithoutMatchDeck("pater");
+        controller.getDC().makeMatchDeck(cards);
+        controller.loadScreen(Main.screen7ID, Main.screen7File);
+        controller.setScreen(Main.screen7ID);
+    }
+
+    @FXML
+    public void btnShopClick()
+    {
+
+        controller.loadScreen(Main.screen9ID, Main.screen9File);
+        controller.setScreen(Main.screen9ID);
+
     }
   
 }

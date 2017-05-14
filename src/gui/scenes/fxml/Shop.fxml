@@ -72,7 +72,7 @@
                               <Font size="34.0" />
                            </font>
                         </Label>
-                        <Button id="buttons" fx:id="btnBuy" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnBuyEnter" onMouseExited="#btnBuyExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
+                        <Button id="buttons" fx:id="btnBuy" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnBuyClick" onMouseEntered="#btnBuyEnter" onMouseExited="#btnBuyExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
                            <effect>
                               <Glow />
                            </effect>

@@ -170,7 +170,7 @@ public class Match{
                     score[1]++;
                 }
             }*/
-            if(!matchRound.getStatus().equals("draw")) {                 
+            if(matchRound.getStatus() != null && !matchRound.getStatus().equals("draw")) {                 
                 if (matchRound.getStatus().equals(matchPlayers.get(0).getName()))
                 {
                     score[0]++;
@@ -341,8 +341,19 @@ public class Match{
       return  matchPlayers.get((matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex() +1) % 2).getMatchDeck();
     }
     
+     public MatchDeck showMatchDeckCurrentPlayer(){
+      return  matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck();
+    }
+    
     public void changeValueCard(int cardIndex) { 
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeValue();
     }
     
+    public int getCurrentPlayerIndext() {
+       return matchRounds.get(matchRounds.size() -1).getCurrentPlayerIndex();
+    }
+    
+    public String[] getLastCardPlayed() {
+        return matchRounds.get(matchRounds.size() -1).getLastCardPlayed();
+    }
 }

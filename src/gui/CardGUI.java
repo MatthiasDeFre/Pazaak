@@ -19,7 +19,7 @@ public class CardGUI extends ImageView{
     private int [] indeces;
     private boolean interactable;
     private String url;
-   
+    
     /**
      * SideDeck constructor because of the given indeces the Card can be returned to his original position in a gridpane
      * @param imageUrl
@@ -40,20 +40,31 @@ public class CardGUI extends ImageView{
         this.interactable = true;
     }
 
+    public CardGUI(String url)
+    {
+        super(url);
+        this.url = url;
+    }
+
     /**
      * Shop Constructor
      * @param imageUrl
-     * @param value
      * @param type
+     * @param value
+     * @param column
      * @param price 
+     * @param interactable 
      */
-    public CardGUI(String imageUrl, String type, int value,  int price)
+    public CardGUI(String imageUrl, String type, int value ,int price, int column, boolean interactable)
     {
         super(imageUrl);
         this.url = imageUrl;
+        this.indeces = new int[1];
+        this.indeces[0] = column;
+        this.price = price;
+        this.interactable = interactable;
         this.type = type;
         this.value = value;
-        this.interactable = true;
     }
     
      /**

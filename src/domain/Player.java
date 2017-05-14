@@ -59,8 +59,11 @@ public class Player{
             deck = collection;
             this.name = name;
             this.birthYear = birthYear;*/
-          this(credit, name, birthYear);
-          deck = collection;
+        //  this(credit, name, birthYear);
+            this.birthYear = birthYear;
+            this.name = name;
+            this.credit = credit;
+            deck = collection;
         }
         
         public Player(int credit, String name, int birthYear) {

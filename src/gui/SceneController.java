@@ -81,18 +81,24 @@ public String messageId = "";
             
             //loader
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            System.out.println(getClass().getResource(name));
+            System.out.println("loader");
             loader.setResources(rs);
+            System.out.println("resources");
             Parent loadScreen = (Parent) loader.load();
+             System.out.println("loadscreen");
             _Scene sceneControler = ((_Scene) loader.getController());
+             System.out.println("controller");
             sceneControler.setScreenParent(this);
             addScreen(name, loadScreen);
+      
             //
             return true;
             
         } catch (Exception e) {
             
             System.out.println(e.getMessage());
-            
+             
             return false;
         }
     }
@@ -102,7 +108,7 @@ public String messageId = "";
     public boolean setScreen(final String name) {       
         
          
-        
+        System.out.println(name);
         if (screens.get(name) != null) {   //screen loaded
             
             final DoubleProperty opacity = opacityProperty();

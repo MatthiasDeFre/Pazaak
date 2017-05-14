@@ -57,7 +57,7 @@
                         <Insets left="52.0" right="59.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="buttons" fx:id="btnCancel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="376.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="buy more cards (trial expired)" textOverrun="CLIP">
+                  <Button id="buttons" fx:id="btnShop" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="376.0" mnemonicParsing="false" onAction="#btnShopClick" prefHeight="32.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="buy more cards (trial expired)" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>

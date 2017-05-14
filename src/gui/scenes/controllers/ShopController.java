@@ -2,15 +2,19 @@
 
 package gui.scenes.controllers;
 
+import gui.CardGUI;
 import gui.SceneController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import javafx.scene.media.AudioClip;
@@ -50,6 +54,9 @@ public class ShopController implements Initializable, _Scene {
     @FXML private Label lblCost;
     @FXML private Label lblExplanation;
     
+    private int columnsGrid1 = 8;
+    private int amountOfCards = 0;
+    private CardGUI selectedCardGUI;
     
     @Override
     
@@ -60,8 +67,8 @@ public class ShopController implements Initializable, _Scene {
         rs = rb;
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
-        
-
+        btnBuy.setDisable(true);
+        imgSelectedCard.setImage(new Image("gui/assets/img//game/cards/back.png"));
         
 
         
@@ -77,7 +84,59 @@ public class ShopController implements Initializable, _Scene {
     @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
-        
+        int index = 0;
+        lblCredits.setText(String.valueOf(controller.getDC().getCurrentPlayerCredits()));
+        System.out.println(String.valueOf(controller.getDC().getCurrentPlayerCredits()));
+        for (String[] card : controller.getDC().showBuyableCards())
+        {
+             String imageUrl = "";
+           switch(card[0]) {
+               case "+": case "-":
+                    imageUrl = "gui/assets/img/game/cards/" + card[0] + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
+              break;
+              case "+/-":
+                  imageUrl = "gui/assets/img/game/cards/" + "±" + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
+              break;
+              case "D":
+                 imageUrl = "gui/assets/img/game/cards/" + "D" + ".png";
+              break;
+              case "1+/-2":
+                 imageUrl =  "gui/assets/img/game/cards/" + "1±2" + ".png";
+              break;
+               case "xT":
+                 imageUrl = "gui/assets/img/game/cards/±" + String.valueOf(Math.abs(Integer.parseInt(card[1])))+ "T" + ".png";
+              break;
+               case "2&4": case "3&6":
+                 imageUrl = "gui/assets/img/game/cards/" + card[0] + ".png";
+              break;
+           }
+            System.out.println(imageUrl);
+          CardGUI cardGUI = new CardGUI(imageUrl, card[0], Integer.parseInt(card[1]), Integer.parseInt(card[2]), ++amountOfCards, true);
+          cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                 @Override
+                 public void handle(MouseEvent event)
+                 {
+                     
+                     CardGUI cardGUI = (CardGUI) event.getSource();
+                     if (cardGUI.isInteractable())
+                     {
+                         imgSelectedCard.setImage(new Image(cardGUI.getUrl()));
+                         lblCost.setText(String.valueOf(cardGUI.getPrice()));
+                         selectedCardGUI = cardGUI;
+                         btnBuy.setDisable(false);
+                     }
+                 }
+             });
+          if(index >= columnsGrid1) {
+               buyableCards2.add(cardGUI, index - columnsGrid1, 0);
+               index++;
+               
+          } else {
+               buyableCards1.add(cardGUI, index++, 0);
+          }
+          
+           
+        }
         
     };
 
@@ -90,7 +149,23 @@ public class ShopController implements Initializable, _Scene {
     public void btnBuyClick(){
      
         clickAudioClip.play();
-        
+        try
+        {
+         String[] availableCard = new String[3];
+        availableCard[0] = selectedCardGUI.getType();
+        availableCard[1] = String.valueOf(selectedCardGUI.getValue());
+        availableCard[2] = String.valueOf(selectedCardGUI.getPrice());
+        controller.getDC().buyCard(availableCard);
+        btnBuy.setDisable(true);
+        selectedCardGUI.setInteractable(false);
+        selectedCardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+        imgSelectedCard.setImage(new Image("gui/assets/img//game/cards/back.png"));
+        } 
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            lblExplanation.setText(e.getMessage());
+        }
        
     }
     

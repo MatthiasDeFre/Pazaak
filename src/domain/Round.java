@@ -260,5 +260,12 @@ public class Round{
         
     }
     
+    public String[] getLastCardPlayed() {
+        String[] card = new String[2];
+        Card cardObject = gameBoardList.get(currentTurnPlayerIndex).getGameBoardCards().get(gameBoardList.get(currentTurnPlayerIndex).getGameBoardCards().size()-1);
+        card[0] = cardObject.getType();
+        card[1] = String.valueOf(cardObject.getValue());
+        return card;
+    }
 
 }

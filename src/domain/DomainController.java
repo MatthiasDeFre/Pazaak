@@ -174,7 +174,7 @@ public class DomainController {
         for (int i = 0; i < cardList.size(); i++)
         {
             cardArray[i][0] = cardList.get(i).getType();
-            cardArray[i][1] = Integer.toString(cardList.get(i).getValue());
+            cardArray[i][1] = Integer.toString(cardList.get(i).getTrueValue());
         }
         return cardArray;
     }
@@ -367,7 +367,7 @@ public class DomainController {
         {
             card=buyableCardList.get(i);
             buyableCardArray[i][0]=card.getType();
-            buyableCardArray[i][1]=String.valueOf(card.getValue());
+            buyableCardArray[i][1]=String.valueOf(card.getTrueValue());
             buyableCardArray[i][2]=String.valueOf(card.getPrice());
                   
         }       
@@ -381,7 +381,7 @@ public class DomainController {
         for (Card card : currentUser.getDeck())
         {
             deckArray[index++][0] = card.getType();
-            deckArray[index++][1] = String.valueOf(card.getValue());
+            deckArray[index++][1] = String.valueOf(card.getTrueValue());
         }
         return deckArray;
     }
@@ -391,8 +391,9 @@ public class DomainController {
         int index = 0;
         for (Card card : newMatch.showMatchDeckOtherPlayer().getCards())
         {
-            deckArray[index++][0] = card.getType();
-            deckArray[index++][1] = String.valueOf(card.getValue());
+            deckArray[index][0] = card.getType();
+            deckArray[index][1] = String.valueOf(card.getTrueValue());
+              index++;
         }
         return deckArray;
      }
@@ -425,5 +426,33 @@ public class DomainController {
      
      public void changeCardValue(int cardindex) {
          newMatch.changeValueCard(cardindex);
+     }
+     
+     public int getCurrentPlayerCredits() {
+         return currentUser.getCredit();
+     }
+     
+     public String[][] getMatchDeckCurrentPlayer() {
+        String[][] deckArray = new String[newMatch.showMatchDeckCurrentPlayer().getCards().size()][2];
+        int index = 0;
+        for (Card card : newMatch.showMatchDeckCurrentPlayer().getCards())
+        {
+            deckArray[index][0] = card.getType();
+            deckArray[index][1] = String.valueOf(card.getTrueValue());
+            index++;
+        }
+        return deckArray;
+     }
+     
+     public int [] getMatchScore() {
+        return newMatch.getScoring();
+     }
+     
+     public int getCurrentPlayerIndex() {
+         return newMatch.getCurrentPlayerIndext();
+     }
+     
+     public String[] giveLastCardPlayed() {
+         return newMatch.getLastCardPlayed();
      }
 }
