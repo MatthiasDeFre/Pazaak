@@ -93,6 +93,9 @@ public class GameController implements Initializable, _Scene {
 
         columnCounters = new int[2];
         rowCounters = new int[2];
+        
+        lblPlayer1Score.setText("0");
+        lblPlayer2Score.setText("0");
     }
 
     @Override
@@ -132,9 +135,30 @@ public class GameController implements Initializable, _Scene {
                         columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
                         rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
                     }
-                    controller.getDC().playCard(GridPane.getColumnIndex(cardGUI));
+                //    controller.getDC().playCard(GridPane.getColumnIndex(cardGUI));
+                    boolean cardFound = false;
+                    int cardIndex= 1;
+                        for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+                        {
+                            CardGUI cardGUI2 = (CardGUI) card;
+                            if (cardGUI2 != null && !cardFound && !cardGUI2.getUrl().equals("gui/assets/img//game/cards/back.png"))
+                            {
+                               if(cardGUI == cardGUI2) {
+                                   cardFound = true;
+                               } else {
+                                   cardIndex++;
+                               }
+                            }
+                        }
+     
+                     //   System.out.println(String.valueOf(GridPane.getColumnIndex(cardGUI)));
+                      controller.getDC().playCard(cardIndex);
+                        System.out.println(String.valueOf(cardIndex));
                     cardGUI.setInteractable(false);
                     cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                    cardGUI.setUrl("gui/assets/img//game/cards/back.png");
+                    lblPlayer1Score.setText(String.valueOf(controller.getDC().getPlayerScores()[0]));
+                    lblPlayer2Score.setText(String.valueOf(controller.getDC().getPlayerScores()[1]));
                     }
                 }
             });
@@ -327,6 +351,8 @@ public class GameController implements Initializable, _Scene {
                 cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
             }
         }
+        
+        scores.get(controller.getDC().getCurrentPlayerIndex()).setText(String.valueOf(controller.getDC().getPlayerScores()[controller.getDC().getCurrentPlayerIndex()]));
 
     }
 
@@ -365,6 +391,10 @@ public class GameController implements Initializable, _Scene {
         columnCounters = new int[2];
         rowCounters = new int[2];
         controller.getDC().startNewRound();
+        
+        lblPlayer1Score.setText("0");
+        lblPlayer2Score.setText("0");
+        
         nextTurn();
     }
 }

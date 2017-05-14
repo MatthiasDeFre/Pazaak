@@ -455,4 +455,8 @@ public class DomainController {
      public String[] giveLastCardPlayed() {
          return newMatch.getLastCardPlayed();
      }
+     
+     public int [] getPlayerScores() {
+         return newMatch.getPlayerScores();
+     }
 }

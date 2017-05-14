@@ -356,4 +356,8 @@ public class Match{
     public String[] getLastCardPlayed() {
         return matchRounds.get(matchRounds.size() -1).getLastCardPlayed();
     }
+    
+    public int [] getPlayerScores() {
+        return matchRounds.get(matchRounds.size() -1).calculateGameBoardScores();
+    }
 }

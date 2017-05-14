@@ -240,7 +240,7 @@ public class Round{
         }
     }
     
-    private int [] calculateGameBoardScores() {
+    public int [] calculateGameBoardScores() {
        
         int[] scoresList = new int[2];
         scoresList[0] = gameBoardList.get(0).calculateGameBoardScore();
