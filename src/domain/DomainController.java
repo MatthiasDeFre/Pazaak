@@ -367,7 +367,7 @@ public class DomainController {
         {
             card=buyableCardList.get(i);
             buyableCardArray[i][0]=card.getType();
-            buyableCardArray[i][1]=String.valueOf(card.getTrueValue());
+            buyableCardArray[i][1]=String.valueOf(card.getValue());
             buyableCardArray[i][2]=String.valueOf(card.getPrice());
                   
         }       

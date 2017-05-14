@@ -92,10 +92,10 @@ public class ShopController implements Initializable, _Scene {
              String imageUrl = "";
            switch(card[0]) {
                case "+": case "-":
-                    imageUrl = "gui/assets/img/game/cards/" + card[0] + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
+                    imageUrl = "gui/assets/img/game/cards/" + card[0] + card[1] + ".png";
               break;
               case "+/-":
-                  imageUrl = "gui/assets/img/game/cards/" + "±" + String.valueOf(Math.abs(Integer.parseInt(card[1]))) + ".png";
+                  imageUrl = "gui/assets/img/game/cards/" + "±" + card[1] + ".png";
               break;
               case "D":
                  imageUrl = "gui/assets/img/game/cards/" + "D" + ".png";
@@ -104,7 +104,7 @@ public class ShopController implements Initializable, _Scene {
                  imageUrl =  "gui/assets/img/game/cards/" + "1±2" + ".png";
               break;
                case "xT":
-                 imageUrl = "gui/assets/img/game/cards/±" + String.valueOf(Math.abs(Integer.parseInt(card[1])))+ "T" + ".png";
+                 imageUrl = "gui/assets/img/game/cards/±" + card[1]+ "T" + ".png";
               break;
                case "2&4": case "3&6":
                  imageUrl = "gui/assets/img/game/cards/" + card[0] + ".png";
