@@ -113,10 +113,37 @@ public class MessageController implements Initializable, _Scene {
         else if (controller.messageId == "1") {
             img.setFitHeight(80);
             img.setImage(loadsave);
+            
+            final Glow glow = new Glow();
+    
+            glow.setLevel(0.0);
+    
+    img.setEffect(glow);
+    final Timeline timeline = new Timeline();
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.setAutoReverse(true);
+    final KeyValue kv = new KeyValue(glow.levelProperty(), 0.6);
+    final KeyFrame kf = new KeyFrame(Duration.millis(700), kv);
+    timeline.getKeyFrames().add(kf);
+    timeline.play();  
+    
         }
         else if (controller.messageId == "2") {
             img.setFitHeight(80);
             img.setImage(playerai);
+            
+            final Glow glow = new Glow();
+    glow.setLevel(0.0);
+    
+    img.setEffect(glow);
+    final Timeline timeline = new Timeline();
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.setAutoReverse(true);
+    final KeyValue kv = new KeyValue(glow.levelProperty(), 0.6);
+    final KeyFrame kf = new KeyFrame(Duration.millis(700), kv);
+    timeline.getKeyFrames().add(kf);
+    timeline.play();  
+            
         }
         
         

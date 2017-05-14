@@ -5,6 +5,7 @@ package gui.scenes.controllers;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +57,9 @@ public class SelectPlayerController implements Initializable, _Scene {
     @FXML private ListView list1;
     @FXML private ListView list2;
      ObservableList<String> playerList;
-        
+     ObservableList<String> playerList2;
+     
+
     
     
     @Override
@@ -96,9 +99,15 @@ public class SelectPlayerController implements Initializable, _Scene {
        
         controller.unloadScreen(Main.screen1ID);
         playerList = FXCollections.observableArrayList(controller.getDC().getPlayerNames());
+        playerList2 = FXCollections.observableArrayList(controller.getDC().getPlayerNames());
+        
+        Collections.reverse(playerList2);
+        
         
         list1.setItems(playerList);
-          list2.setItems(playerList);
+          list2.setItems(playerList2);
+          
+          
     };
 
     @FXML
