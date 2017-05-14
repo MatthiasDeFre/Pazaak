@@ -32,8 +32,7 @@ public class SideDeckController implements Initializable, _Scene {
     private boolean[] filledSlots;
     
     
-   
-    
+       
     //Hover sound
     final AudioClip hoverAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Hover.mp3").toExternalForm());
     

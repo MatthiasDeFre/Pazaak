@@ -54,8 +54,9 @@ public class MessageController implements Initializable, _Scene {
     @FXML private ImageView img;
     
     private Image image = new Image(getClass().getResourceAsStream("../../assets/img/menu/hal.png"), 80,80, true,true);
-    
-     
+    private Image loadsave = new Image(getClass().getResourceAsStream("../../assets/img/menu/loadsave.png"));
+    private Image playerai = new Image(getClass().getResourceAsStream("../../assets/img/menu/playerai.png"));
+
         
     
     
@@ -109,6 +110,15 @@ public class MessageController implements Initializable, _Scene {
             img.setFitHeight(80);
             img.setImage(image);
         }
+        else if (controller.messageId == "1") {
+            img.setFitHeight(80);
+            img.setImage(loadsave);
+        }
+        else if (controller.messageId == "2") {
+            img.setFitHeight(80);
+            img.setImage(playerai);
+        }
+        
         
     };
     
@@ -138,7 +148,7 @@ public class MessageController implements Initializable, _Scene {
        
        //New or load game
        if (controller.messageId == "1") {
-            controller.message = "New game";//rs plz
+            controller.message = "Play vs player or AI";//rs plz
        controller.button1 = "Quick Play";
        controller.button2 = "Play vs AI";
        
