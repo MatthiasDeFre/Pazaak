@@ -228,7 +228,8 @@ public class MessageController implements Initializable, _Scene {
         //New or load game
        if (controller.messageId == "1") {
            clickAudioClip.play();
-            System.out.println("Load game WIP");
+            controller.loadScreen(Main.screen12ID, Main.screen12File);
+       controller.setScreen(Main.screen12ID);
         }
        else if (controller.messageId == "6") {
             System.out.println("Exiting");
