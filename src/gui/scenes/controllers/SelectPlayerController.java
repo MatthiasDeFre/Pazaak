@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -56,9 +58,15 @@ public class SelectPlayerController implements Initializable, _Scene {
     @FXML private Label lblError;
     @FXML private ListView list1;
     @FXML private ListView list2;
+    @FXML private ImageView img;
+    
+    private Image image = new Image(getClass().getResourceAsStream("../../assets/img/menu/loading.gif"));
+    
      ObservableList<String> playerList;
      ObservableList<String> playerList2;
      
+     boolean list1Clicked = false;
+     boolean list2Clicked = false;
 
     
     
@@ -110,36 +118,30 @@ public class SelectPlayerController implements Initializable, _Scene {
           
     };
 
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
-    }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
+
     
 //btnConfirm
     
     @FXML
     public void btnConfirmClick(){
        
-       clickAudioClip.play();
        
+        
+        
+        
+        
+       clickAudioClip.play();
+        
       String name1 =  list1.getSelectionModel().getSelectedItem().toString();
       String name2 = list2.getSelectionModel().getSelectedItem().toString();
         try
         {
+           
             controller.getDC().makeMatch();
             controller.getDC().selectPlayer(name1);
             controller.getDC().selectPlayer(name2);
             controller.stopMusic();
+            
             controller.playSideMusic();
             controller.loadScreen(Main.screen6ID, Main.screen6File);
             controller.setScreen(Main.screen6ID);
@@ -199,6 +201,28 @@ public class SelectPlayerController implements Initializable, _Scene {
        btnMain.setScaleX(1);
        btnMain.setScaleY(1);
        
+        
+    }
+    
+    
+    @FXML
+    public void list1Click(){
+       list1Clicked = true;
+      
+        if (list1Clicked && list2Clicked) {
+            btnConfirm.setDisable(false);
+        }
+       
+        
+    }
+    
+    @FXML
+    public void list2Click(){
+       list2Clicked = true;
+      
+       if (list1Clicked && list2Clicked) {
+            btnConfirm.setDisable(false);
+        }
         
     }
 }

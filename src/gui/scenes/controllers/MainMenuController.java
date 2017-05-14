@@ -39,8 +39,9 @@ public class MainMenuController implements Initializable, _Scene {
     
 
 
-    
-   
+     Image image = new Image(getClass().getResourceAsStream("../../assets/img/menu/b.gif"));
+     Image image2 = new Image(getClass().getResourceAsStream("../../assets/img/menu/sprite.gif"));
+     boolean switched = false;
     
     //Hover sound
     final AudioClip hoverAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Hover.mp3").toExternalForm());
@@ -61,6 +62,9 @@ public class MainMenuController implements Initializable, _Scene {
     ImageView imgStartGame = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/game.png"), 42,32, true, true));
     ImageView imgRegister = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/register.png"), 42,34, true, true));
     ImageView imgCredits = new ImageView(new Image(getClass().getResourceAsStream("../../assets/img/menu/credits.png"), 42,34, true, true));
+     
+             
+    
    
     //random zinnen hier:
     final String[] randomTop = {"Made in Düsseldorf", "Deze zin is bijzaak", "Dé polyvalente kaartsimulator", "Sponsored by Danio Danone"};
@@ -75,6 +79,7 @@ public class MainMenuController implements Initializable, _Scene {
     @FXML private Button btnExit;
     @FXML private Label lblTop;
 @FXML private ImageView img;
+@FXML private ImageView imgv;
 
    @FXML private MediaView media;
     final Media m = new Media(getClass().getResource("../../assets/sfx/media/loop.mp4").toExternalForm());
@@ -359,5 +364,21 @@ public class MainMenuController implements Initializable, _Scene {
        
     }
     
+    @FXML
+    public void imgvClick(){
+//       imgv.setFitHeight(100);
+//        imgv.setFitWidth(100);
+       
+        
+       if (!switched) {
+            imgv.setImage(image);
+            switched = true;
+        }
+       else{
+           imgv.setImage(image2);
+           switched = false;
+       }
+       
+    }
 
 }

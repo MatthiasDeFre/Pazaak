@@ -20,7 +20,7 @@
                </VBox.margin></Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ListView id="list1" fx:id="list1" minHeight="200.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../assets/css/menu.css">
+                  <ListView id="list1" fx:id="list1" minHeight="200.0" onMouseClicked="#list1Click" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../assets/css/menu.css">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -33,7 +33,7 @@
                            </input>
                         </Reflection>
                      </effect></Label>
-                  <ListView id="list2" fx:id="list2" minHeight="200.0" prefHeight="200.0" prefWidth="200.0">
+                  <ListView id="list2" fx:id="list2" minHeight="200.0" onMouseClicked="#list2Click" prefHeight="200.0" prefWidth="200.0">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>
@@ -42,7 +42,7 @@
             </HBox>
             <Label fx:id="lblError" />
             
-            <Button id="buttons" fx:id="btnConfirm" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="52.0" prefWidth="491.0" stylesheets="@../../assets/css/menu.css" text="Play" textOverrun="CLIP" VBox.vgrow="NEVER">
+            <Button id="buttons" fx:id="btnConfirm" disable="true" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="52.0" prefWidth="491.0" stylesheets="@../../assets/css/menu.css" text="Play" textOverrun="CLIP" VBox.vgrow="NEVER">
                <effect>
                   <Glow />
                </effect>
@@ -56,5 +56,6 @@
             </Button>
       </children>
     </VBox>
+      <ImageView fx:id="img" fitHeight="92.0" fitWidth="96.0" layoutX="553.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
   </children>
 </AnchorPane>

@@ -79,7 +79,7 @@
                   </Button>
                </children>
             </HBox>
-            <ImageView fitHeight="155.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgv" cache="true" cacheHint="QUALITY" depthTest="DISABLE" fitHeight="155.0" fitWidth="207.0" onMouseClicked="#imgvClick" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@../../assets/img/menu/sprite.gif" />
                </image>
