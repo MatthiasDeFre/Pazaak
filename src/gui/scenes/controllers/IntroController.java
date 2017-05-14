@@ -71,12 +71,7 @@ public class IntroController implements Initializable, _Scene {
             
             //stopt video als er op een toets wordt gedrukt
             
-                       
-            
-        
-            
-                
-               
+                        
 
             
             mp.setOnEndOfMedia(() -> {
@@ -99,13 +94,13 @@ public class IntroController implements Initializable, _Scene {
             
 
             credits.setOnMouseClicked(Event->{
-            System.out.println("s");
+            
             //clickAudioClip.play();
             mp.stop();
             });
             
             credits.setOnKeyPressed((event) -> {
-                System.out.println("dqudjwqjqwfdhjqiodbhnpqiudhnquidpqwhu");
+                
             });
             
     }

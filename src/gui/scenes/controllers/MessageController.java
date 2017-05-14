@@ -175,9 +175,9 @@ public class MessageController implements Initializable, _Scene {
        
        //New or load game
        if (controller.messageId == "1") {
-            controller.message = "Play vs player or AI";//rs plz
-       controller.button1 = "Quick Play";
-       controller.button2 = "Play vs AI";
+            controller.message = rs.getString("playerOrAI");//rs plz
+       controller.button1 = rs.getString("pvp");
+       controller.button2 = rs.getString("pva");
        
        controller.messageId = "2";
        controller.loadScreen(Main.screen10ID, Main.screen10File);
@@ -228,7 +228,8 @@ public class MessageController implements Initializable, _Scene {
         //New or load game
        if (controller.messageId == "1") {
            clickAudioClip.play();
-            System.out.println("Load game WIP");
+            controller.loadScreen(Main.screen12ID, Main.screen12File);
+       controller.setScreen(Main.screen12ID);
         }
        else if (controller.messageId == "6") {
             System.out.println("Exiting");

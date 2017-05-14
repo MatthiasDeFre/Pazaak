@@ -23,7 +23,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   
-                        <Button id="buttonR" fx:id="btn1" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" minWidth="22.0" mnemonicParsing="false" onAction="#btn1Click" onMouseEntered="#btn1Enter" onMouseExited="#btn1Exit" prefHeight="70.0" prefWidth="22.0" stylesheets="@../../assets/css/menu.css" text="button 1" textOverrun="CLIP">
+                        <Button id="buttonR" fx:id="btn1" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" minWidth="22.0" mnemonicParsing="false" onAction="#btn1Click" onMouseEntered="#btn1Enter" onMouseExited="#btn1Exit" prefHeight="70.0" prefWidth="270.0" stylesheets="@../../assets/css/menu.css" text="button 1" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>
@@ -31,7 +31,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="buttonR" fx:id="btn2" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" minWidth="98.0" mnemonicParsing="false" onAction="#btn2Click" onMouseEntered="#btn2Enter" onMouseExited="#btn2Exit" prefHeight="70.0" prefWidth="98.0" stylesheets="@../../assets/css/menu.css" text="button2" textOverrun="CLIP">
+                  <Button id="buttonR" fx:id="btn2" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" minWidth="98.0" mnemonicParsing="false" onAction="#btn2Click" onMouseEntered="#btn2Enter" onMouseExited="#btn2Exit" prefHeight="70.0" prefWidth="270.0" stylesheets="@../../assets/css/menu.css" text="button2" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>

@@ -15,6 +15,7 @@
   <children>
     <VBox fx:id="vbox" alignment="CENTER" maxHeight="675" maxWidth="1100.0" minHeight="675" minWidth="1100.0" prefHeight="675" prefWidth="1200.0" spacing="20.0" styleClass="back" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Label fx:id="lblPlayer" text="Selecting player 1's sidedeck" />
             <GridPane fx:id="ownedCards">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

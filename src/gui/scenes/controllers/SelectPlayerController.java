@@ -73,16 +73,16 @@ public class SelectPlayerController implements Initializable, _Scene {
         clickAudioClip.setVolume(0.5);
         
         //assert btnConfirm != null;
-        btnConfirm.setText("Play"); 
+        btnConfirm.setText(rs.getString("startGame")); 
         
 
         
-        btnMain.setText("Back to Main Menu");
+        btnMain.setText(rs.getString("backToMain"));
         
         //assert btnMain != null;
         
         assert lblSettings != null;
-        lblSettings.setText("Select 2 players");
+        lblSettings.setText(rs.getString("select2Players"));
         
          
         
