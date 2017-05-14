@@ -80,7 +80,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         
         
-        //fade kleur (was wit (met dash haha (ok genoeg haakjes (haakception (nog eentje omt af te leren))))
+        //fade kleur
         scene.setFill(Color.web("#081F29"));
         
         primaryStage.setScene(scene);

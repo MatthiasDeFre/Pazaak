@@ -3,18 +3,13 @@
 package gui.scenes.controllers;
 
 import gui.SceneController;
-import gui.Main;
 import java.net.URL;
-import java.security.interfaces.RSAKey;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -92,7 +87,6 @@ public class ShopController implements Initializable, _Scene {
     
     //btnMain
     
-    @FXML
     public void btnBuyClick(){
      
         clickAudioClip.play();
@@ -116,5 +110,9 @@ public class ShopController implements Initializable, _Scene {
        btnBuy.setScaleY(1);
        
         
+    }
+
+    @FXML
+    private void btnMainClick(ActionEvent event) {
     }
 }
