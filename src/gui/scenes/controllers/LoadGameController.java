@@ -68,16 +68,16 @@ public class LoadGameController implements Initializable, _Scene {
         clickAudioClip.setVolume(0.5);
         
         //assert btnConfirm != null;
-        btnConfirm.setText("Load this game"); 
+        btnConfirm.setText(rs.getString("loadGame")); 
         
 
         
-        btnMain.setText("Back to Main Menu");
+        btnMain.setText(rs.getString("backToMain"));
         
         //assert btnMain != null;
         
         assert lblSettings != null;
-        lblSettings.setText("Load game");
+        lblSettings.setText(rs.getString("loadGame"));
         
          
         
@@ -118,7 +118,7 @@ public class LoadGameController implements Initializable, _Scene {
         
        controller.getDC().loadMatch(list1.getSelectionModel().getSelectedItem().toString());
        controller.loadScreen(Main.screen7ID, Main.screen7File);
-        controller.setScreen(Main.screen7ID);
+       controller.setScreen(Main.screen7ID);
        
        
     }

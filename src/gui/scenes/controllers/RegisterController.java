@@ -137,13 +137,5 @@ public class RegisterController implements Initializable, _Scene {
         
     }
 
-    @FXML
-    private void goToScreen1(ActionEvent event){
-       controller.setScreen(Main.screen1ID);
-    }
-    
-    @FXML
-    private void goToScreen2(ActionEvent event){
-       controller.setScreen(Main.screen2ID);
-    }
+
 }

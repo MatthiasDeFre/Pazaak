@@ -63,17 +63,17 @@ public class SettingsController implements Initializable, _Scene {
         clickAudioClip.setVolume(0.5);
         
         //assert btnLanguage != null;
-        btnLanguage.setText("Language"); 
+        btnLanguage.setText(rs.getString("language")); 
         
         //assert btnSound != null;
-        btnSound.setText("Mute Sound");
+        btnSound.setText(rs.getString("muteSound"));
         
-        btnMain.setText("Back to Main Menu");
+        btnMain.setText(rs.getString("backToMain"));
         
         //assert btnMain != null;
         
         assert lblSettings != null;
-        lblSettings.setText("Settings");
+        lblSettings.setText(rs.getString("settings"));
         
         
 
@@ -89,20 +89,7 @@ public class SettingsController implements Initializable, _Scene {
         
     };
 
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
-    }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
+
     
 //btnLanguage
     

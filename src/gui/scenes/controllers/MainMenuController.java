@@ -177,9 +177,9 @@ public class MainMenuController implements Initializable, _Scene {
        
        clickAudioClip.play();
        
-       controller.message = "New or load game?";//rs plz
-       controller.button1 = "New Game";
-       controller.button2 = "Load Game";
+       controller.message = rs.getString("newOrLoad");//rs plz
+       controller.button1 = rs.getString("newGame");
+       controller.button2 = rs.getString("loadGame");
        controller.messageId = "1";
        
        controller.loadScreen(Main.screen10ID, Main.screen10File);
@@ -330,8 +330,8 @@ public class MainMenuController implements Initializable, _Scene {
 //            
         ExitAudioClip.play();
         controller.message = "I'm sorry Dave, I'm afraid I can't do that";//rs plz
-       controller.button1 = "Keep playing";
-       controller.button2 = "EXIT";
+       controller.button1 = rs.getString("keepPlaying");
+       controller.button2 = rs.getString("exit");
        controller.messageId = "6";  //init6 lel
        
        controller.loadScreen(Main.screen10ID, Main.screen10File);
