@@ -101,7 +101,10 @@ public class ShowPlayersController implements Initializable, _Scene {
        
         controller.unloadScreen(Main.screen1ID);
         playerList = FXCollections.observableArrayList(controller.getDC().getPlayersWithoutMatchDeck());
-        
+        if(playerList.isEmpty()) {
+        controller.loadScreen(Main.screen6ID, Main.screen6File);
+        controller.setScreen(Main.screen6ID);
+        }
         
         
         
@@ -132,7 +135,7 @@ public class ShowPlayersController implements Initializable, _Scene {
            
             
             controller.stopMusic();
-            
+            controller.getDC().selectPlayerWithoutMatchDeck(name1);
             controller.playSideMusic();
             controller.loadScreen(Main.screen6ID, Main.screen6File);
             controller.setScreen(Main.screen6ID);
