@@ -41,8 +41,14 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="player2Deck" layoutX="10.0" layoutY="88.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane fx:id="player2Deck" alignment="TOP_RIGHT" layoutX="10.0" layoutY="88.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,6 +59,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
+                     <GridPane.margin>
+                        <Insets left="45.0" />
+                     </GridPane.margin>
                   </GridPane>
                   <GridPane fx:id="player1SideDeck" GridPane.rowIndex="2">
                     <columnConstraints>
@@ -64,6 +73,12 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -88,7 +103,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <GridPane fx:id="player2SideDeck" prefHeight="149.0" prefWidth="522.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <GridPane fx:id="player2SideDeck" alignment="TOP_RIGHT" prefHeight="149.0" prefWidth="522.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -98,6 +113,9 @@
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
+                     <GridPane.margin>
+                        <Insets left="45.0" />
+                     </GridPane.margin>
                   </GridPane>
                   <VBox alignment="CENTER" prefHeight="164.0" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
@@ -113,6 +131,10 @@
                               <Insets right="10.0" />
                            </VBox.margin></Button>
                         <Button id="buttonB" fx:id="btnSign" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="62.0" minWidth="47.0" mnemonicParsing="false" onAction="#btnSignClick" onMouseEntered="#btnSignEnter" onMouseExited="#btnSignExit" prefHeight="47.0" prefWidth="53.0" stylesheets="@../../assets/css/menu.css" textOverrun="CLIP">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin></Button>
+                        <Button id="buttonB" fx:id="btnValue" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="35.0" layoutY="112.0" minWidth="47.0" mnemonicParsing="false" onAction="#btnValueClick" onMouseEntered="#btnValueEnter" onMouseExited="#btnValueExit" prefHeight="47.0" prefWidth="53.0" stylesheets="@../../assets/css/menu.css" textOverrun="CLIP">
                            <VBox.margin>
                               <Insets right="10.0" />
                            </VBox.margin></Button>

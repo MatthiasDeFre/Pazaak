@@ -33,7 +33,7 @@
                   <Glow />
                </effect>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="26.0" />
                </VBox.margin></Button>
             <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" layoutX="377.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="60.0" prefWidth="490.0" stylesheets="@../../assets/css/menu.css" text="MAIN MENU" textOverrun="CLIP">
                <effect>

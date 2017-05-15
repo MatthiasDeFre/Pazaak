@@ -31,6 +31,9 @@
                 <RowConstraints maxHeight="600.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="54.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
             </GridPane>
             <GridPane fx:id="selectedCards">
               <columnConstraints>
@@ -44,10 +47,13 @@
               <rowConstraints>
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button id="buttonR" fx:id="btnCancel1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="287.0" mnemonicParsing="false" onAction="#btnCancel1Click" onMouseEntered="#btnCancel1Enter" onMouseExited="#btnCancel1Exit" prefHeight="60.0" prefWidth="215.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
+                  <Button id="buttonR" fx:id="btnCancel1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="181.0" mnemonicParsing="false" onAction="#btnCancel1Click" onMouseEntered="#btnCancel1Enter" onMouseExited="#btnCancel1Exit" prefHeight="60.0" prefWidth="181.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>
@@ -58,7 +64,7 @@
                         <Insets left="52.0" right="59.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="buttons" fx:id="btnShop" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="376.0" mnemonicParsing="false" onAction="#btnShopClick" onMouseEntered="#btnShopEnter" onMouseExited="#btnShopExit" prefHeight="60.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="buy more cards" textOverrun="CLIP">
+                  <Button id="buttons" fx:id="btnShop" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="376.0" mnemonicParsing="false" onAction="#btnShopClick" onMouseEntered="#btnShopEnter" onMouseExited="#btnShopExit" prefHeight="60.0" prefWidth="433.0" stylesheets="@../../assets/css/menu.css" text="buy more cards" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>
@@ -69,7 +75,7 @@
                         <Insets right="59.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="buttons" fx:id="btnConfirm" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="300.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="60.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="Confirm" textOverrun="CLIP">
+                  <Button id="buttons" fx:id="btnConfirm" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minWidth="357.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="60.0" prefWidth="357.0" stylesheets="@../../assets/css/menu.css" text="Confirm" textOverrun="CLIP">
                      <effect>
                         <Glow />
                      </effect>
@@ -86,6 +92,9 @@
                </VBox.margin>
             </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
     </VBox>
   </children>
 </AnchorPane>

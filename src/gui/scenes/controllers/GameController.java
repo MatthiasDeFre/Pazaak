@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -73,7 +74,7 @@ public class GameController implements Initializable, _Scene {
     private Label lblPlayer2Score;
     @FXML private Button btnSign;
     private ImageView image = new ImageView((new Image(getClass().getResourceAsStream("../../assets/img/menu/sign.png"))));
-
+     private ImageView imagev = new ImageView((new Image(getClass().getResourceAsStream("../../assets/img/menu/value.png"))));
     @FXML
     private ImageView imgMsg;
     @FXML
@@ -84,6 +85,9 @@ public class GameController implements Initializable, _Scene {
     private TextField txtSaveName;
     @FXML
     private Label lblSave;
+    
+    @FXML
+    private Button btnValue;
     
     private List<GridPane> playerSideDecks;
     private List<GridPane> playerGameBoards;
@@ -99,6 +103,15 @@ public class GameController implements Initializable, _Scene {
         startAudioClip.setVolume(1.5);
         startAudioClip.play();
         btnSign.setGraphic(image);
+        btnValue.setGraphic(imagev);
+        
+        
+        btnSign.setTooltip(new Tooltip(rs.getString("changeSign")));
+        btnEndTurn.setTooltip(new Tooltip(rs.getString("endTurn")));
+        btnValue.setTooltip(new Tooltip(rs.getString("changeValue")));
+        
+        
+        
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         rs = rb;
         hoverAudioClip.setVolume(0.5);
@@ -649,4 +662,33 @@ public class GameController implements Initializable, _Scene {
         }
       
     }
+    
+    @FXML
+    public void btnValueClick()
+    {
+
+        clickAudioClip.play();
+        
+
+    }
+
+    @FXML
+    public void btnValueEnter()
+    {
+
+        hoverAudioClip.play();
+        btnValue.setScaleX(1.1);
+        btnValue.setScaleY(1.1);
+
+    }
+
+    @FXML
+    public void btnValueExit()
+    {
+
+        btnValue.setScaleX(1);
+        btnValue.setScaleY(1);
+
+    }
+    
 }

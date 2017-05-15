@@ -35,6 +35,9 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
             </GridPane>
             <HBox prefHeight="530.0" prefWidth="1206.0">
                <children>
@@ -51,6 +54,9 @@
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
                         </GridPane>
                         <Label id="labelbig" fx:id="lblCredits" prefHeight="88.0" prefWidth="778.0" stylesheets="@../../assets/css/menu.css" text="Label">
                            <font>
@@ -59,7 +65,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="474.0" prefWidth="447.0">
+                  <VBox prefHeight="491.0" prefWidth="447.0">
                      <children>
                         <ImageView fx:id="imgSelectedCard" fitHeight="220.0" fitWidth="446.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
@@ -75,18 +81,21 @@
                               <Font size="34.0" />
                            </font>
                         </Label>
-                        <Button id="buttons" fx:id="btnBuy" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnBuyClick" onMouseEntered="#btnBuyEnter" onMouseExited="#btnBuyExit" prefHeight="52.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
+                        <Button id="buttons" fx:id="btnBuy" graphicTextGap="0.0" minWidth="113.0" mnemonicParsing="false" onAction="#btnBuyClick" onMouseEntered="#btnBuyEnter" onMouseExited="#btnBuyExit" prefHeight="62.0" prefWidth="437.0" stylesheets="@../../assets/css/menu.css" text="Buy this card" textOverrun="CLIP">
                            <effect>
                               <Glow />
                            </effect>
                         </Button>
                      </children>
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin>
                   </VBox>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button id="buttons" fx:id="btnCancel" graphicTextGap="0.0" layoutX="25.0" layoutY="615.0" minWidth="176.0" mnemonicParsing="false" onAction="#btnCancelClick" onMouseEntered="#btnCancelEnter" onMouseExited="#btnCancelExit" prefHeight="52.0" prefWidth="176.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
+      <Button id="buttons" fx:id="btnCancel" graphicTextGap="0.0" layoutX="25.0" layoutY="598.0" minWidth="176.0" mnemonicParsing="false" onAction="#btnCancelClick" onMouseEntered="#btnCancelEnter" onMouseExited="#btnCancelExit" prefHeight="56.0" prefWidth="400.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
          <effect>
             <Glow />
          </effect>
