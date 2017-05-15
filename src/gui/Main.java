@@ -93,7 +93,7 @@ public class Main extends Application {
         
         //icon instellen
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img/menu/fav4.png")));
-        primaryStage.setTitle("Pazaak v2.3 Beta");
+        primaryStage.setTitle("Pazaak v3.8 PRE-RELEASE");
         
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
           public void handle(WindowEvent we) {
