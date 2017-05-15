@@ -199,6 +199,7 @@ public class MatchMapper {
         int[] playerID = new int[2];
         Match match = new Match();
         boolean matchFound = false;
+        String[] playerNames = new String[2];
         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("SELECT matchID, player1ID, player2ID FROM ID222177_g07.Match WHERE matchName = ?");
@@ -218,7 +219,9 @@ public class MatchMapper {
                     player2.addMatchDeck(match, getMatchDeckCards(matchID, playerID[1], conn));
                     match.addPlayer(player1);
                     match.addPlayer(player2);
-                    for (Round round : getRounds(match, matchID, conn, playerID))
+                    playerNames[0] = player1.getName();
+                    playerNames[1] = player2.getName();
+                    for (Round round : getRounds(match, matchID, conn, playerID, playerNames))
                     {
                         match.addRound(round);
                     }
@@ -258,11 +261,11 @@ public class MatchMapper {
         return matchDeckCards;
     }
     
-    private List<Round> getRounds(Match match,int matchID, java.sql.Connection conn, int[] playerID) {
+    private List<Round> getRounds(Match match,int matchID, java.sql.Connection conn, int[] playerID, String[] playerNames) {
         List<Round> matchRounds = new ArrayList<>();
           try
         {
-            PreparedStatement query = conn.prepareStatement("SELECT playerID FROM ID222177_g07.MatchDeck WHERE matchID = ? ");
+            PreparedStatement query = conn.prepareStatement("SELECT playerID FROM ID222177_g07.Round WHERE matchID = ? ");
             query.setInt(1, matchID);
             try (ResultSet rs = query.executeQuery())
             {
@@ -270,16 +273,18 @@ public class MatchMapper {
                 {
                   Round round = new Round(match.determineStartPlayer());
                   int status = rs.getInt(1);
+                  String statusString = "";
                   if(status == 0) {
-                  status = -1;
+                  statusString = "draw";
                   } else  {
                      if(status == playerID[0]) {
-                         status = 0;
+                         statusString = playerNames[0];
                      } else {
-                         status = 1;
+                         statusString = playerNames[1];
                      }
                   }
-                  round.setStatus(status);
+                  round.setStatus(statusString);
+                  matchRounds.add(round);
                 }
             }
 

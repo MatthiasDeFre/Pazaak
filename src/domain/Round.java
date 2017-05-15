@@ -256,8 +256,8 @@ public class Round{
        
     }
     
-    public void setStatus(int index) {
-        
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     public String[] getLastCardPlayed() {

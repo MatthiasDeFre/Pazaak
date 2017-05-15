@@ -141,7 +141,7 @@ public class GameController implements Initializable, _Scene {
                         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
                         {
                             CardGUI cardGUI2 = (CardGUI) card;
-                            if (cardGUI2 != null && !cardFound && !cardGUI2.getUrl().equals("gui/assets/img//game/cards/back.png"))
+                            if (cardGUI2 != null && !cardFound && !cardGUI2.getUrl().equals("gui/assets/img/game/cards/back.png"))
                             {
                                if(cardGUI == cardGUI2) {
                                    cardFound = true;
@@ -155,7 +155,7 @@ public class GameController implements Initializable, _Scene {
                       controller.getDC().playCard(cardIndex);
                         System.out.println(String.valueOf(cardIndex));
                     cardGUI.setInteractable(false);
-                    cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                    cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
                     cardGUI.setUrl("gui/assets/img//game/cards/back.png");
                     lblPlayer1Score.setText(String.valueOf(controller.getDC().getPlayerScores()[0]));
                     lblPlayer2Score.setText(String.valueOf(controller.getDC().getPlayerScores()[1]));
@@ -177,14 +177,14 @@ public class GameController implements Initializable, _Scene {
           
             //int rowCounter = 0;
 
-            CardGUI cardGUI = new CardGUI("gui/assets/img//game/cards/back.png");
+            CardGUI cardGUI = new CardGUI("gui/assets/img/game/cards/back.png");
             cardGUI.setUrl(imageUrl);
 
             cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event)
                 {
-                    CardGUI cardGUI = (CardGUI) event.getSource();
+                  /*  CardGUI cardGUI = (CardGUI) event.getSource();
                     if(cardGUI.isInteractable()) {
                     CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
                     playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
@@ -195,8 +195,10 @@ public class GameController implements Initializable, _Scene {
                     }
                     
                     cardGUI.setInteractable(false);
-                    cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
-                    }
+                    cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
+                    }*/
+                    
+                    
                 }
             });
 
@@ -341,6 +343,7 @@ public class GameController implements Initializable, _Scene {
             {
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setImage(new Image(cardGUI.getUrl()));
+                cardGUI.setInteractable(true);
             }
         }
         for (Node card : playerSideDecks.get((controller.getDC().getCurrentPlayerIndex() + 1) % 2).getChildren())
@@ -349,6 +352,7 @@ public class GameController implements Initializable, _Scene {
             {
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                cardGUI.setInteractable(false);
             }
         }
         
@@ -394,6 +398,8 @@ public class GameController implements Initializable, _Scene {
         
         lblPlayer1Score.setText("0");
         lblPlayer2Score.setText("0");
+        
+        lblScore.setText(String.valueOf(controller.getDC().getMatchScore()[0]) + String.valueOf(controller.getDC().getMatchScore()[1]));
         
         nextTurn();
     }
