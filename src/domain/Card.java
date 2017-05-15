@@ -81,12 +81,15 @@ public class Card{
     }
 
     /**
-     * Method to change the sign of the Card (Should only be used on +/- Cards
+     * Method to change the sign of the Card (Should only be used on +/- Cards)
      */
     public void changeSign() {
         this.value *= -1;
     }
     
+    /**
+     * Method to change the value of the Card (Should only be used on cards with multiple values)
+     */
     public void changeValue() {
         String[] values = this.type.split("/+///-");
         if(this.value == Integer.parseInt(values[0])) {

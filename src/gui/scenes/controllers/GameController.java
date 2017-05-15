@@ -44,6 +44,9 @@ public class GameController implements Initializable, _Scene {
     
     //Hover sound
     final AudioClip endAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/EndTurn.mp3").toExternalForm());
+    
+    //Hover sound
+    final AudioClip victoryAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Victory.mp3").toExternalForm());
 
     @FXML
     private Button btnEndTurn;
@@ -448,7 +451,7 @@ public class GameController implements Initializable, _Scene {
 
     private void showVictoryScreen()
     {
-
+        victoryAudioClip.play();
     }
 
     private void newRound()
