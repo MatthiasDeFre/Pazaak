@@ -20,6 +20,7 @@ public class cui {
     private boolean playedCard = false;
     private boolean cantNextTurn = false;
     private boolean continueGame = true;
+    private boolean turnEnded = false;
 
     Scanner s = new Scanner(System.in);
 
@@ -273,17 +274,17 @@ public class cui {
     private void matchStarted() {
         System.out.println(rs.getString("matchStarted") + " ");
         s.nextLine();
-        System.out.println(rs.getString("wantAI"));
-        String input = s.nextLine().substring(0, 1);
-        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-            dc.setAIMatch(true);
-        } else {
-            if (input.toLowerCase().equals("n")) {
-                dc.setAIMatch(false);
-            } else {
-                System.out.println(rs.getString("wrongInput"));
-            }
-        }
+//        System.out.println(rs.getString("wantAI"));
+//        String input = s.nextLine().substring(0, 1);
+//        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+//            dc.setAIMatch(true);
+//        } else {
+//            if (input.toLowerCase().equals("n")) {
+//                dc.setAIMatch(false);
+//            } else {
+//                System.out.println(rs.getString("wrongInput"));
+//            }
+//        }
         playMatch();
     }
 
@@ -298,45 +299,43 @@ public class cui {
 
     private void startNewRound() {
         System.out.println(rs.getString("roundStarted"));
-
+        turnEnded = true;
         dc.startNewRound();
-        playedCard = false;
-        do {
-            if (playedCard == false) {
-                dc.nextTurn();
-            }
+        if (turnEnded) {
 
+            do {
+                //System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                String[][] situation = dc.getRoundSituation();
+                int index = 0;
+                for (String playerName : dc.getChosenPlayerNames()) {
+
+                    System.out.println(rs.getString("score") + playerName + " " + situation[2][index]);
+                    index++;
+                }
+                System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
+                System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
+
+                // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
+                    System.out.println(rs.getString("whatWant"));
+                    turnChoice(s.nextInt());
+                    s.nextLine();
+                }
+            } while (!dc.roundEnded());
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            String[][] situation = dc.getRoundSituation();
-            int index = 0;
-            for (String playerName : dc.getChosenPlayerNames()) {
+            System.out.println(rs.getString("wantSave"));
 
-                System.out.println(rs.getString("score") + playerName + " " + situation[2][index]);
-                index++;
-            }
-            System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
-            System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
-
-            // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
-                System.out.println(rs.getString("whatWant"));
-                turnChoice(s.nextInt());
-                s.nextLine();
-            }
-        } while (!dc.roundEnded());
-        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-        System.out.println(rs.getString("wantSave"));
-
-        String input = s.nextLine();
-        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-            System.out.println(rs.getString("whichName"));
-            input = s.nextLine();
-            dc.saveMatch(input);
-        } else {
-            if (input.toLowerCase().equals("n")) {
-                continueGame = false;
+            String input = s.nextLine();
+            if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+                System.out.println(rs.getString("whichName"));
+                input = s.nextLine();
+                dc.saveMatch(input);
             } else {
-                System.out.println(rs.getString("wrongInput"));
+                if (input.toLowerCase().equals("n")) {
+                    continueGame = false;
+                } else {
+                    System.out.println(rs.getString("wrongInput"));
+                }
             }
         }
 
@@ -345,7 +344,7 @@ public class cui {
     private void turnChoice(int choice) {
         switch (choice) {
             case 1:
-                playedCard = false;
+                turnEnded = true;
                 break;
             case 2:
 
@@ -354,23 +353,34 @@ public class cui {
                 String[][] situation = dc.getRoundSituation();
                 if (situation[3].length != 0) {
                     boolean input = false;
-                    System.out.println("Play Carr or change value / sign");
-                    input= s.nextBoolean();
-                    if(input) {
-                    System.out.println(rs.getString("whichCard"));
-                    
-                    for (String string : situation[3]) {
-                        System.out.println(++count + ": " + string);
+                    System.out.println(rs.getString("wantToChange"));
+
+                    String theinput = s.nextLine();
+                    if (theinput.toLowerCase().equals("o") || theinput.toLowerCase().equals("j") || theinput.toLowerCase().equals("y")) {
+                        input = false;
+                    } else {
+                        if (theinput.toLowerCase().equals("n")) {
+                            input = true;
+                        } else {
+                            System.out.println(rs.getString("wrongInput"));
+                        }
                     }
-                    dc.playCard(s.nextInt());
-                    System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                    playedCard = true;
-                                         
+
+                    if (input) {
+                        System.out.println(rs.getString("whichCard"));
+
+                        for (String string : situation[3]) {
+                            System.out.println(++count + ": " + string);
+                        }
+                        dc.playCard(s.nextInt());
+                        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                        playedCard = true;
+
                     } else {
                         System.out.println("Change sign?");
                         boolean change = false;
                         change = s.nextBoolean();
-                        if(change) {
+                        if (change) {
                             System.out.println(Arrays.deepToString(dc.showPossibleChanges()));
                             int cardIndex = s.nextInt();
                             dc.changeCardSign(cardIndex);
@@ -379,8 +389,8 @@ public class cui {
                             int cardIndex = s.nextInt();
                             dc.changeCardValue(cardIndex);
                         }
-                           System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                           playedCard = true;
+                        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                        playedCard = true;
                     }
                 } else {
                     System.out.println(rs.getString("noCards"));
@@ -418,9 +428,9 @@ public class cui {
 
         }
     }
-    
-    private String getPossibleChanges(){
-   
-    return "helemaal niks";
+
+    private String getPossibleChanges() {
+
+        return "helemaal niks";
     }
 }
