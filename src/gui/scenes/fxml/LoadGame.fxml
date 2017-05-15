@@ -18,25 +18,24 @@
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></Label>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="154.0" prefWidth="1200.0">
                <children>
-                  <ListView id="list1" fx:id="list1" minHeight="200.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../assets/css/menu.css">
+                  <ListView id="listM" fx:id="list1" minHeight="48.0" prefHeight="154.0" prefWidth="332.0" stylesheets="@../../assets/css/menu.css">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </ListView>
                </children>
             </HBox>
-            <Label fx:id="lblError" />
             
-            <Button id="buttons" fx:id="btnConfirm" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="52.0" prefWidth="491.0" stylesheets="@../../assets/css/menu.css" text="Load game" textOverrun="CLIP" VBox.vgrow="NEVER">
+            <Button id="buttons" fx:id="btnConfirm" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btnConfirmClick" onMouseEntered="#btnConfirmEnter" onMouseExited="#btnConfirmExit" prefHeight="60.0" prefWidth="491.0" stylesheets="@../../assets/css/menu.css" text="Load game" textOverrun="CLIP" VBox.vgrow="NEVER">
                <effect>
                   <Glow />
                </effect>
                <VBox.margin>
                   <Insets />
                </VBox.margin></Button>
-            <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" layoutX="377.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="52.0" prefWidth="490.0" stylesheets="@../../assets/css/menu.css" text="MAIN MENU" textOverrun="CLIP">
+            <Button id="buttons" fx:id="btnMain" graphicTextGap="0.0" layoutX="377.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnMainClick" onMouseEntered="#btnMainEnter" onMouseExited="#btnMainExit" prefHeight="60.0" prefWidth="490.0" stylesheets="@../../assets/css/menu.css" text="MAIN MENU" textOverrun="CLIP">
                <effect>
                   <Glow />
                </effect>

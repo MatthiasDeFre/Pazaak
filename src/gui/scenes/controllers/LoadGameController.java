@@ -49,7 +49,7 @@ public class LoadGameController implements Initializable, _Scene {
 
     @FXML private Button btnMain;
     @FXML private Label lblSettings;
-    @FXML private Label lblError;
+
     @FXML private ListView list1;
 
      ObservableList<String> playerList;
