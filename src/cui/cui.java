@@ -341,7 +341,11 @@ public class cui {
           
                 if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
                     System.out.println(rs.getString("whatWant"));
-                turnChoice(s.nextInt());
+                    int input = s.nextInt();
+                    if (input == 1 || input == 2 || input == 3 || input == 4) {
+                        turnChoice(input);
+                    }
+                
                 s.nextLine();
                 }
             
@@ -431,8 +435,6 @@ public class cui {
                     break;
                 case 4:
                     startPazaak();
-                default:
-                    System.out.println(rs.getString("wrongInput"));
             }
         }
     
