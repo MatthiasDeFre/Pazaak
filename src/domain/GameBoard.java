@@ -35,7 +35,7 @@ public class GameBoard {
             String[] cardValues = card.getType().split("&");
             for (Card gameBoardCard : gameBoardCards)
             {
-                if(!gameBoardCard.getType().equals("setDeckCard") && gameBoardCard.getValue() == Integer.parseInt(cardValues[0]) || gameBoardCard.getValue() == Integer.parseInt(cardValues[1]))
+                if(!gameBoardCard.getType().equals("setDeckCard") && Math.abs(gameBoardCard.getValue()) == Integer.parseInt(cardValues[0]) || Math.abs(gameBoardCard.getValue()) == Integer.parseInt(cardValues[1]))
                 {
                     switch(gameBoardCard.getType()){
                         case "+":gameBoardCard.setType("-");

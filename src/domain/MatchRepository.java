@@ -40,4 +40,12 @@ public class MatchRepository {
     public List<String> getSavegameNames() {
         return matchMapper.getSavegameNames();
     }
+    
+    public void saveMatch(String matchName, Match match) {
+        if(getSavegameNames().contains(matchName)) {
+            ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+            throw new matchNotFoundException(rs.getString("matchNameAlready"));
+        }
+        matchMapper.saveMatchNoBlob(matchName, match);
+    }
 }

@@ -399,7 +399,8 @@ public class DomainController {
     }
     
     public void saveMatch(String matchName) { 
-            matchMapper.saveMatchNoBlob(matchName, newMatch);
+         //   matchMapper.saveMatchNoBlob(matchName, newMatch);
+         matchRepository.saveMatch(matchName, newMatch);
         
     }
     

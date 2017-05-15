@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -73,6 +74,17 @@ public class GameController implements Initializable, _Scene {
     @FXML private Button btnSign;
     private ImageView image = new ImageView((new Image(getClass().getResourceAsStream("../../assets/img/menu/sign.png"))));
 
+    @FXML
+    private ImageView imgMsg;
+    @FXML
+    private Button btnChange;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private TextField txtSaveName;
+    @FXML
+    private Label lblSave;
+    
     private List<GridPane> playerSideDecks;
     private List<GridPane> playerGameBoards;
     private List<Label> scores;
@@ -114,6 +126,12 @@ public class GameController implements Initializable, _Scene {
 
         lblPlayer1Score.setText("0");
         lblPlayer2Score.setText("0");
+        
+        imgMsg.setVisible(false);
+        btnChange.setVisible(false);
+        btnSave.setVisible(false);
+        lblSave.setVisible(false);
+        txtSaveName.setVisible(false);
     }
 
     @Override
@@ -348,7 +366,12 @@ public class GameController implements Initializable, _Scene {
 
         if (controller.getDC().roundEnded() & !controller.getDC().matchEnded())
         {
-            newRound();
+            //newRound();
+        imgMsg.setVisible(true);
+        btnChange.setVisible(true);
+        btnSave.setVisible(true);
+        lblSave.setVisible(true);
+        txtSaveName.setVisible(true);
         } else {
             nextTurn();
         }
@@ -389,7 +412,12 @@ public class GameController implements Initializable, _Scene {
         nextTurn();
         if (controller.getDC().roundEnded() & !controller.getDC().matchEnded())
         {
-            newRound();
+            //newRound();
+            imgMsg.setVisible(true);
+            btnChange.setVisible(true);
+            btnSave.setVisible(true);
+            lblSave.setVisible(true);
+            txtSaveName.setVisible(true);
         }
         if (controller.getDC().matchEnded())
         {
@@ -600,5 +628,24 @@ public class GameController implements Initializable, _Scene {
             }
         }
     }
-    
+    @FXML
+    public void btnChangeClick() {
+        imgMsg.setVisible(false);
+        btnChange.setVisible(false);
+        btnSave.setVisible(false);
+        lblSave.setVisible(false);
+        txtSaveName.setVisible(false);
+        newRound();
+    }
+    @FXML
+    public void btnSaveClick() {
+        try
+        {
+          controller.getDC().saveMatch(txtSaveName.getText());
+        } catch (Exception e)
+        {
+            lblSave.setText(e.getMessage());
+        }
+      
+    }
 }
