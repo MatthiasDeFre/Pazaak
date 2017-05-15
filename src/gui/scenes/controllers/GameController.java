@@ -219,8 +219,11 @@ public class GameController implements Initializable, _Scene {
 
                         //   System.out.println(String.valueOf(GridPane.getColumnIndex(cardGUI)));
                         controller.getDC().playCard(cardIndex);
+                        
                         if(cardGUI.getUrl().equals("gui/assets/img/game/cards/2&4.png") || cardGUI.getUrl().equals("gui/assets/img/game/cards/3&6.png")) {
                             redrawGameboardCurrent(cardGUI);
+                        } else if(cardGUI.getUrl().equals("gui/assets/img/game/cards/±1T.png")) {
+                            nextTurn();
                         }
                         System.out.println(String.valueOf(cardIndex));
                         cardGUI.setInteractable(false);
@@ -308,6 +311,8 @@ public class GameController implements Initializable, _Scene {
                         if (cardGUI.getUrl().equals("gui/assets/img/game/cards/2&4.png") || cardGUI.getUrl().equals("gui/assets/img/game/cards/3&6.png"))
                         {
                             redrawGameboardCurrent(cardGUI);
+                        } else if(cardGUI.getUrl().equals("gui/assets/img/game/cards/±1T.png")) {
+                            nextTurn();
                         }
                         System.out.println(String.valueOf(cardIndex));
                         cardGUI.setInteractable(false);
@@ -452,7 +457,7 @@ public class GameController implements Initializable, _Scene {
             btnChange.setVisible(true);
             btnSave.setVisible(true);
             lblSave.setVisible(true);
-            txtSaveName.setVisible(true);
+            txtSaveName.setVisible(false);
             btnStand.setDisable(true);
             btnEndTurn.setDisable(true);
             disableCardClick();
@@ -589,12 +594,16 @@ public class GameController implements Initializable, _Scene {
          for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
         {
             
-            if (card != null && ((CardGUI) card).getUrl().substring(0, 27).equals("gui/assets/img/game/cards/±"))
+            if (card != null && ((CardGUI) card).getUrl().substring(0, 27).equals("gui/assets/img/game/cards/±") && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/±1T.png"))
             {
                 System.out.println("testSign");
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setRotate(cardGUI.getRotate() + 180);
-                controller.getDC().changeCardSign(index++);
+                controller.getDC().changeCardSign(index);
+            }
+            if (card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png"))
+            {
+                index++;
             }
         }
         
@@ -688,6 +697,7 @@ public class GameController implements Initializable, _Scene {
         btnEndTurn.setDisable(false);
         btnSign.setDisable(false);
         btnValue.setDisable(false);
+  
         newRound();
     }
     
@@ -708,7 +718,7 @@ public class GameController implements Initializable, _Scene {
     public void btnSaveClick() {
         txtSaveName.setVisible(true);
         lblSave.setText("geef een naam aan je save");
-        wantSave = true;
+       
         
         if (wantSave) {
             try
@@ -720,7 +730,7 @@ public class GameController implements Initializable, _Scene {
             lblSave.setText(e.getMessage());
         }
         }
-      
+       wantSave = true;
     }
     
     @FXML
@@ -750,9 +760,12 @@ public class GameController implements Initializable, _Scene {
             {             
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setRotate(cardGUI.getRotate() + 180);
-                controller.getDC().changeCardValue(index++);
+                controller.getDC().changeCardValue(index);
             }
-            index++;
+            if(card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png")) {
+                index++;
+            }
+         
         }
         
         

@@ -175,9 +175,9 @@ public class Round{
         gameBoard[currentTurnPlayerIndex][gameBoard[currentTurnPlayerIndex].length-1] = cardValue;
         gameBoardCardSort[currentTurnPlayerIndex] [gameBoardCardSort[currentTurnPlayerIndex].length-1] = cardSort;*/
         gameBoardList.get(currentTurnPlayerIndex).playCard(card);
-        if(card.getType().equals("xT")){
+        /*if(card.getType().equals("xT")){
             nextTurn();
-        }
+        }*/
     
         
        
