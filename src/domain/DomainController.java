@@ -167,7 +167,10 @@ public class DomainController {
        
     }
     
-    //Gebruiken we dit?
+    /**
+     * Method to get the player his cards
+     * @return An String[][] containing the player his cards, first index is the cardnumber, index 2 0 is type and index 2 1 is value of the card
+     */
     public String[][] getPlayerCards() {
         List<Card> cardList = currentUser.getDeck();
         String[][] cardArray = new String[cardList.size()][2];
@@ -212,6 +215,11 @@ public class DomainController {
     
     
     //Match started methods
+    
+    /**
+     * Method to check if a match has ended or not
+     * @return Boolean true if match has ended else it returns false
+     */
     public boolean matchEnded() {
         return newMatch.matchEnded();   
     }
@@ -248,14 +256,31 @@ public class DomainController {
         newMatch.startNewRound();
     }
     
+    /**
+     * <pre>Method to return an array containing the current round's situation
+     * Index [0][] the gameboard of Player 1
+     * Index [1][] the gameboard of Player 2
+     * Index [2][] scores of the players [0] score player 1, [1] score player 2
+     * Index [3][] the deck of the currentplayer, only the current player's deck get shown to prevent cheating
+     * Index [4][] the name of the player whose turn it is
+     * @return An array containing all information to setup the the situation of a current round (see above for more information)
+     */
     public String[][] getRoundSituation() {
       return newMatch.getRoundSituation();
     }
     
+    /**
+     * Method to play a card with the provided card number instead of index
+     * @param cardIndex The cardnumber you want to play will be -1 in code
+     */
     public void playCard(int cardIndex) {
         newMatch.playCard(cardIndex);
     }
     
+    /**
+     * Method to play a card with the provided card number instead of index
+     * @param cardIndex The cardnumber you want to play will be -1 in code
+     */
     public void changeCardSign(int cardIndex) {      
          newMatch.changeCardSign(cardIndex);
     }

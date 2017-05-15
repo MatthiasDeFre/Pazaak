@@ -249,7 +249,7 @@ public class Match{
      * Index [1][] the gameboard of Player 2
      * Index [2][] scores of the players [0] score player 1, [1] score player 2
      * Index [3][] the deck of the currentplayer, only the current player's deck get shown to prevent cheating
-     * Index [4][] the name of the player whose turn it is
+     * Index [4][] the name of the player whose turn it is</pre>
      * @return An array containing all information to setup the the situation of a current round (see above for more information)
      */
     public String[][] getRoundSituation() {

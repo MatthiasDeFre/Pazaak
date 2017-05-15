@@ -428,7 +428,7 @@ public class GameController implements Initializable, _Scene {
         System.out.println(Arrays.toString(columnCounters));
         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
         {
-            if (card != null)
+            if (card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png"))
             {
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setImage(new Image(cardGUI.getUrl()));
@@ -437,7 +437,7 @@ public class GameController implements Initializable, _Scene {
         }
         for (Node card : playerSideDecks.get((controller.getDC().getCurrentPlayerIndex() + 1) % 2).getChildren())
         {
-            if (card != null)
+            if (card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png"))
             {
                 CardGUI cardGUI = (CardGUI) card;
                 cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));

@@ -1,6 +1,7 @@
 package gui.scenes.controllers;
 
 import gui.CardGUI;
+import gui.Main;
 import gui.SceneController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -238,6 +239,7 @@ public class ShopController implements Initializable, _Scene
     private void btnCancelClick()
     {
         clickAudioClip.play();
+        controller.setScreen(Main.screen6ID);
     }
     
     @FXML
