@@ -98,6 +98,7 @@ public class GameController implements Initializable, _Scene {
     private List<Label> names;
     private int[] columnCounters;
     private int[] rowCounters;
+    
     private boolean wantSave = false;
     
     
