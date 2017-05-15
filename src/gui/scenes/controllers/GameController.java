@@ -487,6 +487,7 @@ public class GameController implements Initializable, _Scene {
     private void showVictoryScreen()
     {
         victoryAudioClip.play();
+        System.out.println(Arrays.toString(controller.getDC().getWinnerData()));
     }
 
     private void newRound()
