@@ -14,10 +14,6 @@
   <children>
     <VBox fx:id="vbox" alignment="CENTER" maxHeight="675" maxWidth="1100.0" minHeight="675" minWidth="1100.0" prefHeight="675" prefWidth="1200.0" styleClass="background" stylesheets="@../../assets/css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-            <Label id="labelB" fx:id="lblScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="73.0" text="0-1" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
             <GridPane minHeight="530.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="540.0" />
@@ -26,8 +22,8 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="325.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="225.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="117.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="324.0" minHeight="10.0" prefHeight="324.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="167.0" minHeight="0.0" prefHeight="114.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <GridPane fx:id="player1Deck" GridPane.rowIndex="1">
@@ -80,9 +76,9 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPlayer1" prefHeight="45.0" prefWidth="680.0" text="naam1">
+                        <Label fx:id="lblPlayer1" prefHeight="46.0" prefWidth="279.0" text="naam1">
                            <HBox.margin>
                               <Insets left="25.0" />
                            </HBox.margin></Label>
@@ -93,7 +89,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
                         <Label fx:id="lblPlayer2Score" minWidth="80.0" prefHeight="45.0" prefWidth="103.0" text="5" />
                         <Label fx:id="lblPlayer2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="597.0" text="naam2" textAlignment="RIGHT">
@@ -119,7 +115,7 @@
                   </GridPane>
                   <VBox alignment="CENTER" prefHeight="164.0" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP">
+                        <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="82.0" prefWidth="103.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP">
                            <VBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </VBox.margin></Button>
@@ -132,7 +128,7 @@
                            </VBox.margin></Button>
                         <Button id="buttonB" fx:id="btnSign" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="62.0" minWidth="47.0" mnemonicParsing="false" onAction="#btnSignClick" onMouseEntered="#btnSignEnter" onMouseExited="#btnSignExit" prefHeight="47.0" prefWidth="53.0" stylesheets="@../../assets/css/menu.css" textOverrun="CLIP">
                            <VBox.margin>
-                              <Insets right="10.0" />
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
                            </VBox.margin></Button>
                         <Button id="buttonB" fx:id="btnValue" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="35.0" layoutY="112.0" minWidth="47.0" mnemonicParsing="false" onAction="#btnValueClick" onMouseEntered="#btnValueEnter" onMouseExited="#btnValueExit" prefHeight="47.0" prefWidth="53.0" stylesheets="@../../assets/css/menu.css" textOverrun="CLIP">
                            <VBox.margin>
@@ -156,5 +152,10 @@
       <Button id="buttonR" fx:id="btnSave" graphicTextGap="0.0" layoutX="611.0" layoutY="367.0" minWidth="206.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="52.0" prefWidth="331.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
       <Label fx:id="lblSave" alignment="CENTER" layoutX="518.0" layoutY="233.0" prefHeight="17.0" prefWidth="164.0" stylesheets="@../../assets/css/menu.css" text="Label" />
       <TextField id="textField" fx:id="txtSaveName" layoutX="467.0" layoutY="289.0" prefHeight="60.0" prefWidth="278.0" stylesheets="@../../assets/css/menu.css" />
+      <Label id="labelB" fx:id="lblScore" alignment="CENTER" contentDisplay="CENTER" layoutX="428.0" prefHeight="68.0" prefWidth="340.0" stylesheets="@../../assets/css/menu.css" text="0-1" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
   </children>
 </AnchorPane>
