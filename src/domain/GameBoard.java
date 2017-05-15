@@ -67,7 +67,11 @@ public class GameBoard {
     {
         return this.frozen;
     }
-
+    
+    /**
+     * Method to get the cards that are currently on the gameboard
+     * @return List of Cards that are on the gameboard
+     */
     public List<Card> getGameBoardCards()
     {
         return this.gameBoardCards;

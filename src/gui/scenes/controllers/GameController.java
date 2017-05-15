@@ -142,6 +142,9 @@ public class GameController implements Initializable, _Scene {
         btnSave.setVisible(false);
         lblSave.setVisible(false);
         txtSaveName.setVisible(false);
+        
+        btnSave.setText("Save");
+        btnChange.setText("Next Round");
     }
 
     @Override
@@ -391,6 +394,8 @@ public class GameController implements Initializable, _Scene {
         btnSave.setVisible(true);
         lblSave.setVisible(true);
         txtSaveName.setVisible(true);
+        btnStand.setDisable(false);
+        btnEndTurn.setDisable(false);
         } else {
             nextTurn();
         }
@@ -437,6 +442,8 @@ public class GameController implements Initializable, _Scene {
             btnSave.setVisible(true);
             lblSave.setVisible(true);
             txtSaveName.setVisible(true);
+            btnStand.setDisable(false);
+            btnEndTurn.setDisable(false);
         }
         if (controller.getDC().matchEnded())
         {
@@ -655,6 +662,8 @@ public class GameController implements Initializable, _Scene {
         btnSave.setVisible(false);
         lblSave.setVisible(false);
         txtSaveName.setVisible(false);
+        btnStand.setDisable(true);
+        btnEndTurn.setDisable(true);
         newRound();
     }
     @FXML
@@ -674,6 +683,18 @@ public class GameController implements Initializable, _Scene {
     {
 
         clickAudioClip.play();
+           int index = 1;
+         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+        {
+            
+            if (card != null && ((CardGUI) card).getUrl().substring(0, 29).equals("gui/assets/img/game/cards/1±2"))
+            {             
+                CardGUI cardGUI = (CardGUI) card;
+                cardGUI.setRotate(cardGUI.getRotate() + 90);
+                controller.getDC().changeCardValue(index++);
+            }
+        }
+        
         
 
     }

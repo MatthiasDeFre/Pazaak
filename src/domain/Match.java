@@ -131,6 +131,10 @@ public class Match{
 
     }
     
+    /**
+     * Method to add 5 credits to the winner of a match
+     * @param winner Instance of the player (the winner of the match)
+     */
     private void addCreditToWinner(Player winner )
     {
         winner.setCredit(winner.getCredit()+5);
@@ -185,6 +189,10 @@ public class Match{
     
     //Round methods
     
+    /**
+     * Method to determine the index of the player that will start the round
+     * @return The index of the player that will start in the new round
+     */
     public int determineStartPlayer()
     {   
         int startPlayerIndex = 0;
@@ -337,14 +345,27 @@ public class Match{
         matchRounds.add(round);
     }
     
+    /**
+     * Method to return the match of the not current player
+     * @return Instance of matchdeck containing all the cards that the not current players has in his matchdeck
+     */
     public MatchDeck showMatchDeckOtherPlayer(){
       return  matchPlayers.get((matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex() +1) % 2).getMatchDeck();
     }
     
+    /**
+     * Method to return the match of the current player
+     * @return Instance of matchdeck containing all the cards that the current players has in his matchdeck
+     */
      public MatchDeck showMatchDeckCurrentPlayer(){
       return  matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck();
     }
     
+    /**
+     * Method to change the value of the given cardIndex
+     *
+     * @param cardIndex The cardnumber you want to play will be -1 in code
+     */
     public void changeValueCard(int cardIndex) { 
         matchPlayers.get(matchRounds.get(matchRounds.size()-1).getCurrentPlayerIndex()).getMatchDeck(this).get(cardIndex-1).changeValue();
     }
@@ -353,10 +374,18 @@ public class Match{
        return matchRounds.get(matchRounds.size() -1).getCurrentPlayerIndex();
     }
     
+    /**
+     * Method to return the last card that was added to the gameboard
+     * @return String[] containing the data of 1 card (type, value)
+     */
     public String[] getLastCardPlayed() {
         return matchRounds.get(matchRounds.size() -1).getLastCardPlayed();
     }
     
+    /**
+     * Method to return the scores of the players
+     * @return int[] with index 0 = score player 1 and index 1 = score player 2
+     */
     public int [] getPlayerScores() {
         return matchRounds.get(matchRounds.size() -1).calculateGameBoardScores();
     }

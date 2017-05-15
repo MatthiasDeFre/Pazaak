@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -49,7 +50,7 @@ public class SideDeckController implements Initializable, _Scene {
      @FXML private Button btnCancel1;
     @FXML private GridPane ownedCards;
     @FXML private GridPane selectedCards;
-        
+    @FXML private Label lblPlayer;
     
     
     @Override
@@ -62,7 +63,7 @@ public class SideDeckController implements Initializable, _Scene {
         hoverAudioClip.setVolume(0.5);
         clickAudioClip.setVolume(0.5);
         btnConfirm.setDisable(true);
-      
+   
        
     }
     
@@ -72,6 +73,7 @@ public class SideDeckController implements Initializable, _Scene {
     @Override
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
+        lblPlayer.setText(rs.getString("sidedeckPlayerSelect") + " " + controller.getDC().getCurrentPlayerName());
         String[][] selectedCardsArray = new String[0][2];
       //  controller.getDC().makeMatch();
       //  controller.getDC().selectPlayer("tyreg");

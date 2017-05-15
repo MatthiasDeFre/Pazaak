@@ -26,7 +26,11 @@ public class MatchRepository {
         matchMapper = new MatchMapper();
     }
     
-    
+    /**
+     * Method to load a match with the given matchname
+     * @param matchName
+     * @return 
+     */
     public Match loadMatch(String matchName) {
 
         Match loadedMatch =  matchMapper.loadMatchNoBlob(matchName);

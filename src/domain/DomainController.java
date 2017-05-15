@@ -418,6 +418,10 @@ public class DomainController {
          
     }
     
+    /**
+     * Method to return a String[] containing all of the savegame names
+     * @return String[] containing the savegame names
+     */
     public String[] getSavegameNames(){
         List<String> saveGamesList = matchRepository.getSavegameNames();
         String[] saveGames = new String[saveGamesList.size()];
@@ -429,6 +433,13 @@ public class DomainController {
         return saveGames;
     }
     
+    /**
+     * <pre>Method to return all of the buyable cards of the currentplayer
+     * Index [x][0] cardType
+     * Index [x][1] cardValue
+     * Index [x][2] cardPrice</pre>
+     * @return String[][] containing the data of the cards (type, value, price)
+     */
     public String[][] showBuyableCards(){
         List<Card> buyableCardList= cardRepository.showBuyableCards(currentUser.getName());
         String[][] buyableCardArray= new String[buyableCardList.size()][3];
@@ -445,6 +456,12 @@ public class DomainController {
         return buyableCardArray;    
     }
     
+    /**
+     * <pre>Method to return all of the available cards of the currentplayer
+     * Index [x][0] cardType
+     * Index [x][1] cardValue</pre>
+     * @return String[][] containing the data of the cards (type, value, price)
+     */
      public String[][] showAvailableCards()
     {
         String[][] deckArray = new String[currentUser.getDeck().size()][2];
@@ -457,6 +474,12 @@ public class DomainController {
         return deckArray;
     }
      
+    /**
+     * <pre>Method to return all of the available cards of the not currentplayer
+     * Index [x][0] cardType
+     * Index [x][1] cardValue</pre>
+     * @return String[][] containing the data of the cards (type, value)
+     */
      public String[][] showMatchDeckOtherPlayer() {
        String[][] deckArray = new String[newMatch.showMatchDeckOtherPlayer().getCards().size()][2];
         int index = 0;
@@ -469,6 +492,12 @@ public class DomainController {
         return deckArray;
      }
      
+   /**
+     * <pre>Method to return all of the available change cards
+     * Index [x][0] cardType
+     * Index [x][1] cardValue</pre>
+     * @return String[][] containing the data of the change cards (type, value)
+     */
      public String[][] showPossibleValueChanges() {
            String[][] possibleChanges = new String[0][3];
         
@@ -495,14 +524,28 @@ public class DomainController {
         return possibleChanges;
      }
      
+     /**
+      * Method to change the value of the given cardIndex
+      * @param cardindex The cardnumber you want to play will be -1 in code
+      */
      public void changeCardValue(int cardindex) {
          newMatch.changeValueCard(cardindex);
      }
      
+     /**
+      * Method to return the credits of the current player
+      * @return Credits of the current player
+      */
      public int getCurrentPlayerCredits() {
          return currentUser.getCredit();
      }
      
+     /**
+     * <pre>Method to return all of the available cards of the currentplayer
+     * Index [x][0] cardType
+     * Index [x][1] cardValue</pre>
+     * @return String[][] containing the data of the cards (type, value)
+     */
      public String[][] getMatchDeckCurrentPlayer() {
         String[][] deckArray = new String[newMatch.showMatchDeckCurrentPlayer().getCards().size()][2];
         int index = 0;
@@ -515,19 +558,43 @@ public class DomainController {
         return deckArray;
      }
      
+     /**
+      * Method to return the newMatch score
+      * @return The score of the newMatch
+      */
      public int [] getMatchScore() {
         return newMatch.getScoring();
      }
      
+     /**
+      * Method to get the index of the current player in newMatch
+      * @return The index of the current player in newMatch
+      */
      public int getCurrentPlayerIndex() {
          return newMatch.getCurrentPlayerIndext();
      }
      
+     /**
+      * Method to return the last card that was added to the gameboard
+      * @return String[] containing the data of 1 card (type, value)
+      */
      public String[] giveLastCardPlayed() {
          return newMatch.getLastCardPlayed();
      }
      
+     /**
+      * Method to return the scores of the players currently in the newMatch
+      * @return int[] with index 0 the score of player 1 and index 1 the score of player 2
+      */
      public int [] getPlayerScores() {
          return newMatch.getPlayerScores();
+     }
+     
+     /**
+      * Method to return the name of the current player
+      * @return The name of the current player
+      */
+     public String getCurrentPlayerName() {
+         return currentUser.getName();
      }
 }
