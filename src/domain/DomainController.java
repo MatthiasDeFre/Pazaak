@@ -233,6 +233,7 @@ public class DomainController {
         String[] winnerData=new String[2];
         
         currentUser= newMatch.whoWon();
+        players.setPlayerCredit(currentUser);
         winnerData[0]=currentUser.getName();
         winnerData[1]=Integer.toString(currentUser.getCredit());
         
