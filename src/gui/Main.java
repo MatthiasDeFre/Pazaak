@@ -98,7 +98,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
           public void handle(WindowEvent we) {
               we.consume();
-              final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("assets/sfx/sounds/Error.mp3").toExternalForm());
+              final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("assets/sfx/sounds/Defeat.mp3").toExternalForm());
               ExitAudioClip.setVolume(0.6);
               ExitAudioClip.play();
               

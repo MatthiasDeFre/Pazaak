@@ -36,6 +36,8 @@ public class ShopController implements Initializable, _Scene
     @FXML
     private Button btnBuy;
     @FXML
+    private Button btnCancel;
+    @FXML
     private GridPane buyableCards1; //rij 1 van buyable kaarten (8 x 1)
     @FXML
     private GridPane buyableCards2; //rij 2 (5 x 1)
@@ -233,7 +235,29 @@ public class ShopController implements Initializable, _Scene
     }
 
     @FXML
-    private void btnMainClick(ActionEvent event)
+    private void btnCancelClick()
     {
+        clickAudioClip.play();
     }
+    
+    @FXML
+    public void btnCancelEnter()
+    {
+
+        hoverAudioClip.play();
+        btnCancel.setScaleX(1.1);
+        btnCancel.setScaleY(1.1);
+
+    }
+
+    @FXML
+    public void btnCancelExit()
+    {
+
+        btnCancel.setScaleX(1);
+        btnCancel.setScaleY(1);
+
+    }
+
+
 }

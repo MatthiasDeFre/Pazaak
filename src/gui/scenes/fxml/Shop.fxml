@@ -38,7 +38,7 @@
             </GridPane>
             <HBox prefHeight="530.0" prefWidth="1206.0">
                <children>
-                  <VBox prefHeight="526.0" prefWidth="750.0">
+                  <VBox prefHeight="505.0" prefWidth="750.0">
                      <children>
                         <GridPane fx:id="buyableCards2" alignment="CENTER" prefHeight="190.0" prefWidth="750.0">
                           <columnConstraints>
@@ -86,5 +86,10 @@
             </HBox>
          </children>
       </VBox>
+      <Button id="buttons" fx:id="btnCancel" graphicTextGap="0.0" layoutX="25.0" layoutY="615.0" minWidth="176.0" mnemonicParsing="false" onAction="#btnCancelClick" onMouseEntered="#btnCancelEnter" onMouseExited="#btnCancelExit" prefHeight="52.0" prefWidth="176.0" stylesheets="@../../assets/css/menu.css" text="Cancel" textOverrun="CLIP">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
   </children>
 </AnchorPane>

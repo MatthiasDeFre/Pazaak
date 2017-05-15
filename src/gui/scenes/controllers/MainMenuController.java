@@ -50,7 +50,7 @@ public class MainMenuController implements Initializable, _Scene {
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
     
     //exit sound
-    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Error.mp3").toExternalForm());
+    final AudioClip ExitAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Defeat.mp3").toExternalForm());
 
     
 //    final AudioClip[] randomExit = {ExitAudioClip, Exit2AudioClip, Exit3AudioClip};
