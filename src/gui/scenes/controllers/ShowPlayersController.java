@@ -82,7 +82,7 @@ public class ShowPlayersController implements Initializable, _Scene {
         //assert btnMain != null;
         
         assert lblSettings != null;
-        lblSettings.setText("Please select the player you want to make a matchdeck for");
+        lblSettings.setText(rs.getString("selectMatchDeckPlayer"));
         
          
         
