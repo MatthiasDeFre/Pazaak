@@ -204,6 +204,7 @@ public class ShopController implements Initializable, _Scene
             selectedCardGUI.setInteractable(false);
             selectedCardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
             imgSelectedCard.setImage(new Image("gui/assets/img//game/cards/back.png"));
+            lblCredits.setText(String.valueOf(controller.getDC().getCurrentPlayerCredits()));
         } catch (Exception e)
         {
             System.out.println(e.getMessage());

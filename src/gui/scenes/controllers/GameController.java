@@ -335,10 +335,12 @@ public class GameController implements Initializable, _Scene {
     {
 
         endAudioClip.play();
-        nextTurn();
+
         if (controller.getDC().roundEnded() & !controller.getDC().matchEnded())
         {
             newRound();
+        } else {
+            nextTurn();
         }
         if (controller.getDC().matchEnded())
         {
@@ -496,6 +498,19 @@ public class GameController implements Initializable, _Scene {
     {
 
         clickAudioClip.play();
+        int index = 1;
+         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+        {
+            
+            if (card != null && ((CardGUI) card).getUrl().substring(0, 27).equals("gui/assets/img/game/cards/±"))
+            {
+                System.out.println("testSign");
+                CardGUI cardGUI = (CardGUI) card;
+                cardGUI.setRotate(cardGUI.getRotate() + 180);
+                controller.getDC().changeCardSign(index++);
+            }
+        }
+        
         
 
     }

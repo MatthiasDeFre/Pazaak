@@ -27,7 +27,7 @@ public class GameBoard {
         String cardType = card.getType();
         if(cardType.equals("D"))
         {
-                if (gameBoardCards.size() < 0)
+                if (gameBoardCards.size() > 0)
                 {
                     card.setValue(gameBoardCards.get(gameBoardCards.size() - 1).getTrueValue());
                 }

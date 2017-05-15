@@ -268,6 +268,8 @@ public class SideDeckController implements Initializable, _Scene {
     public void btnCancel1Click()
     {
         clickAudioClip.play();
+        controller.loadScreen(Main.screen13ID, Main.screen13File);
+        controller.setScreen(Main.screen13ID);
         
 
     }
