@@ -20,7 +20,7 @@ public class cui {
     private boolean playedCard = false;
     private boolean cantNextTurn = false;
     private boolean continueGame = true;
-    private boolean turnEnded = false;
+    private boolean turnNotEnded = true;
 
     Scanner s = new Scanner(System.in);
 
@@ -82,9 +82,14 @@ public class cui {
 
                         case 2:
                             //methode voor nieuwe wedstrijd starten
-                            startGame();
-                            badInput = false;
-                            break;
+                            try {
+
+                                startGame();
+                                badInput = false;
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(rs.getString("unknownError"));
+                            }
                         case 3:
                             //methode voor bestaande wedstrijd verder te doen
                             loadMatch();
@@ -104,7 +109,7 @@ public class cui {
                 } catch (userExistsException | noCorrectBirthyearException | noCorrectNameException uex) {
                     System.out.println(uex.getMessage());
                 } catch (InputMismatchException ime) {
-                    System.out.println(rs.getString("mismatch"));
+                    System.out.println(rs.getString("wrongInput"));
                 }
             } while (badInput);
         } while (running);
@@ -141,44 +146,49 @@ public class cui {
     }
 
     private void startGame() {
-        dc.makeMatch();
-        while (dc.getAmountPlayersStillNeeded() > 0) {
-            System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
-            for (String matchName : dc.getPlayerNames()) {
-                System.out.println(matchName);
+        try {
+            dc.makeMatch();
+            while (dc.getAmountPlayersStillNeeded() > 0) {
+                System.out.println(rs.getString("select") + " " + dc.getAmountPlayersStillNeeded() + " " + rs.getString("need"));
+                for (String matchName : dc.getPlayerNames()) {
+                    System.out.println(matchName);
+                }
+                System.out.println(rs.getString("giveName"));
+                name = s.next();
+                dc.selectPlayer(name);
             }
-            System.out.println(rs.getString("giveName"));
-            name = s.next();
-            dc.selectPlayer(name);
-        }
 
-        Boolean invoerYn = false;
-        String input;
+            Boolean invoerYn = false;
+            String input;
 
-        do {
-            System.out.println(rs.getString("chosenPlayers"));
-            for (String matchPlayer : dc.getChosenPlayerNames()) {
-                System.out.println(matchPlayer);
-            }
-            System.out.println(rs.getString("yesNo"));
+            do {
+                System.out.println(rs.getString("chosenPlayers"));
+                for (String matchPlayer : dc.getChosenPlayerNames()) {
+                    System.out.println(matchPlayer);
+                }
+                System.out.println(rs.getString("yesNo"));
 
-            input = s.next().substring(0, 1);
+                input = s.next().substring(0, 1);
 
-            if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-                invoerYn = true;
-            } else {
-                if (input.toLowerCase().equals("n")) {
-                    System.out.println(rs.getString("returningMain"));
+                if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
                     invoerYn = true;
                 } else {
-                    System.out.println(rs.getString("wrongInput"));
-                    invoerYn = false;
+                    if (input.toLowerCase().equals("n")) {
+                        System.out.println(rs.getString("returningMain"));
+                        invoerYn = true;
+                        startPazaak();
+                    } else {
+                        System.out.println(rs.getString("wrongInput"));
+                        invoerYn = false;
+                    }
                 }
-            }
 
-        } while (invoerYn == false);
-        makeMatchDeck();
-        matchStarted();
+            } while (invoerYn == false);
+            makeMatchDeck();
+            matchStarted();
+        } catch (Exception e) {
+            System.out.println(rs.getString("unknownError"));
+        }
 
     }
 
@@ -299,109 +309,131 @@ public class cui {
 
     private void startNewRound() {
         System.out.println(rs.getString("roundStarted"));
-        turnEnded = true;
+        turnNotEnded = true;
         dc.startNewRound();
-        if (turnEnded) {
+        dc.nextTurn();
 
+        do {
+
+            if (turnNotEnded == false) {
+                dc.nextTurn();
+            }
+            System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+            String[][] situation = dc.getRoundSituation();
+            int index = 0;
+            for (String playerName : dc.getChosenPlayerNames()) {
+
+                System.out.println(rs.getString("score") + playerName + " " + dc.getPlayerScores()[index]);
+                index++;
+            }
+            System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
+            System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
+
+            // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
             do {
-                //System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                String[][] situation = dc.getRoundSituation();
-                int index = 0;
-                for (String playerName : dc.getChosenPlayerNames()) {
-
-                    System.out.println(rs.getString("score") + playerName + " " + situation[2][index]);
-                    index++;
-                }
-                System.out.println(rs.getString("whoseTurn") + Arrays.toString(situation[4]));
-                System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
-
-                // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
                 if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
-                    System.out.println(rs.getString("whatWant"));
-                    turnChoice(s.nextInt());
+
+                    turnChoice();
                     s.nextLine();
                 }
-            } while (!dc.roundEnded());
-            System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            System.out.println(rs.getString("wantSave"));
+            } while (turnNotEnded);
 
-            String input = s.nextLine();
-            if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-                System.out.println(rs.getString("whichName"));
-                input = s.nextLine();
-                dc.saveMatch(input);
+        } while (!dc.roundEnded());
+        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+        System.out.println(rs.getString("wantSave"));
+
+        String input = s.nextLine().substring(0, 1);;
+
+        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
+            System.out.println(rs.getString("whichName"));
+            input = s.nextLine();
+            dc.saveMatch(input);
+        } else {
+            if (input.toLowerCase().equals("n")) {
+                continueGame = false;
             } else {
-                if (input.toLowerCase().equals("n")) {
-                    continueGame = false;
-                } else {
-                    System.out.println(rs.getString("wrongInput"));
-                }
+                System.out.println(rs.getString("wrongInput"));
             }
         }
 
     }
 
-    private void turnChoice(int choice) {
-        switch (choice) {
-            case 1:
-                turnEnded = true;
-                break;
-            case 2:
+    private void turnChoice() {
 
-                //Indien geen kaarten moet hier nog komen
-                int count = 0;
-                String[][] situation = dc.getRoundSituation();
-                if (situation[3].length != 0) {
-                    boolean input = false;
-                    System.out.println(rs.getString("wantToChange"));
+        boolean badNumber = true;
+        String choice = "";
 
-                    String theinput = s.nextLine();
-                    if (theinput.toLowerCase().equals("o") || theinput.toLowerCase().equals("j") || theinput.toLowerCase().equals("y")) {
-                        input = false;
-                    } else {
-                        if (theinput.toLowerCase().equals("n")) {
-                            input = true;
+        while (badNumber = true) {
+            System.out.println(rs.getString("whatWant"));
+            choice = s.nextLine();
+            switch (choice) {
+                case "1":
+                    turnNotEnded = false;
+                    badNumber = false;
+                    dc.nextTurn();
+
+                    break;
+                case "2":
+                    int count = 0;
+                    String theinput = "";
+                    String[][] situation = dc.getRoundSituation();
+                    if (situation[3].length != 0) {
+                        boolean input = false;
+                        System.out.println(rs.getString("wantToChange"));
+                        s.nextLine();
+                        theinput = s.nextLine().substring(0, 1);
+                        if (theinput.toLowerCase().equals("o") || theinput.toLowerCase().equals("j") || theinput.toLowerCase().equals("y")) {
+                            input = false;
                         } else {
-                            System.out.println(rs.getString("wrongInput"));
+                            if (theinput.toLowerCase().equals("n")) {
+                                input = true;
+                            } else {
+                                System.out.println(rs.getString("wrongInput"));
+                            }
                         }
-                    }
 
-                    if (input) {
-                        System.out.println(rs.getString("whichCard"));
+                        if (input) {
+                            System.out.println(rs.getString("whichCard"));
 
-                        for (String string : situation[3]) {
-                            System.out.println(++count + ": " + string);
-                        }
-                        dc.playCard(s.nextInt());
-                        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                        playedCard = true;
+                            for (String string : situation[3]) {
+                                System.out.println(++count + ": " + string);
+                            }
+                            dc.playCard(s.nextInt());
+                            System.out.println(Arrays.deepToString(dc.getRoundSituation()));
 
-                    } else {
-                        System.out.println("Change sign?");
-                        boolean change = false;
-                        change = s.nextBoolean();
-                        if (change) {
-                            System.out.println(Arrays.deepToString(dc.showPossibleChanges()));
-                            int cardIndex = s.nextInt();
-                            dc.changeCardSign(cardIndex);
                         } else {
-                            System.out.println(Arrays.deepToString(dc.showPossibleValueChanges()));
-                            int cardIndex = s.nextInt();
-                            dc.changeCardValue(cardIndex);
+                            System.out.println(rs.getString("changeSignOrValue"));
+
+                            if (theinput.toLowerCase().equals("s") || theinput.toLowerCase().equals("t")) {
+                                System.out.println(Arrays.deepToString(dc.showPossibleChanges()));
+                                int cardIndex = s.nextInt();
+                                dc.changeCardSign(cardIndex);
+                            } else {
+                                if (theinput.toLowerCase().equals("v") || theinput.toLowerCase().equals("w")) {
+                                    System.out.println(Arrays.deepToString(dc.showPossibleValueChanges()));
+                                    int cardIndex = s.nextInt();
+                                    dc.changeCardValue(cardIndex);
+                                } else {
+                                    System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+                                }
+                            }
                         }
-                        System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-                        playedCard = true;
+                    } else {
+                        System.out.println(rs.getString("noCards"));
                     }
-                } else {
-                    System.out.println(rs.getString("noCards"));
-                    playedCard = true;
-                }
+                    badNumber = false;
 
-            case 3:
-                dc.freezeBoard();
-                playedCard = false;
-                break;
+                case "3":
+                    dc.freezeBoard();
+                    dc.nextTurn();
+                    turnNotEnded = false;
+                    badNumber = false;
+                    break;
+                default:
+                    System.out.println(rs.getString("wrongInput"));
+                    badNumber = true;
 
+            }
         }
     }
 
@@ -415,9 +447,10 @@ public class cui {
                 dc.loadMatch(s.nextLine());
                 playMatch();
                 input = false;
-            } catch (IndexOutOfBoundsException ioe) {
+            } catch (IndexOutOfBoundsException | NullPointerException ioe) {
                 System.out.println(rs.getString("errorLoad"));
             }
+
         } while (input);
     }
 
