@@ -36,8 +36,8 @@
                </font>
             </TextField>
             <Label id="error" fx:id="lblError" text="Label" />
-            <Button id="buttons" fx:id="btnRegister" mnemonicParsing="false" onAction="#btnRegisterClick" onMouseEntered="#btnRegisterEnter" onMouseExited="#btnRegisterExit" text="Register" />
-            <Button id="buttons" fx:id="btnMainMenu" layoutX="410.0" layoutY="467.0" mnemonicParsing="false" onAction="#btnMainMenuClick" onMouseEntered="#btnMainMenuEnter" onMouseExited="#btnMainMenuExit" text="Main Menu" />
+            <Button id="buttons" fx:id="btnRegister" mnemonicParsing="false" onAction="#btnRegisterClick" onMouseEntered="#btnRegisterEnter" onMouseExited="#btnRegisterExit" prefHeight="60.0" prefWidth="400.0" text="Register" />
+            <Button id="buttons" fx:id="btnMainMenu" layoutX="410.0" layoutY="467.0" mnemonicParsing="false" onAction="#btnMainMenuClick" onMouseEntered="#btnMainMenuEnter" onMouseExited="#btnMainMenuExit" prefHeight="60.0" prefWidth="400.0" text="Main Menu" />
       </children>
     </VBox>
   </children>

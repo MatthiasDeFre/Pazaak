@@ -5,11 +5,11 @@ package gui.scenes.controllers;
 import gui.SceneController;
 import gui.Main;
 import java.net.URL;
-import java.util.Collections;
+
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,8 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import javafx.scene.text.Font;
 
@@ -75,7 +73,7 @@ public class ShowPlayersController implements Initializable, _Scene {
         clickAudioClip.setVolume(0.5);
         
         //assert btnConfirm != null;
-        btnConfirm.setText(rs.getString("startGame")); 
+        btnConfirm.setText(rs.getString("confirm")); 
         
 
         
@@ -102,8 +100,10 @@ public class ShowPlayersController implements Initializable, _Scene {
         controller.unloadScreen(Main.screen1ID);
         playerList = FXCollections.observableArrayList(controller.getDC().getPlayersWithoutMatchDeck());
         if(playerList.isEmpty()) {
+            lblSettings.setStyle("-fx-font-size:50");
             btnConfirm.setDisable(false);
-            lblSettings.setText("The game is ready to be started");
+            btnConfirm.setText(rs.getString("playGame"));
+            lblSettings.setText(rs.getString("gameReady"));
         }
         
         
