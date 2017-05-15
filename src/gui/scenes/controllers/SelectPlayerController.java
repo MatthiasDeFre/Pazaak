@@ -143,8 +143,8 @@ public class SelectPlayerController implements Initializable, _Scene {
             controller.stopMusic();
             
             controller.playSideMusic();
-            controller.loadScreen(Main.screen6ID, Main.screen6File);
-            controller.setScreen(Main.screen6ID);
+            controller.loadScreen(Main.screen13ID, Main.screen13File);
+            controller.setScreen(Main.screen13ID);
       } catch (Exception e)
         {
             lblError.setText(e.getMessage());
