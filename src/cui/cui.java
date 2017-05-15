@@ -309,9 +309,8 @@ public class cui {
 
     private void startNewRound() {
         System.out.println(rs.getString("roundStarted"));
-        turnNotEnded = true;
+        turnNotEnded = false;
         dc.startNewRound();
-        dc.nextTurn();
 
         do {
 
@@ -319,6 +318,7 @@ public class cui {
                 dc.nextTurn();
             }
             System.out.println(Arrays.deepToString(dc.getRoundSituation()));
+            System.out.println("test");
             String[][] situation = dc.getRoundSituation();
             int index = 0;
             for (String playerName : dc.getChosenPlayerNames()) {
@@ -330,15 +330,13 @@ public class cui {
             System.out.println(rs.getString("yourCards") + Arrays.toString(situation[3]));
 
             // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            do {
+          
                 if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
-
                     turnChoice();
-                    s.nextLine();
                 }
-            } while (turnNotEnded);
+            
 
-        } while (!dc.roundEnded());
+        } while (!dc.roundEnded() || turnNotEnded);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
         System.out.println(rs.getString("wantSave"));
 
@@ -360,16 +358,16 @@ public class cui {
 
     private void turnChoice() {
 
-        boolean badNumber = true;
+       boolean badNumber = true;
         String choice = "";
 
         while (badNumber = true) {
-            System.out.println(rs.getString("whatWant"));
+            System.out.println(rs.getString("whatWant"));  
             choice = s.nextLine();
             switch (choice) {
                 case "1":
-                    turnNotEnded = false;
                     badNumber = false;
+                    turnNotEnded = false;
                     dc.nextTurn();
 
                     break;
@@ -380,7 +378,7 @@ public class cui {
                     if (situation[3].length != 0) {
                         boolean input = false;
                         System.out.println(rs.getString("wantToChange"));
-                        s.nextLine();
+                       // s.nextLine();
                         theinput = s.nextLine().substring(0, 1);
                         if (theinput.toLowerCase().equals("o") || theinput.toLowerCase().equals("j") || theinput.toLowerCase().equals("y")) {
                             input = false;
@@ -403,7 +401,7 @@ public class cui {
 
                         } else {
                             System.out.println(rs.getString("changeSignOrValue"));
-
+                            theinput = s.nextLine().substring(0,1);
                             if (theinput.toLowerCase().equals("s") || theinput.toLowerCase().equals("t")) {
                                 System.out.println(Arrays.deepToString(dc.showPossibleChanges()));
                                 int cardIndex = s.nextInt();
@@ -429,6 +427,8 @@ public class cui {
                     turnNotEnded = false;
                     badNumber = false;
                     break;
+                case "4":
+                    startPazaak();
                 default:
                     System.out.println(rs.getString("wrongInput"));
                     badNumber = true;
