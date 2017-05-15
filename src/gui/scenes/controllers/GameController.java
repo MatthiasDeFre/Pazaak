@@ -35,6 +35,15 @@ public class GameController implements Initializable, _Scene {
 
     //Click sound
     final AudioClip clickAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Click.mp3").toExternalForm());
+    
+    //Hover sound
+    final AudioClip startAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/StartMatch.mp3").toExternalForm());
+    
+    //Hover sound
+    final AudioClip standAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/Stand.mp3").toExternalForm());
+    
+    //Hover sound
+    final AudioClip endAudioClip = new AudioClip(getClass().getResource("../../assets/sfx/sounds/EndTurn.mp3").toExternalForm());
 
     @FXML
     private Button btnEndTurn;
@@ -72,6 +81,8 @@ public class GameController implements Initializable, _Scene {
 
     public void initialize(URL url, ResourceBundle rb)
     {
+        startAudioClip.setVolume(1.5);
+        startAudioClip.play();
         btnSign.setGraphic(image);
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         rs = rb;
@@ -323,7 +334,7 @@ public class GameController implements Initializable, _Scene {
     public void btnEndTurnClick()
     {
 
-        clickAudioClip.play();
+        endAudioClip.play();
         nextTurn();
         if (controller.getDC().roundEnded() & !controller.getDC().matchEnded())
         {
@@ -361,7 +372,7 @@ public class GameController implements Initializable, _Scene {
     public void btnStandClick()
     {
 
-        clickAudioClip.play();
+        standAudioClip.play();
         controller.getDC().freezeBoard();
         nextTurn();
         if (controller.getDC().roundEnded() & !controller.getDC().matchEnded())
