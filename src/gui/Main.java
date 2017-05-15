@@ -46,7 +46,8 @@ public class Main extends Application {
     public static String screen11File = "scenes/fxml/SelectPlayer.fxml";
     public static String screen12ID = "LoadGame";
     public static String screen12File = "scenes/fxml/LoadGame.fxml";
-    
+    public static String screen13ID = "ShowPlayers";
+    public static String screen13File = "scenes/fxml/ShowPlayers.fxml";
     
     
     
