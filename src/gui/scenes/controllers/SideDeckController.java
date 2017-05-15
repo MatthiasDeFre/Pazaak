@@ -46,6 +46,7 @@ public class SideDeckController implements Initializable, _Scene {
     
     @FXML private Button btnShop;
     @FXML private Button btnConfirm;
+     @FXML private Button btnCancel1;
     @FXML private GridPane ownedCards;
     @FXML private GridPane selectedCards;
         
@@ -149,8 +150,8 @@ public class SideDeckController implements Initializable, _Scene {
                             {
 
                                 hoverAudioClip.play();
-                                ((CardGUI) event.getSource()).setScaleX(1.5);
-                                ((CardGUI) event.getSource()).setScaleY(1.5);
+                                ((CardGUI) event.getSource()).setScaleX(1.2);
+                                ((CardGUI) event.getSource()).setScaleY(1.2);
 
                             }
                         });
@@ -180,8 +181,8 @@ public class SideDeckController implements Initializable, _Scene {
                    if (((CardGUI) event.getSource()).isInteractable())
                    {
                         hoverAudioClip.play();
-                       ((CardGUI) event.getSource()).setScaleX(1.5);
-                       ((CardGUI) event.getSource()).setScaleY(1.5);
+                       ((CardGUI) event.getSource()).setScaleX(1.2);
+                       ((CardGUI) event.getSource()).setScaleY(1.2);
                    }
                }
            });
@@ -216,7 +217,7 @@ public class SideDeckController implements Initializable, _Scene {
     @FXML
     public void btnConfirmClick()
     {
-
+        clickAudioClip.play();
         String[][] cards = new String[6][2];
         int index = 0;
         for (Node card : selectedCards.getChildren())
@@ -236,9 +237,79 @@ public class SideDeckController implements Initializable, _Scene {
     @FXML
     public void btnShopClick()
     {
-
+        clickAudioClip.play();
         controller.loadScreen(Main.screen9ID, Main.screen9File);
         controller.setScreen(Main.screen9ID);
+
+    }
+    
+    @FXML
+    public void btnShopEnter()
+    {
+        hoverAudioClip.play();
+       btnShop.setScaleX(1.1);
+       btnShop.setScaleY(1.1);
+        
+
+    }
+    
+    @FXML
+    public void btnShopExit()
+    {
+       btnShop.setScaleX(1);
+       btnShop.setScaleY(1);
+        
+
+    }
+    
+    
+    
+    @FXML
+    public void btnCancel1Click()
+    {
+        clickAudioClip.play();
+        
+
+    }
+    
+    @FXML
+    public void btnCancel1Enter()
+    {
+        hoverAudioClip.play();
+       btnCancel1.setScaleX(1.1);
+       btnCancel1.setScaleY(1.1);
+        
+
+    }
+    
+    @FXML
+    public void btnCancel1Exit()
+    {
+       btnCancel1.setScaleX(1);
+       btnCancel1.setScaleY(1);
+        
+
+    }
+    
+
+    
+    
+    @FXML
+    public void btnConfirmEnter()
+    {
+        hoverAudioClip.play();
+       btnConfirm.setScaleX(1.1);
+       btnConfirm.setScaleY(1.1);
+        
+
+    }
+    
+    @FXML
+    public void btnConfirmExit()
+    {
+       btnConfirm.setScaleX(1);
+       btnConfirm.setScaleY(1);
+        
 
     }
   

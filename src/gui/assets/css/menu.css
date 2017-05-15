@@ -135,12 +135,7 @@
     -fx-border-color: #FF9800;
 }
 
-/*#textField:focused {
 
-
-    -fx-font-size: 25;
-    -fx-border-color: #FF9800;
-}*/
 
 #labelbig {
     
@@ -149,6 +144,15 @@
     -fx-font-size: 27;
 
 }
+
+#labelsmall {
+    
+    -fx-text-fill: white;
+    -fx-font-family: "Upheaval TT -BRK-";
+    -fx-font-size: 23;
+
+}
+
 
 #labelB {
     

@@ -82,7 +82,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <GridPane fx:id="player2SideDeck" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <GridPane fx:id="player2SideDeck" prefHeight="149.0" prefWidth="522.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -93,10 +93,23 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <VBox alignment="CENTER" prefHeight="164.0" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
-                        <Button id="buttonB" fx:id="btnStand" graphicTextGap="0.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnStandClick" onMouseEntered="#btnStandEnter" onMouseExited="#btnStandEnter" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="STAND" textOverrun="CLIP" />
+                        <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin></Button>
+                        <Button id="buttonB" fx:id="btnStand" graphicTextGap="0.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnStandClick" onMouseEntered="#btnStandEnter" onMouseExited="#btnStandExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="STAND" textOverrun="CLIP">
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin></Button>
+                        <Button id="buttonB" fx:id="btnSign" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="62.0" minWidth="47.0" mnemonicParsing="false" onAction="#btnSignClick" onMouseEntered="#btnSignEnter" onMouseExited="#btnSignExit" prefHeight="47.0" prefWidth="53.0" stylesheets="@../../assets/css/menu.css" textOverrun="CLIP">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                </children>
