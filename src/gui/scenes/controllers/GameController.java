@@ -192,6 +192,7 @@ public class GameController implements Initializable, _Scene {
                     if (cardGUI.isInteractable())
                     {
                         CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
+                        cardGUIBoard.setRotate(cardGUI.getRotate());
                         playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
                         if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
                         {
@@ -278,6 +279,7 @@ public class GameController implements Initializable, _Scene {
                     if (cardGUI.isInteractable())
                     {
                         CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
+                        cardGUIBoard.setRotate(cardGUI.getRotate());
                         playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
                         if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
                         {
