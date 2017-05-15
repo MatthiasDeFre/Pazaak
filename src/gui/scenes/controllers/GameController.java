@@ -710,6 +710,7 @@ public class GameController implements Initializable, _Scene {
             try
         {
           controller.getDC().saveMatch(txtSaveName.getText());
+          lblSave.setText("Save succes");
         } catch (Exception e)
         {
             lblSave.setText(e.getMessage());
@@ -747,6 +748,7 @@ public class GameController implements Initializable, _Scene {
                 cardGUI.setRotate(cardGUI.getRotate() + 180);
                 controller.getDC().changeCardValue(index++);
             }
+            index++;
         }
         
         
