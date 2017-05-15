@@ -398,14 +398,23 @@ public class DomainController {
         currentUser.getDeck().add(card);
     }
     
+    /**
+     * Method to save the match
+     * @param matchName The name that the match will have in the database
+     */
     public void saveMatch(String matchName) { 
          //   matchMapper.saveMatchNoBlob(matchName, newMatch);
          matchRepository.saveMatch(matchName, newMatch);
         
     }
     
+    /**
+     * Method to load a match from the database
+     * @param matchName The name of the match that needs to be loaded
+     */
     public void loadMatch(String matchName) {     
-                newMatch = matchMapper.loadMatchNoBlob(matchName);
+             //   newMatch = matchMapper.loadMatchNoBlob(matchName);
+             newMatch = matchRepository.loadMatch(matchName);
          
     }
     
