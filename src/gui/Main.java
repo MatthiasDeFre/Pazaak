@@ -104,7 +104,7 @@ public class Main extends Application {
               
               System.out.println("Stage is closing");
               mainContainer.message = "I'm sorry Dave, I'm afraid I can't do that";//rs plz
-       mainContainer.button1 = "Keep playing";
+       mainContainer.button1 = "Main menu";
        mainContainer.button2 = "EXIT";
        mainContainer.messageId = "6";  //init6 lel
        

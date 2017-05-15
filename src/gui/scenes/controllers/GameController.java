@@ -521,6 +521,7 @@ public class GameController implements Initializable, _Scene {
 
     private void showVictoryScreen()
     {
+        btnEndTurn.setDisable(true);
         victoryAudioClip.play();
         
         controller.message = controller.getDC().whoWon() + " won the match";//rs plz

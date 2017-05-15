@@ -237,6 +237,7 @@ public class MessageController implements Initializable, _Scene {
         else if (controller.messageId == "4") {
             controller.loadScreen(Main.screen1ID, Main.screen1File);
        controller.setScreen(Main.screen1ID);
+       
         }
        
     }

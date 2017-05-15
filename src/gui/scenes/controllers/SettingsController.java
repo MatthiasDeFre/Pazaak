@@ -76,6 +76,7 @@ public class SettingsController implements Initializable, _Scene {
         lblSettings.setText(rs.getString("settings"));
         
         
+        
 
     }
     
@@ -86,6 +87,14 @@ public class SettingsController implements Initializable, _Scene {
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
         controller.unloadScreen(Main.screen1ID);
+        
+        if (controller.isMuted) {
+            btnSound.setText("turn music on");
+        }
+        else
+        {
+            btnSound.setText("turn music off");
+        }
         
     };
 
@@ -127,10 +136,22 @@ public class SettingsController implements Initializable, _Scene {
      
         //clickAudioClip.play();
         
-        controller.isMuted = true; 
-        controller.stopMusic();
-        System.out.println("Sound muted");//rs!!
-        btnSound.setText("unmute sound");
+        if (!controller.isMuted) {
+            btnSound.setText("turn music back on");
+            controller.stopMusic();
+            controller.isMuted = true;
+        }
+        else if (controller.isMuted) {
+            
+            btnSound.setText("turn music off");
+            
+            controller.isMuted = false;
+            controller.playMusic();
+        }
+        
+        
+        
+        
        
     }
     
