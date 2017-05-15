@@ -148,9 +148,9 @@
             <Image url="@../../assets/img/menu/msg.png" />
          </image>
       </ImageView>
-      <Button id="buttonR" fx:id="btnChange" graphicTextGap="0.0" layoutX="275.0" layoutY="367.0" minWidth="200.0" mnemonicParsing="false" onAction="#btnChangeClick" prefHeight="52.0" prefWidth="325.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
-      <Button id="buttonR" fx:id="btnSave" graphicTextGap="0.0" layoutX="611.0" layoutY="367.0" minWidth="206.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="52.0" prefWidth="331.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
-      <Label fx:id="lblSave" alignment="CENTER" layoutX="518.0" layoutY="233.0" prefHeight="17.0" prefWidth="164.0" stylesheets="@../../assets/css/menu.css" text="Label" />
+      <Button id="buttonR" fx:id="btnChange" graphicTextGap="0.0" layoutX="638.0" layoutY="362.0" minWidth="200.0" mnemonicParsing="false" onAction="#btnChangeClick" onMouseEntered="#btnChangeEnter" onMouseExited="#btnChangeExit" prefHeight="52.0" prefWidth="300.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
+      <Button id="buttonR" fx:id="btnSave" graphicTextGap="0.0" layoutX="278.0" layoutY="362.0" minWidth="206.0" mnemonicParsing="false" onAction="#btnSaveClick" onMouseEntered="#btnSaveEnter" onMouseExited="#btnSaveExit" prefHeight="52.0" prefWidth="300.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP" />
+      <Label fx:id="lblSave" alignment="CENTER" layoutX="270.0" layoutY="236.0" prefHeight="45.0" prefWidth="675.0" stylesheets="@../../assets/css/menu.css" text="Label" />
       <TextField id="textField" fx:id="txtSaveName" layoutX="467.0" layoutY="289.0" prefHeight="60.0" prefWidth="278.0" stylesheets="@../../assets/css/menu.css" />
       <Label id="labelB" fx:id="lblScore" alignment="CENTER" contentDisplay="CENTER" layoutX="428.0" prefHeight="68.0" prefWidth="340.0" stylesheets="@../../assets/css/menu.css" text="0-1" textAlignment="CENTER">
          <font>

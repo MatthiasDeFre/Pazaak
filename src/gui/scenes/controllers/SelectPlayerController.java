@@ -119,7 +119,6 @@ public class SelectPlayerController implements Initializable, _Scene {
     };
 
 
-    
 //btnConfirm
     
     @FXML
@@ -140,9 +139,7 @@ public class SelectPlayerController implements Initializable, _Scene {
             controller.getDC().makeMatch();
             controller.getDC().selectPlayer(name1);
             controller.getDC().selectPlayer(name2);
-            controller.stopMusic();
             
-            controller.playSideMusic();
             controller.loadScreen(Main.screen13ID, Main.screen13File);
             controller.setScreen(Main.screen13ID);
       } catch (Exception e)

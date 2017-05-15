@@ -56,6 +56,7 @@ public class MessageController implements Initializable, _Scene {
     private Image image = new Image(getClass().getResourceAsStream("../../assets/img/menu/hal.png"), 80,80, true,true);
     private Image loadsave = new Image(getClass().getResourceAsStream("../../assets/img/menu/loadsave.png"));
     private Image playerai = new Image(getClass().getResourceAsStream("../../assets/img/menu/playerai.png"));
+    private Image victor = new Image(getClass().getResourceAsStream("../../assets/img/menu/db.gif"));
 
         
     
@@ -145,27 +146,18 @@ public class MessageController implements Initializable, _Scene {
     timeline.play();  
             
         }
+        else if (controller.messageId == "4") {
+            img.setFitHeight(80);
+            img.setImage(victor);
+            
+            
+        }
         
         
     };
     
 
-       
-    @FXML
-    public void goToScreen2(ActionEvent event){
-        
-       controller.setScreen(Main.screen1ID);
-       
-       
-    }
-    
-    @FXML
-    public void goToScreen3(ActionEvent event){
-       System.out.println("ssd?");
-        System.out.println("s");
-       
-    }
-    
+
 //btn1
     
     @FXML
@@ -193,6 +185,12 @@ public class MessageController implements Initializable, _Scene {
             
        controller.loadScreen(Main.screen1ID, Main.screen1File);
        controller.setScreen(Main.screen1ID);
+        }
+       
+       else if (controller.messageId == "4") { //exit
+            
+       controller.loadScreen(Main.screen11ID, Main.screen11File);
+       controller.setScreen(Main.screen11ID);
         }
        
        
@@ -234,6 +232,11 @@ public class MessageController implements Initializable, _Scene {
        else if (controller.messageId == "6") {
             System.out.println("Exiting");
             Platform.exit();
+        }
+       
+        else if (controller.messageId == "4") {
+            controller.loadScreen(Main.screen1ID, Main.screen1File);
+       controller.setScreen(Main.screen1ID);
         }
        
     }

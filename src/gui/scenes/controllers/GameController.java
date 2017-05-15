@@ -1,6 +1,7 @@
 package gui.scenes.controllers;
 
 import gui.CardGUI;
+import gui.Main;
 import gui.SceneController;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -97,7 +98,9 @@ public class GameController implements Initializable, _Scene {
     private List<Label> names;
     private int[] columnCounters;
     private int[] rowCounters;
-
+    private boolean wantSave = false;
+    
+    
     @Override
 
     public void initialize(URL url, ResourceBundle rb)
@@ -145,6 +148,7 @@ public class GameController implements Initializable, _Scene {
         
         btnSave.setText("Save");
         btnChange.setText("Next Round");
+        
     }
 
     @Override
@@ -393,9 +397,12 @@ public class GameController implements Initializable, _Scene {
         btnChange.setVisible(true);
         btnSave.setVisible(true);
         lblSave.setVisible(true);
-        txtSaveName.setVisible(true);
+        //txtSaveName.setVisible(true);
         btnStand.setDisable(true);
         btnEndTurn.setDisable(true);
+        btnSign.setDisable(true);
+        btnValue.setDisable(true);
+        
          disableCardClick();
         } else {
             nextTurn();
@@ -404,7 +411,7 @@ public class GameController implements Initializable, _Scene {
         {
             showVictoryScreen();
         }
-        //
+        
 
     }
 
@@ -515,7 +522,15 @@ public class GameController implements Initializable, _Scene {
     private void showVictoryScreen()
     {
         victoryAudioClip.play();
-      ;
+        
+        controller.message = controller.getDC().whoWon() + " won the match";//rs plz
+       controller.button1 = "new game";
+       controller.button2 = "main menu";
+       controller.messageId = "4";
+       
+       controller.loadScreen(Main.screen10ID, Main.screen10File);
+       controller.setScreen(Main.screen10ID);
+        
         System.out.println(  controller.getDC().whoWon());
     }
 
@@ -667,19 +682,55 @@ public class GameController implements Initializable, _Scene {
         txtSaveName.setVisible(false);
         btnStand.setDisable(false);
         btnEndTurn.setDisable(false);
+        btnSign.setDisable(false);
+        btnValue.setDisable(false);
         newRound();
     }
+    
+    @FXML
+    public void btnChangeEnter() {
+        hoverAudioClip.play();
+        btnChange.setScaleX(1.05);
+        btnChange.setScaleY(1.05);
+    }
+    
+      @FXML
+    public void btnChangeExit() {
+        btnChange.setScaleX(1);
+        btnChange.setScaleY(1);
+    }
+    
     @FXML
     public void btnSaveClick() {
-        try
+        txtSaveName.setVisible(true);
+        lblSave.setText("geef een naam aan je save");
+        wantSave = true;
+        
+        if (wantSave) {
+            try
         {
           controller.getDC().saveMatch(txtSaveName.getText());
         } catch (Exception e)
         {
             lblSave.setText(e.getMessage());
         }
+        }
       
     }
+    
+    @FXML
+    public void btnSaveEnter() {
+        hoverAudioClip.play();
+        btnSave.setScaleX(1.05);
+        btnSave.setScaleY(1.05);
+    }
+    
+      @FXML
+    public void btnSaveExit() {
+        btnSave.setScaleX(1);
+        btnSave.setScaleY(1);
+    }
+    
     
     @FXML
     public void btnValueClick()
@@ -693,7 +744,7 @@ public class GameController implements Initializable, _Scene {
             if (card != null && ((CardGUI) card).getUrl().substring(0, 29).equals("gui/assets/img/game/cards/1±2"))
             {             
                 CardGUI cardGUI = (CardGUI) card;
-                cardGUI.setRotate(cardGUI.getRotate() + 90);
+                cardGUI.setRotate(cardGUI.getRotate() + 180);
                 controller.getDC().changeCardValue(index++);
             }
         }

@@ -138,9 +138,9 @@ public class ShowPlayersController implements Initializable, _Scene {
                  controller.setScreen(Main.screen7ID);
             }else {
                 String name1 =  list1.getSelectionModel().getSelectedItem().toString();
-                controller.stopMusic();
+                
                 controller.getDC().selectPlayerWithoutMatchDeck(name1);
-                controller.playSideMusic();
+                
                 controller.loadScreen(Main.screen6ID, Main.screen6File);
                 controller.setScreen(Main.screen6ID);
             }
