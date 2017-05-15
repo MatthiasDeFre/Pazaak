@@ -20,7 +20,7 @@
                </VBox.margin></Label>
             <HBox alignment="CENTER" prefHeight="154.0" prefWidth="1200.0">
                <children>
-                  <ListView id="listM" fx:id="list1" minHeight="48.0" prefHeight="154.0" prefWidth="332.0" stylesheets="@../../assets/css/menu.css">
+                  <ListView id="listM" fx:id="list1" minHeight="48.0" onMouseClicked="#list1Click" prefHeight="154.0" prefWidth="332.0" stylesheets="@../../assets/css/menu.css">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

@@ -80,7 +80,7 @@ public class LoadGameController implements Initializable, _Scene {
         lblSettings.setText(rs.getString("loadGame"));
         
          
-        
+        btnConfirm.setDisable(true);
 
     }
     
@@ -167,6 +167,14 @@ public class LoadGameController implements Initializable, _Scene {
        
        btnMain.setScaleX(1);
        btnMain.setScaleY(1);
+       
+        
+    }
+    
+    @FXML
+    public void list1Click(){
+       
+       btnConfirm.setDisable(false);
        
         
     }
