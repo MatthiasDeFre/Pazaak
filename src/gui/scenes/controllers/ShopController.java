@@ -239,6 +239,7 @@ public class ShopController implements Initializable, _Scene
     private void btnCancelClick()
     {
         clickAudioClip.play();
+        controller.loadScreen(Main.screen6ID, Main.screen6File);
         controller.setScreen(Main.screen6ID);
     }
     
