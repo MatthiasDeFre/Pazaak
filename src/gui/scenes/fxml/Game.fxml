@@ -121,7 +121,7 @@
                      <children>
                         <Button id="buttonB" fx:id="btnEndTurn" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnEndTurnClick" onMouseEntered="#btnEndTurnEnter" onMouseExited="#btnEndTurnExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="END TURN" textOverrun="CLIP">
                            <VBox.margin>
-                              <Insets right="10.0" />
+                              <Insets bottom="10.0" right="10.0" />
                            </VBox.margin></Button>
                         <Button id="buttonB" fx:id="btnStand" graphicTextGap="0.0" minWidth="265.0" mnemonicParsing="false" onAction="#btnStandClick" onMouseEntered="#btnStandEnter" onMouseExited="#btnStandExit" prefHeight="52.0" prefWidth="265.0" stylesheets="@../../assets/css/menu.css" text="STAND" textOverrun="CLIP">
                            <padding>

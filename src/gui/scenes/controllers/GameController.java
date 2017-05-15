@@ -156,7 +156,7 @@ public class GameController implements Initializable, _Scene {
         btnSign.setTooltip(new Tooltip(rs.getString("changeSign")));
         btnEndTurn.setTooltip(new Tooltip(rs.getString("endTurn")));
         btnValue.setTooltip(new Tooltip(rs.getString("changeValue")));
-        
+        btnStand.setTooltip(new Tooltip(rs.getString("stand")));
         
         controller.getDC().startNewRound();
         nextTurn();
