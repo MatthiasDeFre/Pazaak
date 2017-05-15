@@ -92,7 +92,7 @@ public class Card{
      */
     public void changeValue() {
         String[] values = new String[2];
-        values[0] = this.getType().substring(0);
+        values[0] = this.getType().substring(0, 1);
         values[1] = this.getType().substring(this.getType().length()-1, this.getType().length());
         if(this.value == Integer.parseInt(values[0])) {
            this.value = Integer.parseInt(values[1]);
