@@ -21,7 +21,7 @@
   <children>
       <VBox prefHeight="675.0" prefWidth="1200.0">
          <children>
-            <GridPane fx:id="buyableCards1" gridLinesVisible="true" prefHeight="234.0" prefWidth="1200.0">
+            <GridPane fx:id="buyableCards1" alignment="CENTER" prefHeight="234.0" prefWidth="1200.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +40,7 @@
                <children>
                   <VBox prefHeight="526.0" prefWidth="750.0">
                      <children>
-                        <GridPane fx:id="buyableCards2" gridLinesVisible="true" prefHeight="190.0" prefWidth="750.0">
+                        <GridPane fx:id="buyableCards2" alignment="CENTER" prefHeight="190.0" prefWidth="750.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,22 +52,25 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
-                        <Label fx:id="lblCredits" prefHeight="88.0" prefWidth="778.0" text="Label">
+                        <Label id="labelbig" fx:id="lblCredits" prefHeight="88.0" prefWidth="778.0" stylesheets="@../../assets/css/menu.css" text="Label">
                            <font>
                               <Font size="52.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="525.0" prefWidth="447.0">
+                  <VBox prefHeight="474.0" prefWidth="447.0">
                      <children>
-                        <ImageView fx:id="imgSelectedCard" fitHeight="243.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="lblExplanation" prefHeight="103.0" prefWidth="442.0" text="uitleg" wrapText="true">
+                        <ImageView fx:id="imgSelectedCard" fitHeight="220.0" fitWidth="446.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></ImageView>
+                        <Label id="labelsmall" fx:id="lblExplanation" prefHeight="136.0" prefWidth="452.0" stylesheets="@../../assets/css/menu.css" text="uitleg" textOverrun="CLIP" wrapText="true">
                            <font>
-                              <Font size="46.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblCost" prefHeight="67.0" prefWidth="445.0" text="Prijs">
+                        <Label id="labelbig" fx:id="lblCost" prefHeight="67.0" prefWidth="445.0" stylesheets="@../../assets/css/menu.css" text="Prijs">
                            <font>
                               <Font size="34.0" />
                            </font>

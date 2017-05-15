@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -57,6 +58,8 @@ public class GameController implements Initializable, _Scene {
     private Label lblPlayer1Score;
     @FXML
     private Label lblPlayer2Score;
+    @FXML private Button btnSign;
+    private ImageView image = new ImageView((new Image(getClass().getResourceAsStream("../../assets/img/menu/sign.png"))));
 
     private List<GridPane> playerSideDecks;
     private List<GridPane> playerGameBoards;
@@ -69,7 +72,7 @@ public class GameController implements Initializable, _Scene {
 
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        btnSign.setGraphic(image);
         System.out.println(Font.loadFont(getClass().getResourceAsStream("../../assets/css/upheavtt.ttf"), 14).getName());
         rs = rb;
         hoverAudioClip.setVolume(0.5);
@@ -474,6 +477,35 @@ public class GameController implements Initializable, _Scene {
         lblScore.setText(String.valueOf(controller.getDC().getMatchScore()[0]) + String.valueOf(controller.getDC().getMatchScore()[1]));
 
         nextTurn();
+    }
+    
+    
+    @FXML
+    public void btnSignClick()
+    {
+
+        clickAudioClip.play();
+        
+
+    }
+
+    @FXML
+    public void btnSignEnter()
+    {
+
+        hoverAudioClip.play();
+        btnSign.setScaleX(1.1);
+        btnSign.setScaleY(1.1);
+
+    }
+
+    @FXML
+    public void btnSignExit()
+    {
+
+        btnSign.setScaleX(1);
+        btnSign.setScaleY(1);
+
     }
     
 }
