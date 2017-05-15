@@ -42,6 +42,10 @@ public class MatchRepository {
     }
     
     public void saveMatch(String matchName, Match match) {
+        if(matchName == null || matchName.isEmpty()) {
+            ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
+            throw new matchNotFoundException(rs.getString("matchNameWrong"));
+        }
         if(getSavegameNames().contains(matchName)) {
             ResourceBundle rs = ResourceBundle.getBundle("lang/Lang", Locale.getDefault());
             throw new matchNotFoundException(rs.getString("matchNameAlready"));
