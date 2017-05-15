@@ -84,7 +84,7 @@ public class ShowPlayersController implements Initializable, _Scene {
         //assert btnMain != null;
         
         assert lblSettings != null;
-        lblSettings.setText("indien u vergeten bent welke spelers u 2 seconden geleden hebt geslecteerd:");
+        lblSettings.setText("Please select the player you want to make a matchdeck for");
         
          
         
@@ -102,8 +102,8 @@ public class ShowPlayersController implements Initializable, _Scene {
         controller.unloadScreen(Main.screen1ID);
         playerList = FXCollections.observableArrayList(controller.getDC().getPlayersWithoutMatchDeck());
         if(playerList.isEmpty()) {
-        controller.loadScreen(Main.screen6ID, Main.screen6File);
-        controller.setScreen(Main.screen6ID);
+            btnConfirm.setDisable(false);
+            lblSettings.setText("The game is ready to be started");
         }
         
         
@@ -128,17 +128,23 @@ public class ShowPlayersController implements Initializable, _Scene {
         
        clickAudioClip.play();
         
-      String name1 =  list1.getSelectionModel().getSelectedItem().toString();
+     
       
         try
         {
            
-            
-            controller.stopMusic();
-            controller.getDC().selectPlayerWithoutMatchDeck(name1);
-            controller.playSideMusic();
-            controller.loadScreen(Main.screen6ID, Main.screen6File);
-            controller.setScreen(Main.screen6ID);
+            if(playerList.isEmpty()) {
+                 controller.loadScreen(Main.screen7ID, Main.screen7File);
+                 controller.setScreen(Main.screen7ID);
+            }else {
+                String name1 =  list1.getSelectionModel().getSelectedItem().toString();
+                controller.stopMusic();
+                controller.getDC().selectPlayerWithoutMatchDeck(name1);
+                controller.playSideMusic();
+                controller.loadScreen(Main.screen6ID, Main.screen6File);
+                controller.setScreen(Main.screen6ID);
+            }
+           
       } catch (Exception e)
         {
             lblError.setText(e.getMessage());
