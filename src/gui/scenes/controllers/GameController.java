@@ -396,6 +396,7 @@ public class GameController implements Initializable, _Scene {
         txtSaveName.setVisible(true);
         btnStand.setDisable(true);
         btnEndTurn.setDisable(true);
+         disableCardClick();
         } else {
             nextTurn();
         }
@@ -444,6 +445,7 @@ public class GameController implements Initializable, _Scene {
             txtSaveName.setVisible(true);
             btnStand.setDisable(true);
             btnEndTurn.setDisable(true);
+            disableCardClick();
         }
         if (controller.getDC().matchEnded())
         {
@@ -513,8 +515,8 @@ public class GameController implements Initializable, _Scene {
     private void showVictoryScreen()
     {
         victoryAudioClip.play();
-        controller.getDC().whoWon();
-        System.out.println(Arrays.toString(controller.getDC().getWinnerData()));
+      ;
+        System.out.println(  controller.getDC().whoWon());
     }
 
     private void newRound()
@@ -763,6 +765,26 @@ public class GameController implements Initializable, _Scene {
             System.out.println("Aborted setup due to error:" + e.getMessage());
         }
     }
-    
+    private void disableCardClick()
+    {
+        for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+        {
+            if (card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png"))
+            {
+                CardGUI cardGUI = (CardGUI) card;
+
+                cardGUI.setInteractable(false);
+            }
+        }
+        for (Node card : playerSideDecks.get((controller.getDC().getCurrentPlayerIndex() + 1) % 2).getChildren())
+        {
+            if (card != null && !((CardGUI) card).getUrl().equals("gui/assets/img/game/cards/back.png"))
+            {
+                CardGUI cardGUI = (CardGUI) card;
+                cardGUI.setInteractable(false);
+            }
+        }
+
+    }
     
 }
