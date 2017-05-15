@@ -173,6 +173,9 @@ public class GameController implements Initializable, _Scene {
 
                         //   System.out.println(String.valueOf(GridPane.getColumnIndex(cardGUI)));
                         controller.getDC().playCard(cardIndex);
+                        if(cardGUI.getUrl().equals("gui/assets/img/game/cards/2&4.png") || cardGUI.getUrl().equals("gui/assets/img/game/cards/3&6.png")) {
+                            redrawGameboardCurrent(cardGUI);
+                        }
                         System.out.println(String.valueOf(cardIndex));
                         cardGUI.setInteractable(false);
                         cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
@@ -255,6 +258,10 @@ public class GameController implements Initializable, _Scene {
                         }
 
                         controller.getDC().playCard(cardIndex);
+                        if (cardGUI.getUrl().equals("gui/assets/img/game/cards/2&4.png") || cardGUI.getUrl().equals("gui/assets/img/game/cards/3&6.png"))
+                        {
+                            redrawGameboardCurrent(cardGUI);
+                        }
                         System.out.println(String.valueOf(cardIndex));
                         cardGUI.setInteractable(false);
                         cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
@@ -535,6 +542,63 @@ public class GameController implements Initializable, _Scene {
         btnSign.setScaleX(1);
         btnSign.setScaleY(1);
 
+    }
+    
+    
+    private void redrawGameboardCurrent(CardGUI cardCaller) {
+         for (Node card : playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+        {
+            CardGUI cardGUI = (CardGUI) card;
+            if (cardGUI != null && cardCaller.getUrl().equals("gui/assets/img/game/cards/2&4.png"))
+            {
+              
+                switch(cardGUI.getUrl().substring(26, 28)) {
+                    case "+2":
+                        cardGUI.setUrl("gui/assets/img/game/cards/-2.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/-2.png"));
+                        break;
+                    case "+4":
+                          cardGUI.setUrl("gui/assets/img/game/cards/-4.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/-4.png"));
+                        break;
+                    case "-2":
+                         cardGUI.setUrl("gui/assets/img/game/cards/+2.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/+2.png"));
+                        break;
+                    case "-4":
+                        cardGUI.setUrl("gui/assets/img/game/cards/+4.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/+4.png"));
+                        break;
+                     case "±2": case "±4":
+                         cardGUI.setRotate(cardGUI.getRotate() + 180);
+                         break;
+                        
+                }
+            } else if(cardGUI != null && cardCaller.getUrl().equals("gui/assets/img/game/cards/3&6.png")) 
+            {
+                  switch(cardGUI.getUrl().substring(27, 28)) {
+                    case "+3":
+                        cardGUI.setUrl("gui/assets/img/game/cards/-3.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/-3.png"));
+                        break;
+                    case "+6":
+                          cardGUI.setUrl("gui/assets/img/game/cards/-6.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/-6.png"));
+                        break;
+                    case "-3":
+                         cardGUI.setUrl("gui/assets/img/game/cards/+3.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/+3.png"));
+                        break;
+                    case "-6":
+                        cardGUI.setUrl("gui/assets/img/game/cards/+6.png");
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/+6.png"));
+                        break;
+                     case "±3": case "±6":
+                         cardGUI.setRotate(cardGUI.getRotate() + 180);
+                         break;
+                }
+            }
+        }
     }
     
 }

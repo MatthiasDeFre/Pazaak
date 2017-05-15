@@ -285,6 +285,13 @@ public class DomainController {
          newMatch.changeCardSign(cardIndex);
     }
     
+    /**
+     * <pre>Method to show the possible cards whose value can be changed
+     * Index [x][0] cardType
+     * Index [x][1] cardValue
+     * Index [x][2] original cardindex in matchdeck</pre>
+     * @return 
+     */
     public String[][] showPossibleChanges() {
         String[][] possibleChanges = new String[0][3];
         
@@ -311,31 +318,60 @@ public class DomainController {
         return possibleChanges;
     }
     
+    /**
+     * Method to go to the next turn of the game
+     */
     public void nextTurn() {
         newMatch.nextTurn();
     }
     
+    /**
+     * Method to freeze the board of the current player
+     */
     public void freezeBoard() {
         newMatch.freezeBoard();
     }
     
+    /**
+     * Method to check if the round has ended or not
+     * @return Boolean true if the round has ended else false
+     */
     public boolean roundEnded()
     {
         return newMatch.roundEnded();
     }
     
+    /**
+     * Method to check if the match is an AI match (INDEV)
+     * @return Boolean true if the match is an AI match else false
+     */
     public boolean isAIMatch() {
         return newMatch.isAIMatch();
     }
     
+    /**
+     * Method to set the match to an AIMatch
+     * @param AI Boolean
+     */
     public void setAIMatch(boolean AI) {
         newMatch.setAI(AI);
     }
     
+    /**
+     * Method to check if the AI has played a card and wants the next turn because of it
+     * @return 
+     */
     public boolean getAIWantsNextTurn() {
         return newMatch.getAIWantsNextTurn();
     }
     
+    /**
+     * <pre>Method to add a card with the provided String[]
+     * Index [0] cardType
+     * Index [1] cardValue
+     * Index [2] cardPrice</pre>
+     * @param availableCard String[] containing the card data
+     */
     public void buyCard(String[] availableCard)
     {
         //MAAK EEN KAART

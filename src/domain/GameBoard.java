@@ -32,7 +32,7 @@ public class GameBoard {
                     card.setValue(gameBoardCards.get(gameBoardCards.size() - 1).getTrueValue());
                 }
         } else if(cardType.contains("&")){
-            String[] cardValues = card.getType().split("/&");
+            String[] cardValues = card.getType().split("&");
             for (Card gameBoardCard : gameBoardCards)
             {
                 if(!gameBoardCard.getType().equals("setDeckCard") && gameBoardCard.getValue() == Integer.parseInt(cardValues[0]) || gameBoardCard.getValue() == Integer.parseInt(cardValues[1]))
