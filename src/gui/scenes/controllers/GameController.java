@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -93,7 +94,7 @@ public class GameController implements Initializable, _Scene {
 
         columnCounters = new int[2];
         rowCounters = new int[2];
-        
+
         lblPlayer1Score.setText("0");
         lblPlayer2Score.setText("0");
     }
@@ -117,54 +118,79 @@ public class GameController implements Initializable, _Scene {
         for (String[] cardPlayer1 : controller.getDC().getMatchDeckCurrentPlayer())
         {
             String imageUrl = determineImgUrl(cardPlayer1);
-          
-         
+
             CardGUI cardGUI = new CardGUI(imageUrl);
             cardGUI.setInteractable(true);
-           // playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUI, columnCounter++, rowCounter);
+            // playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUI, columnCounter++, rowCounter);
             cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event)
                 {
                     CardGUI cardGUI = (CardGUI) event.getSource();
-                    if(cardGUI.isInteractable()) {
-                    CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
-                    playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
-                    if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
+                    if (cardGUI.isInteractable())
                     {
-                        columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
-                        rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
-                    }
-                //    controller.getDC().playCard(GridPane.getColumnIndex(cardGUI));
-                    boolean cardFound = false;
-                    int cardIndex= 1;
+                        CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
+                        playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
+                        if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
+                        {
+                            columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
+                            rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
+                        }
+                        //    controller.getDC().playCard(GridPane.getColumnIndex(cardGUI));
+                        boolean cardFound = false;
+                        int cardIndex = 1;
                         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
                         {
                             CardGUI cardGUI2 = (CardGUI) card;
                             if (cardGUI2 != null && !cardFound && !cardGUI2.getUrl().equals("gui/assets/img/game/cards/back.png"))
                             {
-                               if(cardGUI == cardGUI2) {
-                                   cardFound = true;
-                               } else {
-                                   cardIndex++;
-                               }
+                                if (cardGUI == cardGUI2)
+                                {
+                                    cardFound = true;
+                                } else
+                                {
+                                    cardIndex++;
+                                }
                             }
                         }
-     
-                     //   System.out.println(String.valueOf(GridPane.getColumnIndex(cardGUI)));
-                      controller.getDC().playCard(cardIndex);
+
+                        //   System.out.println(String.valueOf(GridPane.getColumnIndex(cardGUI)));
+                        controller.getDC().playCard(cardIndex);
                         System.out.println(String.valueOf(cardIndex));
-                    cardGUI.setInteractable(false);
-                    cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
-                    cardGUI.setUrl("gui/assets/img//game/cards/back.png");
-                    lblPlayer1Score.setText(String.valueOf(controller.getDC().getPlayerScores()[0]));
-                    lblPlayer2Score.setText(String.valueOf(controller.getDC().getPlayerScores()[1]));
+                        cardGUI.setInteractable(false);
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
+                        cardGUI.setUrl("gui/assets/img/game/cards/back.png");
+                        lblPlayer1Score.setText(String.valueOf(controller.getDC().getPlayerScores()[0]));
+                        lblPlayer2Score.setText(String.valueOf(controller.getDC().getPlayerScores()[1]));
+                    }
+                }
+            });
+              cardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+
+                    hoverAudioClip.play();
+                     if( ((CardGUI) event.getSource()).isInteractable()) {
+                    ((CardGUI) event.getSource()).setScaleX(1.2);
+                    ((CardGUI) event.getSource()).setScaleY(1.2);                                           
+                    }
+
+                }
+            });
+            cardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                    if( ((CardGUI) event.getSource()).isInteractable()) {
+                    ((CardGUI) event.getSource()).setScaleX(1);
+                    ((CardGUI) event.getSource()).setScaleY(1);                                           
                     }
                 }
             });
 
             playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUI, columnCounter++, 0);
-        /*   if (columnCounter == 3)
+            /*   if (columnCounter == 3)
             {
                 columnCounter = 0;
                 rowCounter++;
@@ -174,31 +200,74 @@ public class GameController implements Initializable, _Scene {
         for (String[] cardPlayer1 : controller.getDC().showMatchDeckOtherPlayer())
         {
             String imageUrl = determineImgUrl(cardPlayer1);
-          
-            //int rowCounter = 0;
 
+            //int rowCounter = 0;
             CardGUI cardGUI = new CardGUI("gui/assets/img/game/cards/back.png");
             cardGUI.setUrl(imageUrl);
-
+            
             cardGUI.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event)
                 {
-                  /*  CardGUI cardGUI = (CardGUI) event.getSource();
-                    if(cardGUI.isInteractable()) {
-                    CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
-                    playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
-                    if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
+                    CardGUI cardGUI = (CardGUI) event.getSource();
+                    if (cardGUI.isInteractable())
                     {
-                        columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
-                        rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
+                        CardGUI cardGUIBoard = new CardGUI(cardGUI.getUrl());
+                        playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(cardGUIBoard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
+                        if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
+                        {
+                            columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
+                            rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
+                        }
+
+                        boolean cardFound = false;
+                        int cardIndex = 1;
+                        for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
+                        {
+                            CardGUI cardGUI2 = (CardGUI) card;
+                            if (cardGUI2 != null && !cardFound && !cardGUI2.getUrl().equals("gui/assets/img/game/cards/back.png"))
+                            {
+                                if (cardGUI == cardGUI2)
+                                {
+                                    cardFound = true;
+                                } else
+                                {
+                                    cardIndex++;
+                                }
+                            }
+                        }
+
+                        controller.getDC().playCard(cardIndex);
+                        System.out.println(String.valueOf(cardIndex));
+                        cardGUI.setInteractable(false);
+                        cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
+                        cardGUI.setUrl("gui/assets/img/game/cards/back.png");
+                        lblPlayer1Score.setText(String.valueOf(controller.getDC().getPlayerScores()[0]));
+                        lblPlayer2Score.setText(String.valueOf(controller.getDC().getPlayerScores()[1]));
                     }
-                    
-                    cardGUI.setInteractable(false);
-                    cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
-                    }*/
-                    
-                    
+
+                }
+            });
+            cardGUI.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+
+                   if( ((CardGUI) event.getSource()).isInteractable()) {
+                    ((CardGUI) event.getSource()).setScaleX(1.2);
+                    ((CardGUI) event.getSource()).setScaleY(1.2);                                           
+                    }
+
+                }
+            });
+            cardGUI.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                    if( ((CardGUI) event.getSource()).isInteractable()) {
+                    ((CardGUI) event.getSource()).setScaleX(1);
+                    ((CardGUI) event.getSource()).setScaleY(1);                                           
+                    }
                 }
             });
 
@@ -330,13 +399,14 @@ public class GameController implements Initializable, _Scene {
         lastPlayedCardArray = controller.getDC().giveLastCardPlayed();
         String imageUrl = determineImgUrl(lastPlayedCardArray);
         CardGUI lastPlayedCard = new CardGUI(imageUrl);
-      
+
         playerGameBoards.get(controller.getDC().getCurrentPlayerIndex()).add(lastPlayedCard, columnCounters[controller.getDC().getCurrentPlayerIndex()]++, rowCounters[controller.getDC().getCurrentPlayerIndex()]);
-        if(columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3) {
+        if (columnCounters[controller.getDC().getCurrentPlayerIndex()] == 3)
+        {
             columnCounters[controller.getDC().getCurrentPlayerIndex()] = 0;
             rowCounters[controller.getDC().getCurrentPlayerIndex()]++;
         }
-          System.out.println(Arrays.toString(columnCounters));
+        System.out.println(Arrays.toString(columnCounters));
         for (Node card : playerSideDecks.get(controller.getDC().getCurrentPlayerIndex()).getChildren())
         {
             if (card != null)
@@ -351,11 +421,11 @@ public class GameController implements Initializable, _Scene {
             if (card != null)
             {
                 CardGUI cardGUI = (CardGUI) card;
-                cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
+                cardGUI.setImage(new Image("gui/assets/img/game/cards/back.png"));
                 cardGUI.setInteractable(false);
             }
         }
-        
+
         scores.get(controller.getDC().getCurrentPlayerIndex()).setText(String.valueOf(controller.getDC().getPlayerScores()[controller.getDC().getCurrentPlayerIndex()]));
 
     }
@@ -367,40 +437,43 @@ public class GameController implements Initializable, _Scene {
 
     private void newRound()
     {
-      /*   for (Node card : playerGameBoards.get(0).getChildren())
+        /*   for (Node card : playerGameBoards.get(0).getChildren())
         {
              
          //   playerSideDecks.get(0).getChildren().clear();
         }*/
-  
-        int teller= playerGameBoards.get(0).getChildren().size() - 1;
-         while(!playerGameBoards.get(0).getChildren().isEmpty()) {
-                  CardGUI cardGUI = (CardGUI) playerGameBoards.get(0).getChildren().get(teller--);
-                  playerGameBoards.get(0).getChildren().remove(cardGUI);
-         }
-       /*  for (Node card : playerGameBoards.get(1).getChildren())
+
+        int teller = playerGameBoards.get(0).getChildren().size() - 1;
+        while (!playerGameBoards.get(0).getChildren().isEmpty())
+        {
+            CardGUI cardGUI = (CardGUI) playerGameBoards.get(0).getChildren().get(teller--);
+            playerGameBoards.get(0).getChildren().remove(cardGUI);
+        }
+        /*  for (Node card : playerGameBoards.get(1).getChildren())
         {
            CardGUI cardGUI = (CardGUI) card;
          //   cardGUI.setImage(new Image("gui/assets/img//game/cards/back.png"));
             playerGameBoards.get(1).getChildren().remove(cardGUI);
            
         }*/
-       // playerGameBoards.get(0).getChildren().clear();
-     //   playerGameBoards.get(1).getChildren().clear();
-         teller= playerGameBoards.get(1).getChildren().size() - 1;
-         while(!playerGameBoards.get(1).getChildren().isEmpty()) {
-                  CardGUI cardGUI = (CardGUI) playerGameBoards.get(1).getChildren().get(teller--);
-                  playerGameBoards.get(1).getChildren().remove(cardGUI);
-         }
+        // playerGameBoards.get(0).getChildren().clear();
+        //   playerGameBoards.get(1).getChildren().clear();
+        teller = playerGameBoards.get(1).getChildren().size() - 1;
+        while (!playerGameBoards.get(1).getChildren().isEmpty())
+        {
+            CardGUI cardGUI = (CardGUI) playerGameBoards.get(1).getChildren().get(teller--);
+            playerGameBoards.get(1).getChildren().remove(cardGUI);
+        }
         columnCounters = new int[2];
         rowCounters = new int[2];
         controller.getDC().startNewRound();
-        
+
         lblPlayer1Score.setText("0");
         lblPlayer2Score.setText("0");
-        
+
         lblScore.setText(String.valueOf(controller.getDC().getMatchScore()[0]) + String.valueOf(controller.getDC().getMatchScore()[1]));
-        
+
         nextTurn();
     }
+    
 }
