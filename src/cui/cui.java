@@ -1,5 +1,6 @@
 package cui;
 
+import com.sun.javafx.font.FontConstants;
 import domain.DomainController;
 import exceptions.noCorrectBirthyearException;
 import exceptions.userExistsException;
@@ -307,18 +308,25 @@ public class cui {
         System.out.println(rs.getString("winnerIs") + dc.whoWon());
     }
 
+
+    
+    
+    
+    
+    
+    
     private void startNewRound() {
+        
+        
+        dc.startNewRound();
         System.out.println(rs.getString("roundStarted"));
         turnNotEnded = false;
-        dc.startNewRound();
 
         do {
 
             if (turnNotEnded == false) {
                 dc.nextTurn();
             }
-            System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-            System.out.println("test");
             String[][] situation = dc.getRoundSituation();
             int index = 0;
             for (String playerName : dc.getChosenPlayerNames()) {
@@ -332,7 +340,9 @@ public class cui {
             // System.out.println(Arrays.deepToString(dc.getRoundSituation()));
           
                 if (!dc.isAIMatch() || dc.getAIWantsNextTurn() == false) {
-                    turnChoice();
+                    System.out.println(rs.getString("whatWant"));
+                turnChoice(s.nextInt());
+                s.nextLine();
                 }
             
 
@@ -356,29 +366,21 @@ public class cui {
 
     }
 
-    private void turnChoice() {
+    private void turnChoice(int choice) {
 
-       boolean badNumber = true;
-        String choice = "";
-
-        while (badNumber = true) {
-            System.out.println(rs.getString("whatWant"));  
-            choice = s.nextLine();
             switch (choice) {
-                case "1":
-                    badNumber = false;
+                case 1:
                     turnNotEnded = false;
                     dc.nextTurn();
-
                     break;
-                case "2":
+                case 2:
                     int count = 0;
                     String theinput = "";
                     String[][] situation = dc.getRoundSituation();
                     if (situation[3].length != 0) {
                         boolean input = false;
                         System.out.println(rs.getString("wantToChange"));
-                       // s.nextLine();
+                        s.nextLine();
                         theinput = s.nextLine().substring(0, 1);
                         if (theinput.toLowerCase().equals("o") || theinput.toLowerCase().equals("j") || theinput.toLowerCase().equals("y")) {
                             input = false;
@@ -419,23 +421,21 @@ public class cui {
                     } else {
                         System.out.println(rs.getString("noCards"));
                     }
-                    badNumber = false;
+                    turnNotEnded = true;
+                    break;
 
-                case "3":
+                case 3:
                     dc.freezeBoard();
                     dc.nextTurn();
                     turnNotEnded = false;
-                    badNumber = false;
                     break;
-                case "4":
+                case 4:
                     startPazaak();
                 default:
                     System.out.println(rs.getString("wrongInput"));
-                    badNumber = true;
-
             }
         }
-    }
+    
 
     private void loadMatch() {
         Boolean input = true;
