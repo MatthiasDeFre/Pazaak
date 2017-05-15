@@ -394,8 +394,8 @@ public class GameController implements Initializable, _Scene {
         btnSave.setVisible(true);
         lblSave.setVisible(true);
         txtSaveName.setVisible(true);
-        btnStand.setDisable(false);
-        btnEndTurn.setDisable(false);
+        btnStand.setDisable(true);
+        btnEndTurn.setDisable(true);
         } else {
             nextTurn();
         }
@@ -442,8 +442,8 @@ public class GameController implements Initializable, _Scene {
             btnSave.setVisible(true);
             lblSave.setVisible(true);
             txtSaveName.setVisible(true);
-            btnStand.setDisable(false);
-            btnEndTurn.setDisable(false);
+            btnStand.setDisable(true);
+            btnEndTurn.setDisable(true);
         }
         if (controller.getDC().matchEnded())
         {
@@ -663,8 +663,8 @@ public class GameController implements Initializable, _Scene {
         btnSave.setVisible(false);
         lblSave.setVisible(false);
         txtSaveName.setVisible(false);
-        btnStand.setDisable(true);
-        btnEndTurn.setDisable(true);
+        btnStand.setDisable(false);
+        btnEndTurn.setDisable(false);
         newRound();
     }
     @FXML

@@ -91,7 +91,9 @@ public class Card{
      * Method to change the value of the Card (Should only be used on cards with multiple values)
      */
     public void changeValue() {
-        String[] values = this.type.split("/+///-");
+        String[] values = new String[2];
+        values[0] = this.getType().substring(0);
+        values[1] = this.getType().substring(this.getType().length(), this.getType().length() - 1);
         if(this.value == Integer.parseInt(values[0])) {
            this.value = Integer.parseInt(values[1]);
         } else {
