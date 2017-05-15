@@ -72,9 +72,9 @@ public class SideDeckController implements Initializable, _Scene {
     public void setScreenParent(SceneController screenParent){
         controller = screenParent;
         String[][] selectedCardsArray = new String[0][2];
-        controller.getDC().makeMatch();
-        controller.getDC().selectPlayer("tyreg");
-        controller.getDC().selectPlayerWithoutMatchDeck("tyreg");
+      //  controller.getDC().makeMatch();
+      //  controller.getDC().selectPlayer("tyreg");
+     //   controller.getDC().selectPlayerWithoutMatchDeck("tyreg");
         int column =   0;
         int row = 0;
         filledSlots = new boolean[6];
@@ -226,11 +226,11 @@ public class SideDeckController implements Initializable, _Scene {
             index++;
         }
         controller.getDC().makeMatchDeck(cards);
-        controller.getDC().selectPlayer("pater");
-        controller.getDC().selectPlayerWithoutMatchDeck("pater");
-        controller.getDC().makeMatchDeck(cards);
-        controller.loadScreen(Main.screen7ID, Main.screen7File);
-        controller.setScreen(Main.screen7ID);
+//        controller.getDC().selectPlayer("pater");
+     //   controller.getDC().selectPlayerWithoutMatchDeck("pater");
+     //   controller.getDC().makeMatchDeck(cards);
+        controller.loadScreen(Main.screen13ID, Main.screen13File);
+        controller.setScreen(Main.screen13ID);
     }
 
     @FXML
