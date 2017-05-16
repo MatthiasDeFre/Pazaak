@@ -327,6 +327,8 @@ public class cui {
             if (turnNotEnded == false) {
                 dc.nextTurn();
             }
+            int[] matchScore = dc.getMatchScore();
+            System.out.println("Score player 1: "+ matchScore[0] + " Score player 2:" + matchScore[1]);
             String[][] situation = dc.getRoundSituation();
             int index = 0;
             for (String playerName : dc.getChosenPlayerNames()) {
