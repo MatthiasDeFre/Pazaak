@@ -352,22 +352,26 @@ public class cui {
 
         } while (!dc.roundEnded() || turnNotEnded);
         System.out.println(Arrays.deepToString(dc.getRoundSituation()));
-        System.out.println(rs.getString("wantSave"));
+        if (!dc.matchEnded())
+        {
 
-        String input = s.nextLine().substring(0, 1);;
+            System.out.println(rs.getString("wantSave"));
 
-        if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y")) {
-            System.out.println(rs.getString("whichName"));
-            input = s.nextLine();
-            dc.saveMatch(input);
-        } else {
-            if (input.toLowerCase().equals("n")) {
+            String input = s.nextLine().substring(0, 1);;
+
+            if (input.toLowerCase().equals("o") || input.toLowerCase().equals("j") || input.toLowerCase().equals("y"))
+            {
+                System.out.println(rs.getString("whichName"));
+                input = s.nextLine();
+                dc.saveMatch(input);
+            } else if (input.toLowerCase().equals("n"))
+            {
                 continueGame = false;
-            } else {
+            } else
+            {
                 System.out.println(rs.getString("wrongInput"));
             }
         }
-
     }
 
     private void turnChoice(int choice) {
@@ -375,7 +379,7 @@ public class cui {
             switch (choice) {
                 case 1:
                     turnNotEnded = false;
-                    dc.nextTurn();
+                  //  dc.nextTurn();
                     break;
                 case 2:
                     int count = 0;
@@ -430,7 +434,7 @@ public class cui {
 
                 case 3:
                     dc.freezeBoard();
-                    dc.nextTurn();
+                 //   dc.nextTurn();
                     turnNotEnded = false;
                     break;
                 case 4:
