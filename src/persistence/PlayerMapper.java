@@ -20,7 +20,7 @@ public class PlayerMapper {
      * @param player Instance of the player class 
      */
     public void addPlayer(Player player) {
-        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Player (playerName,credit, birthYear) VALUES (?,?,?)" );
             query.setString(1, player.getName());   
             query.setInt(2, player.getCredit());
@@ -39,7 +39,7 @@ public class PlayerMapper {
      */
     public int givePlayerID(String name) {
             int id=0;
-            try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+            try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("SELECT P_ID FROM ID222177_g07.Player WHERE playerName = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
@@ -67,7 +67,7 @@ public class PlayerMapper {
         List<Card> collection;
         int birthYear = 0;
         boolean userExists = false;
-         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+         try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("SELECT playerName, credit, P_ID, birthYear FROM ID222177_g07.Player WHERE playerName = ?");
             query.setString(1, name);
             try (ResultSet rs = query.executeQuery()) {
@@ -133,7 +133,7 @@ public class PlayerMapper {
     }*/
 
     public void saveCredit(Player player) {
-        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("UPDATE ID222177_g07.Player SET credit = ? WHERE playerName = ?");
             query.setInt(1, player.getCredit());
             query.setString(2, player.getName());
@@ -149,7 +149,7 @@ public class PlayerMapper {
      * @param name Name of the user
      */
     public void userExists(String name) {
-           try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+           try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player WHERE playerName = ?");
             query.setString(1, name);
              try (ResultSet rs = query.executeQuery()) {
@@ -172,7 +172,7 @@ public class PlayerMapper {
      */
     public List<String> getPlayerNames() {
        List<String> names = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+        try (Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("SELECT playerName FROM ID222177_g07.Player");
              try (ResultSet rs = query.executeQuery()) {
                 while (rs.next()) {

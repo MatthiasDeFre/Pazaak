@@ -39,7 +39,7 @@ public class MatchMapper {
     
     public void addMatch(String matchName, FileInputStream fileInputStream)
     {
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Match (name,matchFile) VALUES (?,?)" );
             query.setString(1, matchName);   
             query.setBlob(2, fileInputStream);
@@ -52,7 +52,7 @@ public class MatchMapper {
     
     public Match loadMatch(String matchName) throws IOException, ClassNotFoundException {
         Match match = null;
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT matchFile FROM ID222177_g07.Match WHERE name = ?");
             query.setString(1, matchName);
@@ -92,7 +92,7 @@ public class MatchMapper {
     
     public void saveMatchNoBlob(String matchName, Match match) {
         int[] playerID = new int[2];
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL)) {
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root")) {
             
             //Match
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Match (matchName, player1ID, player2ID, aiMatch) VALUES (?,?,?,?)");
@@ -154,7 +154,7 @@ public class MatchMapper {
     public List<String> getSavegameNames()
     {
         List<String> savegameNames = new ArrayList<>();
-         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+         try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT matchName FROM ID222177_g07.Match");
             try (ResultSet rs = query.executeQuery())
@@ -200,7 +200,7 @@ public class MatchMapper {
         Match match = new Match();
         boolean matchFound = false;
         String[] playerNames = new String[2];
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT matchID, player1ID, player2ID FROM ID222177_g07.Match WHERE matchName = ?");
             query.setString(1, name);

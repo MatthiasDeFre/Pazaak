@@ -21,7 +21,7 @@ public class CardMapper
     public void addCard(Card card, int playerID)
     {   
         int CardID = getCardID(card);
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
             query.setInt(1, playerID); 
@@ -42,7 +42,7 @@ public class CardMapper
     public List<Card> giveStartDeck()
     {
         List<Card> cards = new ArrayList<>();
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT type, value FROM ID222177_g07.CardType WHERE startDeck = 1");
             try (ResultSet rs = query.executeQuery())
@@ -71,7 +71,7 @@ public class CardMapper
      */
     public int getCardID(Card card) {
         int cardID=0;
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT Card_ID FROM ID222177_g07.CardType WHERE value = ? AND type = ?");
             query.setInt(1, card.getTrueValue());
@@ -133,7 +133,7 @@ public class CardMapper
     {
         List<Card> cards = new ArrayList<>();
 
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT value, type FROM ID222177_g07.Card INNER JOIN ID222177_g07.CardType ON Card.Card_ID = CardType.Card_ID INNER JOIN ID222177_g07.Player ON Player.P_ID = Card.P_ID WHERE playerName = ?");
             query.setString(1, name);
@@ -159,7 +159,7 @@ public class CardMapper
     {
         Card card = null;
 
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM  WHERE type = ?");
             query.setString(1, type);
@@ -211,7 +211,7 @@ public class CardMapper
        {   
       
         
-        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+        try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {
             List<Integer> cardIDs = getCardIDs(cards, conn);
             for (int i = 0; i < cards.size(); i++)
@@ -228,7 +228,7 @@ public class CardMapper
     }
        public void buyCard(Card card, int playerID)
        {
-           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
         {                                            
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g07.Card (P_ID, Card_ID) VALUES (?,?)");
             query.setInt(1, playerID); 
@@ -267,7 +267,7 @@ public class CardMapper
        public List<Card> showBuyableCards(String playerName){
            List<Card>buyableCards=new ArrayList<>();
            
-           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL))
+           try (java.sql.Connection conn = DriverManager.getConnection(persistence.Connection.JDBC_URL, "root", "root"))
            {
            PreparedStatement query= conn.prepareStatement("SELECT type, value, price \n" +
             "FROM ID222177_g07.CardType\n" +
