@@ -15,12 +15,13 @@ Below you can also find a video gameplay of our version of the game. At the mome
 | Gerrit De Vriese | GUI Design | 
 | Matthias De Fré  | Lead programmer and teamleader | 
 | Adil Iminov (External Friend) | Music and sound design |
+| Polarchips (Royalty Free) | Music |
 
 
 ### My role within the team
 
-During the project I was the teamleader, we all decided that I would be the one taking that position. Although I was the teamleader all team members still had a free choice of what to do, I was there to make sure everything got finished in time and that the quality was good.
-I also was the main programmer, this meant that I did most of the main gameplay code and database communication. We also organised weekly sessions to explain the code to eachother so everybody knew what each piece of code did.
+During the project I was the team leader, we all decided that I would be the one taking that position. Although I was the team leader all team members still had a free choice of what to do, I was there to make sure everything got finished in time and that the quality was good.
+I also was the main programmer, this meant that I did most of the main gameplay code and database communication. We also organized weekly sessions to explain the code to each other so everybody knew what each piece of code did.
 
 ## Links and Media
 
