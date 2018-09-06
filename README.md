@@ -26,6 +26,7 @@ I also was the main programmer, this meant that I did most of the main gameplay 
 ## Links and Media
 
 Gameplay: https://www.youtube.com/watch?v=fEp8Inp7PU8
+
 Credits: https://www.youtube.com/watch?v=9fWD75DQ75A
 
 ## Legal
